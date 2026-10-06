@@ -89,7 +89,15 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-用户要「三档月预算」。每档用已采集 CPC 算 clicks → inquiries → CPI，并在 `source` 放 URL；缺 CPC 时只写缺口与「到广告平台关键词规划工具复核」，不写无来源的测试档金额。不要把本节句子粘进交付物。
+竞品调研无广告账户导出、CPC 或创意库；本节只借批发货架品类树与行业词当关键词结构，账户数字仍须本轮采集。
+
+用户要「三档月预算」。每档用已采集 CPC 算 clicks → inquiries → CPI，并在 `source` 放 URL；缺 CPC 时只写缺口与「到广告平台关键词规划工具复核」，不写无来源的测试档金额。
+
+输入把搜索战役按自造品类（arena / energy infrastructure）或内部标签开组。成稿按已核验货架分战役：Heimspeicher 与 Gewerbespeicher 不合一战役；工商业侧按货架类型（All-in-One、Container、Modular mit WR / ohne WR）或耦合（DC / AC 后装）分广告组。Container 是类型不是容量，不按容量档开组。词用行业名（Heimspeicher / Gewerbespeicher / Containerspeicher / Hybridwechselrichter 或其面客语种对译），不用自造复合词。规模错位词进否定词，不进核心搜索。
+
+输入把学院 / Wiki / 知识世界整站词塞进搜索核心。成稿：信息类默认排除或只进展示；商业意图对齐货架类型与应用（自用、削峰、备电），不要用百科词扛询盘战役。
+
+输入要「一套广告打安装商和 EPC」。成稿分角色与漏斗阶段，不合一条；CTA 写询盘结果（要报价 / 要样品 / 下目录），不用注册或免费试用。禁止把库存或时效承诺当卖点。不要把本节句子粘进交付物。
 
 ## 易错
 

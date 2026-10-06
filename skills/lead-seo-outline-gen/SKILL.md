@@ -139,7 +139,9 @@ Recap + CTA
 
 > 仅供理解，禁止引用到输出。
 
-关键词是采购流程类 how-to。H2 应写成「Step 2: Lock dimensional tolerances before requesting quotes」，不要写成「Getting Started」或「Key Considerations」。FAQ 用搜索里出现的问句，不要自造「What is [keyword]?」。统计格只在已抓页或产品上下文有数字时填写，否则 `[待补充]`。不要把本节句子粘进交付物。
+输入是「储能选购 / 工商业储能」支柱大纲。选题集群按批发货架的行业树分柱：家用储能与工商业储能分开，工商业再按类型（一体机、集装箱、带变流器的模块、不带变流器的模块）各成门；H1 用行业词（Home storage / Commercial storage，德文面客则 Heimspeicher / Gewerbespeicher）。不要用自造货架名（arena、energy infrastructure）当柱名，也不要把德制度（电网登记、运营商手续）写成美式 behind-the-meter 节。Main Sections 的 H2 仍对本轮相关问题开门——相关问题优先取搜索补全形状（地理+批发、品牌+批发、逆变器+电池+兼容），例如「报价前先锁定逆变器与电池的配对」；不要写成 Getting Started / Key Considerations / Compatibility Overview，也不要把批发导航或学院课表改写成自己的目录。
+
+FAQ 问句来自本轮相关问题，形状是订货疑虑或临门一脚（这一单已经卡住的），写成安装工能看见的症状或任务。不要自造「What is [keyword]?」，不要写升档问（这台够不够、该不该改订另一台），不要把店级分桶（账号、运费、退货）塞进产品 how-to。批发 FAQ 若是主题标签（Warranty、Shipping），改写成任务句。统计格只在已抓页或产品上下文有数字时填，否则 `[待补充]`。不要把本节句子粘进交付物。
 
 ## 易错
 

@@ -99,6 +99,8 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
+本 skill 是获客教学，例子教四阶段循环形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+
 用户说「教我客户画像，我零基础」。确认 `skills/lead-icp-analysis/SKILL.md`（尚未迁入则用 `references/skill-teaching-guide.md` 该节）。Stage 1 用「相亲条件」类比讲 ICP，并出写 3–5 个画像的任务卡。Stage 2 只提示、不代写。Stage 3 dispatch a subagent, else do it inline，不看用户稿。Stage 4 并陈两边，笔记由用户自己写到 `deliverables/lead/00-system/my-notes-lead-icp-analysis.md`。
 
 ## 易错

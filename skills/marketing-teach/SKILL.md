@@ -155,6 +155,8 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
+本 skill 是营销教学，例子教四阶段循环形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+
 用户说「教我定位，我是初学者，询盘转化差」。先确认 `skills/marketing-positioning/SKILL.md` 存在并读产品上下文。Stage 1 用该 skill 的步骤讲定位，并引用一条带 URL 的公开案例。Stage 2 只出「写出一句谁、得到什么、凭什么信」的练习和提示，不代写。Stage 3 dispatch a subagent, else do it inline，不看用户稿。Stage 4 用数据支撑与可执行性两表对比，笔记写到 `deliverables/marketing/00-system/marketing-positioning-notes.md`。
 
 ## 易错

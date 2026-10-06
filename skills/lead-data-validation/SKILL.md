@@ -85,9 +85,15 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-公司 Acme Components Ltd，域名 acme-comp.com。抓取首页最终打开 → `url_verified: true`。搜索同时出现该公司名与该域名 → `cross_verified: true`。去掉 Ltd 后关键词落在域名中 → `domain_match: true`。联系人 Pat Lee 搜到同公司同职位公开页 → `confidence: high`。声称约 200 人、公开资料写 180–220 → `employee_count_verified: match`。
+输入把线上在售目录、站点地图、过期本地快照三份条数混成「已验证公司数」。成稿应先写各源口径，以当前可打开的自有站为权威；地图缺条不自动 `url_verified: false`（索引子集不等于站死）；过期快照只作线索，冲突以线上为准，而不是对差集删行或拿旧表当事实。
 
-另一条 URL 返回 403，含动态页的二次抓取仍失败 → `url_verified: false`，行保留。
+输入一条带自有域名、无联系人的公司行。成稿应：跟随重定向后首页打开 → `url_verified: true`；搜索同时出现公司名与该域名 → `cross_verified: true`；去掉 Inc / Ltd / GmbH 后关键词落在域名中 → `domain_match: true`；无联系人 → `confidence: not_applicable`，标「联系人待补」（联系人检查无对账语料，故保留此通用支架，不编姓名或邮箱）；声称人数与同期公开资料同量级且不互相否定 → `employee_count_verified: match`。不是用目录站或旧快照代替这五项。
+
+输入把「公司站 / 网店」双域，或把目录站、比价列表、杂志文写成公司官网。成稿应：双域各抓一次，都能打开则两条均可 `url_verified: true`，关键词落在其中任一域 → `domain_match: true`；目录站/比价页即使 200 也 `domain_match: false` 并列人工复核，而不是当公司域名通过。
+
+输入把注册墙、价格门、错误语区失败、或 429/5xx 写成公司不存在。成稿应：说明页已打开则公司 URL 为 `true`，墙内目录不闯门；错误语区逃逸一次规范语区；超时/429/5xx 逃逸一次动态页仍失败 → `url_verified: false`，行保留，不按搜索摘要推断有无站点。正文 200 但「不可用」不能当 `cross_verified: true`。
+
+输入用过期通稿人数与关于我们页对不上就删公司，或把同层批发对手标成已通过客户。成稿应：量级矛盾 → `mismatch` 并列人工复核；缺公开资料 → `gap`；五项通过只证明记录可核，不改 ICP 身份。行都保留。
 
 ## 易错
 

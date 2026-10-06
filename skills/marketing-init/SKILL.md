@@ -53,6 +53,8 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
+本 skill 是仓库初始化，例子教目录与台账形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+
 台账已在、获客树缺 `08-linkedin`。只补建该空目录，不改台账其它键，报告写「初始化完成」，下一步打开 `skills/marketing-orchestrator/SKILL.md`。
 
 ## 易错

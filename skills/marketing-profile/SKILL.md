@@ -69,6 +69,8 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
+本 skill 是产品上下文指路，例子教指针形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+
 读完后指针写 `source: ~/Documents/New/CONTEXT.md`、`ICP：有`、`证书编号：无`，不把沿革或参数表粘进 `deliverables/`。
 
 ## 易错

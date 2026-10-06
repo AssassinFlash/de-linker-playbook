@@ -82,7 +82,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-用户说「下一步获客」。读出台账后当众说：当前 phase 1 画像，下一方法 skill 为 `lead-icp-analysis`，产出路径 `deliverables/lead/01-icp/`。然后打开该 SKILL.md 做。用户说「你好」只复述 `phase` 与 `next`，不改文件、不跑管线。
+用户说「按 Meisterbetrieb、C&I 安装商、EPC 规划席、EPC 采购席、IPP/资产业主分层做获客」。读出台账后当众说：当前 phase 1 画像，下一方法 skill 为 `lead-icp-analysis`，产出路径 `deliverables/lead/01-icp/`。然后打开该 SKILL.md 做，不在本层展开各人格。用户说「先找卡在中间带的公司名单」而台账仍是 phase 1 → 仍宣布画像与同一路径，不跳到 `02-companies/`。用户说「你好」只复述 `phase` 与 `next`，不改文件、不跑管线。
 
 ## 易错
 
