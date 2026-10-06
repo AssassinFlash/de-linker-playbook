@@ -14,6 +14,8 @@ created: 2026-10-06
 - **本图包含执行（用户定）**：图走完了活也干完了，不只产决策。
 - **执行分工（用户定）**：执行一律子代理（DeepSeek 额度）；主模型只组织、review、与用户对话，额度用在刀刃上。
 - **试点先行（用户定）**：不做纯假设——先调研、再做最小薄片实测、走通才跑量。假设 ≠ 证据（Claude 的编排是内置设施，通用 harness 的可移植性必须实测验证）。
+- **兼容目标 = 五家（用户定 2026-10-06）**：Kimi、Z Code、DeepSeek、OpenCode、Hermes。其余 harness（Claude、Codex 等）不在兼容范围，不为它们做适配层。
+- **执行节奏（用户定 2026-10-06）**：每票用一个新会话/新窗口执行，不在长会话里连续走票——保护上下文质量，避免反复压缩。新会话进场先读本图，认领前沿票，干完关票。
 - **例子的定位（用户定，最高优先级）**：例子是教学支架，不是素材库。skill 内例子必须显式标注「仅供理解，禁止引用到输出」；任何交付物不得出现例子原文。
 - **无上位法（用户定）**：`linker-copywriting`、v3 原稿、任何既有标准都是可改的活文档，不做权威绑定；尺子可以改。
 - **跨 harness 正典（用户定）**：SKILL.md = `name` + `description` + 纯 markdown 正文；不写 harness 专属字段（`model`/`allowed-tools`/`mcp__*`）；工具写成能力描述（如「用网页搜索查证」）。harness 专属接线（slash command、`$skill`、`.kimi` wrapper）只做薄适配器、按需生成、不进正典。动机：主模型额度随时可能耗尽，工作会交接给别的 agent，任何 harness 都必须能直接看懂这个仓库。
@@ -30,6 +32,7 @@ created: 2026-10-06
 - [跨 harness skill 约定与最新编写最佳实践调研](tickets/skill-conventions-research.md)：正典只要 name+description+正文（<500 行）；发现层事实标准 = `.agents/skills/<name>` 软链 + 根级 AGENTS.md（裸 skills/ 无人自动扫描）；description 是触发器（300–700 字符、触发词前置）。全文：`wayfinder/research/skill-conventions-best-practices-2026-10.md`。
 - [通用 harness 编排机制调研](tickets/generic-orchestration-research.md)：「自动触发」不可移植（各家的启动注入是 per-harness 的），可移植的是**台账文件**；正典禁用 harness 专属子代理工具名（统一写 "dispatch a subagent, else do it inline"）；AGENTS.md 只放指针、状态指针置顶（Codex 32KiB 截断）；无可移植命令约定。冷启动可行性 = 试点薄片必须实测的假设。全文：`wayfinder/research/generic-orchestration-2026-10.md`。
 - [试点薄片：最小骨架 + 2 skill + 多 harness 实测](tickets/pilot-slice.md)：冷启动循环 **kimi（95s）与 codex（76s）双 PASS**，claude 因本机 OAuth 过期未测成（非薄片问题）；摩擦全在 CLI 调用层而非 playbook 内容；orchestrator + 台账模式验证可行，⑨ 的裁定有实测证据了。实测记录：`wayfinder/pilot/`。
+- [编排层落地形态](tickets/orchestration-workflow-form.md)：**乙为骨 + 甲为重活**——orchestrator skill + 台账自驱动（试点双 PASS 实证），多阶段重活走 wayfinder 票；命令卡片只做按需适配器。编排系 skill 改写方向随之确定。
 
 ## Not yet specified
 

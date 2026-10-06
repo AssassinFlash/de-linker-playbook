@@ -12,7 +12,7 @@ blocked_by: [pilot-slice]
 在 `~/Documents/de-linker-playbook` 建立通用骨架（不依赖抽取规格的目录细节，先立、后随规格微调）：
 
 - 目录：`skills/`（正典）、`schemas/`、`templates/`、`evals/`、`docs/`（`wayfinder/` 已存在）
-- 发现适配器：`.agents/skills/<name>` → `../../skills/<name>` 软链层（研究票结论：这是跨 harness 自动发现的事实标准；Claude Code 的 `.claude/skills/` 需要时再生成）
+- 发现适配器：`.agents/skills/<name>` → `../../skills/<name>` 软链层。**兼容目标五家 = Kimi / Z Code / DeepSeek / OpenCode / Hermes**（用户定）：无原生 skill 扫描器的（如 DeepSeek）走 AGENTS.md 指路 + 各家人工/配置入口；不为 Claude/Codex 等非目标 harness 做适配
 - 根级 `AGENTS.md`（跨 harness 入口：仓库是什么、skills 在哪、怎么取用、例子定位规则、交接说明、**与 `~/Documents/New` 的互相指路**——本仓库指过去；如用户同意，在 New 侧加一行回指）
 - `README.md`（人读版）、`CONTEXT.md`（词汇表，从地图 Notes 已定术语起步：正典/适配器、例子定位、指路不复制）
 - `.gitignore`（OS 垃圾、`.venv/`、`downloads/`、`cookies*.txt`、密钥模式）
