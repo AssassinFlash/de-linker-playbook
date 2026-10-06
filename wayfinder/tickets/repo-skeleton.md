@@ -13,7 +13,7 @@ blocked_by: []
 
 - 目录：`skills/`（正典）、`schemas/`、`templates/`、`evals/`、`docs/`（`wayfinder/` 已存在）
 - 发现适配器：`.agents/skills/<name>` → `../../skills/<name>` 软链层（研究票结论：这是跨 harness 自动发现的事实标准；Claude Code 的 `.claude/skills/` 需要时再生成）
-- 根级 `AGENTS.md`（跨 harness 入口：仓库是什么、skills 在哪、怎么取用、例子定位规则、交接说明）
+- 根级 `AGENTS.md`（跨 harness 入口：仓库是什么、skills 在哪、怎么取用、例子定位规则、交接说明、**与 `~/Documents/New` 的互相指路**——本仓库指过去；如用户同意，在 New 侧加一行回指）
 - `README.md`（人读版）、`CONTEXT.md`（词汇表，从地图 Notes 已定术语起步：正典/适配器、例子定位、指路不复制）
 - `.gitignore`（OS 垃圾、`.venv/`、`downloads/`、`cookies*.txt`、密钥模式）
 - 完成后补一次 git 提交

@@ -30,10 +30,7 @@ created: 2026-10-06
 
 ## Not yet specified
 
-- playbook 建成后，非 PDP 的营销工作（SEO/内容/获客）在本仓库里以什么节奏跑（orchestrator 类 skill 落地后的实际工作流）
-- harness 适配器何时生成、先生成哪些（等实际要在某个 harness 里使用时再定）
-- 与 `~/Documents/New` PDP 线的互相引用方式（AGENTS.md 指路的具体写法）
-- lead-gen 产出的形态（原系统写 LeadGen-Vault；本仓库内的对应结构）
+<!-- 2026-10-06 清空。原四条全部毕业：编排层形态 → 立票「编排层落地形态」；互指写法 → 并入「仓库骨架建立」；lead-gen 产出形态 → 并入「抽取规格定稿」；适配器时机 → 已由「跨 harness 调研」回答（.agents/skills 软链 + 按需生成）。 -->
 
 ## Out of scope
 

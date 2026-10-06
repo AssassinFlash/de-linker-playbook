@@ -2,7 +2,7 @@
 wayfinder: prototype
 status: open
 assignee:
-blocked_by: [skill-conventions-research]
+blocked_by: [skill-conventions-research, orchestration-workflow-form]
 ---
 
 # 抽取规格定稿
@@ -17,7 +17,7 @@ blocked_by: [skill-conventions-research]
 - **工具能力化对照表**：`mcp__tavily__*` 等 → 能力描述的具体映射写法
 - **命名规则**：`marketing-*` 保持；lead-gen 裸名统一加 `lead-` 前缀
 - **上下文指路策略**：Linker 产品事实一律指路 `~/Documents/New`，不复制
-- **目录布局终稿**：skills/、schemas/、templates/、evals/、docs/、wayfinder/ 各自的收纳规则
+- **目录布局终稿**：skills/、schemas/、templates/、evals/、docs/、wayfinder/ 各自的收纳规则，**以及营销/获客交付物的 `deliverables/` 结构**（lead-gen 产出不再写外部 vault，须定义本仓库内的对应目录）
 - **验收清单**：对照 review 的逐条检查项 + 冒烟方式（喂给验收票）
 
 形态：子代理起草规格文档（prototype），主模型 review，用户定稿。
