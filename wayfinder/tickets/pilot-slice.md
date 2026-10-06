@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: chesterjohn+agent
 blocked_by: [generic-orchestration-research]
 ---
 
