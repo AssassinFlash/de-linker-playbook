@@ -2,7 +2,7 @@
 wayfinder: prototype
 status: open
 assignee:
-blocked_by: [marketing-skills-extraction, lead-skills-extraction]
+blocked_by: [marketing-skills-extraction, lead-skills-extraction, review-fixes]
 ---
 
 # 重叠 skill 对裁定合并

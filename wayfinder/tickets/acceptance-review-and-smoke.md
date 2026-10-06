@@ -2,7 +2,7 @@
 wayfinder: task
 status: open
 assignee:
-blocked_by: [overlap-dedup-adjudication, assets-migration]
+blocked_by: [overlap-dedup-adjudication, assets-migration, review-fixes]
 ---
 
 # 验收：对照 review + 抽查 + 冒烟
