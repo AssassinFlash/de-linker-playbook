@@ -6,6 +6,8 @@
 
 营销、SEO、文案、内容、或「下一步」：先读 [`state/status.md`](state/status.md)，再读 [`skills/marketing-orchestrator/SKILL.md`](skills/marketing-orchestrator/SKILL.md) 并按其推进。产出写到 [`deliverables/`](deliverables/)。
 
+获客线索（lead）类任务：读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
+
 寒暄：可读台账并复述 `phase`，不要改文件。
 
 ## 交接说明
@@ -20,9 +22,7 @@
 - 适配器：`.agents/skills/` 里对每个 skill 的软链。无扫描器时，按用户任务直接打开对应 `SKILL.md`。
 - 用任务匹配 `description`，然后只走那份正文。不要另写一套流程。
 
-试点：`marketing-orchestrator`（导航）、`marketing-copywriting`（phase 1 方法）。
-
-`schemas/`、`templates/`、`evals/`、`docs/` 是预留目录，随抽取规格填充。
+`schemas/` = 交付物 JSON Schema；`templates/` = 产出 xlsx 模板与导出脚本；`evals/` = 校验/评测脚本；`docs/` = 人读说明。
 
 ## 产品上下文
 

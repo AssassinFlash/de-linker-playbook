@@ -51,7 +51,7 @@
 | `marketing-programmatic-seo` | `deliverables/marketing/02-seo/programmatic-seo.md` | `pseo-page-matrix.xlsx` |
 | `marketing-site-and-schema` | `deliverables/marketing/02-seo/site-and-schema.md` | `site-schema-blueprint.xlsx` |
 | `marketing-content-strategy` | `deliverables/marketing/03-content/content-strategy.md` | `content-strategy.xlsx` |
-| `marketing-copywriting` | `deliverables/marketing/03-content/website-copy/` | `copy-library.xlsx` |
+| `marketing-copywriting` | `deliverables/marketing/03-content/copywriting/` | `copy-library.xlsx` |
 | `marketing-visual-content` | `deliverables/marketing/03-content/visual-content/` | `visual-style-guide.xlsx` |
 | `marketing-social-content` | `deliverables/marketing/04-acquisition/social-content/` | `social-calendar.xlsx` |
 | `marketing-paid-advertising` | `deliverables/marketing/04-acquisition/paid-advertising.md` | `paid-advertising-blueprint.xlsx` |
@@ -326,8 +326,8 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
     },
     "marketing-copywriting": {
       "phase": "03-content",
-      "output": "deliverables/marketing/03-content/website-copy/index.md",
-      "tables": ["deliverables/marketing/03-content/copy-library.xlsx"],
+      "output": "deliverables/marketing/03-content/copywriting/index.md",
+      "tables": ["deliverables/marketing/03-content/copywriting/copy-library.xlsx"],
       "review": "deliverables/marketing/03-content/review/copywriting-review.md",
       "dependencies": [
         {"skill": "marketing-content-strategy", "type": "hard"},

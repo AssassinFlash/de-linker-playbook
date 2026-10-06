@@ -8,19 +8,19 @@ v3 的 38 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化�
 skills/              正典（SKILL.md）
 .agents/skills/      适配器（软链到正典）
 state/               台账
-deliverables/        产出
+deliverables/        产出（marketing/ 与 lead/ 双树）
 wayfinder/           过程管理（地图与票）
-schemas/             预留，随抽取规格填充
-templates/           预留，随抽取规格填充
-evals/               预留，随抽取规格填充
-docs/                预留，随抽取规格填充
+schemas/             交付物 JSON Schema
+templates/           产出 xlsx 模板与导出脚本
+evals/               校验/评测脚本
+docs/                人读说明
 CONTEXT.md           词汇表
 AGENTS.md            agent 入口（只指路）
 ```
 
 ## 当前状态
 
-骨架建成。抽取规格待定稿。试点薄片 kimi / Codex 双 PASS。
+38 个 marketing skill + 43 个 lead skill（共 81）已全部迁入并通用化；机械校验全绿。过程管理见 wayfinder/map.md。
 
 ## 怎么用
 

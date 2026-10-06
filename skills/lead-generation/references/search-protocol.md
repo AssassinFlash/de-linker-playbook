@@ -40,6 +40,7 @@
 | 名单型（公司、分销商、零售商） | 发现用网页搜索；每家必须抓取验证域名；搜不够就报告实际数量，不补假公司 |
 | 联系人 | 先网页搜索公开页；已配置发现服务才批量补邮箱；否则标「联系人待补」 |
 | 数据型（市场） | 目标 8 次网页搜索覆盖规模/CAGR/统计；CAGR 与规模至少两源交叉验证 |
+| 内容生成（冷邮件等 outreach 文案） | 目标 3 次网页搜索：冷邮件 best practices、主题行写法/打开率、行业邮件模板各至少 1 次；搜到的模板原文禁止写入交付物，只提炼结构与语气模式 |
 
 交付前检查：交付物含 `## 搜索日志`；次数达到上表目标，不足时日志写明尝试与缺口（记 CONCERN），禁止空搜凑数或编造来源（编造直接 FAIL）。无日志则数据准确性直接 FAIL。存在阻塞但无 `## 阻塞与升级日志` → Actionability 至少 CONCERN。
 
@@ -98,6 +99,17 @@ B2B buyers of {product_category} procurement decision process
 "{competitor_name}" reviews complaints
 "{competitor_name}" market share
 ```
+
+### 内容生成 / 冷邮件
+
+```
+B2B cold email best practices {year}
+cold email subject line open rate B2B
+"{product_category}" cold email template B2B
+"{icp_industry}" buyer pain points sourcing {product_category}
+```
+
+搜到的模板只用于提炼模式，原文不进入交付物。
 
 ## 来源标注
 

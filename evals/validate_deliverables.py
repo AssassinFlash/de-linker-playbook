@@ -18,18 +18,30 @@ SOURCE_KEYS = {"source", "evidence"}
 SOURCE_HEADER_PATTERN = re.compile(r"\b(source|evidence)\b", re.IGNORECASE)
 JSON_REFERENCE_PATTERN = re.compile(r"(?<![\w/-])([\w./{}-]+\.json)\b")
 JSON_SCHEMA_MAP = {
+    "ai-visibility-report.json": "rowset-deliverable.schema.json",
+    "analytics-and-optimization.json": "rowset-deliverable.schema.json",
     "competitor-profiles.json": "rowset-deliverable.schema.json",
     "content-strategy.json": "rowset-deliverable.schema.json",
     "copy-library.json": "rowset-deliverable.schema.json",
+    "cro-experiment-queue.json": "rowset-deliverable.schema.json",
+    "funnel-redesign.json": "rowset-deliverable.schema.json",
     "google-ads-structure.json": "google-ads-structure.schema.json",
     "inquiry-flow-data.json": "rowset-deliverable.schema.json",
     "launch-strategy.json": "rowset-deliverable.schema.json",
     "orchestrator-run-{timestamp}.json": "orchestrator-run.schema.json",
     "orchestrator-run-{{timestamp}}.json": "orchestrator-run.schema.json",
+    "paid-advertising-blueprint.json": "rowset-deliverable.schema.json",
+    "paid-advertising.json": "rowset-deliverable.schema.json",
     "positioning-data.json": "rowset-deliverable.schema.json",
     "profile-eval.json": "profile-eval.schema.json",
     "profile-evidence.json": "profile-evidence.schema.json",
+    "prospect-research.json": "rowset-deliverable.schema.json",
+    "referral-program-design.json": "rowset-deliverable.schema.json",
+    "retention-strategy.json": "rowset-deliverable.schema.json",
+    "seo-audit-data.json": "rowset-deliverable.schema.json",
+    "sequence-builder.json": "rowset-deliverable.schema.json",
     "site-schema-blueprint.json": "site-schema-blueprint.schema.json",
+    "social-calendar.json": "rowset-deliverable.schema.json",
 }
 JSON_REFERENCE_EXEMPTIONS = {
     "brand-profile.json",
@@ -79,6 +91,8 @@ def json_reference_schema_errors(project_root: Path | None = None) -> list[str]:
             for match in JSON_REFERENCE_PATTERN.finditer(text):
                 basename = Path(match.group(1).strip("`),.;")).name
                 if basename in JSON_REFERENCE_EXEMPTIONS:
+                    continue
+                if basename.endswith(".schema.json"):
                     continue
                 key = (basename, str(path))
                 if key in seen:

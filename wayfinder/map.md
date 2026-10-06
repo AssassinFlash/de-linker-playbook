@@ -39,6 +39,7 @@ created: 2026-10-06
 - [43 个 lead skill 抽取改写](tickets/lead-skills-extraction.md)：43/43 迁入 `skills/lead-*`（含编辑性 review：去剧本化、工具能力化、硬配额改目标+缺口、纠矛盾与过时事实），软链 43 条 + `deliverables/lead/` 12 目录，验收 10 条全绿；主模型清了 product-knowledge 落点与依赖图配额口径两处横向衔接。
 - [38 个 marketing skill 抽取改写](tickets/marketing-skills-extraction.md)：38 个全部迁入 `skills/`（六批子代理 swarm），规格 §8 十条验收全绿；阶段包不回跳编排器、Excel 走 `templates/`、编排依赖图改写至 455 行。
 - [schemas / templates / eval / docs 迁入](tickets/assets-migration.md)：方法资产落位——schemas 6 JSON 原样、templates 28 xlsx + README 改写、evals 9 脚本按抽取规格改写并实跑 exit 0、docs 迁 2 篇去 slash 化、lead 导出脚本落 `templates/scripts/`（根 scripts/ 抽取白名单覆盖不到，本轮不迁就丢）；evals.json / 工作数据 / `.claude` 接线类资产评估后不迁。
+- [抽取复核修复清单](tickets/review-fixes.md)：六条复核发现当轮修复——marketing 交付树补建（9 目录）、copywriting/visual-content 产出路径对齐方法 skill 正典、AGENTS/README/status 台账切到真实 0–7 流水线（冷启动进 marketing-profile）、evals 补 12 条 schema 映射（**决议：补映射不降级 WARN**）+ `*.schema.json` 自引用误报修复、to_obsidian→to_markdown、search-protocol 补「内容生成」查证行；quick_validate 81/81 全绿、validate_project 退出码 0。
 
 ## Not yet specified
 
