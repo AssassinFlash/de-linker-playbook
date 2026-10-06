@@ -28,6 +28,7 @@ created: 2026-10-06
 <!-- 每关闭一张票，在此加一行：标题链接 + 一句话 gist。Q1–Q10 的方向性决策见 Notes。 -->
 
 - [跨 harness skill 约定与最新编写最佳实践调研](tickets/skill-conventions-research.md)：正典只要 name+description+正文（<500 行）；发现层事实标准 = `.agents/skills/<name>` 软链 + 根级 AGENTS.md（裸 skills/ 无人自动扫描）；description 是触发器（300–700 字符、触发词前置）。全文：`wayfinder/research/skill-conventions-best-practices-2026-10.md`。
+- [通用 harness 编排机制调研](tickets/generic-orchestration-research.md)：「自动触发」不可移植（各家的启动注入是 per-harness 的），可移植的是**台账文件**；正典禁用 harness 专属子代理工具名（统一写 "dispatch a subagent, else do it inline"）；AGENTS.md 只放指针、状态指针置顶（Codex 32KiB 截断）；无可移植命令约定。冷启动可行性 = 试点薄片必须实测的假设。全文：`wayfinder/research/generic-orchestration-2026-10.md`。
 
 ## Not yet specified
 
