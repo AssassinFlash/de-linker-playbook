@@ -33,6 +33,7 @@ created: 2026-10-06
 - [通用 harness 编排机制调研](tickets/generic-orchestration-research.md)：「自动触发」不可移植（各家的启动注入是 per-harness 的），可移植的是**台账文件**；正典禁用 harness 专属子代理工具名（统一写 "dispatch a subagent, else do it inline"）；AGENTS.md 只放指针、状态指针置顶（Codex 32KiB 截断）；无可移植命令约定。冷启动可行性 = 试点薄片必须实测的假设。全文：`wayfinder/research/generic-orchestration-2026-10.md`。
 - [试点薄片：最小骨架 + 2 skill + 多 harness 实测](tickets/pilot-slice.md)：冷启动循环 **kimi（95s）与 codex（76s）双 PASS**，claude 因本机 OAuth 过期未测成（非薄片问题）；摩擦全在 CLI 调用层而非 playbook 内容；orchestrator + 台账模式验证可行，⑨ 的裁定有实测证据了。实测记录：`wayfinder/pilot/`。
 - [编排层落地形态](tickets/orchestration-workflow-form.md)：**乙为骨 + 甲为重活**——orchestrator skill + 台账自驱动（试点双 PASS 实证），多阶段重活走 wayfinder 票；命令卡片只做按需适配器。编排系 skill 改写方向随之确定。
+- [仓库骨架建立](tickets/repo-skeleton.md)：全量目录补齐（schemas/templates/evals/docs 预留）、AGENTS.md 终稿（交接说明 + 兼容五家）、README.md、CONTEXT.md 词汇表 11 词条、.gitignore 审计无缺口、软链层验证通过；New 侧已加回指。
 
 ## Not yet specified
 
