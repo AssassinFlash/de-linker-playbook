@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["campaigns"],
+  "properties": {
+    "campaigns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["campaign_name"],
+        "anyOf": [
+          {"required": ["source"]},
+          {"required": ["evidence"]}
+        ]
+      }
+    },
+    "generated_at": {"type": "string"}
+  },
+  "additionalProperties": true
+}

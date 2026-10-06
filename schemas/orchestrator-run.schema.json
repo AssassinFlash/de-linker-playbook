@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["phase", "started_at", "skills", "outputs", "review_status"],
+  "properties": {
+    "phase": {"type": "string"},
+    "started_at": {"type": "string"},
+    "completed_at": {"type": "string"},
+    "skills": {"type": "array"},
+    "outputs": {"type": "array"},
+    "review_status": {"type": "string"},
+    "user_waiver": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

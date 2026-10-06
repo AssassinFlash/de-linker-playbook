@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["site", "schema"],
+  "properties": {
+    "site": {
+      "type": "object",
+      "required": ["pages"],
+      "properties": {
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "anyOf": [
+              {"required": ["source"]},
+              {"required": ["evidence"]}
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "schema": {
+      "type": "object",
+      "required": ["implementations"],
+      "properties": {
+        "implementations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "anyOf": [
+              {"required": ["source"]},
+              {"required": ["evidence"]}
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
