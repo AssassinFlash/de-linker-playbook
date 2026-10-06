@@ -2,7 +2,7 @@
 wayfinder: task
 status: open
 assignee:
-blocked_by: []
+blocked_by: [pilot-slice]
 ---
 
 # 仓库骨架建立
@@ -19,3 +19,5 @@ blocked_by: []
 - 完成后补一次 git 提交
 
 规格票定稿后如目录布局有出入，随规格调整即可，不阻塞本票先行。
+
+**顺序调整（2026-10-06）**：试点薄片会先建最小骨架；本票在薄片实测验证后补全正式骨架（全量目录、AGENTS.md 终稿、CONTEXT.md 词汇表）。

@@ -2,7 +2,7 @@
 wayfinder: grilling
 status: open
 assignee:
-blocked_by: []
+blocked_by: [pilot-slice]
 ---
 
 # 编排层落地形态
@@ -18,3 +18,5 @@ v3 有 9 个编排系 skill（`marketing-orchestrator`、`marketing-init`、`mar
 - **丙. 命令卡片**：`commands/` 放纯 markdown 命令卡（学 Codex 版），人把卡片贴给任何 agent 即触发一个阶段。最直白，但要手动复制粘贴。
 
 此决议直接决定 ③ 抽取规格对编排系 skill 的改写方向（`marketing-init`/`profile` 在我们的设计里要改写成「指路 `~/Documents/New` 读产品上下文」的引导）。
+
+**裁定方式改为证据先行（用户定 2026-10-06）**：不做纯假设——先等「通用 harness 编排机制调研」与「试点薄片」的实测记录，再在甲/乙/丙中裁定或提出新方案。
