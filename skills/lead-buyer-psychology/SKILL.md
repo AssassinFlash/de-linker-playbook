@@ -1,0 +1,156 @@
+---
+name: lead-buyer-psychology
+description: >
+  Use when buyer psychology, buyer silence, why buyer went silent, buyer
+  behavior, trade show psychology, closing stall, existing supplier
+  displacement, information loop, 买家心理, 买家沉默, 展会策略, 价格卡点,
+  成交卡点, MOQ 异议, 已有供应商, or 信息循环. Decode why a B2B buyer went
+  silent, stalled, pushed price, or stayed with an incumbent, using a
+  two-step empathy-then-strategy frame across nine sales scenes. Read the
+  ledger product_context (default ~/Documents/New/CONTEXT.md); write
+  bilingual scripts under deliverables/lead/10-sales/. Invent no studies;
+  do not default to discounting. Not for service-objection rebuttal
+  scripts, ICP research, or phase navigation.
+---
+
+# 买家心理分析（9 场景）
+
+用共情→策略两步框架，解析 9 类 B2B 销售场景里买家为什么那样做，并写出可上场的双语回应，落到 `deliverables/lead/10-sales/`。无硬依赖；缺证据标缺口，不编造研究、不把让价当默认解。
+
+## 步骤
+
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/10-sales/objection-handling.md`。本 skill 无硬依赖：上游缺失仍做，交付物标「未场景化」或「未在上下文出现」。完成：能指出品类、市场、买家类型各依据哪几条，或已标明缺项。
+
+2. **选场景**。只认用户本轮消息，不先弹九选项菜单。数字 1–9、场景名、或「all / 全部」直接锁定。描述现状则按下表映射。映射不上才问一轮（列出 1–9 的短名，不加强制 UI）。完成：场景编号已锁定；未锁定则停，不写分析。
+
+3. **查证**。用网页搜索查证 B2B 采购决策心理、外贸异议与展会现场行为；按所选场景再搜一轮。需要原文时抓取指定 URL。多场景需要隔离时 dispatch a subagent, else do it inline。搜索不可用：两步分析仍做，但禁止写具体研究名、统计或「研究证明」；缺口写入搜索日志。完成：有搜索日志；引用的原则或数字能回溯 URL 与访问日期，或已标缺口。
+
+4. **两步分析**。读 `references/nine-scenarios.md` 里已选场景的必答项。先写买家视角，再写资深销售视角；禁止跳过共情直接给话术。产品上下文存在则把品类、市场、买家类型、MOQ/交期/认证换成上下文事实，不留参考文件里的示意地理或职位。完成：每个已选场景都满足「产出」断言；展会场景（4–7）含展位现场心理。
+
+5. **落盘** `deliverables/lead/10-sales/buyer-psychology.md`。完成：文件非空；话术可直接复制；教学支架原文零出现。
+
+## 默认
+
+- 无硬依赖；与 phase 10 服务链可并行。编排与闸门见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
+- 本文件做场景共情-策略分析，不写异议 SOP 话术库、不执行服务链任一步。异议落地表打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。漏斗原则选型打开 `skills/marketing-psychology/SKILL.md`（文件存在时）。
+- 联动（文件存在才打开，不存在则只完成本方法）：`lead-service-first-contact`、`lead-service-quotation`、`lead-service-first-order`、`lead-service-delivery`、`lead-service-retention`。
+- 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。单场景 inline 做完。
+- 数字、认证、产能、客户名、研究结论：只来自产品上下文、用户本轮、或已抓取页。没有就写「未在上下文出现」，禁止补造稀缺或让价幅度。
+- 分析用中文；推荐话术必须 EN + CN，可直接复制上场。面客语种以产品上下文为准时仍保留双语对照。
+- 产出只进 `deliverables/lead/10-sales/`。
+
+## 写法
+
+先共情后策略。沉默、拖延、只问不订都是信号，不是「再跟进一次」的理由。展会是现场剧场：身体距离、停留时间、展位对比、时间压力，与邮件/电话不是同一套心理。价格异议默认重构总拥有成本、切换风险、便宜替代的代价，不先让价。口吻像带教的资深同事：具体、诚实、必要时指出错觉。美 / 欧 / 中东买家在展会上的权威、风险、关系权重不同，按产品上下文的目标市场写，不混用。
+
+**场景映射**
+
+| # | 场景 | 触发 | 分析焦点 |
+| --- | --- | --- | --- |
+| 1 | 买家沉默解析 | 演示/跟进后不再回复 | 内部流程、比价、切换成本 |
+| 2 | 价格卡点 | 后期才说「太贵」 | 压价试探、拿你报价打别人、重构而非让价 |
+| 3 | 成交卡点 | 一直互动但从不定下来 | 隐藏阻碍、弱 CTA、对方自己的客户/预算未齐 |
+| 4 | 展会跟进 | 展位看过、拿了资料就走 | 收册人 vs 真买家、会后如何锚住 |
+| 5 | 展会初次遇到 | 放慢脚步却不进展位 | 展位磁力、被动→主动、破冰问句 |
+| 6 | 展会询价 | 第一句就是「多少钱」 | 反问、信心信号、报价时机 |
+| 7 | 展会 MOQ 异议 | 「起订对我们市场太高」 | 灵活度试探 vs 真小量、收成风险控制 |
+| 8 | 已有供应商 | 「我们有供应商，只是看看」 | 探索动机、现供缺口、替换而非比价 |
+| 9 | 信息循环 | 多次往来却从不谈试单/时间 | 意图判断、逼近决策；不要数邮件凑数 |
+
+每场景必答项与额外产出见 `references/nine-scenarios.md`。不同买家类型不共用同一套心理（采购经理、指定人、经销商、电商转售）。
+
+## 产出
+
+主文件：`deliverables/lead/10-sales/buyer-psychology.md`
+
+```markdown
+# 买家心理分析
+
+- source: 台账 product_context（不粘贴原文）
+- scenes:
+- accessed:
+
+## 摘要
+
+## 来源
+
+| 声明 | URL | 访问日期 | 摘录 |
+| --- | --- | --- | --- |
+
+## 场景 {N}: {场景名}
+
+### Step 1: 买家视角
+
+**场景描述**:
+
+**买家可能在想什么**:
+- （情绪/策略）
+- （内部动态）
+- （竞争语境）
+- （风险评估）
+
+**核心障碍**: （一句话）
+
+### Step 2: 资深销售视角
+
+**信号解读**:
+
+**高杠杆回应**:
+
+**普通销售的陷阱**:
+
+**推荐话术** (EN + CN):
+> EN: "..."
+> CN: "..."
+
+**下一步行动**: （动作 + 时间）
+
+## 搜索日志
+
+| # | Capability | Query/URL | Results | Useful | Notes |
+|---|------------|-----------|---------|--------|-------|
+
+## 缺口
+
+## 下一步
+```
+
+断言（未满足则不算全量完成）：
+
+- 每个已选场景都有两步；买家视角 ≥4 条具体洞察（不是「再观察一下」）
+- 每场景有信号、高杠杆回应、普通销售陷阱、EN+CN 可复制话术、带时间的下一步
+- 场景 4–7 含展位现场心理；场景 5 另有 2 条破冰问句；场景 6 先反问再决定是否报数；场景 7 把 MOQ 收成风险控制；场景 8 有买家内部核对清单；场景 9 有意图判断 + 一条逼近决策的问句
+- 产品上下文存在则分析已场景化；数字与研究有来源或已标缺口
+- 教学支架原文零出现
+
+## 例子
+
+> 仅供理解，禁止引用到输出。
+
+用户说「报价发出后没回音」。映射为场景 1，不要弹九选项。买家视角写内部比价、切换成本、财务圈阅，不写「对方已经拒绝」。策略禁止「再跟进一次」；要有一条可观察信号和带时间的下一步。上下文没有项目数时，社会证明写「未在上下文出现」，不要写「200+ 客户」。本节句子不得进入交付物。
+
+## 易错
+
+- 没写买家视角就出话术，或把共情写成乐观打气。
+- 把沉默当成拒绝，或把多次提问当成即将下单。
+- 价格卡点先让价，训练对方以后只谈折扣。
+- 展会场景写成远程邮件建议，没有展位距离、停留、对比。
+- 九个场景同一套「持续跟进」。
+- 采购经理和电商转售用同一套心理。
+- 话术像模板，或只有中文、只有英文。
+- 编造研究名、转化率、稀缺名额或未持有的认证。
+- 把本文件当 `lead-service-objection` 的话术库。
+- 未锁定场景就写「全部九场景」凑篇幅。
+- 把 skill 例子原文写入交付物。
+
+## 清单
+
+- [ ] 已读共用规则与 `product_context`；原文未拷进本仓库
+- [ ] 场景已从本轮消息锁定，或已问一轮后锁定
+- [ ] 搜索日志在；不可用时未编造研究或统计
+- [ ] 每个已选场景两步齐全；洞察 ≥4；有陷阱、双语话术、带时间下一步
+- [ ] 展会场景含现场心理；场景 5–9 的额外产出已写
+- [ ] 上下文存在则已场景化；缺事实写「未在上下文出现」
+- [ ] 文件在 `deliverables/lead/10-sales/buyer-psychology.md`
+- [ ] 例子原文未进入交付物
+- [ ] 未执行服务链、未写成异议 SOP

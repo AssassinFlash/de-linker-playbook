@@ -1,0 +1,189 @@
+---
+name: lead-service-delivery
+description: >
+  Use when delivery communication, shipment tracking, production update,
+  order fulfillment, delivery transparency, shipping updates, QC reporting,
+  交付, 发货, 物流跟踪, 生产进度, order tracking, fulfillment visibility,
+  周更, or 包装风险. After first-order onboarding, write a bilingual
+  production-to-shipment visibility pack: four-stage timeline, proof-asset
+  plan, packaging risk protocol, weekly update templates, and a proactive
+  reassurance deliverable, under deliverables/lead/10-sales/. Read the
+  ledger product_context (default ~/Documents/New/CONTEXT.md) and approved
+  first-order notes; invent no carton specs or test results. Not for
+  first-order onboarding, post-delivery retention, or phase navigation.
+---
+
+# 交付透明化（可视化时间线 + 证明资产）
+
+根据已承诺交期与可核验的品类风险，写生产到到货的买家可见进度系统，落到 `deliverables/lead/10-sales/delivery.md`。本文件产计划、模板与字段表，不拍视频、不建外部表格。缺规格标缺口，不编造检测结果。
+
+## 步骤
+
+1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
+
+2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/10-sales/first-order.md`，或用户本轮贴出的已承诺交期与首单流程。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。从上述来源填四项：产品（名称、规格、包装形式）；总交期（下单确认到买家仓库）；品类常见包装/交付风险；历史货损或客诉。产品或总交期仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。风险与客诉允许标「未在上下文出现」，不编事故。完成：四项表已填且能指出出处；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴交期 → 停，不编时间线。
+
+3. **查证**。用网页搜索查证两意图：该类产品国际贸易交付投诉与履约沟通做法；该类产品出口包装标准与常见货损。产地、运输方式取产品上下文，不预设某国。需要原文时抓取指定 URL。两条意图可并行时 dispatch a subagent, else do it inline。默认同会话做完。搜索不可用：时间线与模板仍按已承诺交期写；痛点、标准名、行业做法进缺口，不编造。完成：来源表至少覆盖上述两意图，或缺口已写明；引用的标准号、投诉类型能回溯 URL 与访问日期。
+
+4. **设计五件套**。按「写法」写出：四阶段可视化时间线、证明资产计划、包装风险协议、周更模板、主动安抚件。阶段日区间只来自首单/报价已承诺节点，或总交期 L 加上下文里的生产/质检/在途拆分；拆不开则日区间写 `[待补充]`，禁止按经验切百分比。证明资产是拍摄与发送计划，不在本仓库造图或视频。完成：五件套均非空；每阶段有里程碑名、日区间或缺口、给买家的交付物、沟通渠道；周更至少 5 封事件模板；安抚件指定一个主动发送节点。
+
+5. **落盘** `deliverables/lead/10-sales/delivery.md`。完成：主文件非空；断言满足；教学支架原文零出现；面客模板可复制；量化参数无编造。
+
+## 默认
+
+- 硬依赖 `lead-service-first-order`（已批准的 `first-order.md` 或用户贴出的交期）。软依赖报价稿。编排与闸门见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
+- 下游打开 `skills/lead-service-retention/SKILL.md`（文件存在且本交付已批准时）。交付期间沉默解析打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。本文件不写首单入职包、不写复购 SOP。
+- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。
+- 数字、纸箱规格、跌落高度、泡沫密度、缺陷率、检测品牌、证书：上下文或已抓取页里有才写。没有就 `[待补充]` 或「未在上下文出现」。ISTA、ASTM 等标准名：搜索命中才引用，并注明是否已对该品类做测试；未测不得写成已通过。
+- 第三方检测（SGS、Bureau Veritas 或同等）：仅当上下文确认使用时写入时间线；否则标「适用时」并进缺口，不指定未签约机构。
+- 分析与实施说明用中文。面客周更与安抚件默认 EN + 中文对照；产品上下文指定其他语种则改用该语种，仍出对照。同一段不中英混写。
+- 默认节奏：有新里程碑就发；生产长于两周则中间周也发一封（同一骨架：状态 + 一件证明资产 + 下一节点），不日常轰炸，不静默整周。短交期不凑空周。
+- 共享进度表用团队已有的表格或看板；只产出列结构与发送话术，不锁定某家表格产品，不在仓外建表。
+- 产出只进 `deliverables/lead/10-sales/`。
+
+## 写法
+
+沉默消耗信任：无新进展也按节奏发一句话 + 一件已有视觉，不编进展。视觉证明承诺；风险协议体现体系；模板降低销售不发周更的摩擦。
+
+**四阶段时间线**（每阶段四列：里程碑、日区间、给买家的交付物、渠道）
+
+| 阶段 | 必含里程碑 |
+| --- | --- |
+| 1 生产 | 订单确认回执；备料；开工通知（附图）；中期进度 |
+| 2 质检 | 制程抽检节点；终检（第三方报告仅当适用）；缺陷率字段；成品照片/视频的买家确认门 |
+| 3 包装发运 | 包装照片；装柜照片或视频；提单/报关文件清单；运单号与 ETA |
+| 4 到货跟进 | 到货确认请求；开箱质检邀请；反馈收集；下一单规划触发 |
+
+日区间写成 `Day a–b` 且 a、b 能加总到已承诺 L，或整列 `[待补充]`。渠道取自首单沟通习惯；上下文没有则默认邮件，并标明「渠道未在上下文出现，暂用邮件」。
+
+**证明资产**（每条：格式、发送时点、制作成本、买家作用）
+
+- 生产短视频（默认约 30 秒，手机可拍）
+- 质检记录单（合格/不合格栏，用工厂已有表头，不造新标准）
+- 第三方检验报告（仅当适用）
+- 内包装、外箱、托盘照片
+- 装柜位置与防护照片
+
+每阶段至少 2 条资产。成本用定性（手机短片 / 已有 QC 表拍照），不编工时人数。
+
+**包装风险协议**（一页可发给买家）
+
+针对步骤 2–3 识别出的风险写：跌落测试（ISTA 或已抓取的同等标准，无测试结果则只列将做的项目）；纸箱规格；内衬防护；防潮（干燥剂、缠绕、湿度指示）；标识（易碎、朝向、搬运）。无测量值的格子留 `[待补充]`，并在缺口列出要工厂提供的测量项。禁止用理论规格冒充已测。
+
+**周更模板**（可复制；占位用方括号）
+
+```
+Subject: [order_id] Week [n] Update — [stage_name]
+
+Hi [buyer_name],
+
+[1-2 sentence status]
+
+Attached: [this week's proof asset]
+
+Next: [next milestone]
+
+Best regards,
+[sales_rep]
+```
+
+中文对照同一结构。至少 5 封事件模板：开工、生产过半、质检结果、装柜前、出运后（运单 + ETA）。生产长于两周时，用同一骨架填中间周，不另发明第五种以上的空话策略。占位符在文末列全；禁止无注释的 `{{...}}`。
+
+**主动安抚件**（买家不请求也收到）
+
+四选并全写计划，指定一个为默认主动发送：共享订单进度表（列结构）；交付证明（含 QC 摘要）；到货后质量支持承诺（只写上下文已有的质保口径）；装柜前视频走查。指定件必须落到某个阶段的发送节点。进度表列至少含：订单号、阶段、计划日、实际日、证明资产、下一次更新、风险备注。
+
+## 产出
+
+目录：`deliverables/lead/10-sales/`
+
+主文件 `delivery.md`：
+
+```markdown
+# 交付透明化
+
+- source: 台账 product_context（不粘贴原文）
+- first_order: deliverables/lead/10-sales/first-order.md 或用户本轮交期
+- accessed:
+- product:
+- lead_time_days:
+- origin:
+- languages:
+
+## 摘要
+
+## 来源
+
+| 声明 | URL | 访问日期 | 摘录 |
+| --- | --- | --- | --- |
+
+## 四项输入
+
+| 项 | 值 | 出处 |
+| --- | --- | --- |
+| 产品与包装形式 |  |  |
+| 总交期 |  |  |
+| 品类风险 |  |  |
+| 历史货损/客诉 |  |  |
+
+## Visual Timeline Breakdown
+
+## Proof Assets
+
+## Packaging Risk Protocol
+
+## Weekly Update Templates
+
+## Reassurance Deliverable
+
+## 落地节奏与资源
+
+## 可验证断言
+
+## 缺口
+
+## 下一步
+```
+
+断言（未满足则不算全量完成）：
+
+- 时间线覆盖 4 阶段；每阶段 ≥1 个有日区间或已标缺口的里程碑，且含交付物与渠道
+- 每阶段 ≥2 条证明资产，格式与时点非空
+- 包装协议覆盖步骤 2–3 列出的风险；量化格有值或 `[待补充]`
+- 周更事件模板 ≥5，每封 EN + 对照语种，可复制
+- 安抚件指定一个主动发送节点，不要求买家先开口
+- 含数字的规格、测试、缺陷率有来源或 `[待补充]` / 「未在上下文出现」
+- 教学支架原文零出现
+
+## 例子
+
+> 仅供理解，禁止引用到输出。
+
+输入写「生产大约三到四周」、纸箱「加厚出口箱」。时间线应改成首单里的天数，或日区间整列 `[待补充]`，不写约三到四周。纸箱格写上下文或已抓取的材厚/抗压值；没有就 `[待补充]`，并在缺口列「需工厂提供纸箱材厚与跌落测试记录」，不编五层瓦楞或未做的 ISTA 通过结论。不要把本节句子粘进交付物。
+
+## 易错
+
+- 没读首单就按经验切四段百分比日期。
+- 把教学例子或模型记忆当纸箱规格、缺陷率、检测品牌。
+- 无进展就不联系；或每天一条刷屏。
+- 模板不写订单号、产品、本周资产，变成万能套话。
+- 包装协议只写原则，量化格空着却声称「已按出口标准包装」。
+- 把未签约的第三方机构写成「将由某某出证」。
+- 安抚件做成「如需可提供」，要买家先开口。
+- 在本仓库或仓外生成视频、图片、在线表格，而不是计划与模板。
+- 面客终稿残留无注释的 `{{...}}`。
+- 把本文件当首单入职或复购 SOP。
+
+## 清单
+
+- [ ] 已读共用规则与 `product_context`，原文未拷进本仓库
+- [ ] 硬依赖已满足或已记录 `user_waiver`；四项输入有出处或缺口
+- [ ] 两意图已查证或已停并写缺口；标准名未编造
+- [ ] 4 阶段时间线日区间可回溯承诺交期，或已标 `[待补充]`
+- [ ] 每阶段 ≥2 条证明资产；周更 ≥5 封双语可复制模板
+- [ ] 包装协议针对已识别风险；无测量值未冒充已测
+- [ ] 安抚件有主动发送节点；进度表只出列结构
+- [ ] 文件在 `deliverables/lead/10-sales/delivery.md`
+- [ ] 教学例子原文未进入交付物
+- [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

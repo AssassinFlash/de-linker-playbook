@@ -36,6 +36,7 @@ created: 2026-10-06
 - [编排层落地形态](tickets/orchestration-workflow-form.md)：**乙为骨 + 甲为重活**——orchestrator skill + 台账自驱动（试点双 PASS 实证），多阶段重活走 wayfinder 票；命令卡片只做按需适配器。编排系 skill 改写方向随之确定。
 - [抽取规格定稿](tickets/extraction-spec.md)：38+43 个 skill 的抽取规格定稿——正典只要 name+description（300–700 字符硬标准）、v3 无前缀 23 个加 `marketing-`、evals.json 不迁、交付物双树 `deliverables/marketing|lead/` 取代外部 vault、验收 10 条可跑命令 + 冒烟 S1–S5。全文：[`wayfinder/extraction-spec.md`](extraction-spec.md)。
 - [仓库骨架建立](tickets/repo-skeleton.md)：全量目录补齐（schemas/templates/evals/docs 预留）、AGENTS.md 终稿（交接说明 + 兼容五家）、README.md、CONTEXT.md 词汇表 11 词条、.gitignore 审计无缺口、软链层验证通过；New 侧已加回指。
+- [43 个 lead skill 抽取改写](tickets/lead-skills-extraction.md)：43/43 迁入 `skills/lead-*`（含编辑性 review：去剧本化、工具能力化、硬配额改目标+缺口、纠矛盾与过时事实），软链 43 条 + `deliverables/lead/` 12 目录，验收 10 条全绿；主模型清了 product-knowledge 落点与依赖图配额口径两处横向衔接。
 - [38 个 marketing skill 抽取改写](tickets/marketing-skills-extraction.md)：38 个全部迁入 `skills/`（六批子代理 swarm），规格 §8 十条验收全绿；阶段包不回跳编排器、Excel 走 `templates/`、编排依赖图改写至 455 行。
 - [schemas / templates / eval / docs 迁入](tickets/assets-migration.md)：方法资产落位——schemas 6 JSON 原样、templates 28 xlsx + README 改写、evals 9 脚本按抽取规格改写并实跑 exit 0、docs 迁 2 篇去 slash 化、lead 导出脚本落 `templates/scripts/`（根 scripts/ 抽取白名单覆盖不到，本轮不迁就丢）；evals.json / 工作数据 / `.claude` 接线类资产评估后不迁。
 
