@@ -33,3 +33,5 @@ blocked_by: []
 ## Resolution（2026-10-06 关票）
 
 81/81 处理完：约 59 个 skill 的例子锚定到竞品调研形状（encyclopedia-research 09–32 + docs/research 08-28 批次 + brand-voice 定位句），LinkedIn 批先按 New 形状试点后经用户裁定重锚竞品；22 个保留通用支架并在 `## 例子` 注明原因（11 个元 skill 教流程形状；personal-story 无亲身经历语料；contact-discovery/retailer-research/paid-advertising 等部分保留）。主模型逐批验收：规格 §8 第 1/5/6/8 条全绿（name 正则、产品词零命中、标注齐全、行数 <500）；git diff 全程只触及 `## 例子` 与 5 份 references/examples.md。三个外部仓全程只读。
+
+**无后续欠账**：例子只借形状、正文不引用任何外部路径，encyclopedia-research 即使在 `.scratch/` 被清理也不影响本仓库任何文件；本票没有留给后续票的注意事项。
