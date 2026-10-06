@@ -26,6 +26,8 @@ created: 2026-10-06
 
 <!-- 每关闭一张票，在此加一行：标题链接 + 一句话 gist。Q1–Q10 的方向性决策见 Notes。 -->
 
+- [跨 harness skill 约定与最新编写最佳实践调研](tickets/skill-conventions-research.md)：正典只要 name+description+正文（<500 行）；发现层事实标准 = `.agents/skills/<name>` 软链 + 根级 AGENTS.md（裸 skills/ 无人自动扫描）；description 是触发器（300–700 字符、触发词前置）。全文：`wayfinder/research/skill-conventions-best-practices-2026-10.md`。
+
 ## Not yet specified
 
 - playbook 建成后，非 PDP 的营销工作（SEO/内容/获客）在本仓库里以什么节奏跑（orchestrator 类 skill 落地后的实际工作流）
