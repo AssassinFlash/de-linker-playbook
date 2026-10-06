@@ -38,4 +38,4 @@ blocked_by: [extraction-spec, repo-skeleton]
 
 **验证**：禁词/绝对路径扫描（schemas/templates/evals/docs）零命中；`py_compile` 全过；`evals/validate_project.py` 实跑 exit 0（WARN 全是 lead 抽取并行窗口的未收口项，非本票产物）；`quick_validate.py skills/marketing-orchestrator` PASS；28 xlsx 与源 diff 仅多 `scripts/` 目录。
 
-**后续票注意**：lead skill 若引用导出脚本，函数名已是 `write_deliverable_markdown`（旧名 `write_vault_markdown` 不再存在）；填写 xlsx 依赖本机装 openpyxl（缺库时脚本可 import、调用才报错）。
+**交接处理**：导出脚本函数改名（`write_vault_markdown` → `write_deliverable_markdown`）与 Excel 生成路径（`build_excel.py` 未迁，改用 `templates/` + `templates/scripts/to_excel.py`）已直接写入 `tickets/lead-skills-extraction.md` 与 `tickets/marketing-skills-extraction.md` 正文「资产已就位」段——后续会话读票即见，不依赖口头传话。填写 xlsx 依赖本机装 openpyxl（缺库时脚本可 import、调用才报错）。
