@@ -27,15 +27,15 @@
 
 ## 步骤 1 利基与买家
 
-**输入：** 可做菜单 3–6 项、出口区域、暂定买家角色。
+**输入：** 可做菜单 3–6 项、出口区域、暂定买家角色。已批准 ICP 与（若有）`deliverables/lead/04-market/market-analysis.md`。
 
-**规则：** 最多两问。有来源的进入容易度 <60 或 CAGR <5% 不推荐。产品上下文已锁定的利基只记分数、不拒绝。无来源的 TAM/CAGR 写「未在来源出现」，不以缺失 CAGR 当作 <5%。进入容易度必须有一句依据。
+**规则：** 最多两问。已有批准 ICP 则摘编其决策人/痛点作买家卡片，不另开利基短名单。TAM / CAGR 有 `deliverables/lead/04-market/market-analysis.md` 则引用，不另估；该稿也没有则写「未在来源出现」，不以缺失 CAGR 当作 <5%。有来源的进入容易度 <60 或 CAGR <5% 不推荐。产品上下文已锁定的利基只记分数、不拒绝。进入容易度必须有一句依据。无批准 ICP 时才做短名单与买家卡。
 
 **交付物标题（一字不改）：**
 
-1. Short-List of Micro-Niches — 表：Niche | TAM | 3-yr CAGR % | Top Demand Drivers | Ease-of-Entry /100 | Fatal Drawback。表后一句理由。
+1. Short-List of Micro-Niches — 有上游则引用，不重开。无上游时表：Niche | TAM | 3-yr CAGR % | Top Demand Drivers | Ease-of-Entry /100 | Fatal Drawback。表后一句理由。
 2. Recommended Niche (Deep Dive) — Market Dynamics（规模、增长催化、监管）; Value-Chain Map（原料到终端）; Entry Barriers & How We Overcome Them。
-3. Buyer Persona Card — Job Title, Typical KPIs, Daily Workflow, Pain Points, Buying Triggers, Deal-breakers。
+3. Buyer Persona Card — 有上游则引用，不重开。无上游时：Job Title, Typical KPIs, Daily Workflow, Pain Points, Buying Triggers, Deal-breakers。
 4. No-Go Niches — 2–3 条 + 决定性红旗。
 
 **交接：** 第 2–3 节进入步骤 2。
@@ -60,7 +60,7 @@
 
 **输入：** 步骤 2 表 A 中已核验的公司。
 
-**方法：** 用网页搜索查证官方域名；抓取首页与 About（或等价页）。需要评价、证书、年报时再搜，并抓取能打开的来源页。搜索或抓取不可用则停止并写缺口。
+**方法：** 以竞品稿的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用网页搜索查证官方域名，并抓取首页与 About（或等价页）。需要评价、证书、年报时再搜，并抓取能打开的来源页。搜索或抓取不可用则停止并写缺口。
 
 **每家采集：** 最多 4 条 UVP。Explicit Claim = 对方自己的话。Implied Proof = 评价、证书、案例。轴：Speed | Cost | Quality | Customization | Sustainability | Service | Digital Tool | Other。摘录 5–12 词或 URL 片段。
 

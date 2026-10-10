@@ -27,7 +27,7 @@ description: >
 
 4. **深描**。对主名单每条写 Overview、痛点、决策人。痛点必须行业特定、接到采购决策，并能指回来源 URL 或摘录。决策人写采购行为（频率、批量、渠道偏好）、决策标准（价格 / 质量 / 交期 / 证书 / 关系的相对权重）、个人痛点（KPI、压力、信息渠道）。规模、金额、趋势：来源有才写，并带来源与年份。完成：每条主名单 ICP 三块齐全；「在意质量与价格」这类空泛痛点为零。
 
-5. **按 ICP 写策略**。对照 Guideline 2，每条写四维，且必须直接回应该条痛点：Outreach（首触渠道 + 具体说法）、Value Proposition（对该画像强调的卖点）、Objection Handling（最常见异议 + 反驳）、Relationship Building（从首触到信任）。只使用产品上下文已有的能力、证书与案例；未持有的不得写成动作。推荐展会前须用网页搜索核对该展会对应该利基与区域。换名测试：把 ICP 名称换掉后策略仍成立 → 重写。完成：四维齐全；换名即垮。
+5. **按 ICP 写策略**。对照 Guideline 2，每条写四维，且必须直接回应该条痛点：Outreach（首触渠道 + 具体说法）、Value Proposition（对该画像强调的卖点；竞争对比句以 `lead-usp-extraction` 稿为准，本 skill 不提前写外发主句）、Objection Handling（最常见异议 + 反驳）、Relationship Building（从首触到信任）。只使用产品上下文已有的能力、证书与案例；未持有的不得写成动作。推荐展会前须用网页搜索核对该展会对应该利基与区域。换名测试：把 ICP 名称换掉后策略仍成立 → 重写。完成：四维齐全；换名即垮。
 
 6. **总体策略并落盘**。写 Overall Sales Strategy：跨画像的核心打法、资源优先级（先做哪条、为什么）、差异化定位摘要（引用 `deliverables/marketing/01-foundation/product-positioning.md`，不重写定位；无定位稿则标缺口，不另起定位句）。每条标 P0 / P1 / P2。按下方模板写入 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/01-icp/icp-summary.xlsx`（当前环境写不了 xlsx 则同目录写 `icp-summary.csv`，列相同，并在 Markdown 注明）。完成：主报告非空；表列名匹配；教学例子原文零出现。
 

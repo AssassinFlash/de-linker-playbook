@@ -16,7 +16,7 @@
 
 ## 横切
 
-- 每个方法 skill 依赖台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md` 与 `skills/marketing-product-profile/SKILL.md`（文件存在时）。
+- 每个方法 skill 依赖台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md`（文件存在时）。
 - 共用规则：`skills/marketing-playbook-standards/SKILL.md`（存在则读）。
 - 台账或 `deliverables/lead/` 缺失：打开 `skills/marketing-init/SKILL.md`。
 - 教学产出进 `deliverables/lead/00-system/`，不占用战役 phase。
@@ -259,7 +259,7 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 ### lead-usp-extraction
 
 - Markdown 必含：微利基市场分析、竞品情报、竞品 USP 挖掘、Gap 矩阵、能力叠加、差异化方案、定位与内容、USP-ICP 匹配
-- 表：竞品 USP 矩阵（至少 15 行）；USP 清单（至少 4 行：`usp_headline, usp_type, buyer_angle, proof, target_icp, competitive_frame, priority`）
+- 表：竞品 USP 矩阵（目标 15 行；有上游已核验名单则按复用计，不为凑行数找无关公司）；USP 清单（至少 4 行：`usp_headline, usp_type, buyer_angle, proof, target_icp, competitive_frame, priority`）
 - 检查：七步都有交付物；Gap 基于真实搜索；Top-3 方案有 Buyer Impact / Ease / Cost / Time / Imitation Barrier；定位语不超过 14 词；不同 ICP 有不同主 USP
 
 ### lead-product-knowledge

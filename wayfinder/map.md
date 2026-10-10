@@ -41,7 +41,7 @@ created: 2026-10-06
 - [schemas / templates / eval / docs 迁入](tickets/assets-migration.md)：方法资产落位——schemas 6 JSON 原样、templates 28 xlsx + README 改写、evals 9 脚本按抽取规格改写并实跑 exit 0、docs 迁 2 篇去 slash 化、lead 导出脚本落 `templates/scripts/`（根 scripts/ 抽取白名单覆盖不到，本轮不迁就丢）；evals.json / 工作数据 / `.claude` 接线类资产评估后不迁。
 - [例子 New 化](tickets/examples-from-new.md)：81/81 例子处理完——约 59 个锚定竞品调研形状（encyclopedia-research 09–32 + docs/research 08-28 + brand-voice；用户 10-06 裁定 New 页面形状过时、改按竞品映射，已写进票正文「材料源修正」），22 个保留通用支架并注明原因；验收 §8 第 1/5/6/8 条全绿，外部三仓全程只读。
 - [抽取复核修复清单](tickets/review-fixes.md)：六条复核发现当轮修复——marketing 交付树补建（9 目录）、copywriting/visual-content 产出路径对齐方法 skill 正典、AGENTS/README/status 台账切到真实 0–7 流水线（冷启动进 marketing-profile）、evals 补 12 条 schema 映射（**决议：补映射不降级 WARN**）+ `*.schema.json` 自引用误报修复、to_obsidian→to_markdown、search-protocol 补「内容生成」查证行；quick_validate 81/81 全绿、validate_project 退出码 0。
-- [重叠 skill 对裁定合并](tickets/overlap-dedup-adjudication.md)：扫描确认 11 对跨源重叠，用户裁定**全部并存分工**（无合并/删一）——统一落法为收窄 description 触发词 + 正文互指；顺带修复各对优化点（USP 编号/越界冷邮件、email-outreach 路径、心理清单矛盾、teach 隔离口径、retention 转介绍收窄等）+ 5 处 references 清账；25 个 SKILL.md + 6 个 references/编排文件回写，quick_validate 81/81 全绿、validate_project 退出码 0；同源重叠附注留在票内作后续线索。
+- [重叠 skill 对裁定合并](tickets/overlap-dedup-adjudication.md)：跨源 11 对 + 同源 6 组全部裁完——跨源 11 对全部**并存分工**（收窄 description + 正文互指）；同源：profile↔product-profile **合并删一**（skill 总数 81→80）、eval/skill-eval 与漏斗三件套与文案片段并存分工、获客竞品三套再收口、LinkedIn 十帖无需动作；顺带修复各组优化点 + references/编排清账；`quick_validate` 80/80 全绿、`validate_project` 退出码 0。
 
 ## Not yet specified
 

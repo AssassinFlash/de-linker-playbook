@@ -45,7 +45,7 @@
 
 **你需要做的**：确认事实在 `~/Documents/New` 里是对的。要改事实，改那边，不改本仓库。
 
-更深的规格 / 价值链 / 买家角色读，打开 `skills/marketing-product-profile/SKILL.md`。
+更深的规格 / 价值链 / 买家角色读，打开 `skills/marketing-profile/SKILL.md`。
 
 ## 第三步：让编排器规划
 

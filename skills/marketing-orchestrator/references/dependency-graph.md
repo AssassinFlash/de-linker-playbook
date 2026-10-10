@@ -15,7 +15,7 @@
 
 ## 横切
 
-- 每个方法 skill 依赖台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md` 与 `skills/marketing-product-profile/SKILL.md`（文件存在时）。
+- 每个方法 skill 依赖台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md`（文件存在时）。
 - 共用规则：`skills/marketing-playbook-standards/SKILL.md`（存在则读）。
 - 台账或 `deliverables/marketing/` 缺失：打开 `skills/marketing-init/SKILL.md`。
 - 教学 / 评测 / 进化产出进 `deliverables/marketing/00-system/`，不占用战役 phase。
@@ -24,7 +24,7 @@
 
 | 阶段目录 | 入口 skill（若已迁入，可选打包） | 方法 skill |
 | --- | --- | --- |
-| （phase 0，无目录） | `marketing-profile`、`marketing-product-profile` | 只读产品上下文 |
+| （phase 0，无目录） | `marketing-profile` | 只读产品上下文 |
 | `00-research` | — | 调研摘录，回写下游表 |
 | `00-system` | `marketing-teach`、`marketing-eval`、`marketing-evolve`、`marketing-skill-eval` | 元产出 |
 | `01-foundation` | `marketing-foundation` | `marketing-positioning`、`marketing-competitor-intelligence`、`marketing-pricing-strategy` |
@@ -155,7 +155,7 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
       "id": "0",
       "name": "product-context",
       "phase_dir": null,
-      "skills": ["marketing-profile", "marketing-product-profile"]
+      "skills": ["marketing-profile"]
     },
     {
       "id": "00-research",

@@ -221,14 +221,14 @@ CTA 公式：`[行动动词] + [对方得到什么] + [限定]`。
 
 ## 执行附件
 
-均在 `deliverables/marketing/03-content/copywriting/`：
+均在 `deliverables/marketing/03-content/copywriting/`。邮件与社媒附件是跨渠道语气片段银行，不是可发送战役；不按角色出成套模板。
 
 - `homepage-copy.md`：首屏、价值主张、信任条、主 CTA；语种以产品上下文为准；文末七轮检查节
 - `product-page-copy.md`：产品页模板 + 首批产品线完整文案（按产品上下文的产品线，不发明 SKU）
 - `channel-listing-copy.md`：目标渠道列表页的标题公式、子弹点、信任信号、贸易条款
 - `cta-variations.md`：≥8 个场景（询盘、样品、目录、报价、案例、验厂、规格、交期）
-- `email-template-snippets.md`：首封、跟进、培育
-- `social-copy-snippets.md`：钩子与正文
+- `email-template-snippets.md`：首封、跟进、培育语气片段；不可直接发送，不按角色出成套模板（序列走 `marketing-email-outreach`）
+- `social-copy-snippets.md`：钩子与正文语气片段；不可直接发送，不按角色出成套模板（日历与平台原生成稿走 `marketing-social-content`）
 - `video-hook-snippets.md`：开场钩子 + 一句话价值
 
 面客稿顶部可写：`title`、`skill`（`marketing-copywriting`）、`generated_at`、`version`。策略与分析用简体中文；面客正文、URL、字段名、文件名按产品上下文语种。

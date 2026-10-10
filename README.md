@@ -1,6 +1,6 @@
 # de-linker playbook
 
-v3 的 38 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化、跨 harness 通用化后的自包含 playbook。方法在正典；产品事实指路不复制，只指向 `~/Documents/New`。
+v3 的 37 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化、跨 harness 通用化后的自包含 playbook。方法在正典；产品事实指路不复制，只指向 `~/Documents/New`。
 
 ## 目录
 
@@ -20,7 +20,7 @@ AGENTS.md            agent 入口（只指路）
 
 ## 当前状态
 
-38 个 marketing skill + 43 个 lead skill（共 81）已全部迁入并通用化；机械校验全绿。过程管理见 wayfinder/map.md。
+37 个 marketing skill + 43 个 lead skill（共 80）已全部迁入并通用化；机械校验全绿。过程管理见 wayfinder/map.md。
 
 ## 怎么用
 

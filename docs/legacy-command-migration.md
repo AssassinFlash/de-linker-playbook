@@ -48,7 +48,7 @@
 | `/marketing-sales-enablement` | `skills/marketing-content-strategy/SKILL.md` | 销售赋能资料 |
 | `/marketing-free-tool` | `skills/marketing-content-strategy/SKILL.md` | 免费工具 / Lead Magnet |
 | `/marketing-ideas` | `skills/marketing-content-strategy/SKILL.md` 或 `skills/marketing-social-content/SKILL.md` | 内容创意 |
-| `/marketing-interview` | `skills/marketing-product-profile/SKILL.md` | 客户访谈材料（产品侧） |
+| `/marketing-interview` | `skills/marketing-profile/SKILL.md` | 客户访谈材料（产品侧） |
 | `/marketing-eval` | `skills/marketing-eval/SKILL.md` | 评估与校验 |
 | `/marketing-evolve` | `skills/marketing-evolve/SKILL.md` | Skill 迭代改进 |
 | `/marketing-teach` | `skills/marketing-teach/SKILL.md` | 教学/解释 |
@@ -57,7 +57,7 @@
 | `/marketing-signup-cro` | 已删除 | 不适用于本 playbook 的 B2B 场景 |
 | `/scraper` | 已删除 | 采集能力写在相关方法 skill 的步骤里 |
 
-无前缀的旧 skill 名（如 `copywriting`、`product-profile`、`skill-eval`）在本仓库分别对应 `marketing-copywriting`、`marketing-product-profile`、`marketing-skill-eval`。
+无前缀的旧 skill 名（如 `copywriting`、`product-profile`、`skill-eval`）在本仓库分别对应 `marketing-copywriting`、`marketing-profile`、`marketing-skill-eval`。
 
 ## 如何选择入口
 

@@ -4,14 +4,14 @@ description: >
   Use when copywriting, product description, ad copy, email copy,
   landing page copy, social copy, video script, conversion copy, value
   proposition, headline, landing-page hero, 文案, 产品描述, 广告文案,
-  邮件文案, 社媒文案, or 价值主张, including phase 3 content of this
-  repo's marketing run. Audit competitor messaging, extract buyer
-  language, and write a sourced copy library plus homepage,
-  product-page, ads, email, social, and video drafts under
-  deliverables/marketing/03-content/copywriting/. Read the ledger
-  product_context first; invent no numbers or testimonials; never
-  paste skill examples into the output. Not for polishing an existing
-  draft, SEO audits, competitor battle cards, or phase navigation.
+  邮件文案, 社媒文案, or 价值主张, including phase 3 content. Audit
+  competitor messaging, extract buyer language, and write a sourced
+  copy library plus homepage, product-page, ads, email, social, and
+  video snippets under deliverables/marketing/03-content/copywriting/.
+  Read the ledger product_context first; invent no numbers or
+  testimonials; never paste skill examples into the output. Not for
+  polishing an existing draft, SEO audits, competitor battle cards,
+  outreach sequences, social calendar, or phase navigation.
 ---
 
 # 营销文案
@@ -36,6 +36,7 @@ description: >
 - 贸易术语（FOB、CIF、T/T、L/C）与平台保障、第三方检测：产品上下文确有才写进 CTA 或列表页。
 - 查证用网页搜索；需要原文时抓取指定 URL。用户已配置采集服务时，可用它抓公开页。不写工具 ID。
 - 精修已有成稿走 `skills/marketing-copy-editing/SKILL.md`（文件存在时）。对手战卡走 `skills/marketing-competitor-intelligence/SKILL.md`（文件存在时）。本文件不写 SEO 审计。
+- 邮件/社媒片段是跨渠道语气片段银行，不是可发送战役；序列走 `marketing-email-outreach`，日历与平台原生成稿走 `marketing-social-content`。
 - 产出只进 `deliverables/marketing/03-content/copywriting/`。
 
 ## 写法
@@ -96,8 +97,8 @@ description: >
 - `product-page-copy.md` — 产品页模板与首批产品线文案；文末含七轮检查节
 - `channel-listing-copy.md` — 目标渠道列表页：标题公式、子弹点、信任信号、贸易条款
 - `cta-variations.md` — ≥8 个场景（询盘、样品、目录、报价、案例、验厂、规格、交期）
-- `email-template-snippets.md` — 首封、跟进、培育
-- `social-copy-snippets.md` — 钩子与正文
+- `email-template-snippets.md` — 首封、跟进、培育语气片段；不可直接发送，不按角色出成套模板
+- `social-copy-snippets.md` — 钩子与正文语气片段；不可直接发送，不按角色出成套模板
 - `video-hook-snippets.md` — 开场钩子 + 一句话价值
 
 断言（未满足则不算全量完成）：

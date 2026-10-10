@@ -1,21 +1,21 @@
 ---
 name: marketing-skill-eval
 description: >
-  Use when scoring a skill definition on eight dimensions, running a
-  post-approval skill audit, skill quality review, playbook maintenance
-  scoring, Pass 2 definition quality, 八维评分, 定义质量, 技能质量,
-  技能审计, or skill-eval; also before a marketing-evolve cycle that
-  needs a weakest dimension. Read the named skill under skills/, score
-  weighted dimensions with cited evidence, write the report to
-  deliverables/marketing/00-system/, and if the composite is below 70
-  name exactly one weakest dimension for marketing-evolve. Not for the
-  extraction-spec acceptance checklist (open marketing-eval), campaign
-  plans, SEO audits, or phase navigation.
+  Use when 八维, Pass 2, 综合分 0-100, 最弱维, 八维评分, 定义质量,
+  skill-eval, or scoring a skill definition on eight weighted
+  dimensions; also before a marketing-evolve cycle that needs a
+  weakest dimension. Read the named skill under skills/, score
+  Pass 2 definition quality with cited evidence, write the report
+  to deliverables/marketing/00-system/, and if the composite is
+  below 70 name exactly one weakest dimension for marketing-evolve.
+  Not for the extraction-spec ten-item acceptance checklist,
+  fixtures, or pass-fail (open marketing-eval), campaign plans,
+  SEO audits, or phase navigation.
 ---
 
 # 营销 Skill 定义评测
 
-对目标 `skills/<name>/SKILL.md` 做八维定义质量评分（Pass 2），有交付物时先对照其清单做产出质量（Pass 1）。报告只进 `deliverables/marketing/00-system/`。综合分低于 70 时只点名一个最弱维度，本轮不改目标正文。
+对目标 `skills/<name>/SKILL.md` 做八维定义质量评分（Pass 2），有交付物时先对照其清单做产出质量（Pass 1）。报告只进 `deliverables/marketing/00-system/`。综合分低于 70 时只点名一个最弱维度，本轮不改目标正文。只跑规格验收 pass/fail 走 `marketing-eval`。
 
 ## 步骤
 
@@ -27,7 +27,7 @@ description: >
 
 ## 默认
 
-- 正典评分维是下方八维。抽取规格第 8 节的 pass/fail 走 `skills/marketing-eval/SKILL.md`，不在此重复、不另写一套尺子。
+- 正典评分维是下方八维。只跑规格验收 pass/fail 走 `marketing-eval`，不在此重复、不另写一套尺子。
 - 无证据不打分。参考值标「参考」，不当目标。
 - 一次只点名一个最弱维。改进计划可列 P0/P1/P2，但建议编辑只对应最弱维。
 - 产出只进 `deliverables/marketing/00-system/`。
@@ -103,7 +103,7 @@ Beginner Clarity 计分：3 步 × 5 要素，通过数 ÷ 15 × 100；有前置
 - rationale:
 ```
 
-`verdict`：composite 不低于 70 为 pass。评分表必须 8 行。改进计划至少 3 行，每行 `fix_pattern` 与 `references/improvement-catalog.md` 条目名一致；P0 必须是最弱维。
+`verdict`：composite 不低于 70 为 pass。此 pass/fail 只表示八维综合分是否 ≥70，与 `marketing-eval` 报告里的 `verdict` 同词不同义（那边是抽取规格第 8 节验收条过不过）。评分表必须 8 行。改进计划至少 3 行，每行 `fix_pattern` 与 `references/improvement-catalog.md` 条目名一致；P0 必须是最弱维。
 
 追加 `deliverables/marketing/00-system/eval-history.json`（无则新建）一条：
 
@@ -136,7 +136,7 @@ Beginner Clarity 计分：3 步 × 5 要素，通过数 ÷ 15 × 100；有前置
 - 不追加 `eval-history.json`。
 - 把某个产品名写进 skill 当「针对性」。
 - 综合分低于 70 却不标 evolve。
-- 用验收清单的 pass/fail 代替八维。
+- 把本报告 `verdict` 当成验收条过不过，或用验收清单的 pass/fail 代替八维。
 - 搜索不可用仍编造 URL。
 
 ## 清单

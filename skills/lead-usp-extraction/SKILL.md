@@ -21,11 +21,11 @@ description: >
 
 1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/04-market/market-analysis.md`。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读入，后续外发短句与证据不得与其矛盾。记下品类、可做菜单（3–6 项）、目标区域、已知能力数字、定位偏好（成本效率 / 灵活伙伴 / 溢价共创）。缺关键项时本轮最多问两问。完成：能指出买家、可做产品和已知优势各依据哪几条陈述；原文不拷进本仓库。上游文件缺失则在交付物标缺口，不编 ICP。
 
-2. **利基与买家**。已有批准的 `deliverables/lead/01-icp/` 则复用其客群与买家角色，不重开利基短名单；只补本步缺的 TAM / CAGR / 进入容易度等字段（无来源标「未在来源出现」）。无批准 ICP 时才做微利基短名单表：利基 | TAM | 3 年 CAGR | 需求驱动 | 进入容易度/100（附一句依据）| 致命缺陷。推荐一个利基，写市场动态、价值链、进入壁垒。写买家卡片：职位、KPI、日常、痛点、触发、交易破裂点。列 2–3 个不选的利基及红旗。默认：有来源的进入容易度 <60 或 CAGR <5% 不推荐；产品上下文已锁定的利基只记分数、不拒绝。完成：推荐利基与买家卡片齐全；无来源的 TAM/CAGR 写「未在来源出现」。
+2. **利基与买家**。已有批准的 `deliverables/lead/01-icp/` 则摘编其决策人/痛点作买家卡片，不另开利基短名单。TAM / CAGR 有 `deliverables/lead/04-market/market-analysis.md` 则引用，不另估；该稿也没有则标「未在来源出现」。只补本步仍缺的进入容易度等字段（无来源同样标「未在来源出现」）。无批准 ICP 时才做微利基短名单表：利基 | TAM | 3 年 CAGR | 需求驱动 | 进入容易度/100（附一句依据）| 致命缺陷。推荐一个利基，写市场动态、价值链、进入壁垒。此时才写买家卡片：职位、KPI、日常、痛点、触发、交易破裂点。列 2–3 个不选的利基及红旗。默认：有来源的进入容易度 <60 或 CAGR <5% 不推荐；产品上下文已锁定的利基只记分数、不拒绝。完成：推荐利基与买家卡片齐全（有上游则引用、不重开）；无来源的 TAM/CAGR 写「未在来源出现」。
 
 3. **竞品盘点**。已有 `deliverables/marketing/01-foundation/competitor-analysis.md` 或 `deliverables/lead/04-market/competitor-positioning.md` 时，复用已核验名单与摘录，不从零找 15 家；不足再补。七轴 UVP 与我方行仍按步骤 4、6 补全。无现成名单时，在该利基与区域找目标 15 家，默认大（>$500M）/中（$50–500M）/小（<$50M）各 5。营收用最近已披露财年并写年份。每家：HQ、营收、旗舰、渠道、最近战略动作、官网。写约 150 词格局评论，以及竞争强度（有份额才算 HHI，否则定性高/中/低并说明）。完成：表内每家有可访问官网或已标 unverified。不足 15 家或美元档不适用时，按该利基相对体量分在位者 / 挑战者 / 利基商，写明分档依据与缺口，不拿无关公司凑数。
 
-4. **UVP 挖掘**。对已核验竞品：用网页搜索查证，再抓取官网首页与 About（或等价页）正文；需要评价或证书时再搜一次并抓取能打开的来源页。每家最多 4 条 UVP，标 Explicit Claim 或 Implied Proof，打七轴标签（Speed, Cost, Quality, Customization, Sustainability, Service, Digital Tool；对不上的标 Other），附 5–12 词摘录或 URL 片段。写约 120 词热力：哪些轴过挤、哪些被冷落。完成：每条 UVP 能指回已抓取原文；抓不到的公司标 unverified，不编 UVP。搜索不可用则停止并写缺口。
+4. **UVP 挖掘**。以竞品稿（`deliverables/lead/04-market/competitor-positioning.md` 或 `deliverables/marketing/01-foundation/competitor-analysis.md`）的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用网页搜索查证，再抓取官网首页与 About（或等价页）正文。需要评价或证书时再搜一次并抓取能打开的来源页。每家最多 4 条 UVP，标 Explicit Claim 或 Implied Proof，打七轴标签（Speed, Cost, Quality, Customization, Sustainability, Service, Digital Tool；对不上的标 Other），附 5–12 词摘录或 URL 片段。写约 120 词热力：哪些轴过挤、哪些被冷落。完成：每条 UVP 能指回竞品稿或已抓取原文；抓不到的公司标 unverified，不编 UVP。搜索不可用则停止并写缺口。
 
 5. **Gap 矩阵**。行=公司，列=七轴；该轴 ≥1 条 UVP 为 check，沉默为 —。覆盖 ≥70% 为过挤轴，≤30% 为空白轴。空白轴必须对照买家痛点；买家卡片或 ICP 未提到的不记为机会。完成：矩阵与过挤/空白两节都有；空白轴有交叉引用。符号与阈值见 `references/gap-matrix-template.md`。
 
@@ -65,9 +65,9 @@ description: >
 - accessed:
 
 ## 1. Micro-Niche & Buyer Persona
-### Short-List of Micro-Niches
+### Short-List of Micro-Niches（有上游则引用，不重开）
 ### Recommended Niche (Deep Dive)
-### Buyer Persona Card
+### Buyer Persona Card（有上游则引用，不重开）
 ### No-Go Niches
 
 ## 2. Competitive Intelligence

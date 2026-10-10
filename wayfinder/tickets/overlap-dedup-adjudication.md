@@ -1,7 +1,7 @@
 ---
 wayfinder: prototype
 status: closed
-assignee: kimi（2026-10-10 认领）
+assignee: kimi（2026-10-10 认领；同日用户指示同源重叠一并裁定，两轮完成）
 resolved: 2026-10-10
 blocked_by: [marketing-skills-extraction, lead-skills-extraction, review-fixes]
 ---
@@ -53,12 +53,13 @@ blocked_by: [marketing-skills-extraction, lead-skills-extraction, review-fixes]
 
 `marketing-seo`/`marketing-foundation`/`marketing-acquisition`/`marketing-orchestrator`（阶段包与双导航器，编排引用不算重叠）、`marketing-referral-program`↔`lead-service-retention`（佣金协议 vs 忠诚阶梯）、`marketing-copywriting`↔cold-email/seo-content-gen（转化文案库，粒度不同）、`marketing-seo-audit`↔`lead-search-term-expansion`/SEO 四件套（审计 vs 找词/成稿）、`marketing-content-strategy`↔`lead-linkedin-topic-research`（日历 vs 话题卡）、`lead-market-analysis`↔`marketing-positioning`、`marketing-pricing-strategy`↔`lead-service-quotation`、`marketing-inquiry-flow`↔`lead-service-first-contact`、`lead-targeted-outreach`↔`marketing-email-outreach`（单家定向 vs 批量模板）、`lead-magnet-gen`、`lead-product-knowledge`、`marketing-visual-content`↔`lead-linkedin-behind-scenes`、站点 CRO 三件套↔获客销售链、双方各自独有 skill。
 
-### 同源重叠附注（不在本票范围，留作后续线索）
+### 同源重叠裁定（2026-10-10 用户指示本票一并裁完，不当后续线索）
 
-- `marketing-profile` ↔ `marketing-product-profile`：都是十五节覆盖索引，产出分别为 context-pointer / product-profile-index。
-- `marketing-eval` ↔ `marketing-skill-eval`：验收清单 vs 八维定性（已互指）。
-- `marketing-retention` 原内含转介绍章 ↔ `marketing-referral-program`（本票已顺手清：retention 只留日志骨架）。
-- `marketing-landing-page` / `funnel-optimization` / `inquiry-flow`：description 触发词互吞。
-- `marketing-copywriting` 的邮件/社媒片段 ↔ 同树 `email-outreach` / `social-content`。
-- 获客侧竞品三套：`lead-competitor-analysis`、`lead-usp-extraction` 步骤 3–5、USP 买家卡 vs `lead-icp-analysis` 步骤 2（本票已用复用规则缓解）。
-- 10 个 `lead-linkedin-*` 帖类型间靠 Structure 编号互斥，属拆分不是重叠。
+同日第二轮：6 组提案 → 用户裁定「按建议」→ 5 批回写 + 3 处残留清账。验收：`quick_validate.py` 80/80 全绿（skill 总数 81→80）、`validate_project.py` 退出码 0。
+
+- **A `marketing-profile` ↔ `marketing-product-profile`：合并删一**。后者并入前者（十五节定义、写法门槛、用户确认步、「补搜只判定覆盖不填事实」调和规则；产出名统一 `context-pointer.md`），删 `skills/marketing-product-profile/` 与软链；清引用 8 处文件（orchestrator×2、lead-generation×2、positioning、status.md、getting-started、legacy-command-migration）；README 总数改 80。
+- **B `marketing-eval` ↔ `marketing-skill-eval`：并存分工**。eval = 规格 §8 十条 pass/fail；skill-eval = 八维 0–100。双方 description 去共有泛触发；`marketing-evolve` 写清 `-eval-report.md`（验收条）vs `-skill-eval-report.md`（八维）分工，`composite_after` 固定留空（复评只跑 marketing-eval）。
+- **C 漏斗三件套：并存分工**。landing-page = 页上入口；inquiry-flow = 提交后到样品（页面字段以 landing 为准）；funnel-optimization = 跨阶段合成——第 3–6 章改读已批准上游只填矛盾/缺口，第 9–11 章改指 06-growth 三家既有产出，量表以 inquiry 七维四档为准；references/methodology 同步收窄。已知残留：funnel 第 7–8 章（onboarding/升级）无对位 skill，暂留本 skill，若要外指需另裁。
+- **D `marketing-copywriting` ↔ `email-outreach`/`social-content`：并存分工**。copywriting = 跨渠道语气片段银行（不可直接发送、不按角色出成套模板）；后两者输入步复用 snippets 的语气与 CTA，不另起价值主张。
+- **E 获客竞品三套：并存分工再收口**。USP 步骤 2 买家卡改摘编 ICP（不另开短名单）、步骤 4 以竞品 Key Selling Points 为 UVP 种子缺轴才补抓、模板两节「有上游则引用」；竞品 description 去「差异化机会」；ICP 步骤 5 竞争对比句以 USP 稿为准；lead-generation 编排「竞品矩阵 ≥15 行」改为按复用计不凑数。
+- **F 10 个 `lead-linkedin-*` 帖类型：无需动作**。拆分成立（Structure 编号互斥、各有独立 JTBD、闸门不齐是设计）。非必改观察留在提案记录：publish_status 枚举不齐、BTS/concern/challenge/story 无外置 structure 文件等。

@@ -1,7 +1,7 @@
 ---
 phase: 0
 phase_name: 读产品上下文
-next: 只读 product_context（默认 ~/Documents/New/CONTEXT.md）；需要档案时执行 marketing-profile / marketing-product-profile；确认可读后进入 phase 1
+next: 只读 product_context（默认 ~/Documents/New/CONTEXT.md）；需要档案时执行 marketing-profile；确认可读后进入 phase 1
 method_skill: marketing-profile
 output_dir: deliverables/marketing/
 product_context: ~/Documents/New/CONTEXT.md
@@ -19,7 +19,7 @@ product_context: ~/Documents/New/CONTEXT.md
 | --- | --- |
 | phase | 0 |
 | phase_name | 读产品上下文 |
-| next | 只读 `product_context`（默认 `~/Documents/New/CONTEXT.md`）；需要档案时执行 marketing-profile / marketing-product-profile；确认可读后进入 phase 1 |
+| next | 只读 `product_context`（默认 `~/Documents/New/CONTEXT.md`）；需要档案时执行 marketing-profile；确认可读后进入 phase 1 |
 | method_skill | marketing-profile |
 | output_dir | deliverables/marketing/ |
 | product_context | `~/Documents/New/CONTEXT.md` |
@@ -28,7 +28,7 @@ product_context: ~/Documents/New/CONTEXT.md
 
 | phase | 名称 | 方法 skill | 产出目录 | 完成标准 |
 | --- | --- | --- | --- | --- |
-| 0 | 读产品上下文 | 只读 `product_context`；需要档案时打开 `skills/marketing-profile/SKILL.md`、`skills/marketing-product-profile/SKILL.md` | 不把原文写入本仓库 | 三条陈述：买家是谁、卖什么、缺口 |
+| 0 | 读产品上下文 | 只读 `product_context`；需要档案时打开 `skills/marketing-profile/SKILL.md` | 不把原文写入本仓库 | 三条陈述：买家是谁、卖什么、缺口 |
 | 1 | 基础 | `marketing-positioning`、`marketing-competitor-intelligence`、`marketing-pricing-strategy` | `deliverables/marketing/01-foundation/` | 各方法 skill 交付物非空，且不是例子原文 |
 | 2 | SEO | `marketing-seo-audit`、`marketing-ai-seo`、`marketing-programmatic-seo`、`marketing-site-and-schema` | `deliverables/marketing/02-seo/` | 同上 |
 | 3 | 内容 | `marketing-content-strategy`、`marketing-copywriting`、`marketing-visual-content` | `deliverables/marketing/03-content/` | 同上 |

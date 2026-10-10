@@ -6,12 +6,12 @@ description: >
   Instagram content, Facebook page, TikTok B2B, TikTok manufacturing,
   社媒内容, 社交媒体策略, social selling, organic social, or a B2B
   foreign-trade social content plan, including phase 4 acquisition
-  work. Collect competitor posts and platform benchmarks, cite every
-  claim, then write a sourced pillar mix, 4-week calendar, post drafts,
-  and hashtag sets under deliverables/marketing/04-acquisition/. Read
-  the ledger product_context first; invent no engagement rates or
-  follower counts. Not for a single LinkedIn post, paid ads, email
-  sequences, or phase navigation.
+  work. Collect competitor posts and platform benchmarks, then write a
+  sourced pillar mix, 4-week calendar, post drafts, and hashtag sets
+  under deliverables/marketing/04-acquisition/. Read the ledger
+  product_context first; invent no engagement rates or follower
+  counts. Not for a single LinkedIn post, paid ads, email sequences,
+  转化文案库 (`marketing-copywriting`), or phase navigation.
 ---
 
 # 社媒内容
@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/03-content/` 的内容策略，以及 `deliverables/marketing/01-foundation/` 的竞品稿。完成：能指出品类、目标市场、买家角色、品牌形态（公司品牌 / 出口经理个人品牌 / 两者）、可用视觉素材、已知竞品账号各依据哪几条；原文不拷进本仓库。品类、目标市场或买家角色缺到无法圈定平台则停并写缺口，不编造公司、粉丝、互动或对手事实。
+2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/03-content/` 的内容策略，以及 `deliverables/marketing/01-foundation/` 的竞品稿。已有 `deliverables/marketing/03-content/` 的 copy-library 或 snippets 对应 channel 行则复用其语气与 CTA，不另起价值主张。完成：能指出品类、目标市场、买家角色、品牌形态（公司品牌 / 出口经理个人品牌 / 两者）、可用视觉素材、已知竞品账号各依据哪几条；原文不拷进本仓库。品类、目标市场或买家角色缺到无法圈定平台则停并写缺口，不编造公司、粉丝、互动或对手事实。
 3. **收集**。用网页搜索查证公开社媒与行业基准；需要原文时抓取指定 URL 的正文。默认先搜再抓；搜索不可用则停止并写缺口。用户已配置网页采集服务时，才用它抓公开页或动态页。多账号或多平台并行时 dispatch a subagent, else do it inline。每条记下 URL、访问日期、摘录。查询意图、数据门与核验：读 `references/methodology.md`。完成：≥20 条竞品帖（格式、主题、钩子、互动、来源）；≥5 个竞品账号且覆盖 ≥3 个平台（粉丝、发帖频率、内容组合、来源）；发帖频率由时间戳算出；平台基准与标签研究有来源或显式缺口。
 4. **分析**。分开写、不要混：竞品社媒审计、分平台买家活跃度、内容支柱比例、钩子类型、一条素材到多平台的二次分发。支柱默认比例见 `references/methodology.md`，必须按已采集表现调整并引用来源，禁止原样套用默认表却不说明。完成：平台优先级有买家出现证据；每家竞品同时有有效格式与弱格式；二次分发图证明至少一种原始素材可衍生 ≥3 条平台原生帖。
 5. **落盘**。写入下方路径。策略与分析用简体中文；面客帖文、标签、文件名按产品上下文语种（本仓库文件名保持英文）。完成：主稿与工作簿非空；日历 ≥30 行且 `copy_draft`、`visual_notes`、`hashtags`、`cta`、`source` 无空值；竞品审计 ≥5 行；帖文模板 ≥10 条；文末 5–10 条可验证断言；教学支架原文零出现。

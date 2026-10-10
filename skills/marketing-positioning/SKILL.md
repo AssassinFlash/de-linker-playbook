@@ -33,7 +33,7 @@ description: >
 - 内部策略用语跟用户本轮语言；面客短句用产品上下文的面客语种；同一段不混用。
 - 窄改文案走 `skills/marketing-copywriting/SKILL.md`（存在时也可走 `skills/marketing-copy-editing/SKILL.md`）。对手战卡走 `marketing-competitor-intelligence`（文件存在时）；本 skill 的 Competitive Landscape 只写格局一页表（具名、类型、对我方含义），不写战卡。
 - 外发 USP 与证据包走 `lead-usp-extraction`；分行业获客 ICP 策略走 `lead-icp-analysis`。已存在 `deliverables/lead/01-icp/` 客群分析可作输入。
-- 十五节档案覆盖由 `skills/marketing-product-profile/SKILL.md` 索引，本 skill 不重复落档。
+- 十五节档案覆盖由 `skills/marketing-profile/SKILL.md` 索引，本 skill 不重复落档。
 
 ## 写法
 

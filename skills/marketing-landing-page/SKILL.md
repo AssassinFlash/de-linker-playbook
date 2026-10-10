@@ -1,16 +1,15 @@
 ---
 name: marketing-landing-page
 description: >
-  Use when the user asks for landing page, CRO, conversion rate optimization,
-  inquiry form, popup, funnel optimization, inquiry flow, launch strategy,
-  referral program, retention, B2B foreign trade, 着陆页, 落地页, 转化率优化,
-  询盘表单, 弹窗, 询盘流程, 启动策略, 转介绍, or 客户留存. Audit live homepage,
-  product, and inquiry pages against competitor CTAs, forms, and trust
-  signals; write a sourced page audit, form redesign, popup plan, and
-  experiment queue under deliverables/marketing/05-cro/. Read the ledger
-  product_context first; invent no conversion rates, field counts, or
-  competitor URLs. Never paste skill examples into the output. Not for
-  paid-media plans, technical site rebuilds, or phase navigation.
+  Use when the user asks for landing page, homepage CTA, inquiry form, popup,
+  page audit, form redesign, 着陆页, 落地页, 询盘表单, 弹窗, 页面审计, or
+  表单改版. Audit live homepage, product, and inquiry pages against competitor
+  CTAs, forms, and trust signals; write a sourced page audit, form redesign,
+  popup plan, and experiment queue under deliverables/marketing/05-cro/. Read
+  the ledger product_context first; invent no conversion rates, field counts,
+  or competitor URLs. Never paste skill examples into the output. Not for
+  post-submit reply scripts, launch/referral/retention playbooks, paid-media
+  plans, technical site rebuilds, or phase navigation.
 ---
 
 # 着陆页
@@ -21,7 +20,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
 2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 与 `deliverables/marketing/02-seo/seo-audit.md`。列出品类、目标市场、买家角色、流量来源、询盘渠道、建站平台约束、漏斗已知转化率。完成：能指出各依据哪几条；原文不拷进本仓库。用户只给站点 URL 时先抓该站再补上下文；品类或市场仍不明则停并写缺口，不编造公司、转化率或竞品事实。
-3. **范围**。本 skill 主责页面级转化：着陆页审计、CTA、表单字段、弹窗、实验队列。用户只要询盘整条路径则打开 `skills/marketing-inquiry-flow/SKILL.md`；只要上市事件则打开 `skills/marketing-launch-strategy/SKILL.md`；只要转介绍或留存则打开对应方法 skill。需要隔离时 dispatch a subagent, else do it inline。完成：主责与他 skill 边界各写一句，不在本工作簿加上市/转介绍/留存表。
+3. **范围**。本 skill 主责页面级转化：着陆页审计、CTA、表单字段、弹窗、实验队列。提交后询盘运营走 `marketing-inquiry-flow`；跨阶段合成走 `marketing-funnel-optimization`。用户只要询盘整条路径则打开 `skills/marketing-inquiry-flow/SKILL.md`；只要全链路优先级则打开 `skills/marketing-funnel-optimization/SKILL.md`；只要上市事件则打开 `skills/marketing-launch-strategy/SKILL.md`；只要转介绍或留存则打开对应方法 skill。需要隔离时 dispatch a subagent, else do it inline。完成：主责与他 skill 边界各写一句，不在本工作簿加上市/转介绍/留存表。
 4. **采集**。用网页搜索查证 B2B 着陆页与询盘表做法；需要原文时抓取指定 URL 的正文（本站首页、产品/服务页、询盘页、下单流程页；≥3 个竞品首页+产品页+询盘页）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；本站三页与竞品对照达到最低条数，或已把未达标项写入缺口。
 5. **分析**。只从已采集证据给页面 1–5 分、表单字段对照、弹窗规格、实验假设。量表、漏斗与表列见 `references/methodology.md`。完成：每个 P0 能指到已抓取页面；P0 文案有 before → after；行业数字已标「行业参考值，实际以你的数据为准」。
 6. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL；教学支架原文零出现；文末 5–10 条可验证断言。
@@ -52,7 +51,7 @@ description: >
 - `deliverables/marketing/05-cro/cro-experiment-queue.xlsx`（从 `templates/cro-experiment-queue.xlsx` 复制后填；不能写表时改同目录 `cro-experiment-queue.json`）
 - 按需同目录：`page-audit-findings.md`、`copy-rewrites.md`、`form-field-spec.md`、`popup-designs.md`、`ab-test-plan.md`
 
-章节与表列、最低行数见 `references/methodology.md`。询盘规格、回复模板、上市时间线、转介绍设计、留存手册不在本 skill 落盘。
+章节与表列、最低行数见 `references/methodology.md`。询盘规格、回复模板、跨阶段优先级、上市时间线、转介绍设计、留存手册不在本 skill 落盘。
 
 ```markdown
 # 着陆页

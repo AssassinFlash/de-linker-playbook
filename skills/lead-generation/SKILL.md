@@ -38,7 +38,7 @@ description: >
 
 | phase | 名称 | 方法 skill | 产出目录 | 完成标准 |
 | --- | --- | --- | --- | --- |
-| 0 | 读产品上下文 | 只读 `product_context`；需要档案时打开 `skills/marketing-profile/SKILL.md`、`skills/marketing-product-profile/SKILL.md` | 不把原文写入本仓库 | 三条陈述：买家、所卖、缺口 |
+| 0 | 读产品上下文 | 只读 `product_context`；需要档案时打开 `skills/marketing-profile/SKILL.md` | 不把原文写入本仓库 | 三条陈述：买家、所卖、缺口 |
 | 1 | 画像 | `lead-icp-analysis`、`lead-search-term-expansion` | `deliverables/lead/01-icp/` | 每 ICP 含画像 + 销售策略 + 数据洞察；每 ICP ≥10 个已验证术语；交付物不是例子原文 |
 | 2 | 公司 | `lead-company-research`、`lead-distributor-research`、`lead-retailer-research` | `deliverables/lead/02-companies/` | 目标公司每家 3 信息块；分销商 11 维或简版字段齐；零售商规模与定位字段齐；域名已抓取验证 |
 | 3 | 联系人 | `lead-contact-discovery` | `deliverables/lead/03-contacts/` | 按 ICP / 公司类型 / 职位分列；未配置发现服务则标「联系人待补」，不编造邮箱 |

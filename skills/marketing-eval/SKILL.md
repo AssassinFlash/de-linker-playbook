@@ -1,21 +1,21 @@
 ---
 name: marketing-eval
 description: >
-  Use when evaluating a skill, auditing a playbook module, running
-  skill evaluation, workflow quality review, playbook maintenance
-  scoring, marketing-eval, 评测, 验收, 评 skill, or checking whether a
-  workflow meets quality standards. Read evals fixtures if any exist and run
-  the extraction-spec acceptance checklist on the named directory
-  under skills/; write the report to deliverables/marketing/00-system/.
-  Every finding must cite command output or a file line. Do not
-  rewrite the target here (open marketing-evolve) and do not invent a
-  second rubric. Not for phase navigation, campaign copy, or
-  eight-dimension qualitative scoring (open marketing-skill-eval).
+  Use when 验收, 夹具, 抽取规格第 8 节十条, pass-fail, marketing-eval,
+  extraction-spec acceptance, or checking whether a named skill
+  under skills/ meets the ten checklist commands. Read evals
+  fixtures if any exist, run the section-8 commands on that
+  directory, and write a pass or fail report to
+  deliverables/marketing/00-system/. Every finding must cite
+  command output or a file line. Do not rewrite the target here
+  (open marketing-evolve) and do not invent a second rubric. Not
+  for eight-dimension scoring, composite 0-100, or naming a
+  weakest dimension (open marketing-skill-eval).
 ---
 
 # 营销评测
 
-按 `evals/` 夹具与 `wayfinder/extraction-spec.md` 验收清单，判断一份 skill 正典是否过关。报告只写入 `deliverables/marketing/00-system/`；本 skill 不改目标正文。
+按 `evals/` 夹具与 `wayfinder/extraction-spec.md` 验收清单，判断一份 skill 正典是否过关。报告只写入 `deliverables/marketing/00-system/`；本 skill 不改目标正文。要打分或点最弱维走 `marketing-skill-eval`。
 
 ## 步骤
 
@@ -28,7 +28,7 @@ description: >
 ## 默认
 
 - 尺子是 `wayfinder/extraction-spec.md` 第 8 节。与规格冲突时停并上报，不发明第二套规则。
-- 本 skill 只出 **pass / fail**，不打 0–100。定性八维走 `skills/marketing-skill-eval/SKILL.md`。
+- 本 skill 只出 **pass / fail**，不打 0–100。定性八维走 `marketing-skill-eval`。
 - 一轮只评一份 skill；评的是正典，不是战役文案、不是 agent 定义。
 - 产出只进 `deliverables/marketing/00-system/`。不改目标 skill，不改 `AGENTS.md`、`state/`、`wayfinder/`。
 - 仓外路径只允许 `~/Documents/New/...`。本评测通常不读产品上下文。
