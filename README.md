@@ -8,7 +8,7 @@ v3 的 37 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化�
 skills/              正典（SKILL.md）
 .agents/skills/      适配器（软链到正典）
 state/               台账
-deliverables/        产出（marketing/ 与 lead/ 双树）
+deliverables/        产出（marketing/ 与 lead/ 双树）——软链到私有仓库 ../de-linker-vault（公开克隆者看到的是悬链，属正常：公开方法/私有数据分层）
 wayfinder/           过程管理（地图与票）
 schemas/             交付物 JSON Schema
 templates/           产出 xlsx 模板与导出脚本
