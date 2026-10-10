@@ -39,7 +39,7 @@ description: >
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。故事本身不靠搜索发明。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表。
 - 帖子正文与标签：英文（用户本轮指定其他语言除外）。策略、缺口、搜索日志：中文。
-- 幕后流程、产线、设备走 `skills/lead-linkedin-behind-scenes/SKILL.md`（文件存在时）。行业趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。话题清单走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。本文件只写人的经历与教训。
+- 幕后流程、产线、设备走 `skills/lead-linkedin-behind-scenes/SKILL.md`（文件存在时）。行业趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件只写人的经历与教训。
 - 软广、篇幅、钩子类型、CTA 四类、标签组合、四种风格升级：只遵共用规范，不在本文件复述。
 
 ## 写法

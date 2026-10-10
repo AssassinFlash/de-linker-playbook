@@ -1,15 +1,16 @@
 ---
 name: marketing-competitor-intelligence
 description: >
-  Use when the user asks for competitor research, competitor analysis, battle
-  cards, competitive positioning, competitive landscape, 竞品分析, 竞品调研,
-  vs page, vs-page inputs, alternative sourcing analysis, alternative supplier
-  comparison, marketplace benchmarking, or competitor evidence for B2B trade
+  Use when the user asks for battle cards, channel prices, MOQ, vs page,
+  vs-page inputs, procurement path, alternative sourcing analysis,
+  alternative supplier comparison, marketplace benchmarking, 战斗卡,
+  渠道价, 起订量, vs 页, 采购路径, or competitor evidence for B2B trade
   decisions, including phase 1 of this repo's marketing run. Collect public
   evidence, cite every claim, write battle cards and comparison tables, and
   save them under deliverables/marketing/01-foundation/. Invent no prices or
-  competitor facts. Not for SEO keyword strategy, price architecture, or phase
-  navigation.
+  competitor facts. Strategy maps and ICP whitespace belong to
+  `lead-competitor-analysis`. Not for SEO keyword strategy, price
+  architecture, or phase navigation.
 ---
 
 # 竞品情报
@@ -27,6 +28,8 @@ description: >
 ## 默认
 
 - 本 skill 产出进 `deliverables/marketing/01-foundation/`。不要用它做完整 SEO 审计或价格架构。
+- 策略×公司配额与 ICP 空白走 `lead-competitor-analysis`；本 skill 不写策略×公司配额。
+- 定位句 / USP 清单走 `lead-usp-extraction`，冷邮件走 `lead-cold-email-gen`；本 skill 不写这三类。
 - 数字、价格、流量、评分只来自：产品上下文、用户本轮提供、已搜索或已抓取的公开页。价格必须来自渠道列表、公开价目或 RFQ，禁止估计后写成事实。
 - 目标渠道以产品上下文为准，不在本文件写死平台。
 - 对手优势如实写。禁止无出处的「他们质量不行」。
@@ -38,7 +41,7 @@ description: >
 - 先地图后深挖：先 5 家可访问域名，再补渠道页与产品页。
 - 战斗卡按产品上下文的买家角色裁剪，不发明角色。
 - 建议标 P0 / P1 / P2，并指向可执行页或话术，不写空泛「加强品牌」。
-- 公开对比页建议含摘要、目标检索词、meta 描述、漏斗阶段；内部战斗卡不公开。
+- 公开对比页只到内容纲要，SEO 规格走 `marketing-seo-audit`；内部战斗卡不公开。
 
 ## 产出
 

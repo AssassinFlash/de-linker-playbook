@@ -32,7 +32,7 @@ description: >
 ## 默认
 
 - 无硬依赖；与 phase 10 服务链可并行。编排与闸门见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
-- 本文件做场景共情-策略分析，不写异议 SOP 话术库、不执行服务链任一步。异议落地表打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。漏斗原则选型打开 `skills/marketing-psychology/SKILL.md`（文件存在时）。
+- 本文件做场景共情-策略分析，不写异议 SOP 话术库、不执行服务链任一步。异议落地表打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。场景 2 价格异议 SOP 以 `lead-service-objection` 为准，本 skill 只给心理判断与过渡话术。漏斗原则选型打开 `skills/marketing-psychology/SKILL.md`（文件存在时）。
 - 联动（文件存在才打开，不存在则只完成本方法）：`lead-service-first-contact`、`lead-service-quotation`、`lead-service-first-order`、`lead-service-delivery`、`lead-service-retention`。
 - 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。单场景 inline 做完。
 - 数字、认证、产能、客户名、研究结论：只来自产品上下文、用户本轮、或已抓取页。没有就写「未在上下文出现」，禁止补造稀缺或让价幅度。

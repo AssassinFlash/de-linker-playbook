@@ -13,13 +13,13 @@
 9. [lead-competitor-analysis（竞品分析）](#9-lead-competitor-analysis竞品分析) — 概念型，全量
 10. [lead-market-analysis（市场分析）](#10-lead-market-analysis市场分析) — 数据密集型，聚焦
 
-Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、公开站点、新手错、覆盖率信号都以本节为准。品类、材质、产地以产品上下文为准，不在本节填值。无独立 skill 的单元：Stage 3 按本节任务卡范围独立执行，不发明目录。
+Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、公开站点、新手错、覆盖率信号都以本节为准。品类、材质、产地以产品上下文为准，不在本节填值。已迁入的 lead 方法读 `skills/lead-*` 正典 `SKILL.md`；本节不替代正典。无独立目录的单元（emerging-company-research、distributor-brief）以本节为方法，Stage 3 按本节任务卡范围独立执行，不发明目录。
 
 ---
 
 ## 1. lead-icp-analysis（客户画像分析）
 
-目标 skill：`skills/lead-icp-analysis/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-icp-analysis/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -61,7 +61,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 2. lead-search-term-expansion（搜索词扩展）
 
-目标 skill：`skills/lead-search-term-expansion/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-search-term-expansion/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -102,7 +102,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 3. lead-company-research（目标公司搜索）
 
-目标 skill：`skills/lead-company-research/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-company-research/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -183,7 +183,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 5. lead-distributor-research（分销商调研）
 
-目标 skill：`skills/lead-distributor-research/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-distributor-research/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -259,7 +259,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 7. lead-retailer-research（零售商调研）
 
-目标 skill：`skills/lead-retailer-research/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-retailer-research/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -297,7 +297,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 8. lead-contact-discovery（联系人采集）
 
-目标 skill：`skills/lead-contact-discovery/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-contact-discovery/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -338,7 +338,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 9. lead-competitor-analysis（竞品分析）
 
-目标 skill：`skills/lead-competitor-analysis/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-competitor-analysis/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -380,7 +380,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 ## 10. lead-market-analysis（市场分析）
 
-目标 skill：`skills/lead-market-analysis/SKILL.md`（若尚未迁入，以本节为方法）。
+目标 skill：`skills/lead-market-analysis/SKILL.md`（方法以该正典为准）。
 
 ### 关键概念
 
@@ -394,7 +394,7 @@ Stage 1 只读目标单元这一节。概念、任务卡范围、示范范围、
 
 **类型**: 数据密集型 — 聚焦范围
 
-手动研究完整板块中的 3 个：市场规模、竞争格局、SWOT。其余由系统补充。完整板块数以目标 skill 为准；目标 skill 尚未迁入时，手工仍只做这 3 块。
+手动研究完整板块中的 3 个：市场规模、竞争格局、SWOT。其余由系统补充。完整板块数以目标 skill 为准；手工仍只做这 3 块。
 
 ### 示范范围
 

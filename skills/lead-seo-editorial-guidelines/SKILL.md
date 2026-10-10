@@ -11,7 +11,7 @@ description: >
   this repo's lead SEO run: guidelines then outline then draft then
   edit. Read the ledger product_context first; invent no conversion
   statistics. Not for article outlines, body copy, editing an
-  existing draft, SEO audits, or phase navigation.
+  existing draft, editorial calendars, SEO audits, or phase navigation.
 ---
 
 # SEO 编辑规范
@@ -44,7 +44,7 @@ description: >
 - 数字、转化率、平台质量更新：产品上下文或已抓取页里有才写。没有就写「未在上下文出现」或 unverified，禁止补造。
 - 可读性目标必须写明（谁能一次看懂、句子与段落约束、术语是否首现解释）。禁止把未核验的工具分数线写成门槛。
 - 面客语种以产品上下文为准；组装块默认英文。同一段不混用。
-- 网站整站 SEO 审计走 `skills/marketing-seo-audit/SKILL.md`（文件存在时）。本文件只管获客 SEO 文章的编辑规范。
+- 网站整站 SEO 审计走 `skills/marketing-seo-audit/SKILL.md`（文件存在时）。编辑日历、选题集群与 content brief 走 `marketing-content-strategy`。本文件只管获客 SEO 文章的编辑规范，不写日历、选题集群或成稿。
 - 产出只进 `deliverables/lead/09-seo/`。
 
 ## 写法

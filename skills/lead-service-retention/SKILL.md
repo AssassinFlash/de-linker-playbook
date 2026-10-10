@@ -1,9 +1,9 @@
 ---
 name: lead-service-retention
 description: >
-  Use when buyer retention, repeat order, loyalty program, reorder strategy,
+  Use when post-delivery buyer retention, loyalty program, reorder strategy,
   customer loyalty, long-term partnership, retention plan, loyalty ladder,
-  reorder incentive, buyer loyalty, soft lock-in, 客户留存, 复购, 长期合作,
+  reorder incentive, buyer loyalty, soft lock-in, 单买家交付后留存, 出货后复购, 长期合作,
   买家留存, 忠诚阶梯, 复购激励, or 出货后关系经营, including phase 10 sales
   of this repo's lead run. After delivery, write a 3-phase retention plan,
   loyalty ladder, reorder lock-in tools, one surprise moment, and an ROI
@@ -31,7 +31,7 @@ description: >
 
 - 编排与闸门见 `skills/lead-generation/SKILL.md`。硬依赖 `lead-service-delivery`；软依赖 `lead-service-first-order`、`lead-service-quotation`。不在本文件另写管线。
 - 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
-- 本文件做交付后的复购与忠诚。出运物流打开 `skills/lead-service-delivery/SKILL.md`（文件存在时）。首单入职打开 `skills/lead-service-first-order/SKILL.md`（文件存在时）。营销树健康度、流失预警、沉默挽回打开 `skills/marketing-retention/SKILL.md`（文件存在时）。已有供应商/信息循环打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。成功案例回馈获客打开 `skills/lead-service-first-contact/SKILL.md`（文件存在时）；本文件只在「下一步」指路，不代写开发信。
+- 本文件做交付后的复购与忠诚。出运物流打开 `skills/lead-service-delivery/SKILL.md`（文件存在时）。首单入职打开 `skills/lead-service-first-order/SKILL.md`（文件存在时）。组合健康度、流失预警、沉默挽回打开 `marketing-retention`（文件存在时）。已有供应商/信息循环打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。成功案例回馈获客打开 `skills/lead-service-first-contact/SKILL.md`（文件存在时）；本文件只在「下一步」指路，不代写开发信。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎。不写工具 ID。单买家类型 inline 做完。
 - 数字、复购率、节省额、账期、质保、返点、样品政策、访厂费用：只来自产品上下文、用户本轮或已抓取页。没有就写「未在上下文出现」或 `[待补充]`，禁止补造。不把无来源的获客/留存成本倍数写进交付物。
 - 目标渠道与买家类型以产品上下文或已批准 ICP 为准，不预设某一电商平台。不同类型不共用同一套权益。
@@ -136,7 +136,7 @@ description: >
 ## 易错
 
 - 没读交付策略就另写一套联系节奏。
-- 硬依赖未批准仍往下做，或把本文件当出运 SOP、首单入职、营销树流失挽回。
+- 硬依赖未批准仍往下做，或把本文件当出运 SOP、首单入职、组合健康度/流失预警/沉默挽回。
 - 纯折扣留存，把毛利让掉。
 - 年订一次的买家仍用「第 5 单」才给第三档。
 - 锁客写成合同限制，而不是共享档案与 SKU 便利。
@@ -157,4 +157,4 @@ description: >
 - [ ] 锁客工具 ≥3；惊喜一次且针对该买家；ROI 公式可核对或已待补
 - [ ] 文件在 `deliverables/lead/10-sales/retention.md`
 - [ ] 例子原文未进入交付物
-- [ ] 未写物流、未写首单入职、未写营销树健康度模型
+- [ ] 未写物流、未写首单入职、未写组合健康度/流失预警/沉默挽回

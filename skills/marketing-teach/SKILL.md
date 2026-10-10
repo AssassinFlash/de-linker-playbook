@@ -1,25 +1,25 @@
 ---
 name: marketing-teach
 description: >
-  Use when the user asks to learn marketing, teach me, how does this
-  work, explain methodology, marketing training, understand the
-  playbook, 学习模式, 教我营销, or 营销培训. Run an interactive
-  four-stage cycle (Teach, User Does, System Does, Compare) on one
-  method skill in this repo: explain the framework from that skill,
-  coach a practice task without giving answers, independently produce
+  Use when the user asks to learn marketing, marketing training,
+  understand the playbook, 教我营销, 营销培训, 营销方法论, or how
+  a marketing-* skill works. Run an interactive four-stage cycle
+  (Teach, User Does, System Does, Compare) on one marketing-*
+  method skill: explain the framework from that skill, coach a
+  practice task without giving answers, independently produce
   the same deliverable, then compare. Ground examples in the ledger
   product context and cited URLs. Write learning notes to
   deliverables/marketing/00-system/. Not for campaign execution, SEO
-  audits, or phase navigation.
+  audits, phase navigation, or teaching lead-generation methods.
 ---
 
 # 营销教学
 
-用四阶段循环（教 → 用户做 → 系统做 → 对比）教本仓库里的一个方法 skill。学习资产只进 `deliverables/marketing/00-system/`。
+用四阶段循环（教 → 用户做 → 系统做 → 对比）教一个 `marketing-*` 方法 skill。学习资产只进 `deliverables/marketing/00-system/`。
 
 ## 步骤
 
-1. **输入**。读用户本轮消息，取出目标 skill、知识水平（beginner / intermediate / advanced）、当前业务挑战。缺哪项问哪项，已给出的不重复问。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；本会话还没读过就现在读）。在 `skills/` 下确认目标目录存在且含 `SKILL.md`；没有则提出最接近的 `marketing-*` 或 `lead-*`，等用户选定再继续。完成：三要素齐；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库。
+1. **输入**。开场先读 `deliverables/marketing/00-system/learning-state.md`（有则按 `current_skill` / `current_stage` 从下一阶段续，不重开；没有则待本轮落盘时初始化）。读用户本轮消息，取出目标 skill、知识水平（beginner / intermediate / advanced）、当前业务挑战。缺哪项问哪项，已给出的不重复问。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；本会话还没读过就现在读）。在 `skills/` 下确认目标目录存在且含 `SKILL.md`；本 skill 只教 `marketing-*`。没有则提出最接近的 `marketing-*`，等用户选定再继续。完成：三要素齐；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；学习状态已对照。
 
 2. **采集**。读目标 `skills/<name>/SKILL.md`（有 `references/` 再按需读），抽出框架、反模式、最低数据、交付物形状。用网页搜索查证该方法论的公开案例；查询词从产品上下文的品类与市场字段拼，不在本 skill 里填值。需要原文时抓取指定 URL 的正文。搜索不可用则停止，在笔记标缺口，不编造。完成：至少一条带来源 URL 的真实案例；目标 skill 的步骤可复述。
 
@@ -36,6 +36,8 @@ description: >
 ## 默认
 
 - 一次会话只教一个 skill；四阶段按序，不跳。
+- 本 skill 只教 `marketing-*`。教获客方法走 `lead-teach`。
+- 可跨会话续做：开场读 `deliverables/marketing/00-system/learning-state.md`，从下一阶段继续。
 - 产品事实只读台账 `product_context`，练习可以引用其中字段，禁止把上下文整篇粘进交付物。
 - 案例必须能打开的 URL 或「台账 product_context（不粘贴原文）」；没有就标 `待补真实来源` 并停，不编。
 - Stage 2 教练口吻：「你已经有哪些数据？还缺什么？」指向 Stage 1 的对应步骤，不给成品。
@@ -174,7 +176,7 @@ description: >
 
 ## 清单
 
-- [ ] 目标 skill 存在；水平与挑战已确认；已读 `product_context`
+- [ ] 目标 skill 为 `marketing-*` 且存在；水平与挑战已确认；已读 `product_context` 与 `learning-state.md`
 - [ ] Stage 1 有真实来源案例；深度匹配水平
 - [ ] Stage 2 只教练、不代写；用户稿已存
 - [ ] Stage 3 独立产出（dispatch a subagent, else do it inline），未读用户稿

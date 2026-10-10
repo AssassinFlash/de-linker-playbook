@@ -2,27 +2,28 @@
 name: lead-usp-extraction
 description: >
   Use when extracting USPs, unique selling points, differentiation, competitive
-  advantage, positioning, gap analysis, value proposition, proof kit, 卖点提炼,
-  差异化, 竞争优势, or 定位策略. Run a seven-step competitive differentiation
+  advantage, gap analysis, value proposition, proof kit, 卖点提炼,
+  差异化, 竞争优势, or 外发定位短句. Run a seven-step competitive differentiation
   pipeline: niche and persona, competitor map, UVP mining on seven axes, gap
-  matrix, capability overlay, differentiator options, then positioning line
-  plus proof kit. Match each USP to an ICP for outreach. Read the ledger
-  product_context and upstream ICP or competitor files when present; invent
-  no competitor claims. Not for writing full email sequences, SEO pages, or
-  ICP research itself.
+  matrix, capability overlay, differentiator options, then an outreach
+  positioning line plus proof kit. Match each USP to an ICP for outreach.
+  Read the ledger product_context and upstream ICP, positioning, or competitor
+  files when present; invent no competitor claims. Not for writing full email
+  sequences, SEO pages, ICP research itself, or the Kotler product-positioning
+  document.
 ---
 
 # USP 提炼（竞品差异化）
 
-从产品上下文和已有 ICP/竞品材料跑七步差异化管线，产出可对外使用的定位句、USP 清单和证据包。写入 `deliverables/lead/05-usp/`。逐步字段、轴定义与重跑规则见 `references/seven-step-pipeline.md`、`references/gap-matrix-template.md`。
+从产品上下文和已有 ICP/竞品材料跑七步差异化管线，产出可对外使用的定位短句、USP 清单和证据包。写入 `deliverables/lead/05-usp/`。步骤 1 为输入；步骤 2–8 即七步管线（利基与买家 → 竞品盘点 → UVP 挖掘 → Gap 矩阵 → 能力叠加 → 差异化方案 → 定位与证据包），对应 `references/seven-step-pipeline.md` 步骤 1–7；步骤 9 为 USP-ICP 匹配并落盘。逐步字段、轴定义与重跑规则见 `references/seven-step-pipeline.md`、`references/gap-matrix-template.md`。
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/04-market/market-analysis.md`。记下品类、可做菜单（3–6 项）、目标区域、已知能力数字、定位偏好（成本效率 / 灵活伙伴 / 溢价共创）。缺关键项时本轮最多问两问。完成：能指出买家、可做产品和已知优势各依据哪几条陈述；原文不拷进本仓库。上游文件缺失则在交付物标缺口，不编 ICP。
+1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/04-market/market-analysis.md`。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读入，后续外发短句与证据不得与其矛盾。记下品类、可做菜单（3–6 项）、目标区域、已知能力数字、定位偏好（成本效率 / 灵活伙伴 / 溢价共创）。缺关键项时本轮最多问两问。完成：能指出买家、可做产品和已知优势各依据哪几条陈述；原文不拷进本仓库。上游文件缺失则在交付物标缺口，不编 ICP。
 
-2. **利基与买家**。做微利基短名单表：利基 | TAM | 3 年 CAGR | 需求驱动 | 进入容易度/100（附一句依据）| 致命缺陷。推荐一个利基，写市场动态、价值链、进入壁垒。写买家卡片：职位、KPI、日常、痛点、触发、交易破裂点。列 2–3 个不选的利基及红旗。默认：有来源的进入容易度 <60 或 CAGR <5% 不推荐；产品上下文已锁定的利基只记分数、不拒绝。完成：推荐利基与买家卡片齐全；无来源的 TAM/CAGR 写「未在来源出现」。
+2. **利基与买家**。已有批准的 `deliverables/lead/01-icp/` 则复用其客群与买家角色，不重开利基短名单；只补本步缺的 TAM / CAGR / 进入容易度等字段（无来源标「未在来源出现」）。无批准 ICP 时才做微利基短名单表：利基 | TAM | 3 年 CAGR | 需求驱动 | 进入容易度/100（附一句依据）| 致命缺陷。推荐一个利基，写市场动态、价值链、进入壁垒。写买家卡片：职位、KPI、日常、痛点、触发、交易破裂点。列 2–3 个不选的利基及红旗。默认：有来源的进入容易度 <60 或 CAGR <5% 不推荐；产品上下文已锁定的利基只记分数、不拒绝。完成：推荐利基与买家卡片齐全；无来源的 TAM/CAGR 写「未在来源出现」。
 
-3. **竞品盘点**。在该利基与区域找目标 15 家，默认大（>$500M）/中（$50–500M）/小（<$50M）各 5。营收用最近已披露财年并写年份。每家：HQ、营收、旗舰、渠道、最近战略动作、官网。写约 150 词格局评论，以及竞争强度（有份额才算 HHI，否则定性高/中/低并说明）。完成：表内每家有可访问官网或已标 unverified。不足 15 家或美元档不适用时，按该利基相对体量分在位者 / 挑战者 / 利基商，写明分档依据与缺口，不拿无关公司凑数。
+3. **竞品盘点**。已有 `deliverables/marketing/01-foundation/competitor-analysis.md` 或 `deliverables/lead/04-market/competitor-positioning.md` 时，复用已核验名单与摘录，不从零找 15 家；不足再补。七轴 UVP 与我方行仍按步骤 4、6 补全。无现成名单时，在该利基与区域找目标 15 家，默认大（>$500M）/中（$50–500M）/小（<$50M）各 5。营收用最近已披露财年并写年份。每家：HQ、营收、旗舰、渠道、最近战略动作、官网。写约 150 词格局评论，以及竞争强度（有份额才算 HHI，否则定性高/中/低并说明）。完成：表内每家有可访问官网或已标 unverified。不足 15 家或美元档不适用时，按该利基相对体量分在位者 / 挑战者 / 利基商，写明分档依据与缺口，不拿无关公司凑数。
 
 4. **UVP 挖掘**。对已核验竞品：用网页搜索查证，再抓取官网首页与 About（或等价页）正文；需要评价或证书时再搜一次并抓取能打开的来源页。每家最多 4 条 UVP，标 Explicit Claim 或 Implied Proof，打七轴标签（Speed, Cost, Quality, Customization, Sustainability, Service, Digital Tool；对不上的标 Other），附 5–12 词摘录或 URL 片段。写约 120 词热力：哪些轴过挤、哪些被冷落。完成：每条 UVP 能指回已抓取原文；抓不到的公司标 unverified，不编 UVP。搜索不可用则停止并写缺口。
 
@@ -32,16 +33,18 @@ description: >
 
 7. **差异化方案**。每个快赢给 3 个选项（服务承诺、技术附加、担保、内容资产、可持续角度等）。每项写 Buyer Impact（H/M/L + 拉动的 KPI）、Ease（Easy / Moderate / Hard）、Cost Band（$ / $$ / $$$）、Time-to-Market（≤30 天 / 1–3 月 / 3–6 月 / >6 月）、Imitation Barrier（Thin / Moderate / High）。排出 Top-3，写为何第 1 优于 2–3，并标 P0 / P1 / P2。完成：选项不超过用户已陈述的能力、预算与合规；未陈述的约束标待补，不发明预算。
 
-8. **定位与内容**。一句定位 ≤14 词，含主差异化 + 买家 KPI。说服层：Hook → Pain Amplifier → Proof → Risk-Reversal → CTA。证据包按说服力排序，每项标已有或待补（指标截图、案例短故事、证书、省钱测算、45 秒产线视频、质保条款等）。顾问式冷邮件草稿：主题 ≤8 词、无 emoji、正文 ≤120 词、一个证据、一个低压 CTA；只产出文案，不发送。30 秒价格异议话术：镜像句 → 校准问句（How would you ...）→ 有条件让步。完成：面客文字用买家语言（缺省英语），分析用语跟本轮；证据包无未标明的虚构材料。
+8. **定位与内容**。一句外发定位短句 ≤14 词，含主差异化 + 买家 KPI。此短句供外发使用；公司定位句以 `deliverables/marketing/01-foundation/product-positioning.md` 为准，二者不得矛盾。说服层：Hook → Pain Amplifier → Proof → Risk-Reversal → CTA。证据包按说服力排序，每项标已有或待补（指标截图、案例短故事、证书、省钱测算、45 秒产线视频、质保条款等）。冷邮件草稿走 `lead-cold-email-gen`，本步不写邮件；本 skill 只产 USP 与证据包。30 秒价格异议话术：镜像句 → 校准问句（How would you ...）→ 有条件让步。完成：面客文字用买家语言（缺省英语），分析用语跟本轮；证据包无未标明的虚构材料。
 
-9. **匹配并落盘**。产出 4–6 条 USP，类型用实际用到的：产品级 / 运营 / 信任 / 战略价值。每条：Headline → Buyer Angle → Proof → 目标 ICP → Competitive Frame（Unlike many suppliers who [常见弱点], you offer [优势]）。一封外发信一条主 USP。按下方模板写入 `deliverables/lead/05-usp/usp-strategy.md` 与 `deliverables/lead/05-usp/usp-matrix.csv`。完成：主报告非空；矩阵每行有 `data_source`；教学例子原文零出现。
+9. **匹配并落盘**。产出 4–6 条 USP，类型用实际用到的：产品级 / 运营 / 信任 / 战略价值。每条：Headline → Buyer Angle → Proof → 目标 ICP → Competitive Frame（Unlike many suppliers who [常见弱点], you offer [优势]）。一封外发信一条主 USP。按下方模板写入 `deliverables/lead/05-usp/usp-strategy.md` 与 `deliverables/lead/05-usp/usp-matrix.xlsx`（写不了 xlsx 则同目录 `usp-matrix.csv`，列相同）。完成：主报告非空；矩阵每行有 `data_source`；教学例子原文零出现。
 
 ## 默认
 
 - 查证用网页搜索；需要原文时抓取指定 URL；搜索或抓取不可用则停止并写缺口，不编造。
 - 数字、营收、证书、评价只来自：产品上下文、用户本轮、搜索结果或已抓取正文。交付物写 URL 与访问日期。
+- 公开源常无 TAM / CAGR / HHI；来源未出现则标「未在来源出现」，禁止用训练记忆或同业近似值填数字。
 - 面客句跟目标市场习惯，不把同一稿用于所有区域。
 - 重跑：有 30 天市场或转化反馈后从步骤 5；新进入者或并购从步骤 3；产品菜单变了从步骤 2。
+- 冷邮件走 `lead-cold-email-gen`；本 skill 只产 USP 与证据包。公司定位句以 `deliverables/marketing/01-foundation/product-positioning.md` 为准；本 skill 的 ≤14 词短句供外发用，二者不得矛盾。
 
 ## 写法
 
@@ -53,7 +56,7 @@ description: >
 
 ## 产出
 
-主文件 `deliverables/lead/05-usp/usp-strategy.md`。表 `deliverables/lead/05-usp/usp-matrix.csv`（列名英语 snake_case）。分析段落用本轮语言；定位句、冷邮件、话术用买家语言。
+主文件 `deliverables/lead/05-usp/usp-strategy.md`。表 `deliverables/lead/05-usp/usp-matrix.xlsx`（写不了 xlsx 则同目录 `usp-matrix.csv`；列名英语 snake_case）。分析段落用本轮语言；外发定位短句、证据包面客句、话术用买家语言。
 
 ```markdown
 # USP Strategy Report — {品类} × {市场}
@@ -94,7 +97,6 @@ description: >
 ### One-Sentence Positioning Line
 ### Persuasion Layer-Cake
 ### Proof-Kit Checklist
-### Consultative Cold Email Draft
 ### 30-sec Price Push-Back Talk-Track
 
 ## 8. USP-ICP Matching Matrix
@@ -105,7 +107,7 @@ description: >
 | 查询或 URL | 日期 | 结论 |
 ```
 
-`usp-matrix.csv` 两段（或两个文件）：
+`usp-matrix.xlsx`（或 `.csv`）两段（或两个文件）：
 
 - 竞品：`company_name, size_tier, speed, cost, quality, customization, sustainability, service, digital_tool, data_source`
 - USP：`usp_headline, usp_type, buyer_angle, proof, target_icp, competitive_frame, priority`
@@ -137,16 +139,17 @@ UVP 条目形状：`公司 — 主张 (**轴, Explicit|Implied**) — 「5–12 
 - 不同 ICP 共用同一条主 USP。
 - 推荐超出已陈述能力或预算的差异化。
 - 核验失败仍编 UVP，而不是标 unverified。
-- 把本 skill 的冷邮件草稿当成已发送的外发任务。
+- 在本 skill 起草冷邮件，而不是交给 `lead-cold-email-gen`。
+- 外发短句与 `product-positioning.md` 定位句互相矛盾。
 
 ## 清单
 
-- [ ] 已读 `product_context`；上游缺失已标缺口
-- [ ] 七步按序有各自交付物；买家卡片在步骤 8 被再次使用
-- [ ] 竞品均为已核验或 unverified；无来源营收未编造
+- [ ] 已读 `product_context`；上游缺失已标缺口；有 `product-positioning.md` 已读入且短句不矛盾
+- [ ] 七步管线（步骤 2–8）按序有各自交付物；买家卡片在步骤 8 被再次使用
+- [ ] 竞品均为已核验或 unverified；无来源营收 / TAM / CAGR / HHI 未编造
 - [ ] Gap 矩阵七轴齐全；空白轴对照过买家痛点
 - [ ] 我方行用真实数字或 `?`；Top-3 含 Impact / Ease / Cost / Time / Imitation
-- [ ] 定位句 ≤14 词；冷邮件正文 ≤120 词、单一 CTA、未发送
+- [ ] 外发定位短句 ≤14 词；冷邮件未在本 skill 起草
 - [ ] 每条 USP 映射至少一个 ICP，且有 Buyer Angle 与 Competitive Frame
 - [ ] 搜索日志有 URL 与日期；例子原文未进入交付物
-- [ ] 文件在 `deliverables/lead/05-usp/usp-strategy.md` 与 `usp-matrix.csv`
+- [ ] 文件在 `deliverables/lead/05-usp/usp-strategy.md` 与 `usp-matrix.xlsx`（或 `.csv`）

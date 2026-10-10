@@ -37,7 +37,7 @@ description: >
 - 供应地与目标市场以产品上下文为准，不预设某一出口国。
 - 硬依赖 ICP；软读 USP、产品知识、话题研究。编排闸门见 `skills/lead-generation/SKILL.md`。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止编造并写缺口。
-- 本帖处理**真实犹豫**。揭谣走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）；运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`；事实问答走 `skills/lead-linkedin-faq/SKILL.md`；话题筛选走 `skills/lead-linkedin-topic-research/SKILL.md`。
+- 本帖处理**真实犹豫**。揭谣走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）；运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`；事实问答走 `skills/lead-linkedin-faq/SKILL.md`；选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。
 - 数字、认证、通过率、批次量、担保：产品上下文、用户本轮或已抓取页里有才写。没有就省略或写「未在上下文出现」，禁止补造。
 - 单篇 inline 做完。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写 Excel。
 - 本 skill 只产帖稿，不登录、不点发布。

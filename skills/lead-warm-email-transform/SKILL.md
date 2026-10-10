@@ -39,7 +39,7 @@ description: >
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
 - 外发工具仅当用户已配置；未配置则只产文案不发送。本 skill 默认不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
-- 下游跟进应继续遵守本文件暖化原则：`skills/lead-followup-sequence/SKILL.md`、`skills/lead-email-sequence-strategy/SKILL.md`（文件存在时）。从零写冷邮件走 `skills/lead-cold-email-gen/SKILL.md`，不走本文件。
+- 下游跟进应继续遵守本文件暖化原则：`skills/lead-followup-sequence/SKILL.md`、`skills/lead-email-sequence-strategy/SKILL.md`（文件存在时）。暖化稿在发送序列中的优先级以 `lead-email-sequence-strategy` 为准（有暖化则暖化作默认 Day 0，冷稿作 A/B 或回退）；本文件不另排战役日历。从零写冷邮件走 `skills/lead-cold-email-gen/SKILL.md`，不走本文件。
 - 买家心理背景可读 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）；不存在则只用本文件四条机制，不编造理论名。
 
 ## 写法
@@ -136,6 +136,7 @@ description: >
 - CTA 要对方先开会或先交需求清单，自己不提供可带走的选项。
 - 终稿残留正式敬语、催更或 Best Price。
 - 把本文件当成冷邮件生成器或跟进序列。
+- 自行决定暖化稿 vs 冷稿谁当序列首封；优先级以 `lead-email-sequence-strategy` 为准。
 - 未配置外发仍去发信。
 
 ## 清单

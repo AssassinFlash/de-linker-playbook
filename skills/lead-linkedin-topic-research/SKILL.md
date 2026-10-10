@@ -2,7 +2,7 @@
 name: lead-linkedin-topic-research
 description: >
   Use when LinkedIn topic research, LinkedIn content ideas, topic
-  list, content calendar, 话题研究, 内容选题, LinkedIn 选题, 领英话题,
+  list, 话题研究, 内容选题, LinkedIn 选题, 领英话题,
   what to post on LinkedIn, trending B2B topics, angle research, or
   planning what to write before drafting, including phase 8 LinkedIn
   of this repo's lead run. Rank ICP-first high-engagement topic
@@ -11,7 +11,8 @@ description: >
   (default ~/Documents/New/CONTEXT.md) and approved ICP; verify
   trends with web search; invent no engagement rates. Distinct from
   all lead-linkedin-* post-writing skills. Not for writing post
-  copy, publishing, email outreach, or phase navigation.
+  copy, multi-platform calendars, publishing, email outreach, or
+  phase navigation.
 ---
 
 # LinkedIn 选题调研（ICP 优先）
@@ -39,6 +40,7 @@ description: >
 - 产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写 Excel。
 - 查证用网页搜索；需要原文时抓取指定 URL。缺搜索则停止并写缺口，不编造。
 - 本 skill 是十条 `lead-linkedin-*` 帖类型 skill 的上游选题；建议帖类型只点名对应 `skills/lead-linkedin-*/SKILL.md`，不代写帖骨架。下游闸门以各帖类型 skill 为准。
+- 多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）；本 skill 只产 LinkedIn 选题卡。
 - 不发布。发帖由用户自行发布或经用户已配置的工具发布。
 - 不承诺点赞、评论或曝光率。排序只按 ICP 贴合、来源条数、角度多样性。
 - 数字、法规、趋势必须带来源名、URL、年份、访问日期。钩子里的数字同此；来源没有数字就不用数字钩。

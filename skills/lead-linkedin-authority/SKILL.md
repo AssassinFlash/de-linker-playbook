@@ -38,7 +38,7 @@ description: >
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表。
 - 帖子正文英文（用户本轮指定其他语言则从其）；策略、分析、缺口跟本轮语言（缺省中文）；标签英文。
 - 本 skill 只产帖稿。用户自行发布或经用户已配置的工具发布。
-- 教育型 how-to 走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。出口、物流、市场准入合规走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。只选题不写帖走 `skills/lead-linkedin-topic-research/SKILL.md`。本文件不写那三类。
+- 教育型 how-to 走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。出口、物流、市场准入合规走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那几类。
 - 单篇 inline 做完。用户点名多篇时每篇独立核趋势；需要隔离时 dispatch a subagent, else do it inline。
 
 ## 写法

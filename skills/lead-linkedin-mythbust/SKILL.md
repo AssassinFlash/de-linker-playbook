@@ -39,7 +39,7 @@ description: >
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
 - 单帖 inline 做完；多候选隔离时 dispatch a subagent, else do it inline。
 - 帖子正文缺省英语；策略与缺口跟本轮语言（缺省中文）；标签英语。用户本轮指定其他面客语种则改帖，同一段不混用。
-- 真实买家顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。事实问答走 `skills/lead-linkedin-faq/SKILL.md`（文件存在时）。权威趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。教育讲解走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。本文件不写那四类帖。
+- 真实买家顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。事实问答走 `skills/lead-linkedin-faq/SKILL.md`（文件存在时）。权威趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。教育讲解走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那几类。
 - 产出只进 `deliverables/lead/08-linkedin/`。本 skill 只产帖稿。
 
 ## 写法

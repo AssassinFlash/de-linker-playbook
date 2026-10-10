@@ -1,16 +1,17 @@
 ---
 name: marketing-social-content
 description: >
-  Use when the user asks for social media strategy, LinkedIn content,
-  LinkedIn posts, Instagram B2B, Instagram content, Facebook page, TikTok
-  B2B, TikTok manufacturing, social calendar, 社媒内容, 社交媒体策略, social
-  selling, organic social, or a B2B foreign-trade social content plan,
-  including phase 4 acquisition work. Collect competitor posts and platform
-  benchmarks, cite every claim, then write a sourced pillar mix, 4-week
-  calendar, post drafts, and hashtag sets under
-  deliverables/marketing/04-acquisition/. Read the ledger product_context
-  first; invent no engagement rates or follower counts. Not for paid ads,
-  email sequences, or phase navigation.
+  Use when the user asks for social media strategy, social calendar,
+  multi-platform content, 社媒策略, 社媒日历, 多平台, Instagram B2B,
+  Instagram content, Facebook page, TikTok B2B, TikTok manufacturing,
+  社媒内容, 社交媒体策略, social selling, organic social, or a B2B
+  foreign-trade social content plan, including phase 4 acquisition
+  work. Collect competitor posts and platform benchmarks, cite every
+  claim, then write a sourced pillar mix, 4-week calendar, post drafts,
+  and hashtag sets under deliverables/marketing/04-acquisition/. Read
+  the ledger product_context first; invent no engagement rates or
+  follower counts. Not for a single LinkedIn post, paid ads, email
+  sequences, or phase navigation.
 ---
 
 # 社媒内容
@@ -28,6 +29,7 @@ description: >
 ## 默认
 
 - 本 skill 产出进 `deliverables/marketing/04-acquisition/social-content/`。不要用它做付费投放或邮件序列。
+- LinkedIn 单帖或选题走 `skills/lead-linkedin-topic-research/SKILL.md` 与对应 `lead-linkedin-*` 帖类型 skill（文件存在时）；本 skill 不下 Structure N。
 - 目标渠道与平台名单以产品上下文为准。本方法覆盖 LinkedIn、Instagram、Facebook、TikTok、YouTube、Pinterest 等公开社媒，但排序必须按目标买家活跃度证据，不按运营偏好。
 - 粉丝数、互动率、播放量只来自：产品上下文、用户本轮提供、已搜索或已抓取的公开页。没有数字就写「未在来源出现」，禁止估计后当事实。
 - 竞品未出现的平台：要推荐必须同时写机会与风险，并标证据缺口。
@@ -40,7 +42,7 @@ description: >
 - 先过收集门再写日历。门未过：只写缺口，不下频率或比例结论。
 - B2B 买家（进口商、分销商、承包商、设计师、项目方）要规格、交期、认证与项目证据，不套用快消品种草模板。
 - 漏斗用访问 → 询盘 → 样品 → 订单 → 复购，不用粉丝数替代询盘信号。
-- 每条草稿同时有钩子、正文结构、视觉说明、CTA；CTA 写「要规格 / 要方案」，不用注册或免费试用口吻。
+- 每条草稿同时有钩子、正文结构、视觉说明、CTA。询盘动作写「要规格 / 要方案」，不用注册或免费试用口吻。LinkedIn 行可从 lead 侧四类 CTA（评论型 / 连接型 / 私信型 / 混合）里选一类；其他平台不套这四类，仍用询盘动作。
 - 一条工厂或项目素材拆成平台原生格式，不把同一段文字贴到所有平台。
 - 日历必须有具体日期，禁止只写周次。
 

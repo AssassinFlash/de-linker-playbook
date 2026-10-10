@@ -2,16 +2,16 @@
 name: lead-cold-email-gen
 description: >
   Use when writing cold email, 开发信, 冷邮件, first-touch email,
-  prospecting email, outreach email, new email draft, batch ICP emails,
-  or pain-point-based cold emails not tied to one researched company,
-  including phase 6 outreach of this repo's lead run. Read approved
-  ICP and USP; run Standard (strong CTA, target five drafts) or
-  Low-Pressure (weak CTA, one per persona). Each email is under 200
-  words, one ICP, one USP, with A/B subject lines. Write to
+  or outreach email not tied to one researched company, including
+  phase 6 outreach of this repo's lead run. Read approved ICP and
+  USP; run Standard (strong CTA, target five drafts) or Low-Pressure
+  (weak CTA, one per persona). Each email is under 200 words, one
+  ICP, one USP, with A/B subject lines. Write to
   deliverables/lead/06-outreach/. Send only with a user-configured
   outbound tool; otherwise copy only. Invent no pain points, USPs, or
-  statistics. Not for follow-up sequences, warm rewrites, sequence
-  strategy, or single-company targeted outreach.
+  statistics. Not for marketing-phase prospect lists or lifecycle
+  nurture (marketing-email-outreach), follow-up sequences, warm
+  rewrites, sequence strategy, or single-company targeted outreach.
 ---
 
 # 冷邮件生成（双模式）
@@ -40,12 +40,13 @@ description: >
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
 - 分析与缺口用本轮语言（缺省中文）；信体、主题、CTA 用买家语言（缺省英语）。
 - 发送须遵守 GDPR、CAN-SPAM 及收件人所在地同类规则。本文件不是法律意见。
+- 营销获客阶段的名单研究、角色模板库与生命周期培育走 `marketing-email-outreach`，本文件只写 ICP 段首触成稿。
 - 下游（文件存在时再打开，不在本步执行）：`skills/lead-warm-email-transform/SKILL.md`、`skills/lead-followup-sequence/SKILL.md`、`skills/lead-email-sequence-strategy/SKILL.md`。引流素材可嵌入 CTA 时读 `skills/lead-magnet-gen/SKILL.md`。编排闸门见 `skills/lead-generation/SKILL.md`。
 
 ## 写法
 
 - 一封一事：不在同一封堆多个痛点或多个 USP。
-- 个性化不是插入名字。表层（角色、公司、行业、已核验公开事件）是底线；深层（工作流、KPI 张力、决策卡点、时点风险）必须能回溯 ICP、公司调研或已抓取页。深度下限见 `references/personalization-layers.md`。没有证据的「看到贵司在增长」不写。
+- 个性化不是插入名字。表层（角色、公司、行业、已核验公开事件）是底线；深层（工作流、KPI 张力、决策卡点、时点风险）必须能回溯 ICP、公司调研或已抓取页。深度下限见 `references/personalization-layers.md`。没有证据的「看到贵司在增长」不写。本文件两层是单封成稿深度（表层身份 vs 深层运转），适用于 lead 首触；`marketing-email-outreach` 的三层（公司 / 角色 / 市场）是模板库覆盖维度，不在本 skill 套用。
 - CTA 必须像正文的自然下一步，不另起一套话。
 - **Standard（强 CTA）**：共情、短句、收缩词、口语；禁用套话开场。开场优先用已批准痛点画面或已核验公开变化，统计只在有来源时用。结构每封不同。强 CTA 明确请求一个可执行下一步（约短通话、要规格、要样品条件、看对照表），并接到本封痛点。禁用空泛的「感兴趣吗 / 方便聊聊吗」。
 - **Low-Pressure（弱 CTA）**：像同行随手写的短讯，不推销。完整自然信，不切成栏目；2–3 句一段，方便手机扫读。主题直接绑痛点或价值，<50 字符。CTA 只用弱 CTA 四式之一（情境微要约、好奇心、买家阶段多选项、破格），见 `references/weak-cta-module.md`；不同低压信不用同一 CTA 格式。结构在四式中轮换：Pain → Fix → CTA；Trigger → Insight → Micro-offer；Stat → Reframe → Specific help（Stat 必须有来源，否则改用 Pain 式）；Micro-story → Takeaway → CTA（故事须来自产品上下文或已抓取案例，不编客户）。
@@ -126,6 +127,7 @@ EPC 输入若只写价和交期，成稿仍应让技术闸（文件包、兼容�
 - 承诺发一份本轮并不存在、也无法立刻写的材料。
 - 正文超过 200 词，或低压主题超过 50 字符。
 - 未配置外发工具仍发送，或把本文件的成稿当成已发出。
+- 做成营销获客阶段的名单研究或生命周期培育体系（那是 `marketing-email-outreach`）。
 - 为名单每家各写一封，做成定向外展。
 - 终稿残留未解释的 `{{...}}` 或把 `[待补充]` 假装成已核实签名。
 

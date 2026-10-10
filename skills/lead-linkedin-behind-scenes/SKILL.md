@@ -42,7 +42,7 @@ description: >
 
 - 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
 - 无硬依赖，可独立执行。软依赖：USP、产品知识。产地、工厂所在地、目标市场以产品上下文为准，不预设某一出口国。
-- 本帖类型写 **内部发生了什么**（设备、工序、质检、原料到在制品）。出口法规、物流、认证知识走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。创始人或团队的人的故事走 `skills/lead-linkedin-personal-story/SKILL.md`（文件存在时）。话题选题走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。本文件不写那些帖型。
+- 本帖类型写 **内部发生了什么**（设备、工序、质检、原料到在制品）。出口法规、物流、认证知识走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。创始人或团队的人的故事走 `skills/lead-linkedin-personal-story/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止数字与竞品角度并写缺口，不编造。
 - 发布：用户自行发布，或经用户已配置的工具发布。未配置或未要求发布 → 只产帖稿。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，无 Excel。

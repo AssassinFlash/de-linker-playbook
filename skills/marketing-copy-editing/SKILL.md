@@ -2,15 +2,16 @@
 name: marketing-copy-editing
 description: >
   Use when copy edit, polish copy, review marketing copy, tone check,
-  proofread, rewrite copy, copy review, editing, proofreading, copy
-  polish, 文案编辑, 文案审查, 文案润色, 文案审核, or 修改文案. Run seven
-  sequential sweeps on existing B2B marketing copy for clarity, voice,
-  buyer benefit, proof, specificity, emotion, and friction; write an
-  audit report, a project style guide, and a copy-audit table under
-  deliverables/marketing/03-content/copy-editing/. Read the ledger product_context
-  first; invent no numbers or testimonials; never paste skill examples
-  into the output. Not for drafting a new value proposition from scratch,
-  SEO audits, competitor crawls, campaign plans, or phase navigation.
+  proofread, rewrite copy, copy polish, 文案编辑, 文案审查, 文案润色,
+  文案审核, or 修改文案. Run seven sequential sweeps on existing B2B
+  marketing copy for clarity, voice, buyer benefit, proof, specificity,
+  emotion, and friction; write an audit report, a project style guide,
+  and a copy-audit table under deliverables/marketing/03-content/copy-editing/.
+  Read the ledger product_context first; invent no numbers or testimonials;
+  never paste skill examples into the output. Not for drafting a new value
+  proposition from scratch, technical SEO audits, SEO 成稿编辑
+  (`lead-seo-content-edit`), competitor crawls, campaign plans, or
+  phase navigation.
 ---
 
 # 营销文案审查与精修
@@ -36,6 +37,7 @@ description: >
 - 默认渠道与付款、检测、交期口径以产品上下文为准，不锁某一平台。
 - 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。
 - 产出只进 `deliverables/marketing/03-content/copy-editing/`。台账若已写其他 `output_dir`，仍以本目录为准，除非用户本轮点名改路径。
+- SEO 成稿编辑走 `lead-seo-content-edit`。本文件审营销树已有文案，不编获客 SEO 长文。
 
 ## 写法
 
@@ -123,7 +125,7 @@ description: >
 
 断言（未满足则不算完成）：
 
-- Audit Items ≥ 10 行；Style Rules ≥ 10 行
+- Audit Items、Style Rules 以 ≥10 行为目标；质量优先，不足不凑，差额写入缺口
 - `sweep_number` 只取 1–7；`priority` 只取 High / Medium / Low
 - 每个 sheet 的 `source` 无空值；外部来源用完整 URL
 - 每条建议都有 persona 与 funnel_stage
@@ -200,6 +202,6 @@ CTA 只保留上下文里有的下一步（要报价 / 要规格）；上下文�
 - [ ] 未编造证据；缺的写「未在上下文出现」
 - [ ] CTA 是询价/规格/样品/验厂，不是立即购买
 - [ ] `copy-audit.md`、`style-guide.md`、`copy-audit.xlsx` 已在 `deliverables/marketing/03-content/copy-editing/`
-- [ ] Audit Items ≥ 10、Style Rules ≥ 10、`source` 无空值
+- [ ] Audit Items、Style Rules 以 ≥10 为目标，不足不凑并已写缺口；`source` 无空值
 - [ ] 搜索可用则至少 2 条外部 URL；不可用则已写缺口
 - [ ] 教学例子原文未进入交付物

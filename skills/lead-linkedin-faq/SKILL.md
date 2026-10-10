@@ -35,7 +35,7 @@ description: >
 
 - 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
 - 硬依赖：已批准 ICP。软依赖：USP、产品知识、话题研究。产地、供应地、目标市场以产品上下文为准，不预设某一出口国。
-- 本帖类型只答 **事实问题**（MOQ、交期、样品、付款、包装、质检流程、定制边界）。情绪顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。揭穿误区走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）。教选购或操作走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。话题选题走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。本文件不写那些帖型。
+- 本帖类型只答 **事实问题**（MOQ、交期、样品、付款、包装、质检流程、定制边界）。情绪顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。揭穿误区走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）。教选购或操作走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止编造新 FAQ 与未核验标准，并写缺口。
 - 发布：用户自行发布，或经用户已配置的工具发布。未配置或未要求发布 → 只产帖稿。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，无 Excel。

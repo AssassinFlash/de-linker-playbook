@@ -1,16 +1,16 @@
 ---
 name: marketing-psychology
 description: >
-  Use when the user says marketing psychology, buyer psychology, persuasion,
-  decision triggers, cognitive biases, behavioral economics, procurement
-  psychology, 营销心理学, 买家心理, or 行为设计, or needs B2B decision
-  psychology applied to copy, a funnel, quotation, sample kit, or sales call.
-  Diagnose the failing stage and persona from the product context; verify
-  principles with web search; pick three to five that match the obstacle;
-  write cited tactics into the caller stage directory under
-  deliverables/marketing/. Invent no scarcity, social proof, or credentials.
-  Not for SEO audits, campaign calendars, phase navigation, or consumer-app
-  growth hacks.
+  Use when the user says marketing psychology, funnel behavioral principles,
+  touchpoint tactics, persuasion, decision triggers, cognitive biases,
+  behavioral economics, procurement psychology, 营销心理学, 漏斗行为原则,
+  触点战术, or 行为设计, or needs B2B decision psychology applied to copy,
+  a funnel, quotation, sample kit, or sales call. Diagnose the failing
+  stage and persona from the product context; verify principles with web
+  search; pick three to five that match the obstacle; write cited tactics
+  into the caller stage directory under deliverables/marketing/. Invent no
+  scarcity, social proof, or credentials. Not for SEO audits, campaign
+  calendars, phase navigation, or consumer-app growth hacks.
 ---
 
 # 买家心理与行为设计
@@ -57,6 +57,7 @@ description: >
 
 - 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。
 - 后续要改页面打开 `skills/marketing-landing-page/SKILL.md`，改文案打开 `skills/marketing-copywriting/SKILL.md`，改漏斗打开 `skills/marketing-funnel-optimization/SKILL.md`；文件不存在则只完成本方法交付物。
+- 销售沉默、展会现场、已有供应商等具体销售场景打开 `lead-buyer-psychology`；本方法只做漏斗行为原则与触点战术。文件不存在则只完成本方法交付物。
 
 **渠道**
 
@@ -132,7 +133,7 @@ description: >
 
 ## 各漏斗阶段心理触点地图
 
-访问 / 询盘 / 样品 / 报价 / 订单 / 复购，每阶段至少 1 条原则
+访问 / 询盘 / 样品 / 报价 / 订单 / 复购；总量 3–5 条，优先覆盖失速所在阶段，不强制每阶段各一
 
 ## 执行优先级建议
 
@@ -207,8 +208,7 @@ Source:
 
 - [ ] 已读共用规则与 `product_context`；原文未拷进本仓库
 - [ ] 诊断写清阶段、角色、障碍、已试动作
-- [ ] ≥5 条原则有检索或报告来源；策略正文只落地 3–5 条
-- [ ] 访问→询盘、询盘→报价、报价→订单、订单→复购各至少 1 条原则
+- [ ] ≥5 条原则有检索或报告来源；策略正文总量 3–5 条，优先覆盖失速所在阶段，不强制四段各一
 - [ ] ≥3 条有针对特定角色的用法；每条含触点、阶段、执行、预期行为变化、来源
 - [ ] 稀缺 / 社会证明 / 权威均可被上下文或已抓取 URL 核实，否则列入缺口
 - [ ] 四文件在调用方阶段目录；xlsx 三表行数达标且 `source` 非空

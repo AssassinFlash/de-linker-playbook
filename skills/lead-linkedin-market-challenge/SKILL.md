@@ -45,7 +45,7 @@ description: >
 - 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
 - 硬依赖是 ICP；软依赖（USP、产品知识、话题研究）有则读，不阻塞。话题研究只提供候选角度，不能把非区域话题改写成市场挑战帖。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。训练记忆不能充当当地法规、气候或标准的来源。
-- 本帖处理**地理特定**障碍（气候、法规、本地标准、该地基建）。普遍运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`（文件存在时）；供应关系顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。全局趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。本文件不写那些帖型。
+- 本帖处理**地理特定**障碍（气候、法规、本地标准、该地基建）。普遍运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`（文件存在时）；供应关系顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。全局趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表文件。
 - 策略与缺口用本轮语言（缺省中文）；帖子正文与标签缺省英语，用户本轮点名其他面客语种再改；同一段不中英混排。
 - 本 skill 只产帖稿。用户自行发布或经用户已配置的工具发布；未配置或未要求发布 → 只产文案不发送。

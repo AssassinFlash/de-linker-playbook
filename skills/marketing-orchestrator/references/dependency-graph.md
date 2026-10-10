@@ -369,8 +369,8 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
       "phase": "04-acquisition",
       "output": "deliverables/marketing/04-acquisition/email-outreach/index.md",
       "tables": [
-        "deliverables/marketing/04-acquisition/prospect-research.xlsx",
-        "deliverables/marketing/04-acquisition/sequence-builder.xlsx"
+        "deliverables/marketing/04-acquisition/email-outreach/prospect-research.xlsx",
+        "deliverables/marketing/04-acquisition/email-outreach/sequence-builder.xlsx"
       ],
       "review": "deliverables/marketing/04-acquisition/review/email-outreach-review.md",
       "dependencies": [

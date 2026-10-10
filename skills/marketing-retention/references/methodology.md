@@ -132,7 +132,8 @@ Health Score = (
 | 连续 2 次以上报价未转化 | High | 销售记录 | 根因通话（价格/规格/交期） |
 | 反复价格异议 | High | 报价备注 | 强化价值、分层报价 |
 | 只要规格或图纸、不再推进 | High | 邮件/询盘记录 | 差异化说明 + 关系通话 |
-| 既往活跃、90 天无联系 | Critical | 沟通日志 | 挽回序列 |
+| 既往活跃、90 天无联系 | High | 沟通日志 | 主动问候 + 新目录或新能力 |
+| 既往活跃、沉默 ≥6 个月 | Critical | 沟通日志 | 挽回序列 |
 | 数量明显小于惯常 | Medium | 订单历史 | 管道与项目核对 |
 | 不再索样 | Medium | 样品日志 | 新能力或新规格预告 |
 
@@ -166,16 +167,9 @@ Health Score = (
 
 ### 转介绍与伙伴
 
-| 推荐人类型 | 奖励模型 | 协议级别 | 激活物料 |
-| --- | --- | --- | --- |
-| 设计师 / 指定人 | FOB 订单金额 3–5% 佣金 | 意向函 | 样品包 + 目录 |
-| 承包 | 数量折扣或现金奖励 | 非正式/函 | 项目案例包 |
-| 经销 / 代理 | 分层尾随佣金 | 签字协议 | 完整赋能包 |
-| 满意客户 | 订单折扣或样品礼 | 口头致谢 | 可转发作品集 |
+本 skill 只留可手填的推荐日志骨架；佣金、协议与伙伴计划打开 `marketing-referral-program`，不在此另写一套费率。
 
-佣金为「行业参考值，实际以你的数据为准」；对照真实毛利前不得写成已批准政策。须有手填推荐日志列。
-
-已有 `referral-program.md` 则引用其结构，不另发明第二套佣金。
+日志列：介绍人、被介绍方、渠道、日期、状态。禁止只有奖励没有归因。已有 `referral-program.md` 则引用，不另发明第二套佣金。
 
 ### ORB 再激活
 
@@ -195,7 +189,7 @@ Health Score = (
 4. 按买家画像的留存策略
 5. 询盘流程优化方案 — 入口摩擦、渠道覆盖、首次回复、资质
 6. 挽回序列设计 — 4 次时间、渠道、文案角度
-7. 转介绍与合作伙伴计划 — 佣金、追踪、激活
+7. 转介绍与合作伙伴计划 — 推荐日志骨架（介绍人、被介绍方、渠道、日期、状态）；佣金与伙伴计划打开 `marketing-referral-program`
 8. 发布与再激活日历 — ORB、展会/新品/再激活节点
 9. 行动建议 — P0 / P1 / P2
 
@@ -214,12 +208,12 @@ Health Score = (
 `touch_number, timing, channel, message_angle, template_ref, objective, source`（≥4 行）
 
 **Referral Program**  
-`referrer_type, reward_model, commission_pct, agreement_level, enablement_items, activation_step, source`（≥4 行）
+`referrer, referred_party, channel, date, status, source`（推荐日志骨架；不填佣金政策）
 
 **Inquiry Flow Improvements**  
 `improvement, funnel_stage, channel, current_state, proposed_state, expected_lift, effort_days, priority, source`
 
-按需附件（同目录）：`retention-playbook.md`、`churn-signals.md`、`health-score-model.md`、`win-back-campaigns.md`、`referral-program-design.md`、`inquiry-flow-spec.md`、`reactivation-calendar.md`。
+按需附件（同目录）：`retention-playbook.md`、`churn-signals.md`、`health-score-model.md`、`win-back-campaigns.md`、`inquiry-flow-spec.md`、`reactivation-calendar.md`。
 
 ## 反模式
 
@@ -241,7 +235,7 @@ Health Score = (
 - 健康度含权重理由与四档动作
 - 流失信号可在无独立 CRM 时检测
 - 挽回 4 触达有时间与角度
-- 转介绍覆盖 ≥4 类推荐人，佣金带来源
+- 推荐日志骨架可手填（介绍人、被介绍方、渠道、日期、状态），或已写缺口；佣金与伙伴计划打开 `marketing-referral-program`
 - 询盘改进按渠道写 current_state → proposed_state
 - 工作簿每表有 `source`
 - 主文档每条建议有来源
@@ -254,7 +248,7 @@ Health Score = (
 3. 健康度权重为频次 35%、金额 30%、沟通 20%、关系 15%，并有 4 档阈值与动作。
 4. 流失信号 ≥7，各含风险、检测、阈值、响应。
 5. 挽回序列 4 次触达，各有间隔、渠道、角度。
-6. 转介绍覆盖 ≥4 类推荐人，含佣金区间、协议级别、激活物料。
+6. 转介绍章为推荐日志骨架（介绍人、被介绍方、渠道、日期、状态），或已写缺口；佣金与伙伴计划指向 `marketing-referral-program`。
 7. 询盘改进按渠道列出 current_state 与 proposed_state；预期提升无观察值则标未测量。
 8. 竞品分析引用 ≥3 个真实 URL。
 9. 外部研究引用 ≥5 个已核实来源。

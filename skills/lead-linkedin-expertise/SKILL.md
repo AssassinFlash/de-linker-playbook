@@ -38,7 +38,7 @@ description: >
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止合规句并写缺口，不编造。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。只出 Markdown，无表。
 - 分析与缺口用本轮语言（缺省中文）；帖文、标签、CTA 用买家语言（缺省英语）。同一段不中英混排。
-- 本帖写贸易流程知识（税则、单据、认证标志、贸易术语、信用证、海关、出口包装、区域认证怎么走）。产品选购技巧走 `skills/lead-linkedin-education/SKILL.md`；行业趋势走 `skills/lead-linkedin-authority/SKILL.md`；工厂现场走 `skills/lead-linkedin-behind-scenes/SKILL.md`；区域使用/气候障碍走 `skills/lead-linkedin-market-challenge/SKILL.md`（文件存在时再打开，不在本步执行）。
+- 本帖写贸易流程知识（税则、单据、认证标志、贸易术语、信用证、海关、出口包装、区域认证怎么走）。产品选购技巧走 `skills/lead-linkedin-education/SKILL.md`；行业趋势走 `skills/lead-linkedin-authority/SKILL.md`；工厂现场走 `skills/lead-linkedin-behind-scenes/SKILL.md`；区域使用/气候障碍走 `skills/lead-linkedin-market-challenge/SKILL.md`（文件存在时再打开，不在本步执行）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。
 - 发布仅当用户本轮要求且已配置相应工具；否则只产帖稿。
 - 数字、处罚、费率、证书编号、客户名：上下文或本轮查证有才写。
 

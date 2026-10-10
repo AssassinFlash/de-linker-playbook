@@ -35,7 +35,7 @@ description: >
 
 - 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。产地、目标市场以产品上下文为准，不预设某一出口国。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则按步骤 3 降级，不编造。
-- 本帖类型是可执行技巧 / 选购指南 / 维护 how-to。宏观趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）；出口法规、物流、市场准入走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。不要用本文件写揭谣、FAQ、个人故事或幕后厂拍。
+- 本帖类型是可执行技巧 / 选购指南 / 维护 how-to。宏观趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）；出口法规、物流、市场准入走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。不要用本文件写揭谣、FAQ、个人故事或幕后厂拍。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）；选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。
 - 篇幅、钩子、CTA、标签、四种风格、软广只认 `skills/lead-generation/references/linkedin-post-guidelines.md`。
 - 一条帖子只讲一条技巧。价值在前，产品在后；去掉产品句后仍应独立有用。
 - 单篇 inline 做完；多 ICP 需隔离时 dispatch a subagent, else do it inline。

@@ -9,13 +9,14 @@ description: >
   editorial calendar with topic clusters under
   deliverables/marketing/03-content/. Read the ledger product_context first;
   invent no engagement metrics, search volumes, or competitor URLs. Never
-  paste skill examples into the output. Not for drafting conversion copy,
-  technical SEO audits, social-channel post batches, or phase navigation.
+  paste skill examples into the output. Not for conversion copy, SEO
+  drafts (`lead-seo-editorial-guidelines`), technical SEO audits,
+  social-channel post batches, or phase navigation.
 ---
 
 # 内容策略
 
-根据已读产品上下文与可验证公开来源，做竞品内容审计、缺口与选题集群，写出可执行的编辑日历，落到 `deliverables/marketing/03-content/`。不写转化文案定稿，不做技术 SEO 审计。
+根据已读产品上下文与可验证公开来源，做竞品内容审计、缺口与选题集群，写出可执行的编辑日历，落到 `deliverables/marketing/03-content/`。不写转化文案定稿，不做技术 SEO 审计，不写长文成稿。
 
 ## 步骤
 
@@ -32,6 +33,7 @@ description: >
 - 日历日期对齐产品上下文中的展会、采购旺季或已核官方源的行业周期，禁止只写「某月更新」。
 - 数字、搜索量、阅读/播放量只写观察到的值；没有就写「公开源未找到」，禁止估计后写成事实。
 - 缺来源或搜索不可用：停止并写缺口，不编造。
+- 长文成稿执行走 `lead-seo-editorial-guidelines` 起的获客 SEO 四件套（规范 → 大纲 → 成稿 → 编辑）。本文件停在策略、日历与选题；`content-briefs.md` 只到 title / outline / keyword，不成稿。brief 批准后交接给该四件套。
 
 ## 写法
 
@@ -48,7 +50,7 @@ description: >
 
 - `deliverables/marketing/03-content/content-strategy.md`
 - `deliverables/marketing/03-content/content-strategy.xlsx`（从 `templates/content-strategy.xlsx` 复制后填；不能写表时改同目录 `content-strategy.json`）
-- 按需同目录：`content-calendar.md`、`topic-clusters.md`、`content-briefs.md`、`channel-distribution-plan.md`
+- 按需同目录：`content-calendar.md`、`topic-clusters.md`、`content-briefs.md`（只到 title / outline / keyword，不成稿；长文交接给 `lead-seo-editorial-guidelines` 起的四件套）、`channel-distribution-plan.md`
 
 章节与表列、最低行数见 `references/methodology.md`。
 

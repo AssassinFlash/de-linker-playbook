@@ -114,10 +114,11 @@
 
 ### 主题行原则
 
-- 2–4 词，小写，无标点技巧
+- 默认建议：2–4 词，小写，无标点技巧
 - 与项目或样品相关，不写产品推销
 - 无紧迫感套路、无 emoji、不塞收件人名
 - 内部备忘录感优于促销感
+- A/B 变体可突破词数与大小写；仍须无促销口吻、无 emoji、不塞收件人名
 
 ### 生命周期序列
 
@@ -137,6 +138,8 @@ Cold Prospect → Cold Email → Inquiry → Catalog Sent → Sample Requested
 3. **Post-Order Nurture** — Trigger: PO confirmed。Goal: 交付满意 → 复购 → 推荐。6 封 / 90 天。
 4. **Re-Engagement** — Trigger: 静默 ≥90 天。Goal: 再激活。4 封 / 30 天。
 5. **Trade Show** — Trigger: 已确认参展或展位到访。Goal: 预约会议 → 跟进线索。共 6 封。
+
+每条序列（含用户收窄后仍交付的那些）须 ≥4 触点且价值角度不重复。此触点规则适用全部五条，不是另写一条跟进序列。
 
 ### 时序与合规
 
@@ -159,7 +162,7 @@ Cold Prospect → Cold Email → Inquiry → Catalog Sent → Sample Requested
 
 ## 交付
 
-主文档：`deliverables/marketing/04-acquisition/email-outreach.md`
+主文档：`deliverables/marketing/04-acquisition/email-outreach/index.md`
 
 必含：Target Buyer Analysis、Outreach Strategy、Cold Email Template Library、Automated Sequence Designs、Compliance Requirements、Sending Infrastructure Recommendations、Action Plan（P0 / P1 / P2）、缺口、可验证断言。每条建议引用采集来源 URL。
 
@@ -167,12 +170,12 @@ Cold Prospect → Cold Email → Inquiry → Catalog Sent → Sample Requested
 
 从 `templates/prospect-research.xlsx`、`templates/sequence-builder.xlsx` 复制后填。不能写表时改同目录 JSON，列名保持一致。
 
-1. `deliverables/marketing/04-acquisition/prospect-research.xlsx`
+1. `deliverables/marketing/04-acquisition/email-outreach/prospect-research.xlsx`
    - **Prospects** — `name, title, company, linkedin_url, industry, location, buying_signals, persona, priority, source`（`linkedin_url` 可改为任意已核验公开职业页 URL；无则「联系人待补」）
    - **Target Companies** — `company_name, industry, size, location, decision_makers, buying_signals, linkedin_url, website, priority, source`
    - 最低行数：50 / 20
 
-2. `deliverables/marketing/04-acquisition/sequence-builder.xlsx`
+2. `deliverables/marketing/04-acquisition/email-outreach/sequence-builder.xlsx`
    - **Sequences** — `sequence_name, trigger_event, target_segment, total_emails, duration_days, goal, exit_condition, expected_conversion, source`（`expected_conversion` 无公开源则「公开源未找到」）
    - **Email Steps** — `sequence_name, step_number, days_after_trigger, subject_line, email_type, body_framework, cta, personalization, conditional_logic, source`
    - **Variants** — `variant, persona, subject, body, test_metric, source`
@@ -220,8 +223,8 @@ Cold Prospect → Cold Email → Inquiry → Catalog Sent → Sample Requested
 - [ ] 每封邮件一条主 CTA
 - [ ] 每个目标区域有合规说明
 - [ ] 发送基础设施建议已对照公开可用性；未配置则未发送
-- [ ] 主题行通过内部备忘录测试
-- [ ] 跟进序列 ≥4 触点且角度不重复
+- [ ] 主题行通过内部备忘录测试（默认 2–4 词小写；A/B 可变）
+- [ ] 五条生命周期序列每条 ≥4 触点且角度不重复（适用全部序列，不是另写跟进）
 - [ ] 目标市场若惯用即时通讯，已注明备选入口
 - [ ] 终稿无未替换占位符
 
@@ -231,7 +234,7 @@ Cold Prospect → Cold Email → Inquiry → Catalog Sent → Sample Requested
 
 1. `prospect-research.xlsx` 的 Prospects ≥50 行，`source` 非空率 100%
 2. Target Companies ≥20 行，`buying_signals` 非空率 100%
-3. `email-outreach.md` 含 ≥5 套按角色的模板，每套含 subject line、body、CTA
+3. `email-outreach/index.md` 含 ≥5 套按角色的模板，每套含 subject line、body、CTA
 4. Sequences ≥5 行，每行含 `trigger_event`、`goal`、`exit_condition`
 5. Email Steps ≥25 行，每步含 `days_after_trigger`、`subject_line`、`cta`
 6. 基准数字无 source 的条目数为 0

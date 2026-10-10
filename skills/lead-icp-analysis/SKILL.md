@@ -10,7 +10,7 @@ description: >
   relationship, objection, and value strategy per profile. Read the ledger
   product_context (default ~/Documents/New/CONTEXT.md). Invent no market
   sizes or pain statistics. Not for company lists, contact scraping, cold
-  emails, or phase navigation.
+  emails, product positioning documents, or phase navigation.
 ---
 
 # 客户画像分析（ICP）
@@ -19,9 +19,9 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读其客群，作步骤 2 切开起点，不重切已确认客群。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
 
-2. **切开品类**。对照 `references/three-guidelines.md` 的 Guideline 1，按行业垂直与价值链位置提出候选 ICP。维度：行业类型、公司规模、市场细分、地理、采购频率。上限 5 条。产品上下文或访谈已排除的不列入。不要把教学例子里的行业名单当作默认五条。完成：短名单每条有价值链位置、与产品的关系、拟查证查询。
+2. **切开品类**。对照 `references/three-guidelines.md` 的 Guideline 1，按行业垂直与价值链位置提出候选 ICP。Guideline 1 的价值链位置列举仅为举例，不是默认五条；按产品上下文取舍，不要把教学例子里的行业名单当作默认名单。维度：行业类型、公司规模、市场细分、地理、采购频率。上限 5 条。产品上下文或访谈已排除的不列入。完成：短名单每条有价值链位置、与产品的关系、拟查证查询。
 
 3. **查证**。对每条候选做三类查证：行业存在性、采购痛点、决策人结构。默认用网页搜索查证；关键判断再抓取指定 URL 的正文。查询年份用环境当前公历年。此时还没有目标公司，不按人名搜联系人。多条 ICP 需要隔离时 dispatch a subagent, else do it inline。搜索不可用则停止并写缺口，不编造。无相关结果的候选标 unverified，不进主名单。完成：主名单每条有可打开的来源；每次查询写入搜索日志。
 
@@ -29,13 +29,13 @@ description: >
 
 5. **按 ICP 写策略**。对照 Guideline 2，每条写四维，且必须直接回应该条痛点：Outreach（首触渠道 + 具体说法）、Value Proposition（对该画像强调的卖点）、Objection Handling（最常见异议 + 反驳）、Relationship Building（从首触到信任）。只使用产品上下文已有的能力、证书与案例；未持有的不得写成动作。推荐展会前须用网页搜索核对该展会对应该利基与区域。换名测试：把 ICP 名称换掉后策略仍成立 → 重写。完成：四维齐全；换名即垮。
 
-6. **总体策略并落盘**。写 Overall Sales Strategy：跨画像的核心打法、资源优先级（先做哪条、为什么）、差异化定位摘要。每条标 P0 / P1 / P2。按下方模板写入 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/01-icp/icp-summary.xlsx`（当前环境写不了 xlsx 则同目录写 `icp-summary.csv`，列相同，并在 Markdown 注明）。完成：主报告非空；表列名匹配；教学例子原文零出现。
+6. **总体策略并落盘**。写 Overall Sales Strategy：跨画像的核心打法、资源优先级（先做哪条、为什么）、差异化定位摘要（引用 `deliverables/marketing/01-foundation/product-positioning.md`，不重写定位；无定位稿则标缺口，不另起定位句）。每条标 P0 / P1 / P2。按下方模板写入 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/01-icp/icp-summary.xlsx`（当前环境写不了 xlsx 则同目录写 `icp-summary.csv`，列相同，并在 Markdown 注明）。完成：主报告非空；表列名匹配；教学例子原文零出现。
 
 7. **出门检查**。对照清单与 `references/three-guidelines.md` 的判定。主名单目标 3–5 条，上限 5。低于 3：按实有条数交付并写缺口，不编第三条。进入主名单的 ICP，痛点与行业判断目标每条 ≥3 个独立来源（行业报告、论坛、贸易数据）；凑不到则该条标 unverified 或不入主名单，不拿软文凑数。完成：清单可逐条勾选。
 
 ## 默认
 
-- 本 skill 无硬依赖，是获客 phase 1 入口。下游（搜索词、公司名单、联系人、竞品、USP、外展）见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
+- 本 skill 无硬依赖，是获客 phase 1 入口。下游（搜索词、公司名单、联系人、竞品、USP、外展）见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。已有 `deliverables/marketing/01-foundation/product-positioning.md` 客群则作切开起点，不重切；「差异化定位摘要」引用定位稿、不重写定位。产品定位走 `marketing-positioning`。
 - 查证用网页搜索；需要原文时抓取指定 URL。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`；实际次数写入搜索日志。达不到不编造、不空搜凑数。
 - 策略与分析用中文；表列名 English snake_case；公司名与 ICP 英文名不翻译。
 - 数字必须能回溯产品上下文或已抓取 URL。缺来源写缺口。
@@ -89,7 +89,7 @@ description: >
 
 - 跨画像核心打法
 - 资源优先级（先谁、为什么）
-- 差异化定位摘要
+- 差异化定位摘要（引用定位稿，不重写）
 
 ## 搜索日志
 | # | Capability | Query/URL | Results | Useful | Notes |
@@ -113,7 +113,7 @@ description: >
 - 未读产品上下文就开写，或把档案原文拷进本仓库。
 - 用模型记忆填市场规模或痛点统计。
 - 五条策略只换了 ICP 名称。
-- 把教学例子里的行业名单当作默认 ICP。
+- 把 Guideline 1 或教学例子里的行业名单当作默认 ICP。
 - 未持有的证书或未核对的展会写成动作。
 - 在还没有目标公司时搜联系人。
 - 为凑 3 条或凑搜索次数而编造。
@@ -125,7 +125,7 @@ description: >
 - [ ] 已读 `product_context`；产品与目标市场可回溯
 - [ ] 主名单每条含 Overview、痛点、决策人、四维策略
 - [ ] 痛点行业特定且有来源；策略换名即垮
-- [ ] Overall Sales Strategy 有优先级
+- [ ] Overall Sales Strategy 有优先级；差异化定位摘要引用定位稿、未重写定位
 - [ ] 表列名匹配；主报告含客户画像 / 痛点分析 / 销售策略 / Overall Sales Strategy
 - [ ] 搜索日志有 URL 与日期；无编造数字
 - [ ] 例子原文未进入交付物

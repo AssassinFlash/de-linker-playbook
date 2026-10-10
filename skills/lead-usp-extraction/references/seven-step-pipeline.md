@@ -120,10 +120,9 @@
 1. One-Sentence Positioning Line — ≤14 词，主差异化 + 买家 KPI
 2. Persuasion Layer-Cake — Hook → Pain Amplifier → Proof of Differentiator → Risk-Reversal → CTA
 3. Proof-Kit Checklist — 指标截图、案例短故事、证书、省钱测算、45 秒产线视频、质保条款等，按说服力排序；每项标已有或待补
-4. Consultative Cold Email — 主题 ≤8 词、无 emoji；正文 ≤120 词；微故事 + 一个证据；单一低压 CTA（开放问题或微承诺）。只产文案，不发送
-5. 30-sec Talk-Track — 镜像句 → 校准问句（How would you ...）→ 有条件让步
+4. 30-sec Talk-Track — 镜像句 → 校准问句（How would you ...）→ 有条件让步
 
-面客文字用买家语言（缺省英语）。收束：先邮件块，再落地页块，再补证据包资产。有 30 天转化数据后从 Gap 矩阵重跑。
+冷邮件草稿走 `lead-cold-email-gen`，本步不写邮件；本 skill 只产 USP 与证据包。面客文字用买家语言（缺省英语）。收束：先定位短句与说服层，再补证据包资产。有 30 天转化数据后从 Gap 矩阵重跑。
 
 ## USP-ICP 匹配
 

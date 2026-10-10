@@ -31,7 +31,7 @@ description: >
 
 5. **起草**。读 `references/structure-5.md` 与 `skills/lead-generation/references/linkedin-post-guidelines.md`。按 Structure 5 写一篇英文帖：Hook → Elaboration → Solution → Benefits → CTA。一帖只解选定的那一条痛。利益句把能力接到该痛的结果，不堆规格。CTA：用户本轮指定则用（须落在共用规范的四种之一）；否则用接到该痛的评论型问句。标签、篇幅、钩子位置、软广只按共用规范，不在本文件重写。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按共用规范只改语气与结构，不改核心信息。面客语种缺省英语；策略笔记用本轮语言（缺省中文）。多画像需隔离时 dispatch a subagent, else do it inline。完成：一篇可复制英文正文；五段齐全；含数字的句子能指回来源。
 
-6. **质检并落盘**。对照本文件清单与共用规范出门清单。写入 `deliverables/lead/08-linkedin/pain-solution-post.md`。发布由用户自行发布，或经用户已配置的工具发布；未要求发布或未配置 → `send_status: copy_only`，不发布。完成：主文件非空；分类痛点、选定痛、特征-利益映射、英文正文、中文策略说明均在；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。对照本文件清单与共用规范出门清单。写入 `deliverables/lead/08-linkedin/pain-solution-post.md`。发布由用户自行发布，或经用户已配置的工具发布；未要求发布或未配置 → `publish_status: copy_only`，不发布。完成：主文件非空；分类痛点、选定痛、特征-利益映射、英文正文、中文策略说明均在；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -42,7 +42,7 @@ description: >
 - 数字、证书、案例、产能、交期、价格：产品上下文或已抓取页里有才写。没有就写「未在上下文出现」或删掉该句。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。
 - 分析与缺口用本轮语言（缺省中文）；帖子正文与标签缺省英语。同一段不中英混排。
-- 话题研究走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。本文件不写区域挑战帖、关切帖或揭谣帖。
+- 选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写区域挑战帖、关切帖或揭谣帖。
 
 ## 写法
 
@@ -66,7 +66,7 @@ description: >
 - icp:
 - selected_pain:
 - pain_category:
-- send_status: copy_only | published_via_user_or_configured_tool
+- publish_status: copy_only | published_via_user_or_configured_tool
 
 ## 买家画像确认
 
@@ -112,7 +112,7 @@ description: >
 - 英文正文含 Hook / Elaboration / Solution / Benefits / CTA 五段，顺序不变
 - 利益表每行 `traces_to_selected_pain` 非空
 - 含数字的句子有来源，或该句已删
-- `send_status` 与是否真正发布一致；未配置或未要求发布时必为 `copy_only`
+- `publish_status` 与是否真正发布一致；未配置或未要求发布时必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子

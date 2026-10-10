@@ -5,18 +5,18 @@ description: >
   silent, re-engage, breakup email, 跟进邮件, 跟进序列, 跟进策略,
   没有回复, or when the first cold or warm email got no reply and the
   user needs what to send next. Write a nine-strategy follow-up
-  sequence from a day-1 reminder through a week-2-to-4 new-angle
-  reignition, each email a distinct tactic, into
+  sequence, each email a distinct tactic, into
   deliverables/lead/06-outreach/. Every touch adds value, proof, a
   yes-or-no ask, or a graceful exit. Read the ledger product_context
   and approved cold emails; invent no testimonials, discounts, or
-  deadlines. Produce copy only, do not send. Not for the first cold
-  email, LinkedIn posts, or phase navigation.
+  deadlines. Send only with a user-configured outbound tool;
+  otherwise copy only. Not for the first cold email, LinkedIn posts,
+  or phase navigation.
 ---
 
 # 跟进序列（九策略）
 
-首封冷邮件或暖邮件无回复后，按九种互不重复的策略写跟进序列，落到 `deliverables/lead/06-outreach/`。每封提供新价值；只产文案，不发送。策略骨架、时序与定制项见 `references/nine-strategies.md`。
+首封冷邮件或暖邮件无回复后，按九种互不重复的策略写跟进序列，落到 `deliverables/lead/06-outreach/`。每封提供新价值。未配置外发工具或用户未要求发出时，只产文案不发送。策略骨架、时序与定制项见 `references/nine-strategies.md`。
 
 ## 步骤
 
@@ -30,13 +30,13 @@ description: >
 
 5. **时序与资产**。把九封填进时序总览表。策略 3/4、5/6 共用窗口：按 ICP 调序，**不得同一天发两封**（规则见 `references/nine-strategies.md`）。策略 2 的附加价值必须可核验：用网页搜索查证公开文章、报告或清单，需要原文则抓取指定 URL；已批准的 lead magnet 可作附件。搜索不可用 → 停止并写缺口，不编造链接。策略 4 的案例、策略 5 的优惠与截止日期：只写产品上下文或用户本轮已给的；没有则方括号占位并在缺口列出，不编客户名、结果或「本月截止」。完成：总览表 9 行；每封有不重叠的建议发送日；策略 2 有 URL / 已批准素材 / 或已标缺口。
 
-6. **落盘**。写入「产出」所列文件。未配置外发工具则只产文案不发送。完成：主文件非空；断言满足；占位符均在 Customization Notes 列出。
+6. **落盘**。写入「产出」所列文件。仅当用户本轮要求发出 **且** 已配置外发工具时才发；否则只产文案不发送。完成：主文件非空；断言满足；占位符均在 Customization Notes 列出。
 
 ## 默认
 
 - 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用则停止并写缺口，不编造。不为凑数而搜「跟进最佳实践」。
-- 联系人/邮箱发现服务、外发工具：仅当用户已配置；否则标「联系人待补」或只产文案。
+- 联系人/邮箱发现服务仅当用户已配置；否则标「联系人待补」。外发工具仅当用户已配置；未配置或未要求发出 → 只产文案不发送。
 - 数字、证书、客户名、项目结果、折扣、截止日期：上下文或已抓取页里有才写。没有就用 `[待补充]` 或「未在上下文出现」。
 - 面客邮件用语以产品上下文为准（缺省英语）；策略说明用本轮语言。同一封不中英混写。
 - 上游首封走 `skills/lead-cold-email-gen/SKILL.md`（文件存在时）；暖化禁词走 `skills/lead-warm-email-transform/SKILL.md`（文件存在时）；下游整合发送计划走 `skills/lead-email-sequence-strategy/SKILL.md`（文件存在时）。本文件不写第一封，不排整场战役日历。
@@ -51,7 +51,7 @@ description: >
 - 九封结构要有变化（短问句、一条资产、一条故事、退出声明），不要九封同一骨架只换词。
 - 语气从友好升到直接再到退出；策略 9 在 breakup 停顿之后重启，不接着施压。
 - 说「no」必须安全。策略 3、6、8 把拒绝写成可接受的回复。
-- 激励（策略 5）只降风险（样品、首单 MOQ、账期、检测），不削价喊急。无真实时限就不写截止日期。
+- 激励（策略 5）只降风险（样品、首单 MOQ、账期、检测），不削价喊急。无真实时限就不写截止日期。策略 5 仍须写成稿资产；是否进入发送骨架由 `lead-email-sequence-strategy` 决定（该 skill 默认不把激励槽编进骨架）。
 - 无既往互动时，策略 7 仍要写：改用双方都在的公开行业现场（协会、公开活动、对方主页信号），不编造「上次会议」。
 - 收件人级占位用方括号（`[Name]`、`[industry]`），并在该封 Customization Notes 列全；禁止无注释的 `{{...}}`。
 
@@ -119,7 +119,7 @@ description: >
 - 策略 2 的资产有 URL、已批准 lead magnet、或已标缺口
 - 策略 4 / 5 无未标明来源的客户名、结果、折扣或截止日期
 - 教学支架原文零出现
-- 未调用外发；交付物不是已发送记录
+- 未配置外发或未要求发出时未发送；交付物不是已发送记录
 
 ## 例子
 
@@ -137,7 +137,7 @@ description: >
 - 无互动却写「很高兴上次会上交流」。
 - 把 skill 例子或模型记忆当客户引言。
 - 已拒绝/退订仍继续写后续封。
-- 配置了外发工具却在本步骤代为发送。
+- 未配置外发工具或用户未要求发出仍发送；或配置了工具却不经该工具、由本步骤直接代发。
 - 终稿留下无注释的 `{{...}}`，或把 `[待补充]` 写成已核实数字。
 
 ## 清单
@@ -148,5 +148,5 @@ description: >
 - [ ] 策略 2 资产可核验或已标缺口；搜索不可用已停
 - [ ] 社会证明与激励未编造；占位符已列全
 - [ ] 文件在 `deliverables/lead/06-outreach/followup-sequence.md`
-- [ ] 教学例子原文未进入交付物；只产文案未发送
+- [ ] 教学例子原文未进入交付物；未配置或未要求发出时未发送
 - [ ] 工具只写能力；多 ICP 隔离时为 dispatch a subagent, else do it inline

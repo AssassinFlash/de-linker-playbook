@@ -1,21 +1,22 @@
 ---
 name: lead-email-sequence-strategy
 description: >
-  Use when organizing existing emails into a campaign plan, drip campaign,
-  sending order, email strategy, 邮件策略, 发送计划, 邮件编排, A/B testing
-  plan, cold vs warm variants, follow-up timing, drip strategy, Snov.io,
-  email automation, or outreach campaign sequencing, including phase 6 of
-  this repo's lead run. Take already-written cold, warm, follow-up, and
-  lead-magnet drafts; assign per-ICP order, cadence, A/B tests, and stop
-  conditions; write a config guide for the user's configured outbound or
-  sequence tool; if none is configured, produce the plan only and do not
-  send. Not for writing the emails themselves, finding contacts, or phase
-  navigation.
+  Use when organizing already-written lead emails into a campaign
+  plan, sending order, email strategy, 邮件策略, 发送计划, 邮件编排,
+  A/B testing plan, cold vs warm variants, or follow-up timing,
+  including phase 6 of this repo's lead run. Only sequence existing
+  lead-group assets (cold, warm, follow-up, lead-magnet drafts);
+  assign per-ICP order, cadence, A/B tests, and stop conditions;
+  write a config guide for the user's configured outbound or
+  sequence tool; if none is configured, produce the plan only and do
+  not send. Not for writing the emails themselves, marketing-phase
+  nurture systems, finding contacts, drip setup from scratch, or
+  phase navigation.
 ---
 
 # 邮件活动编排
 
-把已经写好的冷邮件、暖化稿、跟进序列和引流素材，编成按 ICP 分组的统一发送策略，落到 `deliverables/lead/06-outreach/email-strategy.md`。本文件只编排已有资产，不代写邮件。未配置外发/序列工具则只产计划，不发送。
+把已经写好的冷邮件、暖化稿、跟进序列和引流素材，编成按 ICP 分组的统一发送策略，落到 `deliverables/lead/06-outreach/email-strategy.md`。本文件只编排 lead 组已有成稿资产，不代写邮件，不做营销获客阶段的名单研究或生命周期培育。未配置外发/序列工具则只产计划，不发送。
 
 ## 步骤
 
@@ -39,10 +40,10 @@ description: >
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则不编造基准。
 - 外发/序列工具：仅当用户已配置；付费项须先告知并获准。未配置则只产文案与计划，不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
-- 写邮件走 `skills/lead-cold-email-gen/SKILL.md`、`skills/lead-warm-email-transform/SKILL.md`、`skills/lead-followup-sequence/SKILL.md`、`skills/lead-magnet-gen/SKILL.md`（文件存在时）。本文件不重写正文。
+- 写邮件走 `skills/lead-cold-email-gen/SKILL.md`、`skills/lead-warm-email-transform/SKILL.md`、`skills/lead-followup-sequence/SKILL.md`、`skills/lead-magnet-gen/SKILL.md`（文件存在时）。本文件只编排 lead 组已写成稿，不重写正文。营销获客阶段的名单与生命周期培育走 `marketing-email-outreach`。暖化稿在序列中的优先级按本文件「暖化优先」，不以 `lead-warm-email-transform` 另排。
 - 单文件编排 inline 做完。多 ICP 且需隔离盘点时 dispatch a subagent, else do it inline。
 - 数字、打开率、回复率、退订率：来源表或用户本轮有才写。没有就写「未在来源出现」，禁止补造。
-- 限时折扣/激励槽：产品上下文确有、仍有效的报价才用；否则跳过，不编优惠。
+- 限时折扣/激励槽：产品上下文确有、仍有效的报价才用；否则跳过，不编优惠。跟进成稿里的策略 5 仍盘点入表，与「激励默认不进骨架」不冲突。
 
 ## 写法
 
@@ -63,7 +64,7 @@ description: >
 | 17 | Breakup | 跟进对应稿 | 只收尾、不夹推销 |
 | 21+ | New Angle | 跟进对应稿 | 仅在决裂后仍无回复时发 |
 
-槽位随上游实有资产增减，不按「必须九封」凑数。Limited-Time Incentive 默认不进骨架。
+槽位随上游实有资产增减，不按「必须九封」凑数。Limited-Time Incentive 默认不进骨架：`lead-followup-sequence` 策略 5 仍列入资产清单，默认 `skip_reason` 写「激励默认不进骨架」；产品上下文确有、仍有效的报价才进槽。
 
 **节拍。** 默认日表是给工具填的延迟，不要另写一套互斥的「3 / 7 / 15 天」计划。更快易像骚扰，更慢易断档；拉长须能指回 ICP 或查证来源。
 
@@ -151,6 +152,7 @@ description: >
 - 回复后仍继续发。
 - 槽位表与工具延迟写成两套互不相干的日表。
 - 按「必须九封」或「必须对半拆」凑数。
+- 把本文件当成营销获客阶段的名单研究、生命周期培育或从零搭 drip。
 - 把教学例子原文写入交付物。
 
 ## 清单

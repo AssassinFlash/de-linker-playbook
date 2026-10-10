@@ -1,15 +1,16 @@
 ---
 name: lead-competitor-analysis
 description: >
-  Use when analyzing competitors, researching competitor positioning, mapping a
-  competitive landscape, finding market gaps, competitor profiling, positioning
-  strategy, competitive analysis, differentiation, 竞品分析, 竞争分析, 竞品定位,
-  市场空白, or 差异化机会 in a B2B lead run. Map observed positioning strategies
-  to representative companies with overview, audience, and selling points; then
-  name uncovered spaces, underperforming claims, and unmet needs checked against
-  ICP pain. Read the ledger product_context (default ~/Documents/New/CONTEXT.md)
-  and approved ICP; invent no companies or domains. Not for marketing-tree
-  battle cards, USP extraction, market-size reports, or phase navigation.
+  Use when niche positioning strategy map, ICP whitespace, competitor
+  positioning strategy, finding market gaps against ICP pain, 利基定位,
+  策略地图, 竞品定位, 市场空白, ICP 空白, or 差异化机会 in a B2B lead run.
+  Map observed positioning strategies to representative companies with
+  overview, audience, and selling points; then name uncovered spaces,
+  underperforming claims, and unmet needs checked against ICP pain. Read
+  the ledger product_context (default ~/Documents/New/CONTEXT.md) and
+  approved ICP; invent no companies or domains. Battle cards, vs pages,
+  and channel prices belong to `marketing-competitor-intelligence`. Not
+  for USP extraction, market-size reports, or phase navigation.
 ---
 
 # 竞品定位（策略×公司 + 市场空白）
@@ -30,7 +31,7 @@ description: >
 
 ## 默认
 
-- 产出只进 `deliverables/lead/04-market/`。不要用本 skill 写营销树战斗卡、USP 七步或市场规模报告。战役闸门与审批走 `skills/lead-generation/SKILL.md`，本文件不重复六维。
+- 产出只进 `deliverables/lead/04-market/`。厂对厂战斗卡、vs 页、渠道价走 `marketing-competitor-intelligence`。不要用本 skill 写 USP 七步或市场规模报告。战役闸门与审批走 `skills/lead-generation/SKILL.md`，本文件不重复六维。
 - 查证用网页搜索；需要原文时抓取指定 URL 的正文。概念型最低：至少 5 次网页搜索；每家代表公司抓取官网验证域名。关键词量、权威分、月流量：仅当用户已配置研究工具并导出时解析；未配置则用搜索结果量作粗热度，不编造流量或份额。
 - 数字、证书、营收、成立年份只来自：产品上下文、用户本轮、搜索结果或已抓取正文。交付物写 URL 与访问日期。
 - 策略与分析用中文；表列名 English snake_case；公司名不翻译；卖点摘录保持页面原文语言。

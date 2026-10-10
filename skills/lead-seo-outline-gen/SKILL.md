@@ -10,7 +10,7 @@ description: >
   deliverables/lead/09-seo/. Requires approved editorial guidelines.
   Read the ledger product_context first; invent no competitor headings
   or statistics. Not for setting editorial tone, writing article body,
-  or phase navigation.
+  editorial calendars, or phase navigation.
 ---
 
 # SEO 大纲生成
@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入与闸门**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/09-seo/editorial-guidelines.md`。缺失且无 `user_waiver` → 停；打开 `skills/lead-seo-editorial-guidelines/SKILL.md`（存在则按其做），不自造语气规范。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`。用户本轮给出的目标关键词、文章类型、受众、文章目标一并用作本轮输入。这四项仍缺：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。原文不拷进本仓库。完成：能指出关键词、受众、语气各依据哪几条；能复述上游 Tone 与可读性约束。
+2. **输入与闸门**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/09-seo/editorial-guidelines.md`。缺失且无 `user_waiver` → 停；打开 `skills/lead-seo-editorial-guidelines/SKILL.md`（存在则按其做），不自造语气规范。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`；若 `deliverables/marketing/03-content/` 已有日历或选题集群（`content-calendar.md`、`topic-clusters.md`、`content-strategy.md`），用作选题输入，没有则独立。用户本轮给出的目标关键词、文章类型、受众、文章目标一并用作本轮输入。这四项仍缺：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。原文不拷进本仓库。完成：能指出关键词、受众、语气各依据哪几条；能复述上游 Tone 与可读性约束。
 
 3. **调研**。用网页搜索查证目标关键词的自然结果；需要原文则抓取可打开的前 3 条 URL，抽出 H1/H2、覆盖深度、是否有 FAQ / 对比 / 步骤。再搜相关问题（结果页若出现 People Also Ask 则记下；相关搜索；买家问句）。映射主 / 次 / 再次意图（信息、导航、交易、商业调查）。意图与事先假定不符 → 写入交付物并调整类型或关键词，不硬套。日志格式见 `skills/lead-generation/references/search-protocol.md`。搜索不可用 → 停并写缺口，不编造竞品标题或搜索量。多页并行时 dispatch a subagent, else do it inline。完成：至少 3 个竞品页有 URL、访问日期、H2 摘录，或已把不足写入缺口；意图表非空；`## 搜索日志` 有行。
 
