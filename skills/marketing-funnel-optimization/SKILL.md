@@ -23,7 +23,7 @@ description: >
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
 2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/`、`deliverables/marketing/03-content/` 与 `deliverables/marketing/05-cro/` 已批准的 `landing-page.md` 与 `inquiry-flow.md`（缺则记缺口，不重做页上入口或提交后话术）。列出品类、买家角色、目标市场、贸易条款、样品政策、询盘量、询盘→报价/样品/订单、复购率、主要流失阶段、已用渠道。完成：能指出各依据哪几条；原文不拷进本仓库。用户只给站点 URL 时先抓该站再补上下文；品类或市场仍不明则停并写缺口，不编造公司、转化率或竞品事实。
 3. **采集**。用网页搜索查证漏斗优化与行业基准；需要原文时抓取指定 URL 的正文（本站首页、产品页、询盘页、落地页；≥3 个竞品完整漏斗）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；本站四页与竞品漏斗达到最低条数，或已把未达标项写入缺口。
-4. **分析**。只从已采集证据与已批准稿映射漏斗各阶段。第 3–6 章（落地页/表单/弹窗/询盘流）读已批准的 `landing-page.md` 与 `inquiry-flow.md`，只填跨阶段矛盾与缺口，不重做 CTA、字段清单或回复话术。第 9–11 章（上市/转介绍/留存）指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级。资质量表与询盘稿不一致时以 `inquiry-flow.md` 七维四档为准。量表、漏斗与表列见 `references/methodology.md`（与本节冲突时以本节为准）。完成：每个 P0 建议能指到已抓取页面或已批准稿；12 个主文档章节均有着落或显式缺口；升级报价保留基础选项。
+4. **分析**。只从已采集证据与已批准稿映射漏斗各阶段。第 3–6 章（落地页/表单/弹窗/询盘流）读已批准的 `landing-page.md` 与 `inquiry-flow.md`，只填跨阶段矛盾与缺口，不重做 CTA、字段清单或回复话术。第 7 章（首单 onboarding）指向 `lead-service-first-order` 的既有产出，本 skill 只写跨阶段优先级。第 8 章（升级与交叉销售）指向 `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级；升级报价必须保留基础选项，且每条报价最多一个清晰升级建议。第 9–11 章（上市/转介绍/留存）指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级。资质量表与询盘稿不一致时以 `inquiry-flow.md` 七维四档为准。量表、漏斗与表列见 `references/methodology.md`（与本节冲突时以本节为准）。完成：每个 P0 建议能指到已抓取页面或已批准稿；12 个主文档章节均有着落或显式缺口；升级报价保留基础选项。
 5. **落盘**。写入下方路径。已有 `funnel-optimization.md` 则增量更新并在文首保留版本说明。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL；教学支架原文零出现；文末 5–10 条可验证断言。
 
 ## 默认
@@ -53,9 +53,9 @@ description: >
 
 - `deliverables/marketing/05-cro/funnel-optimization.md`
 - `deliverables/marketing/05-cro/funnel-redesign.xlsx`（从 `templates/funnel-redesign.xlsx` 复制后填；不能写表时改同目录 `funnel-redesign.json`）
-- 按需同目录：`landing-page-audit.md`、`form-redesign-spec.md`、`popup-designs.md`、`inquiry-flow-spec.md`、`onboarding-playbook.md`、`upsell-playbook.md`、`launch-timeline.md`、`referral-program-design.md`、`retention-playbook.md`、`ab-test-plan.md`（不替代已批准的 `landing-page.md`、`inquiry-flow.md` 或 `06-growth/` 下上市/转介绍/留存正文）
+- 按需同目录：`landing-page-audit.md`、`form-redesign-spec.md`、`popup-designs.md`、`inquiry-flow-spec.md`、`onboarding-playbook.md`、`upsell-playbook.md`、`launch-timeline.md`、`referral-program-design.md`、`retention-playbook.md`、`ab-test-plan.md`（不替代已批准的 `landing-page.md`、`inquiry-flow.md`、`lead/10-sales/first-order.md` 或 `06-growth/` 下上市/转介绍/留存正文）
 
-章节与表列、最低行数见 `references/methodology.md`。第 3–6 章读已批准的 `landing-page.md` 与 `inquiry-flow.md`，只填跨阶段矛盾与缺口，不重做 CTA/字段/回复话术。第 9–11 章指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级。
+章节与表列、最低行数见 `references/methodology.md`。第 3–6 章读已批准的 `landing-page.md` 与 `inquiry-flow.md`，只填跨阶段矛盾与缺口，不重做 CTA/字段/回复话术。第 7 章指向 `lead-service-first-order` 的既有产出，本 skill 只写跨阶段优先级。第 8 章指向 `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级；升级报价必须保留基础选项，且每条报价最多一个清晰升级建议。第 9–11 章指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 的既有产出，本 skill 只写跨阶段优先级。
 
 ```markdown
 # 漏斗优化
@@ -119,7 +119,7 @@ description: >
 - `source` 只写搜索、不附 URL。
 - 行业基准未标「行业参考值，实际以你的数据为准」。
 - 已有着陆页或询盘稿仍重做 CTA、字段或回复话术。
-- 把上市、转介绍、留存从零写一遍，而不引用对应 skill 产出。
+- 把首单 onboarding、升级交叉销售、上市、转介绍、留存从零写一遍，而不引用对应 skill 产出。
 - 只交 Markdown、工作簿仍是空模板。
 
 ## 清单
@@ -130,8 +130,9 @@ description: >
 - [ ] ≥3 个竞品完整漏斗：落地页、表单、CTA、信任信号
 - [ ] 主文档 12 章均有着落或显式缺口；每条 P0 能指到已抓取 URL 或已批准稿
 - [ ] 第 3–6 章只填跨阶段矛盾与缺口，无重做的 CTA/字段/回复话术
+- [ ] 第 7 章指向 `lead-service-first-order` 既有产出或显式缺口
+- [ ] 第 8 章指向 `marketing-retention` 既有产出或显式缺口；升级报价保留基础选项，每条报价最多一个清晰升级建议
 - [ ] 第 9–11 章指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 既有产出或显式缺口
 - [ ] 资质量表与询盘稿不一致处已注明以 `inquiry-flow.md` 七维四档为准
-- [ ] 升级报价保留基础选项
 - [ ] 主文档与工作簿在 `deliverables/marketing/05-cro/`；`source` 无空值
 - [ ] 文末 5–10 条可验证断言；教学例子原文未进入交付物

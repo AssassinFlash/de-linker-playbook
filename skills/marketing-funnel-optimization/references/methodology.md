@@ -19,7 +19,8 @@
 - `deliverables/marketing/01-foundation/` 定位、买家角色、定价、样品政策
 - `deliverables/marketing/03-content/` 内容与日历约束
 - `deliverables/marketing/05-cro/` 已批准的 `landing-page.md` 与 `inquiry-flow.md`（缺则记缺口，不重做页上入口或提交后话术）
-- `deliverables/marketing/06-growth/` 下 `launch-strategy.md`、`referral-program.md`、`retention.md`（缺则记缺口，不从零写佣金或赢回）
+- `deliverables/lead/10-sales/first-order.md`（缺则记缺口，不从零写 onboarding 五件套）
+- `deliverables/marketing/06-growth/` 下 `launch-strategy.md`、`referral-program.md`、`retention.md`（缺则记缺口，不从零写佣金、赢回或升级交叉销售）
 
 再列出（未知则记缺口，不编造）：
 
@@ -52,20 +53,20 @@
 
 ### 查询意图
 
-把产品上下文的品类与目标市场代入下列意图，每条记下 URL、摘录、访问日期。查询 1–4 只为竞品对照与跨阶段矛盾提供证据，不据此重做 CTA、字段清单或回复话术。查询 7–9 读既有产出，不重搜做法。
+把产品上下文的品类与目标市场代入下列意图，每条记下 URL、摘录、访问日期。查询 1–4 只为竞品对照与跨阶段矛盾提供证据，不据此重做 CTA、字段清单或回复话术。查询 5–9 读既有产出，不重搜做法。
 
 1. 该品类 B2B 询盘表字段数与 CTA 原文（竞品页）
 2. B2B 制造落地页 CTA 与信任信号原文（竞品页）
 3. 制造网站退出意向弹窗与潜客捕获（有则摘原文，无则「未观察到」）
 4. B2B 询盘回复时效与转化的公开基准
-5. 制造供应商新客户 onboarding 与复购
-6. B2B 制造报价阶段升级与交叉销售
+5. 不重搜 onboarding 做法；读 `deliverables/lead/10-sales/first-order.md`，记下路径或缺口
+6. 不重搜升级与交叉销售做法；读 `deliverables/marketing/06-growth/retention.md` 的生命周期/复购杠杆，记下路径或缺口
 7. 不重搜上市做法；读 `deliverables/marketing/06-growth/launch-strategy.md`，记下路径或缺口
 8. 不重搜转介绍佣金；读 `deliverables/marketing/06-growth/referral-program.md`，记下路径或缺口
 9. 不重搜留存赢回；读 `deliverables/marketing/06-growth/retention.md`，记下路径或缺口
 10. 目标市场该品类采购路径（当前或下一自然年）
 
-结果不够时再补：展会日历、回复时效案例、样品政策公开页。仍用同一条搜索能力。第 3–6 章不另搜「如何改落地页/表单」的做法清单；以已批准稿 + 已抓页对照为准。
+结果不够时再补：展会日历、回复时效案例、样品政策公开页。仍用同一条搜索能力。第 3–6 章不另搜「如何改落地页/表单」的做法清单；以已批准稿 + 已抓页对照为准。第 7–8 章不另搜 onboarding 或升级做法；以既有产出 + 跨阶段优先级为准。
 
 多页抓取需要隔离时 dispatch a subagent, else do it inline。
 
@@ -75,6 +76,7 @@
 
 - 本站：首页 + 产品页 + 询盘页已完整分析；落地页有则分析、无则缺口
 - 已批准 `landing-page.md` 与 `inquiry-flow.md` 已读，或显式缺口
+- `lead/10-sales/first-order.md` 既有产出已读，或显式缺口
 - `06-growth/` 上市 / 转介绍 / 留存既有产出已读，或显式缺口
 - **3** 个竞品完整漏斗：落地/首页 → 表单 → CTA → 信任信号
 - 询盘率、按字段数的表单完成、回复时效影响、复购率：有公开源则记下并标「行业参考值，实际以你的数据为准」；无则缺口
@@ -153,35 +155,32 @@
 
 方法默认（工作时间内 2 小时）仅在询盘稿缺失时写入缺口对照，不覆盖已批准稿。
 
-### 首单 onboarding
+### 首单 onboarding（第 7 章）
 
-旅程：`首次询盘 → 报价 → 样品 → 样品质检 → 首单生产 → 生产更新 → 出运前检验 → 运输与追踪 → 到货确认 → 到货后跟进 → 复购`。
+指向 `lead-service-first-order` 既有产出：`deliverables/lead/10-sales/first-order.md`。本 skill 只写 Quote / Sample → Order 接到 onboarding 起点的跨阶段优先级。不重写买家清单、欢迎信、共享文件夹、软锁定或转换摩擦提示。缺产出则整章缺口。
 
-每阶段写：时机、渠道、内容类型、负责人。包含主动生产照片、请款前质检报告、全套运输文件加清关指引、到货后 3–5 天满意度核验。
+| 字段 | 用途 |
+| --- | --- |
+| upstream_path | 已读首单引导稿路径（或「缺口」） |
+| funnel_join | onboarding 接到的漏斗阶段（Quote / Sample / Order / Repeat） |
+| contradiction_or_gap | 询盘流终点 vs 首单引导起点不一致；无则「无矛盾」 |
+| cross_stage_priority | P0 / P1 / P2 |
+| source | 上游路径或「缺口」 |
 
-样品政策：快递；收费样品可在大货抵扣；规格事先写清；交期明确。
+### 升级与交叉销售（第 8 章）
 
-### 升级与交叉销售
+指向 `marketing-retention` 既有产出：`deliverables/marketing/06-growth/retention.md`（生命周期 / 复购杠杆）。本 skill 只写 Quote → Order → Repeat 的跨阶段优先级。不重写升级路径、报价结构或交叉矩阵。缺产出则整章缺口。
 
-按产品上下文的品类字段映射升级路径：材质/等级、表面处理、厚度/尺寸、服务加项（包装、五金、检验、指南）、数量阶梯。禁止在 skill 里填具体牌号或产地。
+跨阶段规则（写在漏斗，不另起方案）：升级报价必须保留基础选项，且每条报价最多一个清晰升级建议。
 
-报价结构模板（填用户真实规格，不把本段当交付物原文）：
-
-```
-BASE OPTION
-Product: [standard spec] | Price: [observed or user-provided] | Total: [sum]
-
-RECOMMENDED UPGRADE
-Product: [premium spec]
-Why: [one sentence citing project environment or buyer type]
-Price: [observed or user-provided] | Total: [sum] ([premium %])
-
-PROJECT NOTE
-Environment: [from inquiry]
-Recommendation: [technical advice]
-```
-
-不得删除基础选项。每条报价最多一个清晰升级建议。
+| 字段 | 用途 |
+| --- | --- |
+| upstream_path | 已读留存稿路径（或「缺口」） |
+| funnel_join | 升级建议接到的漏斗阶段（Quote / Order / Repeat） |
+| cross_stage_priority | P0 / P1 / P2 |
+| base_option_kept | 是 / 否（否则 P0） |
+| upgrade_count | 每条报价的升级建议数（必须 ≤1） |
+| source | 上游路径或「缺口」 |
 
 ### 上市策略（第 9 章）
 
@@ -224,7 +223,7 @@ Recommendation: [technical advice]
 
 ### 实验优先级
 
-每个想法写：hypothesis、漏斗阶段、metric、priority（P0/P1/P2）、effort（Low/Medium/High）、expected_impact 并带来源。无来源的提升幅度写「未验证」，禁止编造百分点。第 3–6 章实验只验证跨阶段矛盾是否成立，不定稿页面改法。第 9–11 章实验只排跨阶段优先级，不另起上市 / 转介绍 / 留存战役。
+每个想法写：hypothesis、漏斗阶段、metric、priority（P0/P1/P2）、effort（Low/Medium/High）、expected_impact 并带来源。无来源的提升幅度写「未验证」，禁止编造百分点。第 3–6 章实验只验证跨阶段矛盾是否成立，不定稿页面改法。第 7–8 章实验只排跨阶段优先级，不另起 onboarding 五件套或升级报价方案。第 9–11 章实验只排跨阶段优先级，不另起上市 / 转介绍 / 留存战役。
 
 ## 交付
 
@@ -240,8 +239,8 @@ Recommendation: [technical advice]
 4. **询盘表单优化方案** — 对照已批准稿与已抓表单，只填字段 / 必填与下游的矛盾；不另起字段定稿
 5. **弹窗与潜客捕获策略** — 对照已批准稿与已抓页，只填与主入口抢注意力的矛盾；不定稿弹窗
 6. **询盘流程优化方案** — 对照已批准 `inquiry-flow.md`，资质量表以该稿七维四档为准；只填与入口 / onboarding 的矛盾
-7. **首单 onboarding 方案** — 触点、样品政策、跟进
-8. **升级与交叉销售策略** — 升级路径、报价结构、交叉矩阵
+7. **首单 onboarding 方案** — 指向 `lead/10-sales/first-order.md`；只写跨阶段优先级；缺则缺口
+8. **升级与交叉销售策略** — 指向 `06-growth/retention.md`；只写跨阶段优先级；升级报价保留基础选项且每条最多一个升级建议；缺则缺口
 9. **发布上市计划** — 指向 `06-growth/launch-strategy.md`；只写跨阶段优先级；缺则缺口
 10. **转介绍与合作伙伴计划** — 指向 `06-growth/referral-program.md`；只写跨阶段优先级；缺则缺口
 11. **留存与流失预防策略** — 指向 `06-growth/retention.md`；只写跨阶段优先级；缺则缺口
@@ -277,14 +276,14 @@ Recommendation: [technical advice]
 
 ### 执行附件（按需，同目录）
 
-对应主文档里有 P0 的切片才写，不空交。不替代已批准的 `landing-page.md`、`inquiry-flow.md` 或 `06-growth/` 下上市 / 转介绍 / 留存正文。
+对应主文档里有 P0 的切片才写，不空交。不替代已批准的 `landing-page.md`、`inquiry-flow.md`、`lead/10-sales/first-order.md` 或 `06-growth/` 下上市 / 转介绍 / 留存正文。
 
 - `landing-page-audit.md` — 跨阶段矛盾（页 vs 已批准稿），不定稿 CTA
 - `form-redesign-spec.md` — 字段矛盾与缺口，不另起字段定稿
 - `popup-designs.md` — 与主入口冲突，不定稿文案
 - `inquiry-flow-spec.md` — 与入口 / onboarding 的衔接缺口，不重写回复话术
-- `onboarding-playbook.md` — 首单触点与模板要点
-- `upsell-playbook.md` — 升级路径与报价话术要点
+- `onboarding-playbook.md` — 引用 `first-order.md` 的跨阶段优先级，不重写引导五件套
+- `upsell-playbook.md` — 引用 `retention.md`，不重写升级路径或报价结构
 - `launch-timeline.md` — 引用 `launch-strategy.md` 的跨阶段优先级，不重写任务日历
 - `referral-program-design.md` — 引用 `referral-program.md`，不重写佣金
 - `retention-playbook.md` — 引用 `retention.md`，不重写赢回
@@ -303,7 +302,7 @@ Recommendation: [technical advice]
 9. 一条报价推多个升级。
 10. 任何交付物行的 `source` 为空。
 11. 已有着陆页或询盘稿仍重做 CTA、字段或回复话术。
-12. 把上市、转介绍、留存从零写一遍，而不引用对应 skill 产出。
+12. 把首单 onboarding、升级交叉销售、上市、转介绍、留存从零写一遍，而不引用对应 skill 产出。
 
 ## 质量闸门
 
@@ -315,8 +314,8 @@ Recommendation: [technical advice]
 - [ ] 已读已批准 `landing-page.md` 与 `inquiry-flow.md`（缺则缺口，未重做 CTA / 字段 / 回复话术）
 - [ ] 第 3–6 章只填跨阶段矛盾与缺口；每条能指到已批准稿或已抓 URL
 - [ ] 资质量表与询盘稿不一致处已注明以 `inquiry-flow.md` 七维四档为准
-- [ ] onboarding 含样品政策与生产/质检触点
-- [ ] 升级矩阵含基础选项 + 单一升级 + 项目说明
+- [ ] 第 7 章指向 `lead-service-first-order` 既有产出或显式缺口；未重写引导五件套
+- [ ] 第 8 章指向 `marketing-retention` 既有产出或显式缺口；升级报价保留基础选项且每条最多一个升级建议；未重写升级路径
 - [ ] 第 9–11 章指向 `marketing-launch-strategy` / `marketing-referral-program` / `marketing-retention` 既有产出或显式缺口；未重写佣金或赢回正文
 - [ ] 工作簿七表达到最低行数；每行有带 URL 的 `source`（第 9–11 章表允许 `source` 为上游路径或「缺口」）
 - [ ] 行业基准均标注「行业参考值，实际以你的数据为准」
@@ -330,7 +329,7 @@ Recommendation: [technical advice]
 3. 现状评估引用 ≥3 个本站不同页面 URL
 4. 竞品对照 ≥3 行完整漏斗（落地 → 表单 → CTA → 信任）
 5. 第 3–6 章每条矛盾 / 缺口能指到已批准 `landing-page.md` / `inquiry-flow.md` 或已抓页面；无重做的 CTA / 字段 / 回复话术
-6. 第 9–11 章指向 `06-growth/` 既有产出路径或显式缺口；无重写的佣金或赢回正文
+6. 第 7 章指向 `lead/10-sales/first-order.md` 或显式缺口；第 8 章指向 `06-growth/retention.md` 或显式缺口（升级报价保留基础选项、每条最多一个升级建议）；第 9–11 章指向 `06-growth/` 既有产出路径或显式缺口；无重写的 onboarding 五件套、升级矩阵、佣金或赢回正文
 7. Experiments ≥15 行（或主文档列出 ≥10 个实验），每条有 hypothesis、metric、priority、effort
 8. 每张表 `source` 非空率为 100%
 9. 行业基准均带「行业参考值，实际以你的数据为准」
