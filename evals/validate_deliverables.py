@@ -52,6 +52,10 @@ JSON_REFERENCE_EXEMPTIONS = {
 SOURCE_EXEMPT_SHEETS = {"Metadata", "Instructions", "README", "Cover"}
 
 
+def _is_source_exempt_sheet(title: str) -> bool:
+    return title.lstrip("_") in SOURCE_EXEMPT_SHEETS
+
+
 def default_project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
@@ -112,7 +116,7 @@ def validate_workbook(path: Path) -> list[str]:
     errors = []
     workbook = load_workbook(path, read_only=True, data_only=True)
     for sheet in workbook.worksheets:
-        if sheet.title in SOURCE_EXEMPT_SHEETS:
+        if _is_source_exempt_sheet(sheet.title):
             continue
         rows = sheet.iter_rows(values_only=True)
         headers = [str(value or "").strip() for value in next(rows, ())]

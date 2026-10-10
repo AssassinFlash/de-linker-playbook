@@ -20,7 +20,7 @@ AGENTS.md            agent 入口（只指路）
 
 ## 当前状态
 
-37 个 marketing skill + 43 个 lead skill（共 80）已全部迁入并通用化；机械校验全绿。过程管理见 wayfinder/map.md。
+37 个 marketing skill + 43 个 lead skill（共 80）已全部迁入并通用化；终闸验收通过：80 skill 逐一对照源文件 review（3 处保真问题当轮修复）、主模型抽查 16/16、真实冒烟（site-and-schema 对 de-linker.com）产出可用、五家 harness（Kimi / Z Code / DeepSeek / OpenCode / Hermes）冷启动实测全 PASS。过程管理见 wayfinder/map.md；各家 headless 调用矩阵见 wayfinder/pilot/。
 
 ## 怎么用
 

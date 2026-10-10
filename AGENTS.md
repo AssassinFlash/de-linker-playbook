@@ -15,6 +15,7 @@
 - 状态真源：[`state/status.md`](state/status.md) 与 [`wayfinder/map.md`](wayfinder/map.md)。压缩后以文件为准，不以对话记忆为准。
 - 执行节奏：一票一新会话。
 - 兼容：只承诺 Kimi / Z Code / DeepSeek / OpenCode / Hermes 五家，不为其他 harness 做适配层。
+- 五家 headless 冷启动调用矩阵与坑：[`wayfinder/pilot/`](wayfinder/pilot/) 每家一份（如 Hermes 需 `HERMES_HOME` 隔离，Z Code 需桌面同步的 provider 配置）。
 
 ## Skill
 

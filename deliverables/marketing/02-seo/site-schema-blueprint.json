@@ -1,0 +1,986 @@
+{
+  "site": {
+    "domain": "de-linker.com",
+    "platform": "WordPress + WooCommerce",
+    "audit_source": "url-tree + sitemap.xml (sitemaps.xml index)",
+    "pages": [
+      {
+        "url": "https://de-linker.com/",
+        "page_type": "home",
+        "title": "PV & Storage Solutions for Installers and EPCs | Linker",
+        "meta_description": "Hybrid inverters, batteries and complete storage packages with the compatibility lists on file, net trade pricing, stock in Germany and warranty coordination.",
+        "h1": "Linking Value. Serving You.",
+        "current_schema": "WebSite; Organization",
+        "issues": "SearchAction and sameAs missing; two scripts linked by @id",
+        "source": "https://de-linker.com/ 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/products/",
+        "page_type": "collection",
+        "title": "Browse Inverters, Batteries and Systems | Linker",
+        "meta_description": "Filter inverters, LFP batteries, all-in-one systems, meters and controllers by brand, or find an item by number or nameplate photo. Net prices for partners.",
+        "h1": "Products",
+        "current_schema": "CollectionPage; BreadcrumbList",
+        "issues": "No ItemList of all SKUs (correct); filters may create thin URLs",
+        "source": "https://de-linker.com/ 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/home-storage/",
+        "page_type": "collection",
+        "title": "Home Storage | Linker",
+        "meta_description": "Home batteries: LFP modules of 5 to 9 kWh, their controllers and SAJ B2 systems of 5 to 25 kWh; a GoodWe ESA system stacks up to 108 kWh.",
+        "h1": "Home Storage",
+        "current_schema": "BreadcrumbList",
+        "issues": "No ItemList; no CollectionPage",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/",
+        "page_type": "collection",
+        "title": "Commercial Storage | Linker",
+        "meta_description": "Commercial storage: all-in-one systems and battery systems of 57.3 to 261.2 kWh from GoodWe, SAJ and Pylontech.",
+        "h1": "Commercial Storage",
+        "current_schema": "BreadcrumbList",
+        "issues": "No ItemList",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/all-in-one-systems/",
+        "page_type": "collection",
+        "title": "All-in-One Systems | Linker",
+        "meta_description": "All-in-one commercial storage systems: the SAJ CHS2 hybrid system with 29.9, 30 or 50 kW.",
+        "h1": "All-in-One Systems",
+        "current_schema": "BreadcrumbList",
+        "issues": "Nested WooCommerce category; keep handle",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/battery-systems/",
+        "page_type": "collection",
+        "title": "Battery Systems | Linker",
+        "meta_description": "Battery systems for commercial storage: GoodWe BAT-C (61.4–261.2 kWh) and SAJ CB2.",
+        "h1": "Battery Systems",
+        "current_schema": "BreadcrumbList",
+        "issues": "Nested WooCommerce category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/inverters/",
+        "page_type": "collection",
+        "title": "Inverters | Linker",
+        "meta_description": "Hybrid inverters and power modules from GoodWe, SAJ and EcoFlow, single and three phase, 5 to 125 kW.",
+        "h1": "Inverters",
+        "current_schema": "BreadcrumbList",
+        "issues": "Type axis beside application categories",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/ems-monitoring/",
+        "page_type": "collection",
+        "title": "EMS & Monitoring | Linker",
+        "meta_description": "Energy managers and a data collector for home and commercial storage: the GoodWe SEC3000C.",
+        "h1": "EMS & Monitoring",
+        "current_schema": "BreadcrumbList",
+        "issues": "No ItemList",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/ev-chargers/",
+        "page_type": "collection",
+        "title": "EV Chargers | Linker",
+        "meta_description": "EV chargers: the GoodWe HCA G2 with 7 kW single-phase or 11 and 22 kW three-phase.",
+        "h1": "EV Chargers",
+        "current_schema": "BreadcrumbList",
+        "issues": "Small catalog; keep indexable",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/",
+        "page_type": "collection",
+        "title": "Accessories | Linker",
+        "meta_description": "Accessories for storage systems: smart meters and transfer switches.",
+        "h1": "Accessories",
+        "current_schema": "BreadcrumbList",
+        "issues": "Parent of meters and backup-power",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/meters-current-transformers/",
+        "page_type": "collection",
+        "title": "Meters & Current Transformers | Linker",
+        "meta_description": "Smart meters from GoodWe and Chint.",
+        "h1": "Meters & Current Transformers",
+        "current_schema": "BreadcrumbList",
+        "issues": "Nested under accessories",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/backup-power/",
+        "page_type": "collection",
+        "title": "Backup Power | Linker",
+        "meta_description": "Transfer switches for backup power: SAJ ATS1-T63-A and GoodWe STS 125.",
+        "h1": "Backup Power",
+        "current_schema": "BreadcrumbList",
+        "issues": "Nested under accessories",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/",
+        "page_type": "product",
+        "title": "GoodWe ESA GW10K-EHA-G20 (10 kW single-phase power module) | Linker",
+        "meta_description": "GoodWe GW10K-EHA-G20: 10 kW single-phase hybrid column, 20.0 kW PV, 4 MPPTs, backup 10.0 kVA, IP66.",
+        "h1": "GW10K-EHA-G20",
+        "current_schema": "Product; Brand; Organization manufacturer; Offer (InStock, no price)",
+        "issues": "Missing BreadcrumbList, material, MOQ, lead time, price",
+        "source": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/ 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/product/ecoflow-ocean-2-battery-8-0-kwh-ef-bd-8-s2/",
+        "page_type": "product",
+        "title": "EcoFlow OCEAN 2 Battery 8.03 kWh (EF BD-8-S2) | Linker",
+        "meta_description": "OCEAN 2 EF BD-8-S2: 8.03 kWh nominal, 7.76 kWh usable under test conditions, 4.1 kW nominal charge and discharge, fan-assisted cooling.",
+        "h1": "EF BD-8-S2",
+        "current_schema": "Product; Brand; Organization manufacturer; Offer (InStock, no price)",
+        "issues": "LiFePO4 in description only; not material field",
+        "source": "https://de-linker.com/product/ecoflow-ocean-2-battery-8-0-kwh-ef-bd-8-s2/ 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/contact/",
+        "page_type": "contact",
+        "title": "Contact Linker | Solar & Storage Enquiries",
+        "meta_description": "Ask Linker about a product, order, or solar and storage project. Share your question while keeping the product or page you came from in context.",
+        "h1": "Let’s work on what comes next.",
+        "current_schema": "ContactPage; WebPage; WebSite; Organization",
+        "issues": "No LocalBusiness; form lacks qty/country",
+        "source": "https://de-linker.com/contact/ 2026-10-10",
+        "priority": "P0",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/about/",
+        "page_type": "about",
+        "title": "About Us: Solar and Storage Supply from Germany | Linker",
+        "meta_description": "From Barleben, Germany, Linker supplies storage packages with the compatibility lists on file, dispatches from local stock and coordinates warranty cases.",
+        "h1": "Making solar and energy storage simpler to build.",
+        "current_schema": "AboutPage; WebPage; Organization",
+        "issues": "Organization @id not shared with homepage",
+        "source": "https://de-linker.com/about/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/faq-download/",
+        "page_type": "faq",
+        "title": "Datasheets, Manuals and Compatibility Lists | Linker",
+        "meta_description": "Every datasheet, manual and compatibility list we hold, downloadable without an account. Certificates are requested per order.",
+        "h1": "Technical documentation and trade rules on file.",
+        "current_schema": "CollectionPage; WebPage; WebSite",
+        "issues": "Not FAQPage; document library",
+        "source": "https://de-linker.com/faq-download/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/solution/",
+        "page_type": "hub",
+        "title": "Storage Solutions by Application | Linker",
+        "meta_description": "Residential, commercial or utility. A 10 kWh retrofit and a 6 MWh container are not the same job.",
+        "h1": "Storage systems built for how your sites run.",
+        "current_schema": "none",
+        "issues": "No JSON-LD; add WebPage + BreadcrumbList",
+        "source": "https://de-linker.com/solution/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/solution/residential-storage/",
+        "page_type": "application",
+        "title": "Home Storage Systems for Installers | Linker",
+        "meta_description": "Retrofit, new build, backup or expansion: hybrid inverters, modular LFP batteries and smart meters in one package.",
+        "h1": "Home storage, linked and supplied by Linker.",
+        "current_schema": "none",
+        "issues": "No JSON-LD; near-duplicate of home-storage category intent",
+        "source": "https://de-linker.com/solution/residential-storage/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/solution/commercial-storage/",
+        "page_type": "application",
+        "title": "C&I Storage for Installers and EPCs | Linker",
+        "meta_description": "GoodWe, SAJ and Pylontech C&I systems for peak shaving, self-consumption and backup.",
+        "h1": "Streamlined commercial storage, supplied by Linker.",
+        "current_schema": "none",
+        "issues": "No JSON-LD",
+        "source": "https://de-linker.com/solution/commercial-storage/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/solution/utility-storage/",
+        "page_type": "application",
+        "title": "Utility-Scale Storage, Quoted per Project | Linker",
+        "meta_description": "CRRC, Pylontech and GoodWe container BESS from 1.0 to 6.9 MWh, quoted per site, not from the cart.",
+        "h1": "Utility-scale storage platforms, supplied and supported by Linker.",
+        "current_schema": "none",
+        "issues": "No product-category counterpart; keep as quote hub",
+        "source": "https://de-linker.com/solution/utility-storage/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/for-installer/",
+        "page_type": "persona",
+        "title": "Storage Solution Partner for Installers | Linker",
+        "meta_description": "Complete storage packages sized in Linker Planner, with grid documents requested per order, German warehouse stock and confirmed dispatch dates.",
+        "h1": "The storage solution partner behind your projects.",
+        "current_schema": "none",
+        "issues": "No JSON-LD",
+        "source": "https://de-linker.com/for-installer/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/for-epc/",
+        "page_type": "persona",
+        "title": "Storage Supply and Technical Support for EPCs | Linker",
+        "meta_description": "C&I cabinets and container BESS for EPCs: datasheets and manuals on file.",
+        "h1": "Project requirements, supplied as constructible storage systems.",
+        "current_schema": "none",
+        "issues": "No JSON-LD",
+        "source": "https://de-linker.com/for-epc/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/services-support/",
+        "page_type": "service",
+        "title": "Technical Support, Documents and Warranty | Linker",
+        "meta_description": "Planning tools, BMS-inverter protocol documents, VDE grid packages, commissioning support.",
+        "h1": "Technical support and documents from Linker for your solar and storage projects.",
+        "current_schema": "none",
+        "issues": "No JSON-LD",
+        "source": "https://de-linker.com/services-support/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/blog/",
+        "page_type": "blog-hub",
+        "title": "Journal: Sizing, Pairing and Commissioning | Linker",
+        "meta_description": "Notes from the engineering desk: sizing batteries to a load profile, matching inverter and battery.",
+        "h1": "Read before you size, pair or quote.",
+        "current_schema": "CollectionPage; WebPage; WebSite",
+        "issues": "Duplicate WebSite type in graph worth checking",
+        "source": "https://de-linker.com/blog/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/hybrid-inverter-vs-ac-coupled-storage/",
+        "page_type": "guide",
+        "title": "hybrid-inverter-vs-ac-coupled-storage (sitemap loc)",
+        "meta_description": "未在本轮抓取 meta（sitemap 已列）",
+        "h1": "未在本轮抓取 H1",
+        "current_schema": "unknown (not fetched body)",
+        "issues": "Need Article schema after fetch",
+        "source": "https://de-linker.com/post-sitemap1.xml 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/installer-checklist-inverter-battery-pairing/",
+        "page_type": "guide",
+        "title": "installer-checklist-inverter-battery-pairing (sitemap loc)",
+        "meta_description": "未在本轮抓取 meta",
+        "h1": "未在本轮抓取 H1",
+        "current_schema": "unknown (not fetched body)",
+        "issues": "Need Article schema after fetch",
+        "source": "https://de-linker.com/post-sitemap1.xml 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/linker-planner/",
+        "page_type": "tool",
+        "title": "Configure a Storage System and Get a Price | Linker",
+        "meta_description": "Size a battery and inverter system from a short brief. The result carries a bill of materials.",
+        "h1": "Linker Planner",
+        "current_schema": "none",
+        "issues": "App-like; keep indexable only if unique content",
+        "source": "https://de-linker.com/linker-planner/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/imprint/",
+        "page_type": "legal",
+        "title": "Imprint | Linker",
+        "meta_description": "Legal notice for de-linker.com: the site operator, the responsible contact and the company.",
+        "h1": "Imprint",
+        "current_schema": "none",
+        "issues": "Legal page; optional WebPage",
+        "source": "https://de-linker.com/imprint/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/cart/",
+        "page_type": "utility",
+        "title": "Cart (page-sitemap loc)",
+        "meta_description": "n/a",
+        "h1": "n/a",
+        "current_schema": "unknown",
+        "issues": "noindex; robots does not disallow cart itself",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10",
+        "priority": "P1",
+        "index": false
+      },
+      {
+        "url": "https://de-linker.com/my-account/",
+        "page_type": "utility",
+        "title": "My account / Trade Portal",
+        "meta_description": "n/a",
+        "h1": "n/a",
+        "current_schema": "unknown",
+        "issues": "noindex; login wall",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10",
+        "priority": "P1",
+        "index": false
+      },
+      {
+        "url": "https://www.memodo.de/photovoltaik/heimspeicher/",
+        "page_type": "competitor-collection",
+        "title": "Heimspeicher für Solaranlagen kaufen",
+        "meta_description": "Entdecke bei Memodo eine große Auswahl an Heimspeichern für Solaranlagen.",
+        "h1": "Heimspeicher (nav/list)",
+        "current_schema": "not extracted (need render check)",
+        "issues": "L1 application split vs Linker home-storage",
+        "source": "https://www.memodo.de/photovoltaik/heimspeicher/ 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://shop.krannich-solar.com/en-de/Residential-Storage",
+        "page_type": "competitor-collection",
+        "title": "Residential Storages | Krannich",
+        "meta_description": "Residential storages, commercial batteries, and complete sets (homepage card).",
+        "h1": "Residential Storages",
+        "current_schema": "BreadcrumbList; Organization",
+        "issues": "Request price CTA; login pricing",
+        "source": "https://shop.krannich-solar.com/en-de 2026-10-10",
+        "priority": "P1",
+        "index": true
+      },
+      {
+        "url": "https://de-linker.com/",
+        "page_type": "home",
+        "proposed_url": "/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "n/a",
+        "content_source": "existing homepage",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/products/",
+        "page_type": "collection-hub",
+        "proposed_url": "/products/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "existing WooCommerce catalog page",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/home-storage/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/home-storage/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "existing category; tag application:residential",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/commercial-storage/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "existing category; tag application:commercial",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/all-in-one-systems/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/commercial-storage/all-in-one-systems/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/product-category/commercial-storage/",
+        "content_source": "existing nested category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/commercial-storage/battery-systems/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/commercial-storage/battery-systems/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/product-category/commercial-storage/",
+        "content_source": "existing nested category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/inverters/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/inverters/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "type:inverter; dual-map to residential and C&I via tags",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/ems-monitoring/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/ems-monitoring/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "existing category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/ev-chargers/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/ev-chargers/",
+        "taxonomy_level": 1,
+        "priority": "P2",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "existing category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/accessories/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/products/",
+        "content_source": "existing category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/meters-current-transformers/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/accessories/meters-current-transformers/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/product-category/accessories/",
+        "content_source": "existing nested category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product-category/accessories/backup-power/",
+        "page_type": "collection",
+        "proposed_url": "/product-category/accessories/backup-power/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/product-category/accessories/",
+        "content_source": "existing nested category",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/",
+        "page_type": "product",
+        "proposed_url": "/product/{handle}/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "parent product-category (two lists min)",
+        "content_source": "WooCommerce product base; descriptive handle",
+        "source": "https://woocommerce.com/document/permalinks 2026-10-10 | https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/de/produkt/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/",
+        "page_type": "product-de",
+        "proposed_url": "/de/produkt/{handle}/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "German hreflang alternate",
+        "content_source": "de-sitemap.xml product path",
+        "source": "https://de-linker.com/de-sitemap.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/solution/residential-storage/",
+        "page_type": "application",
+        "proposed_url": "/solution/residential-storage/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/solution/",
+        "content_source": "application hub; not a product-category",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/solution/commercial-storage/",
+        "page_type": "application",
+        "proposed_url": "/solution/commercial-storage/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/solution/",
+        "content_source": "application hub",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/solution/utility-storage/",
+        "page_type": "application",
+        "proposed_url": "/solution/utility-storage/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/solution/",
+        "content_source": "quote-only; no cart category",
+        "source": "https://de-linker.com/solution/utility-storage/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/for-installer/",
+        "page_type": "persona",
+        "proposed_url": "/for-installer/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "installer path; CTA to contact/planner",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/for-epc/",
+        "page_type": "persona",
+        "proposed_url": "/for-epc/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "EPC path",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/contact/",
+        "page_type": "contact",
+        "proposed_url": "/contact/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "inquiry form; add project fields",
+        "source": "https://de-linker.com/contact/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/faq-download/",
+        "page_type": "docs",
+        "proposed_url": "/faq-download/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "document library not FAQPage",
+        "source": "https://de-linker.com/faq-download/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/installer-checklist-inverter-battery-pairing/",
+        "page_type": "guide",
+        "proposed_url": "/{guide-slug}/",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": true,
+        "parent_hub": "https://de-linker.com/blog/",
+        "content_source": "post-sitemap guides",
+        "source": "https://de-linker.com/post-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/linker-planner/",
+        "page_type": "tool",
+        "proposed_url": "/linker-planner/",
+        "taxonomy_level": 1,
+        "priority": "P2",
+        "index": true,
+        "parent_hub": "https://de-linker.com/",
+        "content_source": "planning tool",
+        "source": "https://de-linker.com/linker-planner/ 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/cart/",
+        "page_type": "utility-noindex",
+        "proposed_url": "/cart/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": false,
+        "parent_hub": "n/a",
+        "content_source": "checkout utility",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/my-account/",
+        "page_type": "utility-noindex",
+        "proposed_url": "/my-account/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": false,
+        "parent_hub": "n/a",
+        "content_source": "trade portal login",
+        "source": "https://de-linker.com/page-sitemap1.xml 2026-10-10"
+      },
+      {
+        "url": "template: https://de-linker.com/product-category/home-storage/?filter_{{attr}}={{value}}",
+        "page_type": "filter-thin",
+        "proposed_url": "/product-category/{handle}/?filter_{{attr}}={{value}}",
+        "taxonomy_level": 1,
+        "priority": "P1",
+        "index": false,
+        "parent_hub": "parent category canonical",
+        "content_source": "WooCommerce filter URLs; template declared",
+        "source": "https://woocommerce.com/document/permalinks 2026-10-10"
+      },
+      {
+        "url": "https://de-linker.com/product/goodwe-gw10k-et/ → /product-category/inverters/",
+        "page_type": "redirect",
+        "proposed_url": "/product/{retired-slug}/",
+        "taxonomy_level": 1,
+        "priority": "P0",
+        "index": false,
+        "parent_hub": "target category or replacement PDP",
+        "content_source": "live 301 observed 2026-10-10",
+        "source": "https://de-linker.com/product/goodwe-gw10k-et/ 2026-10-10"
+      }
+    ]
+  },
+  "schema": {
+    "audit_date": "2026-10-10",
+    "implementations": [
+      {
+        "page_type": "home",
+        "schema_types": [
+          "Organization",
+          "WebSite"
+        ],
+        "required_properties": "name, url, address, contactPoint, legalName",
+        "insertion_point": "wp_head JSON-LD (already present; extend sameAs)",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P0",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "page_type": "home-search",
+        "schema_types": [
+          "WebSite potentialAction SearchAction"
+        ],
+        "required_properties": "target, query-input",
+        "insertion_point": "wp_head WebSite node",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P2",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "page_type": "product",
+        "schema_types": [
+          "Product",
+          "Offer",
+          "Brand",
+          "manufacturer Organization"
+        ],
+        "required_properties": "name, sku, image, brand, manufacturer, material, offers.url, additionalProperty MOQ, additionalProperty Lead Time",
+        "insertion_point": "woocommerce_structured_data_product filter; do not emit second Product",
+        "validation_url": "https://search.google.com/test/rich-results | https://validator.schema.org/",
+        "priority": "P0",
+        "source": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/ 2026-10-10 | https://contentgecko.io/blog/woocommerce-structured-data 2026-10-10"
+      },
+      {
+        "page_type": "product-battery",
+        "schema_types": [
+          "Product"
+        ],
+        "required_properties": "material (LiFePO4 from description), manufacturer, additionalProperty MOQ (gap), additionalProperty Lead Time (gap)",
+        "insertion_point": "woocommerce_structured_data_product",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P0",
+        "source": "https://de-linker.com/product/ecoflow-ocean-2-battery-8-0-kwh-ef-bd-8-s2/ 2026-10-10"
+      },
+      {
+        "page_type": "product-breadcrumb",
+        "schema_types": [
+          "BreadcrumbList"
+        ],
+        "required_properties": "itemListElement.position, name, item",
+        "insertion_point": "wp_head @graph on PDP",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P0",
+        "source": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/ 2026-10-10"
+      },
+      {
+        "page_type": "collection",
+        "schema_types": [
+          "BreadcrumbList"
+        ],
+        "required_properties": "itemListElement",
+        "insertion_point": "already on category templates; keep",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "page_type": "collection-itemlist",
+        "schema_types": [
+          "ItemList"
+        ],
+        "required_properties": "itemListElement (first-screen cards only)",
+        "insertion_point": "category template after breadcrumb; skip filter URLs",
+        "validation_url": "https://validator.schema.org/",
+        "priority": "P2",
+        "source": "https://de-linker.com/product_cat-sitemap1.xml 2026-10-10"
+      },
+      {
+        "page_type": "products-hub",
+        "schema_types": [
+          "CollectionPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url, isPartOf",
+        "insertion_point": "existing; keep",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/ 2026-10-10"
+      },
+      {
+        "page_type": "contact",
+        "schema_types": [
+          "ContactPage",
+          "Organization"
+        ],
+        "required_properties": "name, url, mainEntity",
+        "insertion_point": "wp_head; reuse #organization @id",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/contact/ 2026-10-10"
+      },
+      {
+        "page_type": "contact-local",
+        "schema_types": [
+          "LocalBusiness"
+        ],
+        "required_properties": "address, telephone (only if public premises confirmed)",
+        "insertion_point": "wp_head @graph; currently gap on opening hours",
+        "validation_url": "https://validator.schema.org/",
+        "priority": "P2",
+        "source": "https://de-linker.com/contact/ 2026-10-10"
+      },
+      {
+        "page_type": "about",
+        "schema_types": [
+          "AboutPage",
+          "Organization"
+        ],
+        "required_properties": "about, url",
+        "insertion_point": "wp_head; reuse #organization",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/about/ 2026-10-10"
+      },
+      {
+        "page_type": "faq-download",
+        "schema_types": [
+          "CollectionPage"
+        ],
+        "required_properties": "name, url — do not use FAQPage",
+        "insertion_point": "existing CollectionPage",
+        "validation_url": "https://validator.schema.org/",
+        "priority": "P1",
+        "source": "https://de-linker.com/faq-download/ 2026-10-10"
+      },
+      {
+        "page_type": "solution-hub",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url, isPartOf",
+        "insertion_point": "wp_head on /solution/",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/solution/ 2026-10-10"
+      },
+      {
+        "page_type": "solution-residential",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/solution/residential-storage/ 2026-10-10"
+      },
+      {
+        "page_type": "solution-commercial",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/solution/commercial-storage/ 2026-10-10"
+      },
+      {
+        "page_type": "solution-utility",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/solution/utility-storage/ 2026-10-10"
+      },
+      {
+        "page_type": "persona-installer",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P2",
+        "source": "https://de-linker.com/for-installer/ 2026-10-10"
+      },
+      {
+        "page_type": "persona-epc",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P2",
+        "source": "https://de-linker.com/for-epc/ 2026-10-10"
+      },
+      {
+        "page_type": "guide",
+        "schema_types": [
+          "Article",
+          "BreadcrumbList"
+        ],
+        "required_properties": "headline, datePublished, author, image",
+        "insertion_point": "post template wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://de-linker.com/post-sitemap1.xml 2026-10-10"
+      },
+      {
+        "page_type": "blog-hub",
+        "schema_types": [
+          "CollectionPage"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "existing; dedupe WebSite node",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P2",
+        "source": "https://de-linker.com/blog/ 2026-10-10"
+      },
+      {
+        "page_type": "services",
+        "schema_types": [
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "required_properties": "name, url",
+        "insertion_point": "wp_head",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P2",
+        "source": "https://de-linker.com/services-support/ 2026-10-10"
+      },
+      {
+        "page_type": "competitor-product-ref",
+        "schema_types": [
+          "Product (Krannich reference only)"
+        ],
+        "required_properties": "name, sku, image, description (LFP in body)",
+        "insertion_point": "n/a — competitor; Linker should match manufacturer + material pattern without copying price login wall",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P1",
+        "source": "https://shop.krannich-solar.com/en-de/SigenStor-20.0-Energy-Controller-15.0-TP/0165154 2026-10-10"
+      },
+      {
+        "page_type": "offer-policy",
+        "schema_types": [
+          "Offer"
+        ],
+        "required_properties": "url, availability; price omitted when net trade price not on page",
+        "insertion_point": "same Product node; do not invent price",
+        "validation_url": "https://search.google.com/test/rich-results",
+        "priority": "P0",
+        "source": "https://de-linker.com/product/goodwe-esa-gw10k-eha-g20-10-kw-single-phase-power-module/ 2026-10-10 | https://shop.krannich-solar.com/en-de 2026-10-10"
+      },
+      {
+        "page_type": "organization-id",
+        "schema_types": [
+          "Organization"
+        ],
+        "required_properties": "legalName, address, telephone, email, @id https://de-linker.com/#organization",
+        "insertion_point": "single graph node reused",
+        "validation_url": "https://validator.schema.org/",
+        "priority": "P1",
+        "source": "https://de-linker.com/ 2026-10-10"
+      }
+    ]
+  }
+}

@@ -42,6 +42,7 @@ created: 2026-10-06
 - [例子 New 化](tickets/examples-from-new.md)：81/81 例子处理完——约 59 个锚定竞品调研形状（encyclopedia-research 09–32 + docs/research 08-28 + brand-voice；用户 10-06 裁定 New 页面形状过时、改按竞品映射，已写进票正文「材料源修正」），22 个保留通用支架并注明原因；验收 §8 第 1/5/6/8 条全绿，外部三仓全程只读。
 - [抽取复核修复清单](tickets/review-fixes.md)：六条复核发现当轮修复——marketing 交付树补建（9 目录）、copywriting/visual-content 产出路径对齐方法 skill 正典、AGENTS/README/status 台账切到真实 0–7 流水线（冷启动进 marketing-profile）、evals 补 12 条 schema 映射（**决议：补映射不降级 WARN**）+ `*.schema.json` 自引用误报修复、to_obsidian→to_markdown、search-protocol 补「内容生成」查证行；quick_validate 81/81 全绿、validate_project 退出码 0。
 - [重叠 skill 对裁定合并](tickets/overlap-dedup-adjudication.md)：跨源 11 对 + 同源 6 组全部裁完——跨源 11 对全部**并存分工**（收窄 description + 正文互指）；同源：profile↔product-profile **合并删一**（skill 总数 81→80）、eval/skill-eval 与漏斗三件套与文案片段并存分工、获客竞品三套再收口、LinkedIn 十帖无需动作；顺带修复各组优化点 + references/编排清账；`quick_validate` 80/80 全绿、`validate_project` 退出码 0。
+- [验收：对照 review + 抽查 + 冒烟](tickets/acceptance-review-and-smoke.md)：80 skill 对照 review 全过（3 处保真修复当轮清账）、主模型抽查 16/16、site-and-schema 真实冒烟产出可用、五家（Kimi / Z Code / DeepSeek / OpenCode / Hermes）冷启动 S1+S3 全 PASS；workbook WARN 裁定为误报。地图闭环。
 
 ## Not yet specified
 
