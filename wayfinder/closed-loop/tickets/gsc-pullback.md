@@ -1,12 +1,14 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-opus-5-5 会话 2026-10-14
 step: 1
-blocked_by: [gsc-site-access, cloud-service-account, execution-log-flow]
+blocked_by: [gsc-site-access, cloud-service-account, base-table-build]
 ---
 
 # GSC 数据回流
+
+> **先于「执行登记流程」做（用户 2026-10-14）**：执行登记暂缓（新站重大改造中），本票不再等它。执行登记为空时，「登记编号」列留空；执行登记有了行之后，脚本每次运行都按网址重新挂编号，不用回头改数据。
 
 ## Question
 
