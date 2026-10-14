@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-code opus-5.5 (2026-10-14)
 step: 1
 blocked_by: []
 ---
