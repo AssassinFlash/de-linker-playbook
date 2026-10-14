@@ -17,8 +17,8 @@ blocked_by: []
 - 分几张工作表：至少执行登记（L0，两线共用）、网页反馈（GSC：收录状态、展示、点击，按页 × 日期）、询盘（L3）、邮件反馈（送达 / 回复）、说明页。是否需要一张「动作 ↔ 反馈」对照表。
 - 每列：中文列名、含义、来源（操作者口述 / 脚本 / AI）、谁写、取值示例、空值含义。长表（一行一条观测）便于 Looker Studio；给初学者另配一张「怎么读这张表」说明。
 - 归因锚：执行登记的编号如何与 URL、邮件 Message-ID、询盘单号挂钩。
-- 隐私：底表在 `所有者账号` 的私有表格里，但只放判断所需的最少个人数据（询盘与回信：单号 / 公司名 / 日期，不放正文与私人邮箱？由本票定）。
-- 数据可得性以已有调研为准（`wayfinder/feasibility/research/google-channel-access.md`、`mailbox-readonly-access.md`、`feedback-ladder-practice.md`）；询盘字段以「询盘数据从哪读」为准——若那票未关，询盘表先按新站 Woo 状态（`inquiry-received` / `proforma-issued` / 联系表单）占位，并在那票正文写明待对齐。
+- 隐私：底表在 `所有者账号` 的私有表格里，但只放判断所需的最少个人数据。询盘已由调研定最小集合（见下）；回信由本票定（建议同口径：Message-ID、公司名、日期、分类，不放正文与私人邮箱）。
+- 数据可得性以已有调研为准（`wayfinder/feasibility/research/google-channel-access.md`、`mailbox-readonly-access.md`、`feedback-ladder-practice.md`）；询盘字段以「询盘数据从哪读」为准（已关）：询盘表最小列 = 内部 id、单号、公司名、创建时刻（UTC）、状态（询盘已收到 / 形式发票已开 / 已完成 / 已取消）、签发时刻（可空）；不放姓名、邮箱、电话、地址；联系表单与直接来信不可得，不设行。详见 `wayfinder/closed-loop/research/l3-inquiry-source.md` 第 5 节。
 
 原型形态：仓内 `templates/` 下的 xlsx 或 CSV 样例（含几行假数据，标「样例」）+ 列定义写进 `schemas/`（公开，无真实数据）。HITL：操作者看原型，回答「看得懂吗、哪列不明白、想在看板上看到什么」，不问行业判断。
 

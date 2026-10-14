@@ -37,7 +37,7 @@ created: 2026-10-14
 - 线上已切换到新站：首页加载 `plugins/linker-commerce`、`plugins/linker-tools`，`/wp-json/linker/v1/engineering-feed` 返回 200。站点改动走新站仓库管线（本地 → 评审站 → 线上，规格 `docs/specs/17-cutover.md`）。
 - Google 侧为零：无 GSC 资源、无 GA4、无 Cloud 项目；无 DNS 权限 → GSC 用网址前缀资源 `https://de-linker.com/`（API 标识带尾斜线）。账号角色见「Google 账号现状清点」（真实明细在 vault `deliverables/marketing/00-system/google-account-inventory.md`）。
 - 邮箱：只读 `chester@de-linker.com`（腾讯企业邮，IMAP `imap.exmail.qq.com:993`）；站点询盘通知发 `团队邮箱`（sales@），不读。
-- 询盘：Woo 订单状态 `inquiry-received` → `proforma-issued`，另有 `/kontakt/` 联系表单；每日 09:00 摘要（新站 `docs/specs/74-daily-digest.md`）。
+- 询盘：Woo 订单状态 `inquiry-received` → `proforma-issued` → `completed` / `cancelled`；每日 09:00 摘要（新站 `docs/specs/74-daily-digest.md`）。联系页 `/contact/`、`/de/kontakt/` 线上仍是「改发团队邮箱」的回退块（`/kontakt/` 404），新表单未挂上且只发邮件不落库——联系表单与直接来信的询盘不可计（见「询盘数据从哪读」）。
 - 写死 `~/Documents/New` 的文件：`skills/` 下 101 个，另有 `CONTEXT.md`、`AGENTS.md`、`README.md`、`docs/getting-started.md`、`state/status.md`（`wayfinder/` 下的历史记录不改）。
 
 **怎么找前沿**（本地 markdown 追踪）：票在 `tickets/*.md`，frontmatter 有 `status`、`assignee`、`blocked_by`、`step`（补齐顺序 0–6，验收为 7）。前沿 = `status: open`、`assignee` 为空、`blocked_by` 里每张票都已 `status: closed`。多张可取时按 `step` 小者先，同 step 任取。认领 = 先把 `assignee` 写成自己（会话名 + 日期）再开工。
@@ -52,12 +52,14 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 
 - [反馈分级行动规则调研](tickets/feedback-action-rules-research.md)：冷启动可执行的只有技术阻断、退信状态码、标题/摘要缺陷三类；比率类（零展示、点击率、回复率、跟进次数间隔、询盘数、上移时点）均无通用阈值，只记账。
 - [同意横幅与 GA4 选型调研](tickets/consent-ga4-research.md)：Complianz 免费版 + WP Consent API + Site Kit，Consent Mode 走 Basic（同意前不传数据），第一层同等接受/拒绝；Script Center 能否挡住 Site Kit 的 gtag.js 须先实测。另发现线上已在无横幅时写 Woo 订单归因 Cookie。
+- [询盘数据从哪读](tickets/l3-inquiry-source.md)：L3 主路径 = Woo REST 只读密钥读四个询盘状态 + 签发 meta；联系表单（未挂、只发信）与直接来信不可计；表格只留 id、单号、公司、创建时刻、状态、签发时刻。
 
 ## Not yet specified
 
 - **非 Google 渠道的 L1/L2**：操作者可在任意渠道发布（LinkedIn、行业论坛、目录站……）。执行登记能记 L0；这些渠道的到达与互动怎么回流（口述 + 截图？平台导出？）要等底表与反馈规则定形后才看得清。
 - **从冷启动到逐级上移的切换条件**：反馈分级规定冷启动只决策在 L0–L1，数据积累后上移。上移的条件（多少天、多少展示 / 点击 / 询盘）在「反馈分级规则定稿」里可能只能定冷启动段；之后的段落等有了真实数据再切票。
 - **询盘归因到动作**：一条询盘来自哪次执行（哪页、哪封信）。GSC 不带到访者路径，GA4 受同意率限制；GA4 上线并有数据后再判断能做到多细。
+- **联系表单与直接来信的询盘**：现在不可计，北极星只含形式发票申请。要不要让联系表单落库（新站仓库改动）、以及挂上新表单（新站迁移 68），等 L3 回流跑起来、看清询盘量与缺口后再判断。
 - **定时任务跑在哪**：回流脚本在操作者的 Mac 上定时跑，还是放到服务 VPS 上。首个回流票（「GSC 数据回流」）会先定一个；若操作者的机器不常开导致断档，再切票。
 
 ## Out of scope

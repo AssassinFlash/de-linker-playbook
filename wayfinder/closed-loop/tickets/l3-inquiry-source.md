@@ -1,8 +1,9 @@
 ---
 wayfinder: research
-status: open
+status: closed
 assignee: grok-build (dispatched 2026-10-14)
 grok_session: a557532d-2be0-428a-a884-8a6c4ea8f1e7
+resolved: 2026-10-14
 step: 2
 blocked_by: []
 ---
@@ -26,3 +27,11 @@ blocked_by: []
 ## 完成标准
 
 - 五问各有结论 + 来源；推荐一条主读取路径并说明理由。主模型抽查至少两条（一条仓内路径、一条官方文档），写进 Resolution，并向用户汇报。
+
+## Resolution
+
+**主读取路径：WooCommerce REST 只读密钥**，`GET /wp-json/wc/v3/orders`，`status` 只取 `inquiry-received`、`proforma-issued`、`completed`、`cancelled`（`pending` = "Not sent"，不算询盘），`include_meta=_linker_proforma_issued`。线上路由已把两个自定义状态放进 `status` 枚举；Woo 11.1.2 在经典表与 HPOS 两条查询里都按它过滤；Read 密钥改不了订单。**三个入口里只有形式发票申请可得**：联系表单线上未挂新表单（`/contact/`、`/de/kontakt/` 仍是让访客改发团队邮箱的旧回退块，`/kontakt/` 404），新表单即使挂上也只发邮件不落库；直接来信到团队邮箱无其他只读计数——这两类按没有处理。`just pull` 把公司名抹成占位、且手工触发，只作状态/日期核对后备；WP-CLI 加载插件时可能在 `init` 写一条摘要 cron，不作主路径。表格最小集合：内部 id、单号、公司名、`date_created_gmt`、状态、签发秒（有才写）；姓名、邮箱、电话、地址、IP 等一律不进表（GDPR + 欧法院 C-710/23：法人代表的姓名联系方式是个人数据）。
+
+全文：[`research/l3-inquiry-source.md`](../research/l3-inquiry-source.md)。
+
+主模型抽查（2026-10-14）：线上 `wc/v3/orders` 未授权 401、`orders/statuses` 含 `inquiry-received` / `proforma-issued` 且 `pending` 名为 "Not sent"；`/kontakt/` 404，`/contact/` 含 `cp-contact-fallback` 与 `data-linker-contact-mount`；新站 `Issuer.php:44` 定义 `_linker_proforma_issued`；`anonymize.py:70` 公司名替换为 "Example Company"；新站插件无 `woocommerce_order_number` 过滤器（仅 vendor stubs 提及）。均与调研一致。
