@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-code-fact-source-entry 2026-10-14
 step: 0
 blocked_by: []
 ---
