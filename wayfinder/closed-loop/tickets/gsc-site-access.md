@@ -22,6 +22,10 @@ blocked_by: []
 - 该调研推荐以后 GA4 用 **Site Kit** 作载体（它按 WP Consent API 发 Consent Mode v2 默认值，Site Kit 文档点名 Complianz 等 CMP 联动），并建议 GSC 与 GA4 共用这一载体。选载体时把这一条当作证据之一；若仍选 meta / HTML 文件，写明理由，以免 GA4 那票再装 Site Kit 时与已有验证冲突。详见 `wayfinder/closed-loop/research/consent-ga4.md` 第 4 节。
 - 注意：Site Kit 只要连了 Analytics 就会无条件入队 `gtag.js`。本票只连 Search Console，不连 Analytics，直到「GA4 与同意横幅站点接入」装好横幅。
 
+## 防冲掉（用户 2026-10-14：站点优化与接入并行）
+
+- 新站会在本票之后继续优化与部署。验证载体必须在新站仓库内、随正常部署发布，并在新站的回归检查里加一条断言（线上 / 评审站首页仍输出 GSC 验证；若用 Site Kit，则插件在且已连接 Search Console），让后续任何 PR 冲掉验证时 CI 或回归先报错。在新站仓库的规格里写明「这是数据回流的前提，不得移除」。
+
 ## 完成标准
 
 - GSC 显示资源已验证；站点地图状态「成功」（截图或操作者口述 + agent 用线上 HTML 复核 meta / 文件存在）。
