@@ -23,7 +23,7 @@
 - 适配器：`.agents/skills/` 里对每个 skill 的软链。无扫描器时，按用户任务直接打开对应 `SKILL.md`。
 - 用任务匹配 `description`，然后只走那份正文。不要另写一套流程。
 
-`schemas/` = 交付物 JSON Schema；`templates/` = 产出 xlsx 模板与导出脚本；`evals/` = 校验/评测脚本；`docs/` = 人读说明与事实源入口。
+`schemas/` = 交付物 JSON Schema；`templates/` = 产出 xlsx 模板与导出脚本；`evals/` = 校验/评测脚本；`scripts/` = 运行脚本（底表见 [`docs/base-table.md`](docs/base-table.md)）；`docs/` = 人读说明与事实源入口。
 
 ## 事实源
 

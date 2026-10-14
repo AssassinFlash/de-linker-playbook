@@ -10,3 +10,5 @@ Use them when an empty workbook shape is needed before real research data exists
 Completed Excel deliverables belong in `deliverables/marketing/<phase>/` or `deliverables/lead/<phase>/` (lowercase phase directories).
 
 Paired export helpers (fill these workbooks or write Markdown next to them) live in `templates/scripts/`.
+
+`base-table-sample.xlsx` is different: it is the 底表 sample workbook (fake data), generated from `schemas/base-table.schema.json` by `uv run scripts/base_table.py xlsx`. Do not edit it by hand. See `docs/base-table.md`.

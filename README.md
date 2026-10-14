@@ -13,6 +13,7 @@ wayfinder/           过程管理（地图与票）
 schemas/             交付物 JSON Schema
 templates/           产出 xlsx 模板与导出脚本
 evals/               校验/评测脚本
+scripts/             运行脚本（底表等；`uv run scripts/<name>.py`）
 docs/                人读说明
 CONTEXT.md           词汇表
 AGENTS.md            agent 入口（只指路）

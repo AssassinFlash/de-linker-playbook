@@ -1,0 +1,813 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/base-table.schema.json",
+  "title": "底表",
+  "description": "底表（Google 表格）的表结构定义。每个工作表在 $defs 里有一个同名定义：properties 的顺序就是列的顺序，属性名就是表头里的中文列名。一行数据按该定义校验。说明页、样例工作簿（templates/base-table-sample.xlsx）、建表脚本都从本文件生成或校验，改列先改这里。本文件公开，不含任何真实数据或账号。",
+  "x-sheet-order": ["执行登记", "网页收录", "网页表现", "邮件反馈", "询盘", "动作进度"],
+  "x-column-annotations": {
+    "description": "这列是什么",
+    "x-source": "从哪来",
+    "x-writer": "谁写：脚本 = 仓内回流脚本自动写；AI = 对话里的 AI 写；AI（据口述）= 操作者在对话里说一句，AI 查证后代写。操作者不直接在表里打字",
+    "examples": "取值示例（样例，不是真实数据）",
+    "x-empty": "空着表示什么",
+    "x-read": "怎么读、注意什么（可省）"
+  },
+  "x-conventions": [
+    "表头只占第 1 行，从第 2 行起每行一条记录；不合并单元格、不插空行、不加小计行，这样 Looker Studio 才能直接接上。",
+    "时刻列一律 UTC，列名里写明「（UTC）」；网页表现的日期按 Google 的太平洋时间切日，列名里写明。",
+    "登记编号是把一切串起来的钥匙：执行登记里生成，其他表引用它。",
+    "表里只放判断所需的最少个人数据：公司名可以，人名、邮箱地址、电话、地址、邮件正文、询盘备注都不放。"
+  ],
+  "$defs": {
+    "执行登记": {
+      "type": "object",
+      "description": "我们做过什么：每次在某个渠道发布、更新、改网址、下线，或发出一封邮件，就有一行。这是 L0（已执行）的唯一来源，也是其他所有表回头对账的锚。",
+      "x-row": "一次手动动作 = 一行。同一页面先发布、后更新，是两行（两个登记编号）。",
+      "x-rows-added": "操作者在对话里说「我发了 / 上线了 / 更新了 / 发出去了」，AI 查证后追加一行；新站仓库合并了影响收录或可见内容的改动，AI 以 PR 为证据补登一行。",
+      "x-key": ["登记编号"],
+      "required": ["登记编号", "登记时刻（UTC）", "执行日期", "线", "渠道", "动作", "内容说明", "来源", "查证结果"],
+      "properties": {
+        "登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "这次动作的编号，全表唯一。格式 E-年月日-当天序号。",
+          "x-source": "AI 写入时按执行日期生成，当天第几条就是几号。",
+          "x-writer": "AI",
+          "examples": ["E-20261010-01"],
+          "x-empty": "不允许空。",
+          "x-read": "在其他表里看到同一个编号，就是在说这次动作的后续反馈。"
+        },
+        "登记时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这一行写进表的时刻。",
+          "x-source": "AI 写入时自动填。",
+          "x-writer": "AI",
+          "examples": ["2026-10-10T09:30:00Z"],
+          "x-empty": "不允许空。",
+          "x-read": "补登的行，登记时刻会晚于执行日期，这是正常的。"
+        },
+        "执行日期": {
+          "type": "string",
+          "format": "date",
+          "description": "动作实际发生的那天（操作者所在地的日期）。",
+          "x-source": "操作者口述；新站 PR 补登时取合并上线日。",
+          "x-writer": "AI（据口述）",
+          "examples": ["2026-10-10"],
+          "x-empty": "不允许空。"
+        },
+        "线": {
+          "type": "string",
+          "enum": ["营销", "获客"],
+          "description": "这次动作属于营销线还是获客线。",
+          "x-source": "AI 按动作内容判断：网站内容、社媒内容归营销；对具体公司的外展邮件归获客。",
+          "x-writer": "AI",
+          "examples": ["营销"],
+          "x-empty": "不允许空。"
+        },
+        "渠道": {
+          "type": "string",
+          "enum": ["网站", "邮件", "LinkedIn", "其他平台"],
+          "description": "动作发生在哪里。",
+          "x-source": "操作者口述。",
+          "x-writer": "AI（据口述）",
+          "examples": ["网站"],
+          "x-empty": "不允许空。",
+          "x-read": "「其他平台」时，具体是哪个平台写在内容说明里。"
+        },
+        "动作": {
+          "type": "string",
+          "enum": ["新发布", "更新内容", "改网址", "下线", "发出邮件"],
+          "description": "做了哪一类事。",
+          "x-source": "操作者口述。",
+          "x-writer": "AI（据口述）",
+          "examples": ["新发布"],
+          "x-empty": "不允许空。",
+          "x-read": "改网址时，旧网址列必须有值，这样 Google 的数据才能接上。"
+        },
+        "内容说明": {
+          "type": "string",
+          "description": "一句话说清发了 / 改了什么。",
+          "x-source": "操作者口述，AI 整理成一句。",
+          "x-writer": "AI（据口述）",
+          "examples": ["样例：发布一篇选型指南"],
+          "x-empty": "不允许空。"
+        },
+        "网址": {
+          "type": "string",
+          "format": "uri",
+          "description": "这次动作对应的公开地址（网站页面、LinkedIn 帖子等）。改网址时填新地址。",
+          "x-source": "操作者口述或 AI 从线上找到。",
+          "x-writer": "AI（据口述）",
+          "examples": ["https://de-linker.com/sample-guide-a/"],
+          "x-empty": "这次动作没有公开地址（比如发出一封邮件）。",
+          "x-read": "网页收录、网页表现两张表按这个网址接回本行。"
+        },
+        "旧网址": {
+          "type": "string",
+          "format": "uri",
+          "description": "改网址之前的地址。",
+          "x-source": "操作者口述或新站 PR。",
+          "x-writer": "AI（据口述）",
+          "examples": ["https://de-linker.com/sample-old-c/"],
+          "x-empty": "动作不是「改网址」。"
+        },
+        "收件公司": {
+          "type": "string",
+          "description": "邮件发给了哪家公司。只写公司名，不写人名和邮箱地址。",
+          "x-source": "操作者口述，或 AI 从已发送邮件里读出后只留公司名。",
+          "x-writer": "AI（据口述）",
+          "examples": ["样例公司甲 GmbH"],
+          "x-empty": "这次动作不是邮件。"
+        },
+        "邮件 Message-ID": {
+          "type": "string",
+          "description": "这封邮件的唯一编号（邮件头里的 Message-ID）。对方回信时会带上它，所以能自动认出「这是在回哪封信」。",
+          "x-source": "邮箱回流脚本在「已发送」里找到这封信后回填。",
+          "x-writer": "脚本",
+          "examples": ["<sample-001@example.invalid>"],
+          "x-empty": "不是邮件；或是邮件但还没在「已发送」里找到（看查证结果）。"
+        },
+        "外展序列": {
+          "type": "string",
+          "description": "这封邮件属于哪一组连续跟进的邮件（同一家公司的第 1 封、第 2 封……算一组）。",
+          "x-source": "AI 写入时按公司和计划起名。",
+          "x-writer": "AI",
+          "examples": ["S-样例公司甲"],
+          "x-empty": "不是邮件，或是一封单独的信。"
+        },
+        "第几封": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "这封是该序列里的第几封。",
+          "x-source": "操作者口述或 AI 按序列推算。",
+          "x-writer": "AI（据口述）",
+          "examples": [1],
+          "x-empty": "不是序列里的邮件。"
+        },
+        "计划共几封": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "这组序列计划一共发几封。",
+          "x-source": "外展文案交付物里写的计划。",
+          "x-writer": "AI",
+          "examples": [3],
+          "x-empty": "计划里没写封数。此时 AI 不替你决定还要不要再发。"
+        },
+        "下一封计划日期": {
+          "type": "string",
+          "format": "date",
+          "description": "计划中下一封的发出日期。",
+          "x-source": "外展文案交付物里写的计划。",
+          "x-writer": "AI",
+          "examples": ["2026-10-19"],
+          "x-empty": "计划里没写日期，或这已是最后一封。"
+        },
+        "对应交付物": {
+          "type": "string",
+          "description": "这次动作用的是哪份交付物（私有资料库里的相对路径）。",
+          "x-source": "AI 从台账和交付物目录找到。",
+          "x-writer": "AI",
+          "examples": ["marketing/05-content/sample-guide-a.md"],
+          "x-empty": "这次动作没有对应的交付物（比如临时改了一处错字）。"
+        },
+        "来源": {
+          "type": "string",
+          "enum": ["操作者口述", "新站 PR", "补登"],
+          "description": "这一行是怎么来的。",
+          "x-source": "AI 写入时填。",
+          "x-writer": "AI",
+          "examples": ["操作者口述"],
+          "x-empty": "不允许空。",
+          "x-read": "「补登」= 事后补记的历史动作；「新站 PR」= 网站仓库合并的改动，证据是 PR 链接。"
+        },
+        "查证结果": {
+          "type": "string",
+          "enum": ["已查证", "查证失败", "未查证（无法公开访问）", "待邮箱接入后查证"],
+          "description": "AI 有没有亲眼确认这次动作真的发生了。",
+          "x-source": "网页：AI 打开线上地址，看是否能打开、内容是否对得上。邮件：脚本在「已发送」里找。需登录才能看的平台：无法查证。",
+          "x-writer": "AI；邮件由脚本回填",
+          "examples": ["已查证"],
+          "x-empty": "不允许空。",
+          "x-read": "只有「已查证」的行，才拿它的后续数据判断效果。"
+        },
+        "查证证据": {
+          "type": "string",
+          "description": "查证时看到了什么，一句话。",
+          "x-source": "AI 查证时记录。",
+          "x-writer": "AI；邮件由脚本回填",
+          "examples": ["HTTP 200，页面标题与口述一致"],
+          "x-empty": "还没查证。"
+        },
+        "查证时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "查证完成的时刻。",
+          "x-source": "AI 或脚本查证时自动填。",
+          "x-writer": "AI；邮件由脚本回填",
+          "examples": ["2026-10-10T09:31:00Z"],
+          "x-empty": "还没查证。"
+        },
+        "备注": {
+          "type": "string",
+          "description": "以上各列放不下的说明。",
+          "x-source": "任何一方。",
+          "x-writer": "AI",
+          "examples": ["样例，假数据"],
+          "x-empty": "没有要补充的。"
+        }
+      }
+    },
+    "网页收录": {
+      "type": "object",
+      "description": "Google 收录了我们的页面没有：每次让 Google 检查一个网址，就记下它当时的回答。对应 L1 里的「已到达」（被收录）。",
+      "x-row": "一个网址在某一天的一次检查结果 = 一行。同一个网址每检查一次多一行，所以能看出状态是怎么变的。",
+      "x-rows-added": "回流脚本定时运行，检查执行登记里的网址和站点地图里的网址，每个网址每天至多一行。",
+      "x-key": ["检查日期", "网址"],
+      "required": ["检查日期", "网址", "收录结论", "Google 状态原文", "状态中文说明", "反馈级别", "写入时刻（UTC）"],
+      "properties": {
+        "检查日期": {
+          "type": "string",
+          "format": "date",
+          "description": "脚本让 Google 检查这个网址的日期。",
+          "x-source": "脚本运行日期。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14"],
+          "x-empty": "不允许空。"
+        },
+        "网址": {
+          "type": "string",
+          "format": "uri",
+          "description": "被检查的页面地址。",
+          "x-source": "执行登记的网址，加上站点地图里的网址。",
+          "x-writer": "脚本",
+          "examples": ["https://de-linker.com/sample-guide-a/"],
+          "x-empty": "不允许空。"
+        },
+        "登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "这个网址最近一次执行登记的编号。",
+          "x-source": "脚本按网址到执行登记的「网址」或「旧网址」里找：取执行日期不晚于检查日期的最近一条。",
+          "x-writer": "脚本",
+          "examples": ["E-20261010-01"],
+          "x-empty": "这页在站点地图里，但从没登记过动作（比如上线前就有的老页面）。",
+          "x-read": "空着的行也有用：看全站收录情况；但不拿它判断某次动作的效果。"
+        },
+        "语言": {
+          "type": "string",
+          "enum": ["英文", "德文"],
+          "description": "页面语言。",
+          "x-source": "脚本按网址判断：/de/ 开头为德文，其余为英文。",
+          "x-writer": "脚本",
+          "examples": ["英文"],
+          "x-empty": "不允许空。"
+        },
+        "收录结论": {
+          "type": "string",
+          "enum": ["已收录", "未收录", "部分问题", "未知"],
+          "description": "Google 的总判断，翻成中文。",
+          "x-source": "Search Console 网址检查接口返回的 verdict：PASS = 已收录，FAIL = 未收录，PARTIAL = 部分问题，NEUTRAL 或无值 = 未知。",
+          "x-writer": "脚本",
+          "examples": ["已收录"],
+          "x-empty": "不允许空。",
+          "x-read": "「已收录」只说明有资格出现在搜索结果里，不保证有人搜到。"
+        },
+        "Google 状态原文": {
+          "type": "string",
+          "description": "Google 给出的具体状态，保留英文原文，方便对照官方帮助页。",
+          "x-source": "网址检查接口返回的 coverageState。",
+          "x-writer": "脚本",
+          "examples": ["Submitted and indexed", "Crawled - currently not indexed", "Discovered - currently not indexed"],
+          "x-empty": "不允许空。"
+        },
+        "状态中文说明": {
+          "type": "string",
+          "description": "上一列翻成一句中文，说明这个状态是什么意思。",
+          "x-source": "脚本按固定对照表翻译（对照表随反馈规则维护）。",
+          "x-writer": "脚本",
+          "examples": ["已提交并已收录"],
+          "x-empty": "不允许空；对照表里没有的状态写「未收录到对照表，看原文」。"
+        },
+        "上次抓取时间（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Google 最近一次来抓这个页面的时间。",
+          "x-source": "网址检查接口返回的 lastCrawlTime。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-13T22:05:00Z"],
+          "x-empty": "Google 还没来抓过这页。"
+        },
+        "抓取结果": {
+          "type": "string",
+          "description": "Google 上次抓取时页面打开得怎么样（成功、404、服务器错误等）。",
+          "x-source": "网址检查接口返回的 pageFetchState。",
+          "x-writer": "脚本",
+          "examples": ["SUCCESSFUL"],
+          "x-empty": "Google 还没来抓过这页。"
+        },
+        "Google 选的规范网址": {
+          "type": "string",
+          "description": "Google 认定的这页「正式地址」。如果和网址列不同，展示和点击会记在这个地址上。",
+          "x-source": "网址检查接口返回的 googleCanonical。",
+          "x-writer": "脚本",
+          "examples": ["https://de-linker.com/sample-guide-a/"],
+          "x-empty": "Google 还没定。"
+        },
+        "反馈级别": {
+          "type": "string",
+          "enum": ["L0", "L1"],
+          "description": "这次检查说明动作走到了哪一级：已收录 = L1；其余 = 仍在 L0。",
+          "x-source": "脚本按收录结论换算。",
+          "x-writer": "脚本",
+          "examples": ["L1"],
+          "x-empty": "不允许空。"
+        },
+        "写入时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这一行写进表的时刻。",
+          "x-source": "脚本自动填。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T06:00:00Z"],
+          "x-empty": "不允许空。"
+        },
+        "备注": {
+          "type": "string",
+          "description": "以上各列放不下的说明。",
+          "x-source": "脚本或 AI。",
+          "x-writer": "脚本",
+          "examples": ["样例，假数据"],
+          "x-empty": "没有要补充的。"
+        }
+      }
+    },
+    "网页表现": {
+      "type": "object",
+      "description": "页面在 Google 搜索里被看到、被点击了多少：展示 = L1（已到达），点击 = L2（有互动）。",
+      "x-row": "一个网址在一天里的搜索数据 = 一行。",
+      "x-rows-added": "回流脚本每天取一次。Google 的数据通常晚 2–3 天，最近两天是初步数，之后会被定稿数覆盖（同一网址同一天始终只有一行）。",
+      "x-key": ["日期（太平洋时间）", "网址"],
+      "required": ["日期（太平洋时间）", "网址", "展示", "点击", "数据状态", "反馈级别", "写入时刻（UTC）"],
+      "properties": {
+        "日期（太平洋时间）": {
+          "type": "string",
+          "format": "date",
+          "description": "数据属于哪一天。Google 按美国太平洋时间切日，所以和北京时间、德国时间都差几个小时。",
+          "x-source": "Search Console 搜索效果接口。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-12"],
+          "x-empty": "不允许空。"
+        },
+        "网址": {
+          "type": "string",
+          "format": "uri",
+          "description": "在搜索结果里出现的页面地址。",
+          "x-source": "Search Console 搜索效果接口，按页汇总。",
+          "x-writer": "脚本",
+          "examples": ["https://de-linker.com/sample-guide-a/"],
+          "x-empty": "不允许空。"
+        },
+        "登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "这一天这个网址算在哪次执行登记头上。",
+          "x-source": "脚本按网址到执行登记的「网址」或「旧网址」里找：取执行日期不晚于这一天的最近一条。",
+          "x-writer": "脚本",
+          "examples": ["E-20261010-01"],
+          "x-empty": "这页没登记过动作。"
+        },
+        "语言": {
+          "type": "string",
+          "enum": ["英文", "德文"],
+          "description": "页面语言。",
+          "x-source": "脚本按网址判断：/de/ 开头为德文，其余为英文。",
+          "x-writer": "脚本",
+          "examples": ["英文"],
+          "x-empty": "不允许空。"
+        },
+        "展示": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "这页在 Google 搜索结果里被显示了多少次（不管有没有人点）。",
+          "x-source": "Search Console impressions。",
+          "x-writer": "脚本",
+          "examples": [5],
+          "x-empty": "不允许空。",
+          "x-read": "某天没有行，表示 Google 那天没有这页的数据，按 0 理解。"
+        },
+        "点击": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "有人从搜索结果点进这页的次数。",
+          "x-source": "Search Console clicks。",
+          "x-writer": "脚本",
+          "examples": [1],
+          "x-empty": "不允许空。"
+        },
+        "点击率": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "点击 ÷ 展示。0.2 即 20%。",
+          "x-source": "Search Console ctr。",
+          "x-writer": "脚本",
+          "examples": [0.2],
+          "x-empty": "展示为 0 时不算。",
+          "x-read": "展示很少时这个比例跳得厉害，不拿它下结论。"
+        },
+        "平均排名": {
+          "type": "number",
+          "minimum": 1,
+          "description": "这页出现在搜索结果里时，平均排在第几位。数字越小越靠前；1–10 大致是第一页。",
+          "x-source": "Search Console position。",
+          "x-writer": "脚本",
+          "examples": [48.3],
+          "x-empty": "展示为 0 时没有排名。"
+        },
+        "数据状态": {
+          "type": "string",
+          "enum": ["初步", "定稿"],
+          "description": "Google 是否已把这一天的数字定下来。",
+          "x-source": "Search Console 接口的数据状态标记。",
+          "x-writer": "脚本",
+          "examples": ["定稿"],
+          "x-empty": "不允许空。",
+          "x-read": "「初步」的数字过一两天还会变，看趋势时先看「定稿」。"
+        },
+        "反馈级别": {
+          "type": "string",
+          "enum": ["L1", "L2"],
+          "description": "这一行说明动作走到了哪一级：只有展示 = L1；有点击 = L2。",
+          "x-source": "脚本按展示、点击换算。",
+          "x-writer": "脚本",
+          "examples": ["L2"],
+          "x-empty": "不允许空。"
+        },
+        "写入时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这一行最近一次写入或覆盖的时刻。",
+          "x-source": "脚本自动填。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T06:00:00Z"],
+          "x-empty": "不允许空。"
+        },
+        "备注": {
+          "type": "string",
+          "description": "以上各列放不下的说明。",
+          "x-source": "脚本或 AI。",
+          "x-writer": "脚本",
+          "examples": ["样例，假数据"],
+          "x-empty": "没有要补充的。"
+        }
+      }
+    },
+    "邮件反馈": {
+      "type": "object",
+      "description": "发出的邮件后来怎样了：找到已发送（L0 查证）、送达或退信（L1）、对方回信（L2）。",
+      "x-row": "一封已登记邮件身上发生的一件事 = 一行。一封信可能先「未见退信」、后「真人回复」，就是两行。",
+      "x-rows-added": "邮箱回流脚本定时只读邮箱，发现新的已发送、退信、回信时追加；回信的分类由 AI 读信后填，信的正文不进表。",
+      "x-key": ["登记编号", "事件类型", "回信 Message-ID"],
+      "required": ["事件日期", "登记编号", "事件类型", "反馈级别", "写入时刻（UTC）"],
+      "properties": {
+        "事件日期": {
+          "type": "string",
+          "format": "date",
+          "description": "这件事发生的日期（退信、回信以邮件日期为准）。",
+          "x-source": "邮件头的日期。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-13"],
+          "x-empty": "不允许空。"
+        },
+        "登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "这件事发生在哪封已登记的邮件上。",
+          "x-source": "脚本用回信、退信里引用的 Message-ID，对上执行登记的「邮件 Message-ID」。",
+          "x-writer": "脚本",
+          "examples": ["E-20261012-02"],
+          "x-empty": "不允许空：对不上任何登记邮件的信不进本表。"
+        },
+        "收件公司": {
+          "type": "string",
+          "description": "对方公司名，抄自执行登记，方便直接看。",
+          "x-source": "执行登记同名列。",
+          "x-writer": "脚本",
+          "examples": ["样例公司甲 GmbH"],
+          "x-empty": "执行登记里也没写。"
+        },
+        "事件类型": {
+          "type": "string",
+          "enum": ["已发送里找到", "未见退信（推断已送达）", "暂时退信", "永久退信", "认证或信誉拒收", "改址通知", "自动回复", "真人回复"],
+          "description": "发生了什么。",
+          "x-source": "脚本按邮件头和退信状态码判断；「真人回复」之后的分类由 AI 填。",
+          "x-writer": "脚本",
+          "examples": ["真人回复"],
+          "x-empty": "不允许空。",
+          "x-read": "「未见退信」是推断：没收到退信，就当作送达了，不代表对方读过。自动回复（如休假通知）不算互动。"
+        },
+        "退信状态码": {
+          "type": "string",
+          "description": "退信里写的错误编号，例如 5.1.1 = 收件邮箱不存在。",
+          "x-source": "退信通知里的状态码。",
+          "x-writer": "脚本",
+          "examples": ["5.1.1"],
+          "x-empty": "这件事不是退信。"
+        },
+        "回复分类": {
+          "type": "string",
+          "enum": ["要报价、规格、价格或样品", "提出反对", "拒绝或退订", "其他"],
+          "description": "真人回信说了什么，归成一类。",
+          "x-source": "AI 读信后判断；信的正文只在读的时候用，不存进表。",
+          "x-writer": "AI",
+          "examples": ["要报价、规格、价格或样品"],
+          "x-empty": "这件事不是真人回复。"
+        },
+        "回信 Message-ID": {
+          "type": "string",
+          "description": "对方回信、退信或自动回复那封信自己的编号。",
+          "x-source": "那封信的邮件头。",
+          "x-writer": "脚本",
+          "examples": ["<sample-reply-001@example.invalid>"],
+          "x-empty": "这件事不是一封来信（如「已发送里找到」「未见退信」）。"
+        },
+        "反馈级别": {
+          "type": "string",
+          "enum": ["L0", "未到 L1", "L1", "L2"],
+          "description": "这件事说明邮件走到了哪一级：已发送里找到 = L0；退信或改址 = 未到 L1；未见退信 = L1；真人回复 = L2；自动回复仍记 L1。",
+          "x-source": "脚本按事件类型换算。",
+          "x-writer": "脚本",
+          "examples": ["L2"],
+          "x-empty": "不允许空。"
+        },
+        "写入时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这一行写进表的时刻。",
+          "x-source": "脚本自动填。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T06:00:00Z"],
+          "x-empty": "不允许空。"
+        },
+        "备注": {
+          "type": "string",
+          "description": "以上各列放不下的说明。",
+          "x-source": "脚本或 AI。",
+          "x-writer": "脚本",
+          "examples": ["样例，假数据"],
+          "x-empty": "没有要补充的。"
+        }
+      }
+    },
+    "询盘": {
+      "type": "object",
+      "description": "网站上提交的形式发票申请（询盘）。这是 L3，也是北极星：整个闭环最终看它。",
+      "x-row": "一笔询盘 = 一行。状态变了就改这一行，不另起一行。",
+      "x-rows-added": "询盘回流脚本定时从网站读取：新询盘追加一行；已有询盘的状态、签发时刻有变化时更新原行。",
+      "x-key": ["询盘内部编号"],
+      "x-not-counted": "联系表单和直接发到邮箱的询盘现在读不到，本表没有它们，所以数字偏低。",
+      "required": ["询盘内部编号", "单号", "创建时刻（UTC）", "状态", "写入时刻（UTC）"],
+      "properties": {
+        "询盘内部编号": {
+          "type": "integer",
+          "description": "网站系统里这笔询盘的内部编号，永远不变。",
+          "x-source": "网站订单接口的 id。",
+          "x-writer": "脚本",
+          "examples": [90001],
+          "x-empty": "不允许空。"
+        },
+        "单号": {
+          "type": "string",
+          "description": "员工和每日摘要邮件里用来认单的号码。",
+          "x-source": "网站订单接口的 number。",
+          "x-writer": "脚本",
+          "examples": ["90001"],
+          "x-empty": "不允许空。",
+          "x-read": "通常和内部编号一样；不一样时以内部编号为准。"
+        },
+        "公司": {
+          "type": "string",
+          "description": "提交询盘的公司名。",
+          "x-source": "订单的账单公司名；姓名、邮箱、电话、地址读到后立即丢弃，不进表。",
+          "x-writer": "脚本",
+          "examples": ["样例公司甲 GmbH"],
+          "x-empty": "客户没填公司名。"
+        },
+        "创建时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "询盘提交的时刻。",
+          "x-source": "订单的 date_created_gmt。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T08:12:00Z"],
+          "x-empty": "不允许空。"
+        },
+        "状态": {
+          "type": "string",
+          "enum": ["询盘已收到", "形式发票已开", "已完成", "已取消"],
+          "description": "这笔询盘现在走到哪一步。",
+          "x-source": "订单状态：inquiry-received / proforma-issued / completed / cancelled。",
+          "x-writer": "脚本",
+          "examples": ["询盘已收到"],
+          "x-empty": "不允许空。"
+        },
+        "形式发票签发时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "形式发票发出的时刻。",
+          "x-source": "订单上的签发记录（_linker_proforma_issued）。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-13T10:00:00Z"],
+          "x-empty": "还没签发，或签发时刻未知。"
+        },
+        "归因登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "这笔询盘能算在哪次执行登记头上。",
+          "x-source": "AI 有证据时才填：例如这家公司先回了某封外展邮件、再来提交询盘。没有证据就空着。",
+          "x-writer": "AI",
+          "examples": ["E-20261012-02"],
+          "x-empty": "未归因：照样算进询盘总数（北极星），但不算进任何一次动作的成效。",
+          "x-read": "不要为了让每笔都有归因去猜。"
+        },
+        "归因依据": {
+          "type": "string",
+          "description": "凭什么算在那次动作头上，一句话。",
+          "x-source": "AI 写归因时同时写。",
+          "x-writer": "AI",
+          "examples": ["同一公司在外展回信后第二天提交"],
+          "x-empty": "未归因。"
+        },
+        "写入时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这一行最近一次写入或更新的时刻。",
+          "x-source": "脚本自动填。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T06:00:00Z"],
+          "x-empty": "不允许空。"
+        },
+        "备注": {
+          "type": "string",
+          "description": "以上各列放不下的说明。",
+          "x-source": "脚本或 AI。",
+          "x-writer": "AI",
+          "examples": ["样例，假数据"],
+          "x-empty": "没有要补充的。"
+        }
+      }
+    },
+    "动作进度": {
+      "type": "object",
+      "description": "动作 ↔ 反馈对照：每次动作现在走到了哪一级。把上面几张表按登记编号汇总成一张，看板和 AI 的「下一步」主要读这张。",
+      "x-row": "执行登记里的一行 = 这里的一行。",
+      "x-rows-added": "每次回流脚本跑完，整张表重新算一遍（覆盖旧内容）。不要手改，改了下次也会被覆盖。",
+      "x-key": ["登记编号"],
+      "required": ["登记编号", "执行日期", "线", "渠道", "动作", "内容说明", "当前最高级别", "更新时刻（UTC）"],
+      "properties": {
+        "登记编号": {
+          "type": "string",
+          "pattern": "^E-[0-9]{8}-[0-9]{2}$",
+          "description": "对应执行登记里的哪一行。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["E-20261010-01"],
+          "x-empty": "不允许空。"
+        },
+        "执行日期": {
+          "type": "string",
+          "format": "date",
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-10"],
+          "x-empty": "不允许空。"
+        },
+        "线": {
+          "type": "string",
+          "enum": ["营销", "获客"],
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["营销"],
+          "x-empty": "不允许空。"
+        },
+        "渠道": {
+          "type": "string",
+          "enum": ["网站", "邮件", "LinkedIn", "其他平台"],
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["网站"],
+          "x-empty": "不允许空。"
+        },
+        "动作": {
+          "type": "string",
+          "enum": ["新发布", "更新内容", "改网址", "下线", "发出邮件"],
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["新发布"],
+          "x-empty": "不允许空。"
+        },
+        "内容说明": {
+          "type": "string",
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["样例：发布一篇选型指南"],
+          "x-empty": "不允许空。"
+        },
+        "网址或收件公司": {
+          "type": "string",
+          "description": "网页类动作写网址，邮件类动作写收件公司。",
+          "x-source": "执行登记的网址或收件公司。",
+          "x-writer": "脚本",
+          "examples": ["https://de-linker.com/sample-guide-a/"],
+          "x-empty": "两者在执行登记里都没写。"
+        },
+        "查证结果": {
+          "type": "string",
+          "enum": ["已查证", "查证失败", "未查证（无法公开访问）", "待邮箱接入后查证"],
+          "description": "抄自执行登记。",
+          "x-source": "执行登记。",
+          "x-writer": "脚本",
+          "examples": ["已查证"],
+          "x-empty": "不允许空。"
+        },
+        "当前最高级别": {
+          "type": "string",
+          "enum": ["L0", "未到 L1", "L1", "L2", "L3"],
+          "description": "这次动作到今天为止走到的最高一级。",
+          "x-source": "取网页收录、网页表现、邮件反馈里该编号的最高反馈级别；询盘表里有归因到它的询盘则为 L3。",
+          "x-writer": "脚本",
+          "examples": ["L2"],
+          "x-empty": "不允许空。",
+          "x-read": "L0 已执行 → L1 已到达（被收录 / 有展示 / 送达）→ L2 有互动（有点击 / 有回信）→ L3 有询盘。「未到 L1」= 邮件被退回，没送到。"
+        },
+        "最新收录状态": {
+          "type": "string",
+          "description": "网页类动作：最近一次检查的收录状态中文说明。",
+          "x-source": "网页收录表里该编号最新一行。",
+          "x-writer": "脚本",
+          "examples": ["已提交并已收录"],
+          "x-empty": "不是网页类动作，或还没检查过。"
+        },
+        "近 7 天展示": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "网页表现里最新那天往前数 7 天，这次动作的网址展示加起来是多少。",
+          "x-source": "网页表现表里该编号的行。",
+          "x-writer": "脚本",
+          "examples": [12],
+          "x-empty": "不是网页类动作。"
+        },
+        "近 7 天点击": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "网页表现里最新那天往前数 7 天，这次动作的网址点击加起来是多少。",
+          "x-source": "网页表现表里该编号的行。",
+          "x-writer": "脚本",
+          "examples": [1],
+          "x-empty": "不是网页类动作。"
+        },
+        "最新邮件事件": {
+          "type": "string",
+          "description": "邮件类动作：最近发生的一件事。",
+          "x-source": "邮件反馈表里该编号最新一行的事件类型。",
+          "x-writer": "脚本",
+          "examples": ["真人回复"],
+          "x-empty": "不是邮件类动作，或还没有任何事件。"
+        },
+        "归因询盘数": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "有几笔询盘归因到这次动作。",
+          "x-source": "询盘表的归因登记编号。",
+          "x-writer": "脚本",
+          "examples": [1],
+          "x-empty": "不允许空，没有就是 0。"
+        },
+        "最近一次反馈日期": {
+          "type": "string",
+          "format": "date",
+          "description": "这次动作最近一次有新消息（检查、展示、邮件事件、询盘）的日期。",
+          "x-source": "上面几张表里该编号的最新日期。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14"],
+          "x-empty": "还没有任何反馈。"
+        },
+        "更新时刻（UTC）": {
+          "type": "string",
+          "format": "date-time",
+          "description": "这张表最近一次重算的时刻。",
+          "x-source": "脚本自动填。",
+          "x-writer": "脚本",
+          "examples": ["2026-10-14T06:05:00Z"],
+          "x-empty": "不允许空。"
+        }
+      }
+    }
+  }
+}
