@@ -55,6 +55,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [反馈分级行动规则调研](tickets/feedback-action-rules-research.md)：冷启动可执行的只有技术阻断、退信状态码、标题/摘要缺陷三类；比率类（零展示、点击率、回复率、跟进次数间隔、询盘数、上移时点）均无通用阈值，只记账。
 - [同意横幅与 GA4 选型调研](tickets/consent-ga4-research.md)：Complianz 免费版 + WP Consent API + Site Kit，Consent Mode 走 Basic（同意前不传数据），第一层同等接受/拒绝；Script Center 能否挡住 Site Kit 的 gtag.js 须先实测。另发现线上已在无横幅时写 Woo 订单归因 Cookie。
 - [询盘数据从哪读](tickets/l3-inquiry-source.md)：L3 主路径 = Woo REST 只读密钥读四个询盘状态 + 签发 meta；联系表单（未挂、只发信）与直接来信不可计；表格只留 id、单号、公司、创建时刻、状态、签发时刻。
+- [GSC 站点接入](tickets/gsc-site-access.md)：官方 Site Kit（只连 Search Console）验证 `https://de-linker.com/`，日常账号为委托所有者，站点地图成功；新站 `just cutover verify` 守验证不被冲掉（新站 #145 / PR #146）。
 
 ## Not yet specified
 

@@ -26,6 +26,13 @@ blocked_by: []
 
 产出：`wayfinder/closed-loop/research/consent-ga4.md`，每条事实带来源。查不到标〔未证实〕。
 
+## 站点接入交接（「GSC 站点接入」关票时写入）
+
+- **Site Kit 已装（2026-10-14，「GSC 站点接入」写入）**：线上 Site Kit by Google **1.189.0**，WP-CLI 从 wordpress.org 原生安装；由后台**用户 1（唯一管理员）**的会话、用 `所有者账号` 连接。只连了 Search Console（资源 `https://de-linker.com/`，验证方式 = Site Kit 虚拟 HTML 文件 `/google<令牌>.html`）；**Analytics 未连**，欢迎页的 Analytics 勾与「匿名使用数据」勾都未勾；仪表盘目标选了「Sell products」（只影响卡片）。
+- **配置位置**：后台 Site Kit → Settings → Connected Services（Search Console 在此，不可断开）；接 GA4 时在同处「Connect more services → Analytics」，或仪表盘上的「Set up Analytics」。选项在 `googlesitekit_*`（`googlesitekit_search-console_settings` = `{"propertyID":"https://de-linker.com/","ownerID":1}`），验证令牌在用户 1 的用户选项 `wp_googlesitekit_site_verification_file`。
+- **不要动的**：不删用户 1、不在 Site Kit 里 Reset / Disconnect，否则 GSC 验证会掉；新站 `just cutover verify` 的 `search-console` 段与 e2e「Site Kit by Google is still active」会报错（规格 `docs/specs/145-search-console.md`）。
+- **前台现状**：Site Kit 未连 Analytics 时每页已多一行 `<link rel='dns-prefetch' href='//www.googletagmanager.com'>`（只是 DNS 预解析提示，不向 Google 发请求、不写 Cookie）与 generator meta。横幅验收「拒绝前无 GA4 请求」时把这行算在已知现状里，不当作违规请求。
+
 ## 完成标准
 
 - 五问各有结论 + 来源；主模型抽查至少两条（一条法条 / 监管来源、一条插件官方文档），写进 Resolution，并向用户汇报。
