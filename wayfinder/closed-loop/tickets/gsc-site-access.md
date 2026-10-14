@@ -33,10 +33,12 @@ blocked_by: []
 
 ## 进展（执行中，2026-10-14）
 
-- 载体已定：新站 must-use 插件 `mu-plugins/linker-search-console.php` 输出 HTML 标记（不选 Site Kit；理由见新站 `docs/research/2026-10-14/search-console-carrier.md`）。
-- 新站票 AssassinFlash/de-linker#145，分支 `t145/search-console`，工作树 `~/Documents/de-linker-worktrees/de-linker-t145`。代码、三道回归检查、规格 `docs/specs/145-search-console.md` 已提交；令牌数组仍为空，`test_the_repository_plugin_carries_an_owner_token` 在令牌落地前按设计为红。
-- 本地参照实例 t110 上用替身令牌实测：首页 EN/DE `<head>` 输出标记，EN/DE × 1440/390 像素差 0。
-- 等操作者：vault `deliverables/marketing/00-system/gsc-owner-checklist.md` 的 A 段（取验证码）。拿到后：填令牌 → 本地冒烟 + e2e → PR → CI 绿 → 评审 → 合并 → 只发 mu 目录（`steps.deploy_mu_plugins`，main 自 af42744 对账后无代码漂移）→ `just cutover verify` → 操作者做 B 段。
+- **载体：Site Kit by Google**（用户裁定：用官方插件，这类接入不写代码；先写的 mu 插件方案已撤回、未合并）。只连 Search Console，不连 Analytics。
+- 新站票 AssassinFlash/de-linker#145（正文已改为 Site Kit 版），分支 `t145/search-console`（规格 `docs/specs/145-search-console.md`、研究 `docs/research/2026-10-14/search-console-carrier.md`），工作树 `~/Documents/de-linker-worktrees/de-linker-t145`。
+- 本地参照实例 t110 装 Site Kit 1.189.0：未连接时前台只多 `generator` meta 与 `//www.googletagmanager.com` 的 dns-prefetch，无脚本无 Cookie；首页 EN/DE × 1440/390 像素差 0。
+- 线上尚未安装：agent 的生产 SSH 被权限拦下，待用户放行，或用户在后台「插件 → 安装插件」自己装（清单第 2 步）。
+- 操作者清单（Site Kit 版）：vault `deliverables/marketing/00-system/gsc-owner-checklist.md`。
+- 余下：线上安装并读回 → 操作者按清单连接、加委托所有者、提交站点地图 → 按 Site Kit 实际用的验证方式（虚拟 HTML 文件或 meta）写回归断言（`just cutover verify` + `tests/e2e` chrome 套件）→ PR → CI → 合并 → `just cutover verify` 对线上 → 验收记录 → 关票。
 
 ## 交接
 
