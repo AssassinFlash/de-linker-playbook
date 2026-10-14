@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-opus-5-5 会话 2026-10-14（用户要求与「底表原型」一并做）
 step: 1
 blocked_by: [base-table-prototype, cloud-service-account]
@@ -32,3 +32,13 @@ blocked_by: [base-table-prototype, cloud-service-account]
 ## 交接
 
 - 脚本目录、运行命令、配置读取方式，关票时写进「执行登记流程」「GSC 数据回流」「询盘回流 L3」「邮箱 IMAP 回流」四票正文。
+
+## Resolution（2026-10-14）
+
+- 两本 Google 表格，都由 `所有者账号` 建，并以编辑者共享给 `日常账号` 和服务账号：「底表」（正式）和「底表（样例）」（假数据）。链接和 ID 记在 vault `deliverables/marketing/00-system/base-table.md`。服务账号建文件这条路没试；按默认由人建。
+- 脚本 `scripts/base_table.py`，用 Python + uv 跑，依赖写在文件头（PEP 723），任何 harness 一条命令能跑。运行说明在 `docs/base-table.md`，`README.md` 和 `AGENTS.md` 都指向 `scripts/`。
+  - `uv run scripts/base_table.py build --target main|sample`：建或补结构，包括首页、每张表后的说明页、表头、下拉、冻结行列、换行、纯文本格式。可重跑，正式表的数据行不动；表头与 schema 不符且已有数据时停下报错。
+  - `uv run scripts/base_table.py check --target main|sample`：核对结构与 `schemas/base-table.schema.json`，不一致退出码 1。2026-10-14 两本都是「OK structure matches schema」。
+- 配置：凭据先看 `GOOGLE_APPLICATION_CREDENTIALS`，否则读 `~/.config/de-linker-playbook/service-account.json`。表格 ID 先看 `PLAYBOOK_CONFIG`，否则读 `~/.config/de-linker-playbook/config.toml`（600）的 `[base_table] spreadsheet_id` / `sample_spreadsheet_id`。公开仓库不出现 ID。
+- 验证：build 跑两遍结果一样；在正式表写一行测试数据，重跑 build 后仍在，之后删掉。操作者 2026-10-14 确认说明页看得懂。
+- 正式表目前只有结构，没有数据。真实数据由各回流票写入。

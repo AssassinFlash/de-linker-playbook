@@ -28,6 +28,17 @@ blocked_by: [l3-inquiry-source, base-table-build, looker-dashboard]
 - **顺带核实订单来源（Order Attribution）**：线上首页已加载 `sourcebuster.min.js` 与 `order-attribution.min.js`。首次真实调用时看询盘订单的 `meta_data` 里有没有订单来源字段（来源类型、UTM、设备类型、会话页数；字段名以真实响应为准），以及自建的形式发票申请页提交的订单是否带上它们。只核实、记进 Resolution，不在本票写进底表（不进底表的个人数据边界不变：user agent 一类不要）；是否加列由地图「询盘归因到动作」那片 fog 毕业成票后再定。
 - 联系表单与直接来信**不可计**：看板与指南写明「L3 只含形式发票申请」，北极星因此偏低。
 
+## 底表交接（「建底表」关票时写入，2026-10-14）
+
+- 表结构正典 `schemas/base-table.schema.json`（列顺序、中文表头、下拉选项、翻译对照都在里面）；人读说明 `docs/base-table.md`。要改列先改 schema，再 `uv run scripts/base_table.py build --target main`，然后 `check --target main`。
+- 脚本层：`scripts/base_table.py`，用 `uv run` 跑，依赖写在文件头（PEP 723）。新脚本放 `scripts/`，用同样的写法；也可以把函数加进这个文件。
+- 配置：凭据读 `GOOGLE_APPLICATION_CREDENTIALS`，否则读 `~/.config/de-linker-playbook/service-account.json`。表格 ID 读 `PLAYBOOK_CONFIG`，否则读 `~/.config/de-linker-playbook/config.toml` 的 `[base_table] spreadsheet_id`。直接复用脚本里的 `load_target("main")` 和 `sheets_service()`。
+- 目前脚本只会建表和核对，**还不会追加或更新数据行**；写行的函数由第一张需要它的票补上。正式表的写入要按每张表的不重复键去重，键见 `docs/base-table.md`「表结构」。
+- 时刻列一律北京时间，格式「年-月-日 时:分」；网页表现、搜索词两张表的日期按太平洋时间。数据单元格都是纯文本格式，数字列除外。
+- 「动作进度」每次回流后用 `action_progress` 整表重算。
+- 本票相关：询盘表的列见 schema `$defs.询盘`。和调研不同的一点：时刻改成北京时间，表头是「创建时刻（北京时间）」「形式发票签发时刻（北京时间）」。`date_created_gmt` 和 `_linker_proforma_issued` 秒数都要换算成北京时间。「归因登记编号」「归因依据」只在有证据时填，没有就留空。
+- 键是询盘内部编号。状态变了就原地更新那一行，不追加新行。
+
 ## 完成标准
 
 - 底表询盘表与线上实际一致（抽一段日期，脚本结果 = 后台 / 每日摘要所见数量）；重跑不重复；看板 L3 版面有数。

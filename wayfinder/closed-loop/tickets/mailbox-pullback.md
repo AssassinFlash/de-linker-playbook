@@ -20,6 +20,16 @@ blocked_by: [execution-log-flow, base-table-build, looker-dashboard]
 - 只写「底表原型」定下的最小字段（不写正文）。共用定时与脚本层。
 - 看板补邮件版面，更新 `docs/` 指南。
 
+## 底表交接（「建底表」关票时写入，2026-10-14）
+
+- 表结构正典 `schemas/base-table.schema.json`（列顺序、中文表头、下拉选项、翻译对照都在里面）；人读说明 `docs/base-table.md`。要改列先改 schema，再 `uv run scripts/base_table.py build --target main`，然后 `check --target main`。
+- 脚本层：`scripts/base_table.py`，用 `uv run` 跑，依赖写在文件头（PEP 723）。新脚本放 `scripts/`，用同样的写法；也可以把函数加进这个文件。
+- 配置：凭据读 `GOOGLE_APPLICATION_CREDENTIALS`，否则读 `~/.config/de-linker-playbook/service-account.json`。表格 ID 读 `PLAYBOOK_CONFIG`，否则读 `~/.config/de-linker-playbook/config.toml` 的 `[base_table] spreadsheet_id`。直接复用脚本里的 `load_target("main")` 和 `sheets_service()`。
+- 目前脚本只会建表和核对，**还不会追加或更新数据行**；写行的函数由第一张需要它的票补上。正式表的写入要按每张表的不重复键去重，键见 `docs/base-table.md`「表结构」。
+- 时刻列一律北京时间，格式「年-月-日 时:分」；网页表现、搜索词两张表的日期按太平洋时间。数据单元格都是纯文本格式，数字列除外。
+- 「动作进度」每次回流后用 `action_progress` 整表重算。
+- 本票相关：邮件反馈表的列见 schema `$defs.邮件反馈`，键是 登记编号 + 事件类型 + 回信 Message-ID。L0 查证要回填执行登记的「查证结果」「查证证据」「查证时刻（北京时间）」，把「待邮箱接入后查证」改掉。
+
 ## 完成标准
 
 - 用一封真实已发信演练：执行登记 → 已发送里查到 → 底表 L0 查证为真；若有回复，L2 有行；脚本运行前后邮箱未读状态不变（抽查）。

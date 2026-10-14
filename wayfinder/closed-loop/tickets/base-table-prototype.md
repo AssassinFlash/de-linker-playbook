@@ -1,6 +1,6 @@
 ---
 wayfinder: prototype
-status: open
+status: closed
 assignee: claude-opus-5-5 会话 2026-10-14
 step: 1
 blocked_by: []
@@ -29,3 +29,16 @@ blocked_by: []
 ## 交接
 
 - 定稿的表结构写进「建底表」「执行登记流程」「反馈分级规则定稿」三票正文（文件路径即可）。
+
+## Resolution（2026-10-14）
+
+操作者 2026-10-14 看过「底表（样例）」后确认「OK」。两轮改动：v1 按票建；v2 经对谈改细（动作扩到 19 项并加动作大类、时刻一律北京时间、网页收录分三层并加「和上次比」与原因分项、网页表现按搜索类型 × 国家 × 设备拆开、新增搜索词表、动作进度加德国与主要搜索词）。操作者的口径：列一律摆开、往细里分，不为短而合并。
+
+定稿文件：
+
+- 表结构（正典）：`schemas/base-table.schema.json`。工作表顺序在 `x-sheet-order`；每张表一个 `$defs`，属性顺序即列顺序，属性名即中文表头，每列带说明、来源、谁写、示例、空值含义、怎么读、下拉选项；翻译对照在 `x-map`，收录状态含义在 `x-states`。
+- 样例工作簿：`templates/base-table-sample.xlsx`（假数据，标「样例」）。同样内容另有 Google 表格「底表（样例）」，链接在 vault `deliverables/marketing/00-system/base-table.md`。
+- 说明文档：`docs/base-table.md`（两本表、各表键、归因锚、隐私、运行、翻译对照）。
+- 生成脚本：`scripts/base_table.py`（`xlsx` 生成样例工作簿；`build` / `check` 见「建底表」）。
+
+回信的隐私口径按票里的建议定：只记 Message-ID、公司、日期、分类，不放正文与个人邮箱。「动作 ↔ 反馈」对照做成「动作进度」表，由脚本重算。

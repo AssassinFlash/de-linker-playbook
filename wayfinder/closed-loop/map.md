@@ -60,6 +60,8 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [事实源入口：三方映射替换 New](tickets/fact-source-entry.md)：唯一入口 `docs/fact-sources.md`（三源位置、什么问题查哪个源、冲突谁为准：参数看托管手册、现状看线上、裁定看新站仓库、竞品不作本公司事实）；台账 `product_context` 指向它；根文件、`docs/`、`state/`、两个编排 skill 已改指，剩 96 个 skill 文件交下一票。
 - [台账拆两线](tickets/ledger-split.md)：营销 `state/marketing-status.md`、获客 `state/lead-status.md`（加审批与过期表、豁免表），旧 `state/status.md` 删除；编排、init、AGENTS、docs、evals 和 76 个 skill 的台账路径各指自己那条线；只拆不改流程。
 - [101 个 skill 改指新事实源](tickets/fact-source-rewire-skills.md)：其余 96 个 skill 文件全部改指 `docs/fact-sources.md`，旧路径清零；`marketing-profile` 的指路步骤改为「入口 → 三方」，`marketing-init` 一律写入入口；例子出处说明不改。
+- [底表原型](tickets/base-table-prototype.md)：七张数据表（执行登记、网页收录、网页表现、搜索词、邮件反馈、询盘、动作进度），每张后面跟一张说明页，正典 `schemas/base-table.schema.json`；时刻一律北京时间，列往细里分（国家 × 设备 × 搜索类型、收录分三层）；操作者确认看得懂。
+- [建底表](tickets/base-table-build.md)：建了两本 Google 表格「底表」和「底表（样例）」，由所有者账号建，共享给日常账号和服务账号；脚本 `uv run scripts/base_table.py build|check --target main|sample`，可重跑、不动数据；配置在仓外 `~/.config/de-linker-playbook/`，ID 记在 vault。
 
 ## Not yet specified
 
