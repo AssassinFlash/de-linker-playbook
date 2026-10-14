@@ -51,6 +51,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 <!-- 每关一票加一行：[票名](tickets/x.md)：一句话 gist -->
 
 - [反馈分级行动规则调研](tickets/feedback-action-rules-research.md)：冷启动可执行的只有技术阻断、退信状态码、标题/摘要缺陷三类；比率类（零展示、点击率、回复率、跟进次数间隔、询盘数、上移时点）均无通用阈值，只记账。
+- [同意横幅与 GA4 选型调研](tickets/consent-ga4-research.md)：Complianz 免费版 + WP Consent API + Site Kit，Consent Mode 走 Basic（同意前不传数据），第一层同等接受/拒绝；Script Center 能否挡住 Site Kit 的 gtag.js 须先实测。另发现线上已在无横幅时写 Woo 订单归因 Cookie。
 
 ## Not yet specified
 

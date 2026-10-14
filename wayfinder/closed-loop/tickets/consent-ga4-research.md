@@ -1,8 +1,9 @@
 ---
 wayfinder: research
-status: open
+status: closed
 assignee: grok-build (dispatched 2026-10-14)
 grok_session: dc74cb2e-73e7-4692-86ff-92c7938bdf2a
+resolved: 2026-10-14
 step: 5
 blocked_by: []
 ---
@@ -28,3 +29,13 @@ blocked_by: []
 ## 完成标准
 
 - 五问各有结论 + 来源；主模型抽查至少两条（一条法条 / 监管来源、一条插件官方文档），写进 Resolution，并向用户汇报。
+
+## Resolution
+
+推荐 **Complianz 免费版（横幅 + Script Center 事先阻断）+ WP Consent API + Site Kit（GA4 载体，也可作 GSC 载体）**；Site Kit 开 Consent Mode（默认全 `denied`），**不开** Complianz 自己的 Consent Mode（在 Premium，且 Site Kit 文档警告双开冲突）；Script Center 在 statistics 同意前挡住 Google 域名脚本 → 落到 Google 定义的 **Basic**（同意前不传任何数据、拒绝者不发 cookieless ping）。依据：TDDDG §25 + DSK 指南 1.2 边号 (36)(121)(122)「同意先于终端访问」；Advanced 拒绝期间仍发含 User Agent / Referrer 的 ping，与之不合。第一层必须同等的「接受 / 拒绝」（科隆高院 6 U 80/23、汉诺威行政法院 10 A 5385/22）。代价：Basic 无 GA4 行为建模，GSC 仍是 L1/L2 主路径，可接受。备选 CookieYes（文档最齐，但云日志、免费 5,000 PV/月、品牌锁定）；Cookiebot（50 子页）、Cookie Notice（1,000 访问/月后暂停阻断）免费档不够本站。
+
+全文：[`research/consent-ga4.md`](../research/consent-ga4.md)。
+
+主模型抽查（2026-10-14）：TDDDG §25(1) 原文一致；Complianz trunk readme（7.5.6）Script Center / Proof of Consent 在 Premium 标题之前、Google Consent Mode 在 Premium 列表、FAQ「script blocking … no consent record limits」一致；Site Kit Consent Mode 文档点名 Complianz / Cookiebot / CookieYes、「不启用则 EEA/瑞士/英国跟踪被挡」一致。补一处调研漏看：Complianz changelog 有「Google Tag Gateway support — Consent Mode is now applied correctly when Google Analytics or Google Tag Manager loads through a first-party Tag Gateway URL」，与〔未证实〕里的 Tag Gateway 拦截问题相关，仍须实测。
+
+**现状发现**：线上首页已在无同意横幅的情况下加载 WooCommerce 订单归因（Sourcebuster，`sbjs_*` Cookie）；按 DSK 边号 (80) 这组不属于绝对必要。已写进「GA4 与同意横幅站点接入」，由该票一并纳入横幅管理。
