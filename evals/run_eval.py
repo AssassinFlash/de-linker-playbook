@@ -48,12 +48,15 @@ def run_script(project_root: Path, name: str) -> dict:
     }
 
 
+LEDGERS = ("state/marketing-status.md", "state/lead-status.md")
+
+
 def check_ledger(project_root: Path) -> dict:
-    path = project_root / "state" / "status.md"
+    missing = [rel for rel in LEDGERS if not (project_root / rel).exists()]
     return {
         "name": "ledger",
-        "passed": path.exists(),
-        "details": "Found state/status.md" if path.exists() else "Missing state/status.md",
+        "passed": not missing,
+        "details": "Found " + ", ".join(LEDGERS) if not missing else "Missing " + ", ".join(missing),
     }
 
 

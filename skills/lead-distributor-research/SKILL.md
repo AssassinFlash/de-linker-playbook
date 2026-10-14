@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。硬依赖：存在则读 `deliverables/lead/01-icp/icp-terms.xlsx`（或 `.csv`）。有则再读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`。硬依赖未批准且无 `user_waiver` → 停，宣布缺口，打开 `skills/lead-search-term-expansion/SKILL.md`（文件存在时），不自造发现词。产品上下文加已批准上游仍不够清楚时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不另写问卷。缺品类或目标市场：先看用户本轮；仍缺则停，只要这两项。完成：能指出品类、市场、渠道角色各依据哪几条陈述。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。硬依赖：存在则读 `deliverables/lead/01-icp/icp-terms.xlsx`（或 `.csv`）。有则再读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`。硬依赖未批准且无 `user_waiver` → 停，宣布缺口，打开 `skills/lead-search-term-expansion/SKILL.md`（文件存在时），不自造发现词。产品上下文加已批准上游仍不够清楚时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不另写问卷。缺品类或目标市场：先看用户本轮；仍缺则停，只要这两项。完成：能指出品类、市场、渠道角色各依据哪几条陈述。
 
 2. **模式**。`detailed`（缺省）或 `brief`。简研不是独立 skill：详细版未批准且用户只要简研 → 先做详研，或记录 `user_waiver` 后再做简研。员工数上限：用户或产品上下文有则用；否则默认 200。完成：交付物抬头写明 `mode`、市场、员工数上限及其来源。
 

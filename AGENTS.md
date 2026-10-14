@@ -4,15 +4,15 @@
 
 ## 台账
 
-营销、SEO、文案、内容、或「下一步」：先读 [`state/status.md`](state/status.md)，再读 [`skills/marketing-orchestrator/SKILL.md`](skills/marketing-orchestrator/SKILL.md) 并按其推进。产出写到 [`deliverables/`](deliverables/)。
+营销、SEO、文案、内容、或「下一步」：先读营销台账 [`state/marketing-status.md`](state/marketing-status.md)，再读 [`skills/marketing-orchestrator/SKILL.md`](skills/marketing-orchestrator/SKILL.md) 并按其推进。产出写到 [`deliverables/`](deliverables/)。
 
-获客线索（lead）类任务：读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
+获客线索（lead）类任务：先读获客台账 [`state/lead-status.md`](state/lead-status.md)，再读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
 
 寒暄：可读台账并复述 `phase`，不要改文件。
 
 ## 交接说明
 
-- 状态真源：[`state/status.md`](state/status.md) 与当前地图 [`wayfinder/closed-loop/map.md`](wayfinder/closed-loop/map.md)（补齐闭环，执行中；`wayfinder/map.md`、`wayfinder/feasibility/map.md` 已闭环）。压缩后以文件为准，不以对话记忆为准。
+- 状态真源：两张台账（营销 [`state/marketing-status.md`](state/marketing-status.md)、获客 [`state/lead-status.md`](state/lead-status.md)，各管各的）与当前地图 [`wayfinder/closed-loop/map.md`](wayfinder/closed-loop/map.md)（补齐闭环，执行中；`wayfinder/map.md`、`wayfinder/feasibility/map.md` 已闭环）。压缩后以文件为准，不以对话记忆为准。
 - 执行节奏：一票一新会话。
 - 兼容：只承诺 Kimi / Z Code / DeepSeek / OpenCode / Hermes 五家，不为其他 harness 做适配层。
 - 五家 headless 冷启动调用矩阵与坑：[`wayfinder/pilot/`](wayfinder/pilot/) 每家一份（如 Hermes 需 `HERMES_HOME` 隔离，Z Code 需桌面同步的 provider 配置）。

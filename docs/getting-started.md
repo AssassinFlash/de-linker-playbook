@@ -10,14 +10,14 @@
 |---|---|
 | 第一次打开这个项目 | `skills/marketing-init/SKILL.md` |
 | 还没有确认公司、产品和目标市场可读 | `skills/marketing-profile/SKILL.md` |
-| 不知道先做 SEO、内容还是广告 | 先读 `state/status.md`，再打开 `skills/marketing-orchestrator/SKILL.md` |
+| 不知道先做 SEO、内容还是广告 | 先读 `state/marketing-status.md`，再打开 `skills/marketing-orchestrator/SKILL.md` |
 | 已经知道要做文案或价值主张 | `skills/marketing-copywriting/SKILL.md` |
 | 已经知道要做定位 / 竞品 / 定价等具体方法 | 打开对应 `skills/marketing-<方法>/SKILL.md`（见下方阶段表） |
 
 ## 开始前
 
-1. 工作目录是本仓库根（含 `AGENTS.md`、`state/status.md`、`skills/`）。
-2. 产品事实在仓外，入口在仓内：`docs/fact-sources.md`（台账 `state/status.md` 的 `product_context` 就指向它）。入口告诉助手什么问题去线上站点、新站仓库还是竞品调研查。
+1. 工作目录是本仓库根（含 `AGENTS.md`、`state/`、`skills/`）。
+2. 产品事实在仓外，入口在仓内：`docs/fact-sources.md`（两张台账的 `product_context` 都指向它）。入口告诉助手什么问题去线上站点、新站仓库还是竞品调研查。
 3. 产出只进本仓库的 `deliverables/marketing/` 与 `deliverables/lead/`，不在仓外另建产出根。
 
 ## 第一步：预检项目状态
@@ -26,9 +26,9 @@
 
 助手会：
 
-- 确认 `state/status.md` 是否存在
+- 确认两张台账 `state/marketing-status.md`、`state/lead-status.md` 是否存在
 - 确认 `deliverables/marketing/` 与 `deliverables/lead/` 阶段目录齐全（缺则创建）
-- 核对台账里的 `product_context`（应为 `docs/fact-sources.md`）
+- 核对两张台账里的 `product_context`（应为 `docs/fact-sources.md`）
 - 把初始化报告写到 `deliverables/marketing/00-system/init-report.md`
 
 若产品上下文不可读，下一步打开 `skills/marketing-profile/SKILL.md`；否则打开 `skills/marketing-orchestrator/SKILL.md`。
@@ -49,7 +49,7 @@
 
 ## 第三步：让编排器规划
 
-有具体目标但不确定从哪开始时：先读 `state/status.md`，再打开 `skills/marketing-orchestrator/SKILL.md` 并按其步骤做。
+有具体目标但不确定从哪开始时：先读 `state/marketing-status.md`，再打开 `skills/marketing-orchestrator/SKILL.md` 并按其步骤做。
 
 编排器会：
 
@@ -122,7 +122,7 @@ python3 evals/validate_deliverables.py
 | 术语 | 你可以理解为 |
 |---|---|
 | 产品上下文 | 仓外的公司/产品事实，入口 `docs/fact-sources.md`（`product_context`） |
-| 台账 | `state/status.md`，进度真源 |
+| 台账 | 进度真源，营销 `state/marketing-status.md`、获客 `state/lead-status.md` 各一张 |
 | 交付物 | `deliverables/` 里的产出 |
 | Skill | `skills/<name>/SKILL.md` 里可重复运行的工作流 |
 | 编排器 | `skills/marketing-orchestrator/SKILL.md`，读台账并分派方法 skill |
@@ -134,7 +134,7 @@ python3 evals/validate_deliverables.py
 | 助手说找不到 skill | 运行 `python3 evals/validate_project.py`；正典在 `skills/<name>/SKILL.md` |
 | 产出质量差 | 确认已按台账路径读过产品上下文；再跑 `skills/marketing-eval/SKILL.md` |
 | Excel 没有生成 | 空表在 `templates/`；导出脚本在 `templates/scripts/`（填写工作簿需要本机已装相应库） |
-| 不知道下一步该做什么 | 读 `state/status.md`，打开 `skills/marketing-orchestrator/SKILL.md` |
+| 不知道下一步该做什么 | 营销：读 `state/marketing-status.md`，打开 `skills/marketing-orchestrator/SKILL.md`；获客：读 `state/lead-status.md`，打开 `skills/lead-generation/SKILL.md` |
 
 ## 旧入口怎么办？
 

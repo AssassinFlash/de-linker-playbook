@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/`、`deliverables/marketing/05-cro/`（落地页、漏斗、询盘流）与 `deliverables/marketing/06-growth/` 中的上市、转介绍稿。从上下文、用户本轮或已有导出列出：近 12 个月活跃客户数与复购率、订单周期与客单价、买家角色与目标市场、询盘→报价→样品→订单、沟通渠道、已知流失原因或沉默客户数。完成：能指出各依据哪几条；原文不拷进本仓库。品类或市场不明、且无订单记录可核则停并写缺口，不编造复购率、流失人数或竞品事实。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/`、`deliverables/marketing/05-cro/`（落地页、漏斗、询盘流）与 `deliverables/marketing/06-growth/` 中的上市、转介绍稿。从上下文、用户本轮或已有导出列出：近 12 个月活跃客户数与复购率、订单周期与客单价、买家角色与目标市场、询盘→报价→样品→订单、沟通渠道、已知流失原因或沉默客户数。完成：能指出各依据哪几条；原文不拷进本仓库。品类或市场不明、且无订单记录可核则停并写缺口，不编造复购率、流失人数或竞品事实。
 3. **采集**。用网页搜索查证制造业留存、流失原因与转介绍做法；需要原文时抓取指定 URL 的正文（本站首页、产品页、询盘页；≥3 个竞品询盘/留存/转介绍页；公开的伙伴页）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；竞品页与流失原因达到最低条数，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据推导生命周期、健康度公式与分层、流失信号、分角色杠杆、询盘摩擦（留存视角）、4 次挽回触达、推荐日志骨架、ORB 再激活日历。量表、权重与表列见 `references/methodology.md`。佣金与伙伴结构打开 `marketing-referral-program`，不在此另写一套。完成：健康度四维权重可复述；流失信号 ≥7 且各有检测与响应；挽回 4 触达有时间与角度；推荐日志列可手填或已写缺口。
 5. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空；教学支架原文零出现；文末 5–10 条可验证断言。

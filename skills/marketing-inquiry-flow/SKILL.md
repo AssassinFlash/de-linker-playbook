@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/`（定位、定价、样品政策）与 `deliverables/marketing/05-cro/landing-page.md`。页面字段与布局以 `marketing-landing-page` 为准，本 skill 不改页面。列出品类、买家角色、目标市场、贸易条款、MOQ/样品政策、询盘量、首次回复时长、询盘到报价/样品/订单比率、主要流失阶段、团队工时与语种、已用渠道与 CRM。完成：能指出各依据哪几条；原文不拷进本仓库。用户只给站点 URL 时先抓该站再补上下文；品类或市场仍不明则停并写缺口，不编造公司、转化率或竞品事实。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/`（定位、定价、样品政策）与 `deliverables/marketing/05-cro/landing-page.md`。页面字段与布局以 `marketing-landing-page` 为准，本 skill 不改页面。列出品类、买家角色、目标市场、贸易条款、MOQ/样品政策、询盘量、首次回复时长、询盘到报价/样品/订单比率、主要流失阶段、团队工时与语种、已用渠道与 CRM。完成：能指出各依据哪几条；原文不拷进本仓库。用户只给站点 URL 时先抓该站再补上下文；品类或市场仍不明则停并写缺口，不编造公司、转化率或竞品事实。
 3. **采集**。用网页搜索查证询盘优化与回复时效基准；需要原文时抓取指定 URL 的正文（本站首页、产品页、询盘页、下单流程页；≥4 个竞品询盘/报价入口）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；本站四页与竞品入口达到最低条数，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据映射漏斗、摩擦、竞品对照、资质评分、分角色首次回复、样品桥接与 KPI。量表、漏斗与表列见 `references/methodology.md`。完成：每个 P0 摩擦能指到已抓取页面；评分七维与四档处理规则已写出；样品触发时机与至少 3 个跟进节点已定义。
 5. **落盘**。写入下方路径。已有 `inquiry-flow.md` 则增量更新并在文首保留版本说明。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL；教学支架原文零出现；文末 5–10 条可验证断言。

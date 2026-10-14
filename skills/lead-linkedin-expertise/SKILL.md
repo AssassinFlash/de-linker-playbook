@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/08-linkedin/topic-research.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的品类、目标区域、受众、准入主题或 CTA 视为本轮输入，来源记「用户本轮」。核心三项：品类或产品线、目标海外区域、该区域内的受众。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项，不在本文件另写问卷。原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。完成：能指出品类、区域、受众、合规痛点各依据哪几条。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/08-linkedin/topic-research.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的品类、目标区域、受众、准入主题或 CTA 视为本轮输入，来源记「用户本轮」。核心三项：品类或产品线、目标海外区域、该区域内的受众。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项，不在本文件另写问卷。原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。完成：能指出品类、区域、受众、合规痛点各依据哪几条。
 
 3. **查证**。读 `references/expertise-research.md`。用网页搜索查该品类进入该区域的准入卡点，并对将写入帖文的每一条法规、标志、税则、单据或贸易术语抓取或核到现行页。搜索不可用则停止并写缺口，不编造合规句。禁止为凑次数空搜。禁止把他人 LinkedIn 原文写入交付物。多条法规需隔离时 dispatch a subagent, else do it inline。完成：每条拟用法规句有 URL 与访问日期；公司代办/出证/注册只能来自上下文或用户本轮。
 

@@ -19,7 +19,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。需要参数再读同目录 `fact-base/`。已有则读 `deliverables/marketing/01-foundation/` 的定位与竞品稿，以及 `deliverables/marketing/02-seo/` 的审计、站点蓝图、程序化页矩阵。完成：能指出品类、目标市场、产地、已知对手、买家角色、本站 URL 各依据哪几条；原文不拷进本仓库。站点未上线、无 URL、或品类/市场缺到无法构造查询则停并写缺口，不编造可见度。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。需要参数再读同目录 `fact-base/`。已有则读 `deliverables/marketing/01-foundation/` 的定位与竞品稿，以及 `deliverables/marketing/02-seo/` 的审计、站点蓝图、程序化页矩阵。完成：能指出品类、目标市场、产地、已知对手、买家角色、本站 URL 各依据哪几条；原文不拷进本仓库。站点未上线、无 URL、或品类/市场缺到无法构造查询则停并写缺口，不编造可见度。
 3. **采集**。用网页搜索查证目标查询在公开检索与回答引擎中的表现；需要原文时抓取指定 URL 的正文（含可公开访问的引用来源页）。默认先搜再抓；搜索不可用则停止并写缺口。无法实际打开某回答引擎时，该平台行写缺口，不编造 appears。多查询或多域名并行时 dispatch a subagent, else do it inline。查询意图、下限与核验：读 `references/methodology.md`。完成：≥10 条可见度测试（每条含 query、平台、日期、appears、source）；≥5 个竞品域名有实际引用 URL 或显式缺口；≥5 个当前被引页面 URL；实体三项（品牌名、产地、品类）各有一次实测或缺口。
 4. **分析**。只根据已记录测试写：可见度评分、引用缺口、实体覆盖、内容形态、三支柱动作。评分规则与形态表见 `references/methodology.md`。缺口必须能指回「竞品被引而本站没有」的具体查询。目标 URL 对齐已有站点蓝图，没有蓝图则只写 URL 模式并标缺口。完成：评分能回溯测试行；每条 P0 能指回一条采集记录。
 5. **落盘**。写入下方路径与模板。策略与分析用简体中文；面客句子、URL、字段名、文件名按产品上下文（本仓库文件名保持英文）。完成：主策略稿含 6 个必需节；工作簿两表合计 ≥20 行且每行有 `source`；4 个执行附件非空；教学支架原文零出现。

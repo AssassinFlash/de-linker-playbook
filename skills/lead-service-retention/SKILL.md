@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/10-sales/delivery.md`。软依赖存在则读：`deliverables/lead/10-sales/first-order.md`、`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/01-icp/icp-analysis.md`。从上下文、上游与用户本轮凑齐四项：在售产品与规格量级、买家类型、典型复购周期、能让好买家停留 12 个月以上的驱动。品类或买家类型缺到无法定制则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口，不自造访谈。完成：能指出四项各依据哪几条，或已标明缺项；硬依赖未满足且无 `user_waiver` → 停，不编交付后节奏。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/10-sales/delivery.md`。软依赖存在则读：`deliverables/lead/10-sales/first-order.md`、`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/01-icp/icp-analysis.md`。从上下文、上游与用户本轮凑齐四项：在售产品与规格量级、买家类型、典型复购周期、能让好买家停留 12 个月以上的驱动。品类或买家类型缺到无法定制则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口，不自造访谈。完成：能指出四项各依据哪几条，或已标明缺项；硬依赖未满足且无 `user_waiver` → 停，不编交付后节奏。
 
 2. **查证**。用网页搜索查证本品类、本买家类型的 B2B 复购与供应商忠诚做法；需要原文时抓取指定 URL。做惊喜时再搜买家市场的节庆与送礼习惯。品类无公开数据则改用一般制造业出口留存口径，并在来源表标明「一般口径」。搜索不可用：三阶段与阶梯仍按「写法」默认骨架写，但禁止写行业复购率、节省额或「研究证明」；缺口写入来源表。多买家类型需隔离时 dispatch a subagent, else do it inline。完成：来源表有 URL 与访问日期，或已记录搜索不可用 / 一般口径。
 

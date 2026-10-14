@@ -6,7 +6,7 @@ description: >
   外展, LinkedIn 获客, 定向开发, or when the user asks for the next lead
   step, 下一步获客, or a multi-step outreach workflow that needs
   dependencies, parallel company research, or review gates. Read
-  state/status.md first; announce the current lead phase, the next
+  state/lead-status.md first; announce the current lead phase, the next
   method skill, and the output path under deliverables/lead/; then run
   that work (dispatch a subagent, else do it inline) and update the
   ledger. Use this navigator rather than inventing a parallel pipeline.
@@ -21,7 +21,7 @@ description: >
 
 ## 步骤
 
-1. **读台账** `state/status.md`。完成：能报出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
+1. **读台账** `state/lead-status.md`（获客台账；营销台账 `state/marketing-status.md` 不读不写）。完成：能报出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
 2. **分流**。推进意图（下一步获客 / 获客 / 客户开发 / ICP / 找客户 / 分销商 / 联系人 / 冷邮件 / LinkedIn 获客 / 定向开发）→ 步骤 3。寒暄或无关问题 → 复述 `phase` 与 `next`，停。营销树工作 → 打开 `skills/marketing-orchestrator/SKILL.md`，本 skill 不推进。
 3. **从当前获客 phase 做到交付物落地**。进度以台账为准；阶段含义与默认方法 skill 见下表，闸门见 `references/dependency-graph.md`。
    - 台账或 `deliverables/lead/` 缺失 → 先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
@@ -32,7 +32,7 @@ description: >
    - 方法 skill 做完后，按 `references/orchestration-protocol.md` 做数据验证、六维审查、用户审批、写入。验证优先打开 `skills/lead-data-validation/SKILL.md`（存在则按其做，否则按协议在本会话内联做完）。
    - 每完成一阶段先回写台账再继续。硬依赖未满足且无 `user_waiver` → 不停跳。
    - 教学走 `skills/lead-teach/SKILL.md`；产出进 `deliverables/lead/00-system/`，不改战役 `phase`。
-4. **回写台账**（步骤 3 的每个 phase 边界都做）。完成：YAML、「当前」表、「已完成」与磁盘一致；`output_dir` 落在 `deliverables/lead/` 下；`next` 指向下一动作或 `stop`。下一方法 skill 取：台账已指定且文件仍存在的；否则取全量表中依赖已满足、`SKILL.md` 存在的下一个。都没有 → `next: stop`。
+4. **回写台账**（步骤 3 的每个 phase 边界都做）。完成：YAML、「当前」表、「审批与过期」表、「已完成」与磁盘一致；`output_dir` 落在 `deliverables/lead/` 下；`next` 指向下一动作或 `stop`。下一方法 skill 取：台账已指定且文件仍存在的；否则取全量表中依赖已满足、`SKILL.md` 存在的下一个。都没有 → `next: stop`。
 
 ## 阶段
 

@@ -24,7 +24,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。帖子篇幅、钩子、CTA、标签、四种风格升级、软广与出门清单读 `skills/lead-generation/references/linkedin-post-guidelines.md`，不把该文件抄进本 skill 或交付物。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及本帖必须走 Structure 20。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的国家/地区、该地买家角色、已知挑战主题、证明材料、CTA 视为本轮输入，来源记「用户本轮」。硬依赖文件缺失、用户本轮也未给出该地+受众、且无 `user_waiver` → 停。目标地仍有多国候选、用户未点名时，列出候选并停，不写跨国混帖。区域或受众缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出**单一**目标地、该地受众、品类各依据哪几条；原文不拷进本仓库。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的国家/地区、该地买家角色、已知挑战主题、证明材料、CTA 视为本轮输入，来源记「用户本轮」。硬依赖文件缺失、用户本轮也未给出该地+受众、且无 `user_waiver` → 停。目标地仍有多国候选、用户未点名时，列出候选并停，不写跨国混帖。区域或受众缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出**单一**目标地、该地受众、品类各依据哪几条；原文不拷进本仓库。
 
 3. **查证并列出区域挑战（管线第 1 步）**。用网页搜索查证该地、该受众、该品类下的障碍；需要原文则抓取指定 URL。查询年份用环境当前公历年。三类意图都要覆盖：区域挑战、本地气候/基建/标准、公开市场上是否已有针对性改型（用来核对「此地真有此题」，不是用来抄竞品卖点）。花括号是字段，不抄进交付物：
    - `"{product_niche}" challenges {target_country} {year}`

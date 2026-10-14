@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`，以及 `ANY(deliverables/lead/02-companies/target-companies.xlsx, deliverables/lead/02-companies/distributors.xlsx, deliverables/lead/02-companies/retailers.xlsx)`（有对应 `.md` 也可）。软依赖存在则读：`deliverables/lead/02-companies/emerging-companies.xlsx`、其余公司名单。职位、每家人数、名单范围、质检标准仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出买家角色与目标公司名单各依据哪份已批准文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停。
+1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`，以及 `ANY(deliverables/lead/02-companies/target-companies.xlsx, deliverables/lead/02-companies/distributors.xlsx, deliverables/lead/02-companies/retailers.xlsx)`（有对应 `.md` 也可）。软依赖存在则读：`deliverables/lead/02-companies/emerging-companies.xlsx`、其余公司名单。职位、每家人数、名单范围、质检标准仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出买家角色与目标公司名单各依据哪份已批准文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停。
 
 2. **编域名**。从已读名单抽出 `company_name, domain, icp_category, company_type`。无已验证域名的公司不进采集表，记入失败分析。域名去重。用户或访谈限定了 ICP / 公司类型则只保留该子集。完成：目标域名表非空；若无可用域名，跳到步骤 7，报告只写失败分析，不编造联系人。
 

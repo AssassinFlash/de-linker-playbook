@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类/利基、目标买家（行业与区域）、误区或对比主题、证据、CTA 一并记，来源记「用户本轮」。品类或目标买家仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这两项，不在本文件另写问卷。硬依赖文件缺失、用户本轮也未给出对应买家全文、且无 `user_waiver` → 停。原文不拷进本仓库。完成：能指出品类、买家、已有误区线索各依据哪几条。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类/利基、目标买家（行业与区域）、误区或对比主题、证据、CTA 一并记，来源记「用户本轮」。品类或目标买家仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这两项，不在本文件另写问卷。硬依赖文件缺失、用户本轮也未给出对应买家全文、且无 `user_waiver` → 停。原文不拷进本仓库。完成：能指出品类、买家、已有误区线索各依据哪几条。
 
 3. **查证**。用网页搜索查证该品类买家确实持有该误区，或该对比在公开 sourcing 讨论中真实出现；再为 Reality 搜至少一条可引用证据（标准、规格、公开报告、已抓取页）。需要原文则抓取指定 URL 的正文。查询模板见 `references/structure-7.md`。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。搜不到「市场上有人这么认为或这么比」→ 该候选作废，不揭穿。搜索不可用 → 停止并写缺口，不编造误区或证据。禁止为凑次数空搜。多候选需隔离时 dispatch a subagent, else do it inline。完成：进入候选的每条有摘录证明市场存在；将写入 Reality 的每条事实有 URL 或产品上下文出处。
 

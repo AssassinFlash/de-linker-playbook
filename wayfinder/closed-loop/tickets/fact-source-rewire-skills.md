@@ -23,7 +23,8 @@ blocked_by: [fact-source-entry]
 - 标准指针句（「从哪读事实」那一句整句换成它）：
   > 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；原文不拷进本仓库。
 - 引用台账的闸门句：把 `（缺省/默认 ~/Documents/New/CONTEXT.md；把 ~ 展开为主目录…）` 换成 `（事实源入口 docs/fact-sources.md）`，再接「按其指路取证」。凡是「需要参数再读 …/fact-base/」的分句一律删掉，参数从哪查由入口决定。英文句同理：`ledger product_context (= docs/fact-sources.md)`。
-- 特例：`marketing-profile` 里「缺 `product_context` 则写入 …」改为写入 `docs/fact-sources.md`。它的指针模板 `source: …/CONTEXT.md` 改为 `source: docs/fact-sources.md`。「用户若要改事实，改 …」改为「事实以线上站点与新站仓库为准，不改本仓库」。
+- 特例（「台账拆两线」关票时更正，2026-10-14）：「缺 `product_context` 则写入 …」在 `marketing-init` 步骤 3（和它的 description 与清单），改为写入 `docs/fact-sources.md`。`marketing-profile` 里的指针模板 `source: …/CONTEXT.md` 改为 `source: docs/fact-sources.md`；「用户若要改事实，改 …」改为「事实以线上站点与新站仓库为准，不改本仓库」。
+- 台账已拆（2026-10-14）：skill 里的台账路径已统一改为 `state/marketing-status.md`（marketing-*）或 `state/lead-status.md`（lead-*），`state/status.md` 已删除。闸门句现在长这样：「读台账 `state/lead-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；…）」。本票整句换成标准指针句即可，台账路径可以随之去掉；只为读 `phase`、`method_skill`、`output_dir` 的台账引用不要动。`marketing-init`、`marketing-playbook-standards` 同时提到两张台账，属正常。
 - 参照：两个编排 skill 及其 `references/` 已按这个写法改完，可对照 diff。
 - 实数：本票开工时 `grep -rl "Documents/New" skills` 是 96 个文件，不是 99 个。
 

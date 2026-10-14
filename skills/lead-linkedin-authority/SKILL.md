@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/08-linkedin/topic-research.md`。软依赖存在则读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的趋势主题、区域、CTA 或风格点名一并记「用户本轮」。品类、ICP、区域或趋势焦点仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出品类、ICP、区域、CTA 意向、候选宏观趋势各依据哪几条；原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出可核验的趋势主题、且无 `user_waiver` → 停。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/08-linkedin/topic-research.md`。软依赖存在则读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的趋势主题、区域、CTA 或风格点名一并记「用户本轮」。品类、ICP、区域或趋势焦点仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出品类、ICP、区域、CTA 意向、候选宏观趋势各依据哪几条；原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出可核验的趋势主题、且无 `user_waiver` → 停。
 
 3. **选题与查证**。从已批准话题研究里选一条**宏观行业趋势**（市场结构、需求转移、材料或工艺偏好、区域展望、供应侧含义），不要选 how-to 或合规手册题。用户本轮点名趋势则优先核该条。用网页搜索按 `references/trend-research.md` 三条意图查证：识别、数据核验、对目标受众的影响。需要原文则抓取指定 URL 的正文。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。搜不到或搜索不可用 → 换一条已核验趋势；都核不上则停并写缺口，不编造。禁止为凑次数空搜。多候选需隔离核验时 dispatch a subagent, else do it inline。完成：只保留一条趋势；时效在近 1–2 年；每条将写入帖子的数字或判断有 URL、访问日期与摘录。
 

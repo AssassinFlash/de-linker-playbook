@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读其客群，作步骤 2 切开起点，不重切已确认客群。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。本会话还没读过就现在读。原文不拷进本仓库。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读其客群，作步骤 2 切开起点，不重切已确认客群。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
 
 2. **切开品类**。对照 `references/three-guidelines.md` 的 Guideline 1，按行业垂直与价值链位置提出候选 ICP。Guideline 1 的价值链位置列举仅为举例，不是默认五条；按产品上下文取舍，不要把教学例子里的行业名单当作默认名单。维度：行业类型、公司规模、市场细分、地理、采购频率。上限 5 条。产品上下文或访谈已排除的不列入。完成：短名单每条有价值链位置、与产品的关系、拟查证查询。
 

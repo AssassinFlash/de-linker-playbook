@@ -17,7 +17,7 @@
 
 ## 步骤 0 读配置与上下文
 
-1. 读 `state/status.md`，取出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
+1. 读 `state/lead-status.md`，取出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
 2. 产品上下文：台账 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证。入口读不到 → 停并写缺口，打开 `skills/marketing-profile/SKILL.md`（存在时）。原文不拷进本仓库。
 3. 台账或 `deliverables/lead/` 缺失 → 打开 `skills/marketing-init/SKILL.md`。不要写项目根配置文件，不要另建产出根。
 4. 若 `deliverables/lead/00-system/discovery-state.md`（或 `.json`）存在：把 `next_experiments.search_terms_to_try` 交给本轮方法 skill；不要把教学习作传进生产步骤。
@@ -122,7 +122,7 @@ stale_confirmed: false
 
 表与文档同目录。重跑时旧版进 `deliverables/lead/99-archive/`。
 
-写入后：按依赖图找出直接与间接下游；已 `approved` / `approved_with_concerns` 的改为 `stale`，写上 `stale_reason` 与 `stale_date`。回写 `state/status.md`。不要另生成仓外仪表盘。
+写入后：按依赖图找出直接与间接下游；已 `approved` / `approved_with_concerns` 的改为 `stale`，写上 `stale_reason` 与 `stale_date`。回写 `state/lead-status.md`：改「审批与过期」表里本交付物与被标 `stale` 的下游各行；phase 边界再改 YAML、「当前」与「已完成」。不要另生成仓外仪表盘。
 
 ## 教学
 

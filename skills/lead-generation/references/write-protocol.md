@@ -1,6 +1,6 @@
 # 获客写入约定
 
-产出只进 `deliverables/lead/`。进度只写 `state/status.md`。不建仓外产出根。
+产出只进 `deliverables/lead/`。进度只写 `state/lead-status.md`。不建仓外产出根。
 
 ## 目录
 

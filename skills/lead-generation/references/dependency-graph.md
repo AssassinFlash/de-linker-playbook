@@ -93,7 +93,7 @@
 
 ## 依赖边
 
-### 硬依赖（必须 approved 或 approved_with_concerns，或台账 `user_waiver`）
+### 硬依赖（必须 approved 或 approved_with_concerns，或台账「豁免」表有记录）
 
 ```
 lead-icp-analysis -> []
@@ -187,9 +187,9 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 ## 闸门
 
 - 产品上下文：台账 `product_context` 可读，否则停。
-- 硬依赖：上游已批准，或台账记录 `user_waiver`。
+- 硬依赖：上游已批准，或台账「豁免」表记录了 `user_waiver`。
 - 审查：六维审查已做，或显式 `user_waiver`。
-- 产出：策略文档与表进 `deliverables/lead/<阶段>/`；评审进 `deliverables/lead/<阶段>/review/`；元产出进 `deliverables/lead/00-system/`；归档进 `deliverables/lead/99-archive/`；进度只写 `state/status.md`。
+- 产出：策略文档与表进 `deliverables/lead/<阶段>/`；评审进 `deliverables/lead/<阶段>/review/`；元产出进 `deliverables/lead/00-system/`；归档进 `deliverables/lead/99-archive/`；进度只写 `state/lead-status.md`。
 
 ## 预期产出与审查清单
 
@@ -403,7 +403,7 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
     "review_reports": "deliverables/lead/<phase>/review/",
     "system": "deliverables/lead/00-system/",
     "archive": "deliverables/lead/99-archive/",
-    "progress": "state/status.md"
+    "progress": "state/lead-status.md"
   },
   "phases": [
     {"id": "0", "name": "product-context", "phase_dir": null},

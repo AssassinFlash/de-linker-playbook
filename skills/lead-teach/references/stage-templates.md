@@ -235,7 +235,7 @@ created: "YYYY-MM-DD"
 
 路径：`deliverables/lead/00-system/learning-state.md`
 
-不写 `.omc/`，不改 `state/status.md` 的 `phase`。
+不写 `.omc/`，不改 `state/lead-status.md` 的 `phase`。
 
 ### 初始（文件不存在时按此创建）
 

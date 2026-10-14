@@ -4,8 +4,8 @@ description: >
   Use when starting marketing, SEO, or content work in this repo, or when the
   user asks for the next step, 下一步, 营销, 文案, 内容, 获客, 定位, CRO,
   增长, 度量, a value proposition, or any multi-step marketing workflow that
-  needs dependencies, parallel work, or review gates. Read state/status.md
-  first; announce the current phase, the next method skill, and the output
+  needs dependencies, parallel work, or review gates. Read the marketing ledger
+  state/marketing-status.md first; announce the current phase, the next method skill, and the output
   path; then run that work (dispatch a subagent, else do it inline) and
   update the ledger. Use this navigator rather than inventing a parallel
   workflow. Greetings get a phase recap only; unrelated coding does not
@@ -18,7 +18,7 @@ description: >
 
 ## 步骤
 
-1. **读台账** `state/status.md`。完成：能报出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
+1. **读台账** `state/marketing-status.md`（营销台账；获客台账 `state/lead-status.md` 不读不写）。完成：能报出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
 2. **分流**。推进意图（下一步 / 营销 / 文案 / 内容 / 获客 / 价值主张 / SEO / CRO / “Do the next step…”）→ 步骤 3。寒暄或无关问题 → 复述 `phase` 与 `next`，停。
 3. **从当前 phase 做到交付物落地**。进度以台账为准；阶段含义与默认方法 skill 见下表，闸门见 `references/dependency-graph.md`。
    - 台账已写 `method_skill` 且 `skills/<method_skill>/SKILL.md` 存在 → 先读该文件再按其步骤做。需要隔离时 dispatch a subagent, else do it inline。产出进台账 `output_dir`（空则用下表目录）。

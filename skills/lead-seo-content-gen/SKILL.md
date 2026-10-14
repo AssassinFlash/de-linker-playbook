@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/09-seo/outline.md`（`lead-seo-outline-gen`）。软依赖（有则读，不阻塞）：`deliverables/lead/09-seo/editorial-guidelines.md`。用户本轮给出的大纲全文、规范、先写哪几节、要嵌入的例子或数据、每节字数，来源记「用户本轮」。先写范围、字数或必须嵌入的数据点仍缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出目标关键词、文章类型、各节要点各依据哪几条；语气与可读性依据已读规范或「写法」兜底；原文不拷进本仓库。硬依赖（大纲）文件缺失、用户本轮也未给出对应大纲全文、且无 `user_waiver` → 停。规范缺失不阻塞。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/09-seo/outline.md`（`lead-seo-outline-gen`）。软依赖（有则读，不阻塞）：`deliverables/lead/09-seo/editorial-guidelines.md`。用户本轮给出的大纲全文、规范、先写哪几节、要嵌入的例子或数据、每节字数，来源记「用户本轮」。先写范围、字数或必须嵌入的数据点仍缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出目标关键词、文章类型、各节要点各依据哪几条；语气与可读性依据已读规范或「写法」兜底；原文不拷进本仓库。硬依赖（大纲）文件缺失、用户本轮也未给出对应大纲全文、且无 `user_waiver` → 停。规范缺失不阻塞。
 
 3. **列节**。按大纲顺序列出将写的节：引言、每个 H2（及其 H3）、结论、FAQ（大纲含 FAQ 才列入）。每节记下要点与目标字数：大纲或用户本轮指定优先，否则用「默认」里的区间。禁止增删大纲里的 H2。完成：节清单与大纲一一对应；每节有要点和字数目标。
 

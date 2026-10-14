@@ -1,6 +1,6 @@
 # 发现状态（跨轮学习）
 
-跨多次方法 skill 执行，记录哪些搜索词与查证路径真正产出可用名单。可选文件：`deliverables/lead/00-system/discovery-state.md`（或同名 `.json`）。不存在则跳过，不阻塞战役。进度仍只认 `state/status.md`。
+跨多次方法 skill 执行，记录哪些搜索词与查证路径真正产出可用名单。可选文件：`deliverables/lead/00-system/discovery-state.md`（或同名 `.json`）。不存在则跳过，不阻塞战役。进度仍只认 `state/lead-status.md`。
 
 ## 目录
 

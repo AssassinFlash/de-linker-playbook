@@ -7,9 +7,9 @@ output_dir: deliverables/marketing/
 product_context: docs/fact-sources.md
 ---
 
-# 台账
+# 营销台账
 
-进度真源。压缩后以本文件为准，不以对话记忆为准。
+营销线的进度真源。压缩后以本文件为准，不以对话记忆为准。获客线的进度在 `state/lead-status.md`，本文件不记、不改它。
 
 `product_context` 指向本仓库内的事实源入口；仓外路径只在入口里，交接他机改入口，不改本文件。
 
@@ -43,4 +43,4 @@ product_context: docs/fact-sources.md
 
 ## 回写
 
-每完成一个 phase：同步改文件头 YAML 与「当前」表，在「已完成」追加一行（日期 + 做了什么 + 产物路径）。`next` 写成下一 phase 的动作。phase 7 完成后 `next` 为 `stop`。
+每完成一个 phase：同步改文件头 YAML 与「当前」表，在「已完成」追加一行（日期 + 做了什么 + 产物路径）。`next` 写成下一 phase 的动作。phase 7 完成后 `next` 为 `stop`。只写本文件，不碰 `state/lead-status.md`。

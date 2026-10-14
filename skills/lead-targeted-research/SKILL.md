@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：`deliverables/lead/05-usp/usp-strategy.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-usp-extraction/SKILL.md`，不自造 USP。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/04-market/competitor-positioning.md`。从用户本轮取出**一家**公司名或官网；只有 URL 则先抓取再取公司名；只有名称则用网页搜索查证官网再抓取验证。未点名且上下文不够：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则只问公司名与域名一次，然后停。完成：能说出公司名、已验证或已标缺口的域名、本轮要用的 USP 各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
+1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：`deliverables/lead/05-usp/usp-strategy.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-usp-extraction/SKILL.md`，不自造 USP。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/04-market/competitor-positioning.md`。从用户本轮取出**一家**公司名或官网；只有 URL 则先抓取再取公司名；只有名称则用网页搜索查证官网再抓取验证。未点名且上下文不够：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则只问公司名与域名一次，然后停。完成：能说出公司名、已验证或已标缺口的域名、本轮要用的 USP 各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
 
 2. **六源搜集**。按 `references/six-source-intelligence.md` 依次查：官网、LinkedIn 公司页、新闻、新闻稿、评价与反馈、投资者或行业报告。默认用网页搜索查证；需要原文时抓取指定 URL。官网至少抓能打开的首页；About / 产品或服务页能打开则抓，路径不存在则改抓等价页并记缺口。每个源记一条：有发现（URL、访问日期、摘录）或「无相关结果」。搜索不可用则停止并写缺口。完成：六源都有记录；留下的每条情报能指回 URL 与日期。
 

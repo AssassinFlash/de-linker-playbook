@@ -4,7 +4,7 @@ description: >
   Use when starting this marketing playbook for the first time,
   re-initializing the project, 初始化, 第一次跑, 重新初始化, or when
   asked to set up folders, config, or a product profile. Confirm
-  state/status.md exists; ensure deliverables/marketing/ and
+  both ledgers in state/ exist; ensure deliverables/marketing/ and
   deliverables/lead/ trees exist in this repo; keep product_context
   pointing at ~/Documents/New/CONTEXT.md. Do not create an extra-repo
   output root, do not write a project-root config file, and do not use
@@ -20,16 +20,16 @@ description: >
 
 ## 步骤
 
-1. **台账**。读 `state/status.md`。完成：能报出存在或缺失，以及现有 `product_context`（若有）。缺失则记下缺口，不编造阶段表，不新建台账。
+1. **台账**。读两张台账：营销 `state/marketing-status.md`、获客 `state/lead-status.md`。完成：每张能报出存在或缺失，以及现有 `product_context`（若有）。缺失则记下缺口，不编造阶段表，不新建台账。
 2. **交付目录**。确认下列目录在本仓库内存在，缺则创建，已有文件不删不改。完成：两棵树每个子目录都在。
    - `deliverables/marketing/`：`00-system`、`00-research`、`01-foundation`、`02-seo`、`03-content`、`04-acquisition`、`05-cro`、`06-growth`、`07-measurement`
    - `deliverables/lead/`：`00-system`、`01-icp`、`02-companies`、`03-contacts`、`04-market`、`05-usp`、`06-outreach`、`07-targeted`、`08-linkedin`、`09-seo`、`10-sales`、`99-archive`
-3. **产品指针**。仅当台账存在时改键：缺 `product_context` 或值为空则写入 `~/Documents/New/CONTEXT.md`；已有非空值则保留。把 `~` 展开为用户主目录，检查该文件是否可读；需要隔离时 dispatch a subagent, else do it inline。完成：检查结果是「可读」或「不可读」；原文不写入本仓库。
-4. **报告**。写入 `deliverables/marketing/00-system/init-report.md`，回复含「初始化完成」与下一步路径。完成：报告非空。台账缺失或上下文不可读 → `skills/marketing-profile/SKILL.md`；否则 → `skills/marketing-orchestrator/SKILL.md`。
+3. **产品指针**。两张台账各自处理，仅当该台账存在时改键：缺 `product_context` 或值为空则写入 `~/Documents/New/CONTEXT.md`；已有非空值则保留。把 `~` 展开为用户主目录，检查该文件是否可读；需要隔离时 dispatch a subagent, else do it inline。完成：检查结果是「可读」或「不可读」；原文不写入本仓库。
+4. **报告**。写入 `deliverables/marketing/00-system/init-report.md`，回复含「初始化完成」与下一步路径。完成：报告非空。任一台账缺失或上下文不可读 → `skills/marketing-profile/SKILL.md`；否则 → `skills/marketing-orchestrator/SKILL.md`。
 
 ## 默认
 
-- 进度只认 `state/status.md`。
+- 进度只认台账：营销 `state/marketing-status.md`，获客 `state/lead-status.md`，各管各的。
 - 产出只进 `deliverables/`。
 - 产品事实只指路、不复制。
 - 下一步打开对应 `skills/<name>/SKILL.md`，不发明平行入口。
@@ -39,7 +39,8 @@ description: >
 ```markdown
 # 初始化报告
 
-- ledger: 存在 / 缺失
+- marketing_ledger: 存在 / 缺失
+- lead_ledger: 存在 / 缺失
 - product_context:
 - context_readable: 是 / 否
 - marketing_dirs: 齐 / 列出缺口
@@ -67,7 +68,7 @@ description: >
 
 ## 清单
 
-- [ ] 已读或已报告缺失 `state/status.md`
+- [ ] 已读或已报告缺失 `state/marketing-status.md` 与 `state/lead-status.md`
 - [ ] `deliverables/marketing/` 与 `deliverables/lead/` 子目录齐全
 - [ ] `product_context` 已核对（缺键才写入 `~/Documents/New/CONTEXT.md`）
 - [ ] 未把产品原文写入本仓库

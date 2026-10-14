@@ -58,6 +58,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [GSC 站点接入](tickets/gsc-site-access.md)：官方 Site Kit（只连 Search Console）验证 `https://de-linker.com/`，日常账号为委托所有者，站点地图成功；新站 `just cutover verify` 守验证不被冲掉（新站 #145 / PR #146）。
 - [Cloud 项目与服务账号](tickets/cloud-service-account.md)：所有者账号下建无组织、无结算项目，只开 Search Console / Sheets / Drive（另 IAM 必需）；一个无项目角色的服务账号，密钥在两个仓库之外 `~/.config/de-linker-playbook/`（600），本机 sites.list 调通；日常账号经邀请为 Owner；真实值在 vault。
 - [事实源入口：三方映射替换 New](tickets/fact-source-entry.md)：唯一入口 `docs/fact-sources.md`（三源位置、什么问题查哪个源、冲突谁为准：参数看托管手册、现状看线上、裁定看新站仓库、竞品不作本公司事实）；台账 `product_context` 指向它；根文件、`docs/`、`state/`、两个编排 skill 已改指，剩 96 个 skill 文件交下一票。
+- [台账拆两线](tickets/ledger-split.md)：营销 `state/marketing-status.md`、获客 `state/lead-status.md`（加审批与过期表、豁免表），旧 `state/status.md` 删除；编排、init、AGENTS、docs、evals 和 76 个 skill 的台账路径各指自己那条线；只拆不改流程。
 
 ## Not yet specified
 

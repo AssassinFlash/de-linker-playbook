@@ -23,6 +23,8 @@ blocked_by: [base-table-build, ledger-split]
 - 本票落地时补登：从「GSC 站点接入」上线那天起、新站仓库已合并且影响上述内容的 PR，逐条补进执行登记（标「补登」）。
 - 改 URL 的登记要同时记旧 URL 与新 URL，保证 GSC 数据能接回。
 
+- 台账文件（「台账拆两线」关票时写入，2026-10-14）：营销 `state/marketing-status.md`、获客 `state/lead-status.md`；旧的 `state/status.md` 已删除。两张共用键：YAML `phase`、`phase_name`、`next`、`method_skill`、`output_dir`、`product_context`（值 `docs/fact-sources.md`，`evals/validate_project.py` 会检查），同样的键再列一遍在「当前」表里，另有「阶段」「已完成」「回写」各节。获客台账另有「审批与过期」表（交付物、方法 skill、status、review_date、review_score、stale_reason、stale_date；frontmatter 为准，本表是索引）和「豁免（user_waiver）」表（日期、方法 skill、跳过的硬依赖、用户原话）。营销台账没有这两张表（只拆不改）。执行登记不进任何一张；需要引用时只写编号。
+
 ## 完成标准
 
 - 演练：对一个线上真实页面口述一次「更新了 X」→ 底表多出一行、查证列为真；对一个不存在的 URL 口述 → 查证失败、不写入或写入标「查证失败」（本票定其一）。

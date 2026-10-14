@@ -19,7 +19,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/03-content/content-strategy.md` 与 `deliverables/marketing/01-foundation/` 定位相关交付物。完成：能指出品类、目标市场、品牌语气、应用场景各依据哪几条陈述；原文不拷进本仓库。缺项写成缺口清单；产品上下文不存在则停，不编造公司、产品或视觉规范。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/03-content/content-strategy.md` 与 `deliverables/marketing/01-foundation/` 定位相关交付物。完成：能指出品类、目标市场、品牌语气、应用场景各依据哪几条陈述；原文不拷进本仓库。缺项写成缺口清单；产品上下文不存在则停，不编造公司、产品或视觉规范。
 3. **范围**。确认交付类型（静图 / 视频 / 二者）、目标渠道（以产品上下文为准）、画幅、时长、核心目标、资产模式（实拍 / 仅照片 / AI 生成 / 混合）、出镜对象、用户已配置的生图或生视频工具。完成：类型、渠道、资产模式各有一句可辩护理由。
 4. **采集**。用网页搜索查证同品类视觉趋势、短视频钩子、竞品图库或频道；需要原文时抓取指定 URL 的正文（含动态页）。查询意图、平台画幅与最低条数见 `references/methodology.md`。多页抓取需要隔离时 dispatch a subagent, else do it inline。完成：每条证据有 URL、摘录、访问日期；搜索不可用则停止并写缺口，不编造浏览量、互动率或参考链接。
 5. **分析**。归纳 3–5 个可复核的视觉风格、竞品缺口（缺失角度 / 场景 / 画幅）、以及（若做视频）3 个差异化钩子。按 `references/methodology.md` 写风格表、场景映射、提示词结构与逐镜字段。完成：每个风格有频次证据与来源；每个 prompt 能回溯至少一条已采集参考。

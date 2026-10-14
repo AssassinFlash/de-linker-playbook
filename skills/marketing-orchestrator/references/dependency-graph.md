@@ -112,7 +112,7 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
 - 产品上下文：台账 `product_context` 可读，否则停。
 - 硬依赖：上游为 `approved`，或台账记录 `user_waiver`。
 - 评审：交付物 `review.status: passed` 或显式 `user_waiver`。
-- 产出：策略文档与表进 `deliverables/marketing/<阶段>/`；评审进 `deliverables/marketing/<阶段>/review/`；元产出进 `deliverables/marketing/00-system/`；进度只写 `state/status.md`。
+- 产出：策略文档与表进 `deliverables/marketing/<阶段>/`；评审进 `deliverables/marketing/<阶段>/review/`；元产出进 `deliverables/marketing/00-system/`；进度只写 `state/marketing-status.md`。
 
 ## 附属贡献
 
@@ -148,7 +148,7 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
     "review_reports": "deliverables/marketing/<phase>/review/",
     "research": "deliverables/marketing/00-research/",
     "system": "deliverables/marketing/00-system/",
-    "progress": "state/status.md"
+    "progress": "state/marketing-status.md"
   },
   "phases": [
     {

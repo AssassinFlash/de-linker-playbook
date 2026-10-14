@@ -247,17 +247,23 @@ def validate_deliverable_quality(project_root: Path) -> int:
 
 
 def validate_ledger(project_root: Path) -> int:
-    print("\nChecking ledger...")
-    path = project_root / "state" / "status.md"
-    if not path.exists():
-        log("error", f"Missing ledger: {path}")
-        return 1
-    text = path.read_text(encoding="utf-8")
-    if "product_context" not in text:
-        log("warn", "state/status.md has no product_context key")
-    else:
-        log("ok", "Ledger present with product_context")
-    return 0
+    print("\nChecking ledgers...")
+    errors = 0
+    for rel in ("state/marketing-status.md", "state/lead-status.md"):
+        path = project_root / rel
+        if not path.exists():
+            log("error", f"Missing ledger: {path}")
+            errors += 1
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "product_context" not in text:
+            log("warn", f"{rel} has no product_context key")
+        else:
+            log("ok", f"Ledger {rel} present with product_context")
+    if (project_root / "state" / "status.md").exists():
+        log("error", "Old shared ledger state/status (pre-split) still exists; remove it")
+        errors += 1
+    return errors
 
 
 def main(argv: list[str] | None = None) -> int:

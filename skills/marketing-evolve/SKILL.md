@@ -30,7 +30,7 @@ description: >
 
 - 一次一轮、一个 skill、一条缺口（验收条或八维）。用户点了多个目标时只做第一个，其余要新会话。
 - `-eval-report.md` 管验收条；`-skill-eval-report.md` 管八维。不要把验收最弱项当成八维来修。
-- 本仓库只回写 `skills/<name>/`（含其 `references/`）。不新建 harness 专属 agent 文件，不改 `AGENTS.md`、`state/status.md`、其他 skill。
+- 本仓库只回写 `skills/<name>/`（含其 `references/`）。不新建 harness 专属 agent 文件，不改 `AGENTS.md`、`state/` 下的两张台账、其他 skill。
 - 产出只进 `deliverables/marketing/00-system/`。
 - 产品事实不写进 skill。补丁会面会客数字或品类时，读台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`，把 `~` 展开为主目录），只指路不复制。
 - 以仓库内文件为准。只有报告要求核对外方法时才用网页搜索查证；搜不到则标缺口，不编造。

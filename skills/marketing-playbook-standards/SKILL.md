@@ -19,7 +19,7 @@ description: >
 ## 步骤
 
 1. **入口**。方法 skill 的步骤 0：读 `skills/marketing-playbook-standards/SKILL.md`。本文件被单独点开时，把下列规则应用到用户本轮任务。完成：能复述四条硬约束。禁止 session-start 预加载，禁止用 frontmatter 把本文件注入子代理。
-2. **产品上下文**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。完成：能指出受众与约束各依据哪几条陈述。原文不拷进本仓库。文件不存在则停并写缺口，不另写公司档案。
+2. **产品上下文**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。完成：能指出受众与约束各依据哪几条陈述。原文不拷进本仓库。文件不存在则停并写缺口，不另写公司档案。
 3. **执行当前方法**。打开台账或用户点名的方法 skill，按其步骤做。需要隔离时 dispatch a subagent, else do it inline。完成：战役产出在 `deliverables/marketing/` 或 `deliverables/lead/` 下对应阶段小写目录；teach/eval 元产出在 `deliverables/marketing/00-system/`。简单任务不派子代理。
 4. **出门检查**。对照下方清单。完成：每条对外声明有来源或已标明缺口；教学例子原文零出现。
 
@@ -49,7 +49,7 @@ description: >
 
 **编排节奏**
 
-- 多步工作默认 Collect → Validate → Analyze → Deliver → Review。进度只认 `state/status.md`。多步战役走 `skills/marketing-orchestrator/SKILL.md`，不另写一套流程。
+- 多步工作默认 Collect → Validate → Analyze → Deliver → Review。进度只认本线台账（营销 `state/marketing-status.md`，获客 `state/lead-status.md`）。多步战役走 `skills/marketing-orchestrator/SKILL.md`（获客走 `skills/lead-generation/SKILL.md`），不另写一套流程。
 
 **语种**
 

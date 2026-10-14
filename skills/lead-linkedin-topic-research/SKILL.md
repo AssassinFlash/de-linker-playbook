@@ -23,7 +23,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入与闸门**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：`deliverables/lead/01-icp/icp-analysis.md` 的 `status` 为 `approved` 或 `approved_with_concerns`，或台账已记 `user_waiver`。未批准 → 停，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）；不编 ICP。本 skill 无软依赖。圈定三项：品类/利基、目标市场、ICP 角色。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项。完成：能指出三项各依据哪几条；原文不拷进本仓库。
+2. **输入与闸门**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：`deliverables/lead/01-icp/icp-analysis.md` 的 `status` 为 `approved` 或 `approved_with_concerns`，或台账已记 `user_waiver`。未批准 → 停，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）；不编 ICP。本 skill 无软依赖。圈定三项：品类/利基、目标市场、ICP 角色。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项。完成：能指出三项各依据哪几条；原文不拷进本仓库。
 
 3. **采集**。按 `references/methodology.md` 的四路意图用网页搜索查证：行业趋势、买家痛点与抱怨、公开内容讨论、法规与市场变化。查询年份取环境当前公历年；窗口为当前年与上一年。字段取步骤 2，不把查询模板抄进交付物。产地/供应路径只取产品上下文，不预设某一出口国。需要原文则抓取指定 URL。LinkedIn 结果页登录墙或搜不到公开互动数据 → 改用行业媒体、买家论坛、法规原文，不编「高互动帖」。搜索不可用则停止并写缺口，不编造趋势。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`：至少 5 次网页搜索，且四路各至少 1 次有用结果；不够则再搜，仍不够按实有证据写缺口，不空搜凑次数。多页需要隔离时 dispatch a subagent, else do it inline。完成：四路各有 URL、访问日期与摘录，或该路已标缺口。
 

@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。若已有则只读 `deliverables/marketing/01-foundation/` 下的竞品档案与定位文档。完成：能指出品类、计价单位、目标市场、现行作价方式、产地（影响运费）各依据哪几条；原文不拷进本仓库。缺的标「未在上下文出现」。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。若已有则只读 `deliverables/marketing/01-foundation/` 下的竞品档案与定位文档。完成：能指出品类、计价单位、目标市场、现行作价方式、产地（影响运费）各依据哪几条；原文不拷进本仓库。缺的标「未在上下文出现」。
 3. **收集**。用网页搜索查证公开报价、行业报告、运价指数、对应品类的原料现货；需要原文则抓取指定 URL。报价页以产品上下文的目标渠道为准。需要隔离深挖某一竞品或某一品类报价时 dispatch a subagent, else do it inline。用户已配置网页采集服务时，才用它抓取公开页。搜索不可用则停止并写缺口。完成：满足下方数据门，或已把缺口与已收集点一并记下；每条有 `source` 与访问日期。
 4. **分析**。只用已收集数据套「默认」框架。无来源的数字打缺口旗，不填。完成：成本栈、市场带、价值区间、客户类型层级、MOQ、区域落地成本、经销结构均有结论或缺口说明。
 5. **落盘**。按「产出」写文件。生成表格时运行 shell 命令，或填 `templates/pricing-benchmark.xlsx`（若在）。需要隔离时 dispatch a subagent, else do it inline。完成：主文档与基准表非空；占位价未留在推荐位；教学支架原文零出现。

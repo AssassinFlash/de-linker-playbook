@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/10-sales/first-order.md`，或用户本轮贴出的已承诺交期与首单流程。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。从上述来源填四项：产品（名称、规格、包装形式）；总交期（下单确认到买家仓库）；品类常见包装/交付风险；历史货损或客诉。产品或总交期仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。风险与客诉允许标「未在上下文出现」，不编事故。完成：四项表已填且能指出出处；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴交期 → 停，不编时间线。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/10-sales/first-order.md`，或用户本轮贴出的已承诺交期与首单流程。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。从上述来源填四项：产品（名称、规格、包装形式）；总交期（下单确认到买家仓库）；品类常见包装/交付风险；历史货损或客诉。产品或总交期仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。风险与客诉允许标「未在上下文出现」，不编事故。完成：四项表已填且能指出出处；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴交期 → 停，不编时间线。
 
 3. **查证**。用网页搜索查证两意图：该类产品国际贸易交付投诉与履约沟通做法；该类产品出口包装标准与常见货损。产地、运输方式取产品上下文，不预设某国。需要原文时抓取指定 URL。两条意图可并行时 dispatch a subagent, else do it inline。默认同会话做完。搜索不可用：时间线与模板仍按已承诺交期写；痛点、标准名、行业做法进缺口，不编造。完成：来源表至少覆盖上述两意图，或缺口已写明；引用的标准号、投诉类型能回溯 URL 与访问日期。
 

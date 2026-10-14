@@ -61,7 +61,7 @@
 
 ## 如何选择入口
 
-1. **不知道从何开始**：读 `state/status.md`，打开 `skills/marketing-orchestrator/SKILL.md` 或 `skills/marketing-init/SKILL.md`。
+1. **不知道从何开始**：营销读 `state/marketing-status.md` 后打开 `skills/marketing-orchestrator/SKILL.md`，获客读 `state/lead-status.md` 后打开 `skills/lead-generation/SKILL.md`；都没有台账时打开 `skills/marketing-init/SKILL.md`。
 2. **知道阶段、不知道具体任务**：仍走编排器；不要寻找 `/marketing-{phase}` 聚合入口。
 3. **知道具体任务**：打开对应 `skills/<name>/SKILL.md`。
 4. **需要隔离的重活**：方法 skill 会写 dispatch a subagent, else do it inline，不另点名一套专家角色文件。

@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖：存在且已批准则读 `deliverables/lead/01-icp/icp-analysis.md`；缺失且无 `user_waiver` → 停并写缺口，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）。有则读：`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors-analysis.md`（或同目录 `distributors.xlsx`）。记下品类、利基、目标市场、已知对手、ICP 痛点。品类或利基仍缺：先看用户本轮；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md`，不在本文件另写问卷。完成：能指出品类、利基、买家痛点各依据哪几条；原文不拷进本仓库；用户本公司不进竞品表。
+1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖：存在且已批准则读 `deliverables/lead/01-icp/icp-analysis.md`；缺失且无 `user_waiver` → 停并写缺口，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）。有则读：`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors-analysis.md`（或同目录 `distributors.xlsx`）。记下品类、利基、目标市场、已知对手、ICP 痛点。品类或利基仍缺：先看用户本轮；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md`，不在本文件另写问卷。完成：能指出品类、利基、买家痛点各依据哪几条；原文不拷进本仓库；用户本公司不进竞品表。
 
 2. **发现定位**。用网页搜索查证该利基的公开竞品与定位用语。需要原文时抓取指定 URL。搜索不可用则停止并写缺口，不编造。查询形状见下方「默认」。对照 `references/positioning-types.md` 给观察到的策略打标签；菜单上没有的按公开材料实际用语新增，不把八类当必须凑齐。完成：每条策略能指回至少一次搜索或已抓取页；未观察到的类型不进表。
 

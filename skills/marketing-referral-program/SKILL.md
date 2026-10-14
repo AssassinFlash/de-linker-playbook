@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 的定位与定价。用户本轮给出的历史订单/CRM、现行伙伴协议、口头佣金一并列入。完成：能指出品类、目标市场、买家角色、毛利与折扣权限各依据哪几条；原文不拷进本仓库。毛利缺到无法调和佣金则停并写缺口，不编造费率、订单额或竞品伙伴页。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 的定位与定价。用户本轮给出的历史订单/CRM、现行伙伴协议、口头佣金一并列入。完成：能指出品类、目标市场、买家角色、毛利与折扣权限各依据哪几条；原文不拷进本仓库。毛利缺到无法调和佣金则停并写缺口，不编造费率、订单额或竞品伙伴页。
 3. **采集**。用网页搜索查证 B2B 推荐/代理结构、佣金基准、协议惯例；需要原文时抓取指定 URL 的正文（至少 2 个竞品伙伴/代理页，以及搜到的公开佣金表或 FAQ）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多站点并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；结构、外贸案例、四类推荐人基准、竞品页达到最低条数，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据与已读毛利推导推荐人矩阵、偶发推荐人 vs 当地代理、佣金阶梯、归因规则、激活序列与赋能包。量表、起点费率与表列见 `references/methodology.md`。完成：四类推荐人各有 reward model 与 formality；每条费率有 `source` 或标明「行业参考值，需按产品上下文毛利调整」；佣金与毛利可调和或已写缺口；归因写清 first verified introduction wins。
 5. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空；协议大纲含 territory、rate、payment terms、exclusivity、termination；面客稿无未替换占位符；教学支架原文零出现；文末 5–10 条可验证断言。

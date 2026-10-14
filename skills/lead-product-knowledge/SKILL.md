@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。本会话还没读过就现在读。原文不拷进本仓库。若存在则再读：`deliverables/lead/01-icp/icp-analysis.md`（按买家类型写话术的硬依赖）、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/04-market/competitor-positioning.md`。规格、认证仍缺时再读 `~/Documents/New/fact-base/`。核心只要两项就能开写：产品和目标地区。其余（买家类型、规格/卖点、订单模式、销售障碍、用途/深度）用户给了再用，不追问齐全。缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标地区各依据哪几条；缺项标「未在上下文出现」。
+1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。本会话还没读过就现在读。原文不拷进本仓库。若存在则再读：`deliverables/lead/01-icp/icp-analysis.md`（按买家类型写话术的硬依赖）、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/04-market/competitor-positioning.md`。规格、认证仍缺时再读 `~/Documents/New/fact-base/`。核心只要两项就能开写：产品和目标地区。其余（买家类型、规格/卖点、订单模式、销售障碍、用途/深度）用户给了再用，不追问齐全。缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标地区各依据哪几条；缺项标「未在上下文出现」。
 
 2. **模式**。用途 `sales`（对客、短、为成交）或 `training`（技术更深、教学口吻）；深度 `brief` / `full` / `deep_dive`。未指定则 `sales` + `full`。用户中途改模式：用已收集输入重渲，不再问一遍。完成：两种模式都写进交付物抬头。
 

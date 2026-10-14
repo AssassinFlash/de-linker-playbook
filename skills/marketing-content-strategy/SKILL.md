@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 与 `deliverables/marketing/02-seo/seo-audit.md`。已有内容清单（博客、产品页、视频、案例、渠道表现）一并列入。完成：能指出品类、目标市场、买家角色、差异化各依据哪几条；原文不拷进本仓库。缺到无法圈定品类或市场则停并写缺口，不编造公司、流量、互动数或竞品事实。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 与 `deliverables/marketing/02-seo/seo-audit.md`。已有内容清单（博客、产品页、视频、案例、渠道表现）一并列入。完成：能指出品类、目标市场、买家角色、差异化各依据哪几条；原文不拷进本仓库。缺到无法圈定品类或市场则停并写缺口，不编造公司、流量、互动数或竞品事实。
 3. **采集**。用网页搜索查证竞品内容、买家问题与趋势；需要原文时抓取指定 URL 的正文。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多站点并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；文章审计达到最低条数，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据推导四支柱、缺口、选题集群、角色映射与选题评分。量表、集群结构与表列见 `references/methodology.md`。完成：每个缺口有 ≥2 条来源证明竞品覆盖弱或缺失；每个推荐选题能映射到真实检索词或已观察的买家问题；四支柱与四个漏斗阶段均有着落或显式缺口。
 5. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL；日历有具体 `publish_date` 并对齐已核验的行业周期；教学支架原文零出现；文末 5–10 条可验证断言。

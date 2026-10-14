@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **规则与输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。本会话还没读过就现在读。已存在 `deliverables/lead/01-icp/` 客群分析可作客群输入。完成：能指出受众、品类、已有差异化各依据哪几条；原文不拷进本仓库。文件不存在则停并写缺口，不编造公司、市场、价格、流量或竞品。
+1. **规则与输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为用户主目录，不要把 `~` 当相对路径。本会话还没读过就现在读。已存在 `deliverables/lead/01-icp/` 客群分析可作客群输入。完成：能指出受众、品类、已有差异化各依据哪几条；原文不拷进本仓库。文件不存在则停并写缺口，不编造公司、市场、价格、流量或竞品。
 2. **收集**。用网页搜索查证公司站点、目标渠道（以产品上下文为准）店面、职业主页、视频与第三方提及；需要原文则抓取指定 URL。先凑满 15 个带来源的公开数据点，再向用户补缺口；已经能公开核实的不要再问。多源并行时 dispatch a subagent, else do it inline。搜索不可用则停止并写缺口，不编造。需要字段级查询或 15 项 tally 时，读 `references/methodology.md`。完成：tally ≥15，每条有 URL 或摘录；不足则再搜一轮。
 3. **分析**。只从已收集证据推导：市场层级、价值链排序、价值主张（Generic / Differentiating）、SWOT、ICP（公司类型）与买家角色（职务）、信息支柱。需要量表或表结构时读 `references/methodology.md`。完成：层级有引用数据点；中游客群按「收入潜力 × 现有能力 × 评价证据」排序；每条 Differentiating 有对应证据。对手只写具名与对我们的含义，不写战卡。Competitive Landscape 只写格局一页表；战卡走 `marketing-competitor-intelligence`。
 4. **落盘**。写入下方两个主文件；用户点名信息矩阵或对比图时再写可选文件。完成：主文件非空；表每行有 `source`；产品线 / 买家角色 / 竞争格局各 ≥3 行；无占位公司名；教学支架原文零出现。禁止写入产品档案正文或证据库副本。

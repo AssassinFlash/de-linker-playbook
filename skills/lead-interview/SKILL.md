@@ -20,7 +20,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **锁定对象**。从用户本轮消息或台账 `state/status.md` 的 `method_skill` 取出目标 skill。必须是已存在的 `skills/{name}/SKILL.md`，且目录名匹配 `lead-` 前缀。未点名则问要为哪个获客 skill 访谈，其他先不问。完成：写出目标目录名；对不上则停并写缺口。
+2. **锁定对象**。从用户本轮消息或台账 `state/lead-status.md` 的 `method_skill` 取出目标 skill。必须是已存在的 `skills/{name}/SKILL.md`，且目录名匹配 `lead-` 前缀。未点名则问要为哪个获客 skill 访谈，其他先不问。完成：写出目标目录名；对不上则停并写缺口。
 
 3. **加载与预打分**。只读、不把原文拷进本仓库。
    - 台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）

@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。硬依赖：已批准的 `deliverables/lead/10-sales/quotation-strategy.md`，或用户本轮贴出的报价要点 + 异议原文。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、买家类型、至少 1 条异议仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出产品、买家类型、已报价格结构、异议原文各依据哪一段。硬依赖缺失、无 `user_waiver`、用户也未贴报价要点与异议 → 停，不编报价、不编买家原话。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。硬依赖：已批准的 `deliverables/lead/10-sales/quotation-strategy.md`，或用户本轮贴出的报价要点 + 异议原文。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、买家类型、至少 1 条异议仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出产品、买家类型、已报价格结构、异议原文各依据哪一段。硬依赖缺失、无 `user_waiver`、用户也未贴报价要点与异议 → 停，不编报价、不编买家原话。
 
 3. **锁定四项**。从已读材料填四格，不另开问卷：① 所售产品与关键规格（价格区间只取上下文或报价稿）；② 买家类型（取 ICP / 产品上下文，不预设渠道角色）；③ 本买家点名的异议，最多取杠杆最高的 3 条；④ 竞品弱点（只取竞品稿、报价稿或用户本轮，不编质量事故）。完成：四格都有值或已标「未在上下文出现」；至少 1 条可回溯到买家原话或用户确认。
 

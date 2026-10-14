@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。若存在则先读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。读 `deliverables/lead/01-icp/icp-analysis.md`；需要表时再读同目录 `icp-summary.xlsx`。硬依赖：该 ICP 交付物 `status` 为 `approved` 或 `approved_with_concerns`，或台账已记 `user_waiver`。缺失或未批准 → 停，宣布缺口，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）；不编 ICP、不往下扩词。覆盖哪些 ICP、平台、语种、每条 ICP 词数仍不清楚 → 打开 `skills/lead-interview/SKILL.md`；该文件不存在则把缺口写入台账，不自造问卷。完成：能列出本轮 ICP 名称、目标市场语种、平台范围，并指回 ICP 文件哪几节；原文不拷进本仓库。
+1. **输入**。若存在则先读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。读 `deliverables/lead/01-icp/icp-analysis.md`；需要表时再读同目录 `icp-summary.xlsx`。硬依赖：该 ICP 交付物 `status` 为 `approved` 或 `approved_with_concerns`，或台账已记 `user_waiver`。缺失或未批准 → 停，宣布缺口，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）；不编 ICP、不往下扩词。覆盖哪些 ICP、平台、语种、每条 ICP 词数仍不清楚 → 打开 `skills/lead-interview/SKILL.md`；该文件不存在则把缺口写入台账，不自造问卷。完成：能列出本轮 ICP 名称、目标市场语种、平台范围，并指回 ICP 文件哪几节；原文不拷进本仓库。
 
 2. **拆属性**。对每个要覆盖的 ICP 写属性卡：规模、行业、目标市场、对方卖什么/提供什么服务。完成：每张卡能指回 ICP 原文一节；缺项标「未在上游出现」。
 

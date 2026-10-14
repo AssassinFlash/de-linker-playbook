@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/status.md` 的 `phase`、`output_dir`、`product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。用户本轮点名了文件就用该文件；否则取当前 `output_dir` 里刚落地的名单或报告。存在则读 `deliverables/lead/01-icp/icp-analysis.md`，只用于排序，不改画像。原文不拷进本仓库。完成：待检路径、阶段目录、记录条数、每条适用哪几项检查都已确定。无数据集 → 停并写缺口，不编名单、不编 URL。
+1. **输入**。读台账 `state/lead-status.md` 的 `phase`、`output_dir`、`product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。用户本轮点名了文件就用该文件；否则取当前 `output_dir` 里刚落地的名单或报告。存在则读 `deliverables/lead/01-icp/icp-analysis.md`，只用于排序，不改画像。原文不拷进本仓库。完成：待检路径、阶段目录、记录条数、每条适用哪几项检查都已确定。无数据集 → 停并写缺口，不编名单、不编 URL。
 
 2. **排队**。高 ICP 匹配优先。同一域名下多个页面只排队一次域名可达性。本会话已验过的域名写入缓存，不重复抓。完成：有序队列；同域合并结果可复用。
 

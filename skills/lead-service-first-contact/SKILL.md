@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/05-usp/usp-strategy.md`。软依赖存在则读：`deliverables/lead/04-market/competitor-positioning.md`。用户本轮给出的买家、市场、通道或竞品弱点记「用户本轮」。四项取值必须齐：所卖产品、买家类型、目标国/地区、竞品常见弱点。材料仍不够清楚时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出四项各依据哪几条；原文不拷进本仓库。任一硬依赖文件缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。本 skill 写销售服务链入口的一对一消息，不写批量开发信（打开 `skills/lead-cold-email-gen/SKILL.md`，文件存在时），不写异议回复或报价稿。
+2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/05-usp/usp-strategy.md`。软依赖存在则读：`deliverables/lead/04-market/competitor-positioning.md`。用户本轮给出的买家、市场、通道或竞品弱点记「用户本轮」。四项取值必须齐：所卖产品、买家类型、目标国/地区、竞品常见弱点。材料仍不够清楚时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出四项各依据哪几条；原文不拷进本仓库。任一硬依赖文件缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。本 skill 写销售服务链入口的一对一消息，不写批量开发信（打开 `skills/lead-cold-email-gen/SKILL.md`，文件存在时），不写异议回复或报价稿。
 
 3. **查证**。用网页搜索查证买家所在国 + 品类的进口/渠道趋势，以及该市场买家侧风险或未满足需求。竞品弱点在上游仍薄时，再搜一轮该品类供应商的公开投诉。查询用当前公历年，不写死年份。需要原文则抓取指定 URL。不为「首触话术最佳实践」凑查询，方法在本文件。搜索不可用或搜不到该国该品类的具体数据：Hook 禁止写百分比、研究名或「数据表明」；用已批准痛点或区域级公开趋势，并在缺口写明数据边界。完成：Hook 将用的每条事实能回溯 URL 与访问日期，或已标缺口；搜索日志已记。
 

@@ -22,9 +22,9 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
-2. **闸门**。读 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。读不到则停，打开 `skills/marketing-profile/SKILL.md`。读 `skills/marketing-orchestrator/references/dependency-graph.md` 的 acquisition 段与机器可读 JSON，核对 `global_gates`、三个方法 skill 的依赖与产出路径。`deliverables/marketing/` 缺失则打开 `skills/marketing-init/SKILL.md`。三个方法的硬依赖（社媒：内容策略与定位；付费广告：定位、竞品与定价；邮件外展：定位与竞品）缺失且无 `user_waiver` → 停。三个方法 `SKILL.md` 任一不存在 → 停并写缺口，不自造方法。完成：能报出上下文可读、三文件存在、三个方法各自的硬依赖。
+2. **闸门**。读 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。读不到则停，打开 `skills/marketing-profile/SKILL.md`。读 `skills/marketing-orchestrator/references/dependency-graph.md` 的 acquisition 段与机器可读 JSON，核对 `global_gates`、三个方法 skill 的依赖与产出路径。`deliverables/marketing/` 缺失则打开 `skills/marketing-init/SKILL.md`。三个方法的硬依赖（社媒：内容策略与定位；付费广告：定位、竞品与定价；邮件外展：定位与竞品）缺失且无 `user_waiver` → 停。三个方法 `SKILL.md` 任一不存在 → 停并写缺口，不自造方法。完成：能报出上下文可读、三文件存在、三个方法各自的硬依赖。
 3. **社媒、付费广告、邮件外展**。三者互无硬依赖，可并行：打开 `skills/marketing-social-content/SKILL.md`、`skills/marketing-paid-advertising/SKILL.md` 与 `skills/marketing-email-outreach/SKILL.md`，各 dispatch a subagent, else do it inline。完成：下方六件均在 `deliverables/marketing/04-acquisition/`（社媒与邮件在对应子目录）、非空、不是例子原文；三类交付物能回溯同一套定位与价值主张，卖点与 CTA 不互相矛盾。
-4. **收束**。回写 `state/status.md`（已完成与磁盘一致；`output_dir` 为 `deliverables/marketing/04-acquisition/`）。当众列出六件交付物的本仓库相对路径，并给至少一项下一步。某方法失败、降级或因业务跳过时，总结写明阻塞点、影响范围及补救路径，不静默跳过。评审未 `passed` 且无 `user_waiver` 时，不把战役推进到下一阶段。完成：summary 含路径与下一步；未另写一套编排。
+4. **收束**。回写 `state/marketing-status.md`（已完成与磁盘一致；`output_dir` 为 `deliverables/marketing/04-acquisition/`）。当众列出六件交付物的本仓库相对路径，并给至少一项下一步。某方法失败、降级或因业务跳过时，总结写明阻塞点、影响范围及补救路径，不静默跳过。评审未 `passed` 且无 `user_waiver` 时，不把战役推进到下一阶段。完成：summary 含路径与下一步；未另写一套编排。
 
 ## 默认
 

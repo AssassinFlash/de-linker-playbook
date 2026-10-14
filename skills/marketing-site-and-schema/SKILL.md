@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
-2. **输入**。读台账 `state/status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。存在则读 `deliverables/marketing/01-foundation/` 的定位与竞品稿，以及 `deliverables/marketing/02-seo/` 的审计与程序化页面矩阵。完成：能指出品类、目标市场、买家角色、站点域名、目标站点技术栈各依据哪几条；原文不拷进本仓库。域名或技术栈未在上下文出现则用网页搜索查证公司站点；仍缺则停并写缺口，不编造 URL 或平台。
+2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。存在则读 `deliverables/marketing/01-foundation/` 的定位与竞品稿，以及 `deliverables/marketing/02-seo/` 的审计与程序化页面矩阵。完成：能指出品类、目标市场、买家角色、站点域名、目标站点技术栈各依据哪几条；原文不拷进本仓库。域名或技术栈未在上下文出现则用网页搜索查证公司站点；仍缺则停并写缺口，不编造 URL 或平台。
 3. **收集**。用网页搜索查证；需要原文时抓取指定 URL 的正文（含动态页）。默认先搜再抓。本站：URL 树、首页导航与页脚、目录/筛选、关于与联系、`/robots.txt`、`/sitemap.xml`、渲染 HTML 里的 `application/ld+json`。竞品：至少 2 个域名的 URL 分类、至少 1 个产品页或列表页的 schema。多域名并行时 dispatch a subagent, else do it inline。搜索不可用则停止并写缺口。查询清单与数据门：读 `references/methodology.md`。完成：本站清单、现有 schema 审计、≥2 竞品结构、≥1 竞品 schema、平台路由约束均已记录；客户端注入的 JSON-LD 标「需服务端或实渲染核验」。
 4. **分析**。先记目标站点技术栈的固定路由，再设计 2–4 级分类、URL、导航与询盘、内链、按页 schema。不得违反平台路由。薄页或近重复页不标为可索引。字段表、JSON-LD 骨架、工作表列：读 `references/methodology.md`。完成：无孤立页；每个产品映射到 ≥2 个列表/分类；每条架构建议能回溯步骤 3 的 URL 或查询。
 5. **落盘**。写入下方路径。策略与分析用简体中文；URL、schema 字段、handle 用英文。完成：主文档含且仅含 7 个指定章节；工作簿四表各 ≥20 行且 `source` 非空，或已写等价 JSON 并标明未能出表的原因；教学支架原文零出现；文末可验证断言成立。
