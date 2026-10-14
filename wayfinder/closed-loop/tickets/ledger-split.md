@@ -17,6 +17,8 @@ blocked_by: [fact-source-entry]
 - **只拆不改流程**：瀑布 → 运营循环、证据闸 / 反馈闸是「营销编排改循环」「获客编排改循环」的事；本票不加循环字段，免得两次改形。执行登记与反馈数据也不进台账——它们在底表（Google 表格），台账只记阶段与下一步。
 - 迁移现有进度（营销 phase 0 未开始；获客无进度）。
 
+- 依赖已清（2026-10-14）：「事实源入口」已关，本票可以动两个编排 skill 与 `state/status.md` 了。那张票只改了 `product_context` 的值（现为 `docs/fact-sources.md`）和 `next` 的措辞，键名与台账结构没动；拆台账时两张新台账都保留 `product_context: docs/fact-sources.md`（`evals/validate_project.py` 会检查这个键）。
+
 ## 完成标准
 
 - `grep -rn "state/status.md"` 在 `skills/ AGENTS.md docs evals` 里只剩指向新文件的引用（或旧文件已删除、引用为 0）。

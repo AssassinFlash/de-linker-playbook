@@ -17,7 +17,7 @@
 ## 开始前
 
 1. 工作目录是本仓库根（含 `AGENTS.md`、`state/status.md`、`skills/`）。
-2. 产品事实在仓外：台账 `state/status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读文件时把 `~` 展开为用户主目录，不要把 `~` 当相对路径。
+2. 产品事实在仓外，入口在仓内：`docs/fact-sources.md`（台账 `state/status.md` 的 `product_context` 就指向它）。入口告诉助手什么问题去线上站点、新站仓库还是竞品调研查。
 3. 产出只进本仓库的 `deliverables/marketing/` 与 `deliverables/lead/`，不在仓外另建产出根。
 
 ## 第一步：预检项目状态
@@ -28,7 +28,7 @@
 
 - 确认 `state/status.md` 是否存在
 - 确认 `deliverables/marketing/` 与 `deliverables/lead/` 阶段目录齐全（缺则创建）
-- 核对台账里的 `product_context`（缺省写入 `~/Documents/New/CONTEXT.md`）
+- 核对台账里的 `product_context`（应为 `docs/fact-sources.md`）
 - 把初始化报告写到 `deliverables/marketing/00-system/init-report.md`
 
 若产品上下文不可读，下一步打开 `skills/marketing-profile/SKILL.md`；否则打开 `skills/marketing-orchestrator/SKILL.md`。
@@ -39,11 +39,11 @@
 
 助手会：
 
-1. 按台账 `product_context` 去读（默认 `~/Documents/New/CONTEXT.md`）
-2. 需要规格、证书、数字时再读同一树下的 `fact-base/`
+1. 读事实源入口 `docs/fact-sources.md`（即台账 `product_context`）
+2. 按入口的「什么问题查哪个源」去线上站点、新站仓库或竞品调研取证；查不到的标〔未证实〕
 3. 在 `deliverables/marketing/01-foundation/context-pointer.md` 写下指针和覆盖表，**不把产品原文拷进本仓库**
 
-**你需要做的**：确认事实在 `~/Documents/New` 里是对的。要改事实，改那边，不改本仓库。
+**你需要做的**：什么都不用确认。事实以线上站点和新站仓库为准；要改事实，改站点（经新站仓库），不改本仓库。
 
 更深的规格 / 价值链 / 买家角色读，打开 `skills/marketing-profile/SKILL.md`。
 
@@ -112,7 +112,7 @@ python3 evals/validate_deliverables.py
 
 ## 重要原则
 
-1. **产品上下文优先**：事实只在 `~/Documents/New`。本仓库只指路、不复制。
+1. **产品上下文优先**：事实只从 `docs/fact-sources.md` 进。本仓库只指路、不复制。
 2. **真实数据**：不要允许助手编造 CPC、市场规模、竞品数据。要求它标注来源。
 3. **先小规模测试**：第一次用，先做一个很小的任务（例如只分析 3 家竞品），确认流程顺了再扩大。
 4. **保存交付物**：营销产出在 `deliverables/marketing/`，获客产出在 `deliverables/lead/`，阶段目录一律小写。
@@ -121,7 +121,7 @@ python3 evals/validate_deliverables.py
 
 | 术语 | 你可以理解为 |
 |---|---|
-| 产品上下文 | 仓外的公司/产品事实（`product_context`） |
+| 产品上下文 | 仓外的公司/产品事实，入口 `docs/fact-sources.md`（`product_context`） |
 | 台账 | `state/status.md`，进度真源 |
 | 交付物 | `deliverables/` 里的产出 |
 | Skill | `skills/<name>/SKILL.md` 里可重复运行的工作流 |

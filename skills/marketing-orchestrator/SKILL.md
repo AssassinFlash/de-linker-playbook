@@ -46,7 +46,7 @@ description: >
 ## 默认
 
 - 进度只认台账。
-- 产品事实只读 `product_context`（默认 `~/Documents/New/CONTEXT.md`），不在本仓库另存一份。
+- 产品事实只读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；查不到标〔未证实〕，按没有处理；不在本仓库另存一份。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 台账或 `deliverables/marketing/` 缺失时，先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
 - 缺来源、缺搜索：停止并写缺口，不编造。需要查证时用网页搜索；需要原文时抓取指定 URL 的正文。
@@ -73,7 +73,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是编排导航，例子教流程形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是编排导航，例子教流程形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 用户说「下一步」。读出台账 `phase: 0`。当众说：当前 phase 0 读产品上下文，下一方法 skill 为台账 `method_skill`，产出路径为台账 `output_dir`。然后做 phase 0。用户说「你好」只复述 `phase` 与 `next`，不改文件、不跑管线。
 

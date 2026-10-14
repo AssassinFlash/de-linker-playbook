@@ -17,7 +17,15 @@ blocked_by: [fact-source-entry]
 - 文件所有权：本票不碰 `skills/marketing-orchestrator/**`、`skills/lead-generation/**`（归「台账拆两线」与编排循环票）。
 - 量大：可按目录分批；可派 subagent 执行，主会话逐批抽查 diff。
 
-入口路径与指针写法：〔待「事实源入口」关票时写入〕
+入口路径与指针写法（「事实源入口」关票时写入，2026-10-14）：
+
+- 入口：`docs/fact-sources.md`（仓库根相对路径）。台账键 `product_context` 保留，值已改为 `docs/fact-sources.md`。仓外路径只住在入口里，skill 里不写。
+- 标准指针句（「从哪读事实」那一句整句换成它）：
+  > 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；原文不拷进本仓库。
+- 引用台账的闸门句：把 `（缺省/默认 ~/Documents/New/CONTEXT.md；把 ~ 展开为主目录…）` 换成 `（事实源入口 docs/fact-sources.md）`，再接「按其指路取证」。凡是「需要参数再读 …/fact-base/」的分句一律删掉，参数从哪查由入口决定。英文句同理：`ledger product_context (= docs/fact-sources.md)`。
+- 特例：`marketing-profile` 里「缺 `product_context` 则写入 …」改为写入 `docs/fact-sources.md`。它的指针模板 `source: …/CONTEXT.md` 改为 `source: docs/fact-sources.md`。「用户若要改事实，改 …」改为「事实以线上站点与新站仓库为准，不改本仓库」。
+- 参照：两个编排 skill 及其 `references/` 已按这个写法改完，可对照 diff。
+- 实数：本票开工时 `grep -rl "Documents/New" skills` 是 96 个文件，不是 99 个。
 
 ## 完成标准
 

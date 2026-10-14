@@ -18,7 +18,7 @@
 ## 步骤 0 读配置与上下文
 
 1. 读 `state/status.md`，取出 `phase`、`next`、`method_skill`、`output_dir`、`product_context`。
-2. 产品上下文：台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。把 `~` 展开为主目录。读不到 → 停并写缺口，打开 `skills/marketing-profile/SKILL.md`（存在时）。原文不拷进本仓库。
+2. 产品上下文：台账 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证。入口读不到 → 停并写缺口，打开 `skills/marketing-profile/SKILL.md`（存在时）。原文不拷进本仓库。
 3. 台账或 `deliverables/lead/` 缺失 → 打开 `skills/marketing-init/SKILL.md`。不要写项目根配置文件，不要另建产出根。
 4. 若 `deliverables/lead/00-system/discovery-state.md`（或 `.json`）存在：把 `next_experiments.search_terms_to_try` 交给本轮方法 skill；不要把教学习作传进生产步骤。
 

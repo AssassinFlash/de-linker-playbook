@@ -55,7 +55,7 @@ description: >
 ## 默认
 
 - 进度只认台账。产出只进 `deliverables/lead/`。营销树 `deliverables/marketing/` 不由本 skill 推进。
-- 产品事实只读 `product_context`（默认 `~/Documents/New/CONTEXT.md`），不在本仓库另存一份。
+- 产品事实只读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；查不到标〔未证实〕，按没有处理；不在本仓库另存一份。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 缺来源、缺搜索：停止并写缺口，不编造。需要查证时用网页搜索；需要原文时抓取指定 URL 的正文。
 - 交付物带来源栏；数字必须能回溯产品上下文或已抓取 URL。策略/分析用中文；表列名 English snake_case；公司名不翻译。

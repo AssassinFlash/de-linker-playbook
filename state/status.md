@@ -1,17 +1,17 @@
 ---
 phase: 0
 phase_name: 读产品上下文
-next: 只读 product_context（默认 ~/Documents/New/CONTEXT.md）；需要档案时执行 marketing-profile；确认可读后进入 phase 1
+next: 读 product_context（事实源入口 docs/fact-sources.md），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1
 method_skill: marketing-profile
 output_dir: deliverables/marketing/
-product_context: ~/Documents/New/CONTEXT.md
+product_context: docs/fact-sources.md
 ---
 
 # 台账
 
 进度真源。压缩后以本文件为准，不以对话记忆为准。
 
-`product_context` 交接他机需更新此路径。读文件时把 `~` 展开为用户主目录。
+`product_context` 指向本仓库内的事实源入口；仓外路径只在入口里，交接他机改入口，不改本文件。
 
 ## 当前
 
@@ -19,10 +19,10 @@ product_context: ~/Documents/New/CONTEXT.md
 | --- | --- |
 | phase | 0 |
 | phase_name | 读产品上下文 |
-| next | 只读 `product_context`（默认 `~/Documents/New/CONTEXT.md`）；需要档案时执行 marketing-profile；确认可读后进入 phase 1 |
+| next | 读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1 |
 | method_skill | marketing-profile |
 | output_dir | deliverables/marketing/ |
-| product_context | `~/Documents/New/CONTEXT.md` |
+| product_context | `docs/fact-sources.md` |
 
 ## 阶段
 

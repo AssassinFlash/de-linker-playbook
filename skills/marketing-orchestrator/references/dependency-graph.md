@@ -15,7 +15,7 @@
 
 ## 横切
 
-- 每个方法 skill 依赖台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md`（文件存在时）。
+- 每个方法 skill 依赖台账 `product_context`（事实源入口 `docs/fact-sources.md`）。读不到则停，打开 `skills/marketing-profile/SKILL.md`（文件存在时）。
 - 共用规则：`skills/marketing-playbook-standards/SKILL.md`（存在则读）。
 - 台账或 `deliverables/marketing/` 缺失：打开 `skills/marketing-init/SKILL.md`。
 - 教学 / 评测 / 进化产出进 `deliverables/marketing/00-system/`，不占用战役 phase。
@@ -133,7 +133,7 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
   "global_gates": {
     "product_context": {
       "ledger_key": "product_context",
-      "default": "~/Documents/New/CONTEXT.md",
+      "default": "docs/fact-sources.md",
       "block_if_unreadable": true
     },
     "review": {

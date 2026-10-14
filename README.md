@@ -1,6 +1,6 @@
 # de-linker playbook
 
-v3 的 37 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化、跨 harness 通用化后的自包含 playbook。方法在正典；产品事实指路不复制，只指向 `~/Documents/New`。
+v3 的 37 个营销 skill 与 lead-gen 的 43 个获客 skill，去不锈钢化、跨 harness 通用化后的自包含 playbook。方法在正典；产品事实指路不复制，只指向事实源入口 `docs/fact-sources.md`（线上站点 + 新站仓库 + 竞品调研）。
 
 ## 目录
 
@@ -27,4 +27,4 @@ AGENTS.md            agent 入口（只指路）
 - Agent：读 `AGENTS.md`，按其指路取用正典。
 - 人：看本文件和 `wayfinder/map.md`。
 
-读 `~/Documents/New` 时把 `~` 展开为用户主目录。兼容目标五家：Kimi / Z Code / DeepSeek / OpenCode / Hermes。
+事实从 `docs/fact-sources.md` 进。兼容目标五家：Kimi / Z Code / DeepSeek / OpenCode / Hermes。
