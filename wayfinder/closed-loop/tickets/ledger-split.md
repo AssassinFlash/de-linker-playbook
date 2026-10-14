@@ -40,4 +40,4 @@ blocked_by: [fact-source-entry]
 - marketing-* 里提到获客台账的只有 `marketing-orchestrator`（一句「不读不写」）、`marketing-init`、`marketing-playbook-standards`（两条线共用）；lead-* 里提到营销台账的只有 `lead-generation`（一句「不读不写」）。
 - 冷启动演练（本会话内联模拟）：营销说「下一步」：AGENTS → `state/marketing-status.md` → 营销编排步骤 1，宣布 phase 0、`marketing-profile`、`deliverables/marketing/`；回写只写营销台账。获客说「下一步」：AGENTS → `state/lead-status.md` → 获客编排步骤 1 与协议步骤 0，宣布获客 phase 0、`marketing-profile`、`deliverables/lead/`；回写和审批表只写获客台账。演练只走到宣布这一步，没有改任何台账（前后 md5 一致）。
 
-附带：跑 `evals/run_eval.py` 时，它把两份报告写进了 vault 的 `marketing/00-system/eval-reports/`（脚本自带行为）。这两份是过程产物，删除被本机权限拦下，留给操作者处理。
+附带：跑 `evals/run_eval.py` 时，它把两份报告写进了 vault 的 `marketing/00-system/eval-reports/`（脚本自带行为）。这两份是过程产物，已经删掉了（操作者同意，2026-10-14），vault 里没有残留。
