@@ -1,7 +1,7 @@
 ---
 wayfinder: prototype
 status: open
-assignee:
+assignee: claude-opus-5-5 会话 2026-10-14
 step: 1
 blocked_by: []
 ---
