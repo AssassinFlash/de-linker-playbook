@@ -56,6 +56,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [同意横幅与 GA4 选型调研](tickets/consent-ga4-research.md)：Complianz 免费版 + WP Consent API + Site Kit，Consent Mode 走 Basic（同意前不传数据），第一层同等接受/拒绝；Script Center 能否挡住 Site Kit 的 gtag.js 须先实测。另发现线上已在无横幅时写 Woo 订单归因 Cookie。
 - [询盘数据从哪读](tickets/l3-inquiry-source.md)：L3 主路径 = Woo REST 只读密钥读四个询盘状态 + 签发 meta；联系表单（未挂、只发信）与直接来信不可计；表格只留 id、单号、公司、创建时刻、状态、签发时刻。
 - [GSC 站点接入](tickets/gsc-site-access.md)：官方 Site Kit（只连 Search Console）验证 `https://de-linker.com/`，日常账号为委托所有者，站点地图成功；新站 `just cutover verify` 守验证不被冲掉（新站 #145 / PR #146）。
+- [Cloud 项目与服务账号](tickets/cloud-service-account.md)：所有者账号下建无组织、无结算项目，只开 Search Console / Sheets / Drive（另 IAM 必需）；一个无项目角色的服务账号，密钥在两个仓库之外 `~/.config/de-linker-playbook/`（600），本机 sites.list 调通；日常账号经邀请为 Owner；真实值在 vault。
 
 ## Not yet specified
 

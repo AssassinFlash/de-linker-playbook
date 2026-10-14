@@ -25,6 +25,13 @@ blocked_by: [gsc-site-access, cloud-service-account, execution-log-flow]
 - 加服务账号：GSC → 设置 → 用户和权限 → 添加用户 → 权限「受限」。`所有者账号` 或 `日常账号` 都能加（两者都是所有者）；浏览器里 `所有者账号` 在 GSC 的 URL 段是 `/u/1/`。
 - GSC 数据从 2026-10-14 起开始积累（Site Kit 提示约 48 小时内为空）；回流脚本首跑若取不到数，先看日期范围是否早于此。
 
+## 服务账号交接（「Cloud 项目与服务账号」关票时写入）
+
+- 服务账号邮箱、项目 ID 记在 vault `deliverables/marketing/00-system/cloud-service-account.md`（HITL 前置「把服务账号加为 GSC 用户」时从那里抄邮箱）；公开仓库与脚本源码里不写死，脚本从密钥 JSON 的 `client_email` 读。
+- 密钥路径约定：`~/.config/de-linker-playbook/service-account.json`（目录 700、文件 600，两个仓库之外）；脚本按「`GOOGLE_APPLICATION_CREDENTIALS` 优先，否则默认路径」读，配置读取方式以「建底表」定下的为准。
+- Search Console API 已启用；作用域 `https://www.googleapis.com/auth/webmasters.readonly`。2026-10-14 已用该密钥调通 `sites.list`：HTTP 200、空列表——加进 GSC 之前就是空的，加完后应出现 `https://de-linker.com/`，这可作为加用户这一步的核对。
+- 若脚本跑在服务 VPS 上（见「定时任务跑在哪」），密钥要拷到 VPS 的仓库外路径、权限 600，并在 vault 那份记录里补一行「另一份在哪」。
+
 ## 完成标准
 
 - 底表网页反馈表有真实行（至少一个页面的收录状态与近 7 天展示）；重跑一次不产生重复行；定时任务至少自动跑过一次（看日志）。
