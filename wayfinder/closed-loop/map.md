@@ -50,6 +50,8 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 
 <!-- 每关一票加一行：[票名](tickets/x.md)：一句话 gist -->
 
+- [反馈分级行动规则调研](tickets/feedback-action-rules-research.md)：冷启动可执行的只有技术阻断、退信状态码、标题/摘要缺陷三类；比率类（零展示、点击率、回复率、跟进次数间隔、询盘数、上移时点）均无通用阈值，只记账。
+
 ## Not yet specified
 
 - **非 Google 渠道的 L1/L2**：操作者可在任意渠道发布（LinkedIn、行业论坛、目录站……）。执行登记能记 L0；这些渠道的到达与互动怎么回流（口述 + 截图？平台导出？）要等底表与反馈规则定形后才看得清。

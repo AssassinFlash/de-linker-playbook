@@ -1,8 +1,9 @@
 ---
 wayfinder: research
-status: open
+status: closed
 assignee: grok-build (dispatched 2026-10-14)
 grok_session: f1549580-0ba7-4c83-9cb6-2045da4871b0
+resolved: 2026-10-14
 step: 3
 blocked_by: []
 ---
@@ -28,3 +29,11 @@ blocked_by: []
 ## 完成标准
 
 - 每级至少有可执行的条件与动作；每条带来源。主模型抽查至少两条来源原文，写进 Resolution，并向用户汇报。
+
+## Resolution
+
+冷启动里能立刻执行的下一步只有三类：按 Google 文档修网站侧技术阻断（5xx、重定向、robots/noindex 误挡、soft 404、401/403/404、规范网址错位）；按 SMTP 状态码处理退信（5yz 停地址，4yz 交传输重试）；改掉命中 Google 标题 / 摘要缺陷清单的那一处。**收录后零展示、点击率、回复率、跟进次数与间隔、询盘个数、何时上移到按比率改页 / 改序列，均无通用阈值**——这些情形只记账。无回复不构成停在第一封或改写序列的理由（Belkins、Instantly 都显示第一封之后仍有相当比例回复，但 3–5 封与 4–7 封互相冲突，不合成配额）。个位数询盘只记账的 0–9 是字面边界，非业界公布线。规则表每行带承接 skill（均存在于 `skills/`）。
+
+全文：[`research/feedback-action-rules.md`](../research/feedback-action-rules.md)。
+
+主模型抽查（2026-10-14）：RFC 5321 §4.5.4.1「retry interval SHOULD be at least 30 minutes」「give-up time generally needs to be at least 4-5 days」原文一致；Belkins 回复率页 7,530,489 封 / 34,393 回复、定义排除自动回复与退信，原文一致；Google 索引报告「a week or so」「no need to resubmit」「fewer than 500 pages」原文一致；规则表 21 个承接 skill 名全部存在；0.45% 下 100 封零回复概率 0.637 复算一致。
