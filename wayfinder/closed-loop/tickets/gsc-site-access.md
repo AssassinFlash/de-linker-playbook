@@ -31,6 +31,13 @@ blocked_by: []
 - GSC 显示资源已验证；站点地图状态「成功」（截图或操作者口述 + agent 用线上 HTML 复核 meta / 文件存在）。
 - 新站仓库对应 PR 已合并、已上线，验收记录在其 `docs/acceptance/` 下；本票 Resolution 链接它。
 
+## 进展（执行中，2026-10-14）
+
+- 载体已定：新站 must-use 插件 `mu-plugins/linker-search-console.php` 输出 HTML 标记（不选 Site Kit；理由见新站 `docs/research/2026-10-14/search-console-carrier.md`）。
+- 新站票 AssassinFlash/de-linker#145，分支 `t145/search-console`，工作树 `~/Documents/de-linker-worktrees/de-linker-t145`。代码、三道回归检查、规格 `docs/specs/145-search-console.md` 已提交；令牌数组仍为空，`test_the_repository_plugin_carries_an_owner_token` 在令牌落地前按设计为红。
+- 本地参照实例 t110 上用替身令牌实测：首页 EN/DE `<head>` 输出标记，EN/DE × 1440/390 像素差 0。
+- 等操作者：vault `deliverables/marketing/00-system/gsc-owner-checklist.md` 的 A 段（取验证码）。拿到后：填令牌 → 本地冒烟 + e2e → PR → CI 绿 → 评审 → 合并 → 只发 mu 目录（`steps.deploy_mu_plugins`，main 自 af42744 对账后无代码漂移）→ `just cutover verify` → 操作者做 B 段。
+
 ## 交接
 
 - 所选载体若是 Site Kit，把「Site Kit 已装、版本、配置位置」写进「同意横幅与 GA4 选型调研」与「GA4 与同意横幅站点接入」两票正文。
