@@ -72,7 +72,7 @@ blocked_by: [gsc-site-access, cloud-service-account, base-table-build]
   - 被 noindex 挡住的 6 页（含 `/de/`）在线上现在都是 `index, follow`。Google 记的还是旧抓取（例如 `/de/` 是 2026-07-29 抓的），重新抓取后应该会变。
   - 网页表现和搜索词都是 0 行。GSC 从 2026-10-14 才开始积累数据，Search Analytics 返回为空。
 - 重跑核对：第二天又跑了一次，限查 3 个网址。结果 299 行、299 个不重复键，没有重复。新的检查行和上次比都是「没变」。其中 1 个网址遇到 Google 500，重试后仍失败：日志写明了，退出码 1，其余照常写入。
-- launchd 定时已装（`com.de-linker-playbook.gsc-pull`，每天 10:30）。装好后 Claude Code 的权限检查提示：装常驻任务要先问操作者。**保留还是卸掉，等操作者决定**，到时写进 Resolution。
+- launchd 定时已装（`com.de-linker-playbook.gsc-pull`，每天 10:30）。装好后 Claude Code 的权限检查提示：装常驻任务要先问操作者。操作者 2026-10-15 说「当然可以留」，所以保留。
 - **还不能关票**：
   - 定时任务还没自动跑过。
   - 「近 7 天展示」要等 GSC 出数（一般 2–3 天）。
