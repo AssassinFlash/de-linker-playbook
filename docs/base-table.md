@@ -62,8 +62,31 @@ spreadsheet_id = "..."         # 底表
 sample_spreadsheet_id = "..."  # 底表（样例）
 ```
 
+回流脚本复用 `base_table.py` 的读写层：`google_service`、`read_table`、`upsert_rows`（按不重复键新增或覆盖；内容没变的行不碰）、`replace_rows`、`refresh_progress`（按网址重挂登记编号，再重算动作进度）。写行一律写到固定行号，不用 `values.append`。所有接口调用都设了超时，遇到 429、5xx 或网络超时会自动重试。
+
+## GSC 回流
+
+[`scripts/gsc_pull.py`](../scripts/gsc_pull.py) 负责把 Search Console 的数据写进三张表：网页收录、网页表现、搜索词。写完这三张表后，它会重算一次动作进度。
+
+```sh
+uv run scripts/gsc_pull.py run                # 跑一次
+uv run scripts/gsc_pull.py run --dry-run      # 只取数、打印条数，不写表
+uv run scripts/gsc_pull.py schedule install   # 装每日定时（这台 Mac 的 launchd，每天 10:30）
+uv run scripts/gsc_pull.py schedule status    # 看装没装、上次退出码、日志最后几行
+uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
+```
+
+- **网页收录**：先查执行登记里的网址（含旧网址），再查站点地图里的网址。每个网址每天查一次；当天已经有那一行，就不再查。每天最多查 1900 个，官方上限是每站每天 2000 个。
+- **网页表现、搜索词**：每次取最近 10 天的数据（按太平洋时间），取的时候带上还没定稿的数据。最近几天的数先写成「初步」，之后的运行会用「定稿」数覆盖同一行。Google 有几处不给拆分：
+  - Discover 的数据不按设备拆，「设备」列写「不区分（Discover 不给设备）」。
+  - Discover 和 Google 新闻不给搜索词，所以搜索词表里没有这两类。
+- **耗时**：收录检查一个一个查，Google 每次要几秒才回。2026-10-14 首跑查 297 个网址，用了约 38 分钟。偶尔 Google 会回「内部错误」（500），脚本自动重试 5 次仍失败，就把这个网址记进日志，第二天再查。
+- **日志**：定时运行时写到 `~/Library/Logs/de-linker-playbook/gsc-pull.log`。哪一步出了错，日志里会写明，退出码不为 0，`schedule status` 能看到。
+- **断档**：Mac 睡眠时，launchd 会在唤醒后补跑；关机那天就跳过。搜索数据每次重取 10 天，所以断几天会自己补上。收录检查补不回来，那几天就没有行。
+- **容量**：一本 Google 表格最多 1000 万个格子。网页收录每天大约 300 行 × 18 列，一年约 200 万格，是最大的一张。总量接近上限时，要把旧数据移到存档表里（见地图「Not yet specified」）。
+
 `build` 每次都整页重写首页和各「说明」页。数据表只重写表头、格式、下拉、冻结行和列宽。若某张数据表已经有数据，而表头又与 schema 不同，`build --target main` 会停下来报错，不会覆盖；这种情况需要手动迁移。所有数据单元格都设为纯文本（数字列除外），日期和编号不会被表格自作主张改格式。
 
 ## 翻译对照
 
-Google 接口给的英文原值（coverageState、robotsTxtState、indexingState、pageFetchState、搜索类型、设备、国家代码）怎么翻成表里的中文，写在 schema 对应列的 `x-map` 里，收录状态的含义与所属结论写在 `x-states` 里。回流脚本用 `scripts/base_table.py` 的 `translate_inspection`、`compare_with_previous`、`translate_search_row` 照这些对照翻译。对照表里英文的确切写法以首次真实调用为准，对不上的落到「不在对照表里（看英文原文）」。
+Google 接口给的英文原值（coverageState、robotsTxtState、indexingState、pageFetchState、搜索类型、设备、国家代码）怎么翻成表里的中文，写在 schema 对应列的 `x-map` 里，收录状态的含义与所属结论写在 `x-states` 里。回流脚本用 `scripts/base_table.py` 的 `translate_inspection`、`compare_with_previous`、`translate_search_row` 照这些对照翻译。国家对照覆盖 ISO 3166 的全部 249 个三字母代码：中文名取自 ISO 3166 的简体中文译名，其中韩国、朝鲜和港澳台改用常用叫法；Google 判断不出国家时给的 `zzz`，表里写「未知」。对照表里英文的确切写法以首次真实调用为准，对不上的落到「不在对照表里（看英文原文）」。

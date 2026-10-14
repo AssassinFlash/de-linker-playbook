@@ -14,6 +14,9 @@
   uv run scripts/base_table.py build  --target sample 建样例表，并用假数据覆盖其数据行
   uv run scripts/base_table.py check  --target main   核对表结构与 schema 一致，不一致退出码 1
 
+回流脚本（如 scripts/gsc_pull.py）复用本文件的读写层：google_service、read_table、upsert_rows、
+replace_rows、refresh_progress。
+
 配置（都在两个仓库之外）：
   凭据  GOOGLE_APPLICATION_CREDENTIALS，否则 ~/.config/de-linker-playbook/service-account.json
   表格 ID  PLAYBOOK_CONFIG，否则 ~/.config/de-linker-playbook/config.toml：
@@ -29,7 +32,7 @@ import json
 import os
 import sys
 import tomllib
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +41,9 @@ XLSX_OUT = ROOT / "templates" / "base-table-sample.xlsx"
 CONFIG_DIR = Path.home() / ".config" / "de-linker-playbook"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 VALIDATION_ROWS = 2000
+RETRIES = 5          # googleapiclient retries 429 / 5xx / socket timeouts with backoff
+HTTP_TIMEOUT = 120   # seconds per request
+BEIJING = timezone(timedelta(hours=8))
 
 # 表头颜色 = 谁写这一列
 WRITER_FILL = {"脚本": "DDEBF7", "AI": "E2EFDA", "AI（据口述）": "FCE4D6"}
@@ -315,6 +321,7 @@ EVENT_LEVEL = {
 SAMPLE_WRITE_AT = "2026-10-14 14:00"
 SAMPLE_RECOMPUTE_AT = "2026-10-14 14:05"
 UNKNOWN_STATE = "不在对照表里（看英文原文）"
+NO_DEVICE = "不区分（Discover 不给设备）"
 
 
 def prop(schema: dict, sheet: str, col: str) -> dict:
@@ -375,7 +382,7 @@ def translate_search_row(schema: dict, sheet: str, raw: dict) -> dict:
     r = {k: v for k, v in raw.items() if not k.startswith("_")}
     r["搜索类型"] = prop(schema, sheet, "搜索类型")["x-map"][raw["_type"]]
     r["国家"] = prop(schema, sheet, "国家")["x-map"].get(raw["_country"], raw["_country"].upper())
-    r["设备"] = prop(schema, sheet, "设备")["x-map"][raw["_device"]]
+    r["设备"] = prop(schema, sheet, "设备")["x-map"][raw["_device"]] if raw.get("_device") else NO_DEVICE
     r["点击率"] = round(r["点击"] / r["展示"], 4) if r["展示"] else None
     r["反馈级别"] = "L2" if r["点击"] > 0 else "L1"
     return r
@@ -557,13 +564,125 @@ def load_target(target: str) -> str:
     return cfg[key]
 
 
-def sheets_service():
+def google_service(api: str, version: str, scopes: list[str]):
+    import httplib2
     from google.oauth2 import service_account
+    from google_auth_httplib2 import AuthorizedHttp
     from googleapiclient.discovery import build
 
     cred = Path(os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", CONFIG_DIR / "service-account.json"))
-    creds = service_account.Credentials.from_service_account_file(str(cred), scopes=SCOPES)
-    return build("sheets", "v4", credentials=creds, cache_discovery=False)
+    creds = service_account.Credentials.from_service_account_file(str(cred), scopes=scopes)
+    http = AuthorizedHttp(creds, http=httplib2.Http(timeout=HTTP_TIMEOUT))
+    return build(api, version, http=http, cache_discovery=False)
+
+
+def sheets_service():
+    return google_service("sheets", "v4", SCOPES)
+
+
+def beijing_now() -> datetime:
+    return datetime.now(BEIJING)
+
+
+def stamp(t: datetime) -> str:
+    return t.astimezone(BEIJING).strftime("%Y-%m-%d %H:%M")
+
+
+def row_key(spec: dict, r: dict) -> tuple:
+    return tuple("" if r.get(k) is None else str(r[k]) for k in spec["x-key"])
+
+
+def to_cell(v):
+    return "" if v is None else v
+
+
+def read_table(svc, sid: str, schema: dict, sheet: str) -> list[dict]:
+    """Data rows as dicts (empty cells left out, number columns as numbers); each carries its sheet row in _row."""
+    spec = schema["$defs"][sheet]
+    cols = columns(spec)
+    got = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(sheet, "A2:ZZ"),
+                                          valueRenderOption="UNFORMATTED_VALUE").execute(num_retries=RETRIES)
+    out = []
+    for i, vals in enumerate(got.get("values", []), start=2):
+        r: dict = {"_row": i}
+        for col, v in zip(cols, vals):
+            if v == "":
+                continue
+            kind = spec["properties"][col]["type"]
+            r[col] = int(v) if kind == "integer" else float(v) if kind == "number" else str(v)
+        if len(r) > 1:
+            out.append(r)
+    return out
+
+
+def write_rows(svc, sid: str, sheet: str, data: list[tuple[int, list]]) -> None:
+    """Write whole rows at fixed row numbers (never values.append: it guesses where the table is)."""
+    for i in range(0, len(data), 2000):
+        body = {"valueInputOption": "RAW",
+                "data": [{"range": a1(sheet, f"A{n}"), "values": [vals]} for n, vals in data[i:i + 2000]]}
+        svc.spreadsheets().values().batchUpdate(spreadsheetId=sid, body=body).execute(num_retries=RETRIES)
+
+
+def upsert_rows(svc, sid: str, schema: dict, sheet: str, rows: list[dict], now: str,
+                existing: list[dict] | None = None) -> tuple[int, int]:
+    """Insert new rows, overwrite rows whose key exists and whose content changed. Returns (added, updated)."""
+    spec = schema["$defs"][sheet]
+    cols = columns(spec)
+    stamp_col = next((c for c in cols if c.startswith("写入时刻")), None)
+    if existing is None:
+        existing = read_table(svc, sid, schema, sheet)
+    by_key = {row_key(spec, r): r for r in existing}
+    next_row = max((r["_row"] for r in existing), default=1) + 1
+    writes, added, updated = [], 0, 0
+    for r in rows:
+        old = by_key.get(row_key(spec, r))
+        same = old is not None and all(_same(old.get(c), r.get(c)) for c in cols if c != stamp_col)
+        if same:
+            continue
+        r = {**r, stamp_col: now} if stamp_col else r
+        vals = [to_cell(r.get(c)) for c in cols]
+        if old is None:
+            writes.append((next_row, vals))
+            by_key[row_key(spec, r)] = {**r, "_row": next_row}
+            next_row += 1
+            added += 1
+        else:
+            writes.append((old["_row"], vals))
+            updated += 1
+    write_rows(svc, sid, sheet, writes)
+    return added, updated
+
+
+def _same(a, b) -> bool:
+    if a in (None, "") and b in (None, ""):
+        return True
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        return abs(a - b) < 1e-9
+    return str(a) == str(b)
+
+
+def replace_rows(svc, sid: str, schema: dict, sheet: str, rows: list[dict]) -> None:
+    cols = columns(schema["$defs"][sheet])
+    svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(sheet, "A2:ZZ")).execute(num_retries=RETRIES)
+    write_rows(svc, sid, sheet, [(i, [to_cell(r.get(c)) for c in cols]) for i, r in enumerate(rows, start=2)])
+
+
+def refresh_progress(svc, sid: str, schema: dict, now: str) -> int:
+    """Re-attach 登记编号 on the web tables by URL, then recompute 动作进度. Returns rows in 动作进度."""
+    data = {name: read_table(svc, sid, schema, name) for name in schema["x-sheet-order"] if name != "动作进度"}
+    log = data["执行登记"]
+    for sheet, day_col in (("网页收录", "检查日期"), ("网页表现", "日期（太平洋时间）"), ("搜索词", "日期（太平洋时间）")):
+        before, moved = [dict(r) for r in data[sheet]], []
+        for r in data[sheet]:
+            eid = latest_registration(log, r["网址"], r[day_col]) or None
+            if eid != r.get("登记编号"):
+                r["登记编号"] = eid
+                moved.append(r)
+        if moved:
+            upsert_rows(svc, sid, schema, sheet, moved, now, existing=before)
+    progress = action_progress(data, now)
+    replace_rows(svc, sid, schema, "动作进度", progress)
+    return len(progress)
 
 
 def a1(title: str, rng: str = "A1") -> str:
@@ -581,7 +700,7 @@ def fetch_meta(svc, sid: str) -> dict[str, dict]:
     meta = svc.spreadsheets().get(
         spreadsheetId=sid,
         fields="sheets(properties(sheetId,title,index,gridProperties))",
-    ).execute()
+    ).execute(num_retries=RETRIES)
     return {s["properties"]["title"]: s for s in meta["sheets"]}
 
 
@@ -674,14 +793,14 @@ def build(schema: dict, target: str) -> None:
     # 1. add missing tabs; drop the untouched default tab
     reqs = [{"addSheet": {"properties": {"title": t}}} for t in order if t not in tabs]
     if reqs:
-        svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": reqs}).execute()
+        svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": reqs}).execute(num_retries=RETRIES)
         tabs = fetch_meta(svc, sid)
     extra = [t for t in tabs if t not in order]
     for t in extra:
-        vals = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(t, "A1:Z5")).execute().get("values")
+        vals = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(t, "A1:Z5")).execute(num_retries=RETRIES).get("values")
         if not vals:
             svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": [
-                {"deleteSheet": {"sheetId": tabs[t]["properties"]["sheetId"]}}]}).execute()
+                {"deleteSheet": {"sheetId": tabs[t]["properties"]["sheetId"]}}]}).execute(num_retries=RETRIES)
             print(f"removed empty tab {t}")
         else:
             print(f"kept unknown tab with data: {t}", file=sys.stderr)
@@ -691,12 +810,12 @@ def build(schema: dict, target: str) -> None:
     data = sample_data(schema) if target == "sample" else None
     for name in schema["x-sheet-order"]:
         cols = columns(schema["$defs"][name])
-        got = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(name, "A1:ZZ2")).execute().get("values", [])
+        got = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(name, "A1:ZZ2")).execute(num_retries=RETRIES).get("values", [])
         has_rows = len(got) > 1 and any(got[1])
         if has_rows and got[0] != cols and target == "main":
             raise SystemExit(f"{name}: header differs from schema and the tab already has data; migrate by hand")
         if got and got[0] != cols:  # drop stale header cells beyond the new column count
-            svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(name, "A1:ZZ1")).execute()
+            svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(name, "A1:ZZ1")).execute(num_retries=RETRIES)
 
     title = "底表" if target == "main" else "底表（样例）"
     reqs = [{"updateSpreadsheetProperties": {"properties": {"title": title}, "fields": "title"}}]
@@ -711,16 +830,16 @@ def build(schema: dict, target: str) -> None:
         reqs += data_sheet_requests(tabs[name]["properties"]["sheetId"], spec, data_widths(columns(spec), rows))
         gid = tabs[f"{name}说明"]["properties"]["sheetId"]
         reqs += page_requests(gid, guide_page(name, spec), GUIDE_WIDTHS) + col_widths_req(gid, GUIDE_WIDTHS)
-    svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": reqs}).execute()
+    svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": reqs}).execute(num_retries=RETRIES)
 
     if data:
         for name in schema["x-sheet-order"]:
             cols = columns(schema["$defs"][name])
-            svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(name, "A2:ZZ")).execute()
+            svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(name, "A2:ZZ")).execute(num_retries=RETRIES)
             values = [["" if r.get(c) is None else r.get(c) for c in cols] for r in data[name]]
             if values:
                 svc.spreadsheets().values().update(spreadsheetId=sid, range=a1(name, "A2"),
-                                                   valueInputOption="RAW", body={"values": values}).execute()
+                                                   valueInputOption="RAW", body={"values": values}).execute(num_retries=RETRIES)
     print(f"built {target}: {len(order)} tabs")
 
 
@@ -737,7 +856,7 @@ def check(schema: dict, target: str) -> int:
             continue
         spec = schema["$defs"][name]
         cols = columns(spec)
-        got = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(name, "A1:ZZ1")).execute().get("values", [[]])
+        got = svc.spreadsheets().values().get(spreadsheetId=sid, range=a1(name, "A1:ZZ1")).execute(num_retries=RETRIES).get("values", [[]])
         if got[0] != cols:
             problems.append(f"{name}: header differs from schema")
         grid = tabs[name]["properties"].get("gridProperties", {})
@@ -745,7 +864,7 @@ def check(schema: dict, target: str) -> int:
             problems.append(f"{name}: header row not frozen")
         enum_cols = {i for i, c in enumerate(cols) if "enum" in spec["properties"][c]}
         row2 = svc.spreadsheets().get(spreadsheetId=sid, ranges=[a1(name, "A2:ZZ2")], includeGridData=True,
-                                      fields="sheets(data(rowData(values(dataValidation))))").execute()
+                                      fields="sheets(data(rowData(values(dataValidation))))").execute(num_retries=RETRIES)
         cells = (row2["sheets"][0].get("data", [{}])[0].get("rowData") or [{}])[0].get("values", [])
         validated = {i for i, v in enumerate(cells)
                      if v.get("dataValidation", {}).get("condition", {}).get("type") == "ONE_OF_LIST"}
