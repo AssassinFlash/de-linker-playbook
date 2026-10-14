@@ -7,8 +7,7 @@ description: >
   or Outcome Framing, including phase 10 sales of this repo's lead run.
   Design a bilingual B2B export quotation: Smart Pricing Structure,
   Embedded Value Offers, Trust Clause, Outcome Framing, and Reorder
-  Logic with soft lock-in. Read the ledger product_context (default
-  ~/Documents/New/CONTEXT.md); write under deliverables/lead/10-sales/.
+  Logic with soft lock-in. Read the fact-source entry docs/fact-sources.md; write under deliverables/lead/10-sales/.
   Invent no prices, margins, or QC promises. Not for first-contact
   copy, post-quote objections, or foundation list pricing.
 ---
@@ -20,7 +19,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。原文不拷进本仓库。存在则再读：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/` 下市场或竞品稿、`deliverables/lead/05-usp/` 下 USP 或产品知识、`deliverables/marketing/01-foundation/` 下定价稿。不在本文件另开访谈剧本。从上下文、本轮、上游凑齐五参：报价产品（名称/规格/变体）、买家类型、买家国家或地区、MOQ 与交期、预判的买家侧顾虑。编排上本 skill 在 `lead-service-first-contact` 批准之后（见 `skills/lead-generation/SKILL.md` 阶段 10）；用户直接点名报价时仍执行，缺失首触稿则标缺口，不伪造已建立的对话基调。产品或买家类型仍缺：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口。完成：五参齐或已标缺口；产品与买家类型已锁定，否则未写策略。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。存在则再读：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/` 下市场或竞品稿、`deliverables/lead/05-usp/` 下 USP 或产品知识、`deliverables/marketing/01-foundation/` 下定价稿。不在本文件另开访谈剧本。从上下文、本轮、上游凑齐五参：报价产品（名称/规格/变体）、买家类型、买家国家或地区、MOQ 与交期、预判的买家侧顾虑。编排上本 skill 在 `lead-service-first-contact` 批准之后（见 `skills/lead-generation/SKILL.md` 阶段 10）；用户直接点名报价时仍执行，缺失首触稿则标缺口，不伪造已建立的对话基调。产品或买家类型仍缺：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口。完成：五参齐或已标缺口；产品与买家类型已锁定，否则未写策略。
 3. **查证**。用网页搜索查证两类意图：品类 × 买家国的批发/进口价格带；该买家类型在该市场的转售毛利预期。需要原文时抓取指定 URL。需要隔离第二国或第二买家类型时 dispatch a subagent, else do it inline。搜索不可用：结构仍写，所有市场数字标缺口，不编造基准价或毛利。完成：有搜索日志；引用的价带、毛利、运费或关税能回溯 URL 与访问日期，或已标缺口。
 4. **设计五件套**。只用已收集事实套「写法」：Smart Pricing Structure、Embedded Value Offers、Trust Clause、Outcome Framing、Reorder Logic。单价与折扣只来自产品上下文、本轮或已抓取页；买家毛利只在有转售/零售锚时计算。完成：五件套草稿均能回溯来源或已标缺口；未用教学句子填空。
 5. **落盘** `deliverables/lead/10-sales/quotation-strategy.md`。完成：文件非空；「产出」断言全过或对应缺口已写；教学支架原文零出现。

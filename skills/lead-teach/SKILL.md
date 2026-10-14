@@ -21,7 +21,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读用户本轮消息，取出目标学习单元、是否「跳过学习」。未点名则取 `references/stage-templates.md` 学习顺序里第一个未完成且未跳过的单元。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；本会话还没读过就现在读）。读或初始化 `deliverables/lead/00-system/learning-state.md`。在 `skills/` 下确认目标 `lead-*` 的 `SKILL.md`；没有则提出最接近的 `lead-*`，等用户选定再继续。无独立目录的课程单元（emerging / brief）读 `references/skill-teaching-guide.md` 该节，不发明 skill。完成：单元名确定；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；状态文件已有该单元行。
+1. **输入**。读用户本轮消息，取出目标学习单元、是否「跳过学习」。未点名则取 `references/stage-templates.md` 学习顺序里第一个未完成且未跳过的单元。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。读或初始化 `deliverables/lead/00-system/learning-state.md`。在 `skills/` 下确认目标 `lead-*` 的 `SKILL.md`；没有则提出最接近的 `lead-*`，等用户选定再继续。无独立目录的课程单元（emerging / brief）读 `references/skill-teaching-guide.md` 该节，不发明 skill。完成：单元名确定；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；状态文件已有该单元行。
 
 2. **跳过或定范围**。用户说「跳过学习」：该单元 `skipped: true`，`stage` 保持 0，学习顺序里标「已跳过」（不是「完成」），进入步骤 7。否则读 `references/skill-teaching-guide.md` 该节与 `references/stage-templates.md` 的任务卡范围表。缩减或聚焦时，先向用户说明范围和理由。完成：要么已标记跳过；要么范围类型（概念型 / 搜索型 / 工具依赖型 / 数据密集型）和手工量已告知。
 
@@ -102,7 +102,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是获客教学，例子教四阶段循环形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是获客教学，例子教四阶段循环形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 用户说「教我客户画像，我零基础」。确认 `skills/lead-icp-analysis/SKILL.md`。Stage 1 用「相亲条件」类比讲 ICP，并出写 3–5 个画像的任务卡。Stage 2 只提示、不代写。Stage 3 dispatch a subagent, else do it inline，不看用户稿。Stage 4 双方稿齐后再评分并陈，笔记由用户自己写到 `deliverables/lead/00-system/my-notes-lead-icp-analysis.md`。
 

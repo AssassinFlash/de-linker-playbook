@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。篇幅、钩子、CTA、标签、四种风格、软广：读 `skills/lead-generation/references/linkedin-post-guidelines.md`（只遵守，不把该文抄进本文件或交付物）。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及本帖必须走 Structure 14。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、受众、已知提问领域、指定 FAQ、公开答案、CTA 一并吸收，来源记「用户本轮」。原文不拷进本仓库。硬依赖文件缺失、本轮也未给出受众与至少一条事实问题、且无 `user_waiver` → 停。ICP 文件缺失但本轮已给受众与问题：继续，交付物注明「ICP 未在上游出现」。品类或受众仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并只要这两项。不要在本文件另写问卷。完成：能指出品类、受众、将答的问题各依据哪几条。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、受众、已知提问领域、指定 FAQ、公开答案、CTA 一并吸收，来源记「用户本轮」。原文不拷进本仓库。硬依赖文件缺失、本轮也未给出受众与至少一条事实问题、且无 `user_waiver` → 停。ICP 文件缺失但本轮已给受众与问题：继续，交付物注明「ICP 未在上游出现」。品类或受众仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并只要这两项。不要在本文件另写问卷。完成：能指出品类、受众、将答的问题各依据哪几条。
 
 3. **发现 FAQ**。用户本轮已给出确切问句 → 记入候选表并跳到步骤 4。否则读 `references/faq-discovery.md`，从 ICP、本轮已知领域、话题研究抽出 2–3 条买家属问句，每条附一句建议答案或 `[待补充]`。建议答案只能来自产品上下文、本轮或已查证页。需要确认「有人真问」、或答案涉及标准 / 认证 / 流程时，用网页搜索查证；需要原文则抓取指定 URL。搜索不可用：只用 ICP / 本轮已有问题，不编造新 FAQ。禁止为凑次数空搜。本轮能问则只问一句选哪条；用户已说直接做、或本轮不能问 → 取证据最足的一条，交付物写「FAQ 未经用户确认」。完成：候选表 2–3 行（或本轮指定 1 行）；入选是问句；与关切 / 揭谣 / 教育帖不混。
 
@@ -33,7 +33,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖：已批准 ICP。软依赖：USP、产品知识、话题研究。产地、供应地、目标市场以产品上下文为准，不预设某一出口国。
 - 本帖类型只答 **事实问题**（MOQ、交期、样品、付款、包装、质检流程、定制边界）。情绪顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。揭穿误区走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）。教选购或操作走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止编造新 FAQ 与未核验标准，并写缺口。

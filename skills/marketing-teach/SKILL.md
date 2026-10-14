@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。开场先读 `deliverables/marketing/00-system/learning-state.md`（有则按 `current_skill` / `current_stage` 从下一阶段续，不重开；没有则待本轮落盘时初始化）。读用户本轮消息，取出目标 skill、知识水平（beginner / intermediate / advanced）、当前业务挑战。缺哪项问哪项，已给出的不重复问。读台账 `state/marketing-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；本会话还没读过就现在读）。在 `skills/` 下确认目标目录存在且含 `SKILL.md`；本 skill 只教 `marketing-*`。没有则提出最接近的 `marketing-*`，等用户选定再继续。完成：三要素齐；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；学习状态已对照。
+1. **输入**。开场先读 `deliverables/marketing/00-system/learning-state.md`（有则按 `current_skill` / `current_stage` 从下一阶段续，不重开；没有则待本轮落盘时初始化）。读用户本轮消息，取出目标 skill、知识水平（beginner / intermediate / advanced）、当前业务挑战。缺哪项问哪项，已给出的不重复问。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。在 `skills/` 下确认目标目录存在且含 `SKILL.md`；本 skill 只教 `marketing-*`。没有则提出最接近的 `marketing-*`，等用户选定再继续。完成：三要素齐；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；学习状态已对照。
 
 2. **采集**。读目标 `skills/<name>/SKILL.md`（有 `references/` 再按需读），抽出框架、反模式、最低数据、交付物形状。用网页搜索查证该方法论的公开案例；查询词从产品上下文的品类与市场字段拼，不在本 skill 里填值。需要原文时抓取指定 URL 的正文。搜索不可用则停止，在笔记标缺口，不编造。完成：至少一条带来源 URL 的真实案例；目标 skill 的步骤可复述。
 
@@ -157,7 +157,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是营销教学，例子教四阶段循环形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是营销教学，例子教四阶段循环形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 用户说「教我定位，我是初学者，询盘转化差」。先确认 `skills/marketing-positioning/SKILL.md` 存在并读产品上下文。Stage 1 用该 skill 的步骤讲定位，并引用一条带 URL 的公开案例。Stage 2 只出「写出一句谁、得到什么、凭什么信」的练习和提示，不代写。Stage 3 dispatch a subagent, else do it inline，不看用户稿。Stage 4 用数据支撑与可执行性两表对比，笔记写到 `deliverables/marketing/00-system/marketing-positioning-notes.md`。
 

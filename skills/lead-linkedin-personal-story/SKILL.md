@@ -24,7 +24,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。篇幅、钩子、CTA、标签、四种风格、软广只读 `skills/lead-generation/references/linkedin-post-guidelines.md`，不把该文抄进本文件或交付物。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及本帖型用 Structure 19。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：无，可独立执行。软依赖有则读、不阻塞：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的经历、教训、主题、视觉描述、CTA 一并作为本轮输入。角色、品类、目标海外受众取产品上下文（有 ICP 则用 ICP 的买家互动场景）；不预设某一出口国或「销售经理」。品类或受众缺到无法让故事对上买家：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。原文不拷进本仓库。完成：能指出品类、受众、角色各依据哪几条；若已有具体经历，能复述该经历与其教训。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：无，可独立执行。软依赖有则读、不阻塞：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的经历、教训、主题、视觉描述、CTA 一并作为本轮输入。角色、品类、目标海外受众取产品上下文（有 ICP 则用 ICP 的买家互动场景）；不预设某一出口国或「销售经理」。品类或受众缺到无法让故事对上买家：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。原文不拷进本仓库。完成：能指出品类、受众、角色各依据哪几条；若已有具体经历，能复述该经历与其教训。
 
 3. **候选故事（Structure 19 的 Step 1）**。用户本轮已给出具体经历 → 跳过本步，将该经历标 `user_provided`。否则产出 **2–3** 条互不重复的候选，每条含：Suggested Anecdote（一两句工作瞬间）、Corresponding Core Lesson（一句职业教训）。候选必须贴合品类与海外受众，并全部标明「未确认草稿」。禁止用第一人称把候选写成用户亲身经历。本轮能问则只问一句选哪条或请用户改写成自己的事；用户已说直接做、或本轮不能问 → 不把任一候选当已发生事实，进入下一步时 `story_source: unconfirmed_draft`。完成：已提供经历，或候选表 2–3 行且均为未确认草稿。
 
@@ -34,7 +34,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 产地、角色、目标市场以产品上下文为准，不锁某一国或某一职位。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。故事本身不靠搜索发明。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表。

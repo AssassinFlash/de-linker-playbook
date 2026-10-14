@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
-2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。已有定位或竞品文件则读 `deliverables/marketing/01-foundation/` 下对应交付物；已有网站文案则读 `deliverables/marketing/03-content/`。待审原文来自用户本轮消息或上述交付物。完成：能指出受众、语气、规格、证据各依据哪几条；原文不拷进产品档案。产品上下文或待审原文缺失则停并写缺口。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。已有定位或竞品文件则读 `deliverables/marketing/01-foundation/` 下对应交付物；已有网站文案则读 `deliverables/marketing/03-content/`。待审原文来自用户本轮消息或上述交付物。完成：能指出受众、语气、规格、证据各依据哪几条；原文不拷进产品档案。产品上下文或待审原文缺失则停并写缺口。
 3. **定人定段**。写下本篇的买家角色与漏斗阶段后再改字。角色从产品上下文取；上下文没有则在采购、承包、经销、指定人、批发里选最贴近的一档，并标明「角色未在上下文出现，暂用」。漏斗：访问 → 询盘 → 样品 → 报价 → 下单 → 复购。完成：角色与阶段各有一个取值。
 4. **对标**。行业术语或语气需要对标时，用网页搜索查证；需要原文则抓取指定 URL 的正文。记下 URL、访问日期与摘录。搜索不可用则不对标、不编造竞品原文，在交付物写缺口；七轮审查仍可只基于产品上下文做。需要隔离时 dispatch a subagent, else do it inline。完成：至少 2 条外部来源，或已写明搜索缺口。
 5. **七轮审查**。按「写法」顺序跑完 1–7 轮；每轮结束后回扫上一轮是否被改坏。多篇文案需要隔离时 dispatch a subagent, else do it inline。完成：每条问题有 sweep 编号、具体改法、优先级、角色、漏斗阶段、来源。

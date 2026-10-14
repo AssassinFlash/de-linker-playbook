@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。硬依赖：`deliverables/lead/07-targeted/research.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-targeted-research/SKILL.md`，不自造调研、不写通用开发信。存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/01-icp/icp-analysis.md`、该公司在 `deliverables/lead/03-contacts/` 的行。从用户本轮取出公司名；与 `research.md` 不一致则停，先做对应该公司的调研。产品、收件角色或成功标准仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈清单。完成：能说出公司名、调研文件、将引用的情报各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：`deliverables/lead/07-targeted/research.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-targeted-research/SKILL.md`，不自造调研、不写通用开发信。存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/01-icp/icp-analysis.md`、该公司在 `deliverables/lead/03-contacts/` 的行。从用户本轮取出公司名；与 `research.md` 不一致则停，先做对应该公司的调研。产品、收件角色或成功标准仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈清单。完成：能说出公司名、调研文件、将引用的情报各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
 
 2. **定模式、角色与角度**。模式：用户点名封数或点名角度 → extended；否则 default（3 封）。收件角色按序取：本轮消息 → 该公司联系人行 → 调研里的买家信号 → 在采购 / 指定人 / 运营 / 负责人里选最贴近的一档并标明「角色未在上下文出现，暂用」。角色优先事项若调研已覆盖，不再另搜。未覆盖时用网页搜索查证该角色在该行业的公开决策标准，至多一轮；需要原文则抓取指定 URL。搜索不可用则跳过角色补搜并写缺口，不编造角色心理。default 三封弧：Hook → Proof → Nudge。Proof 只在产品上下文或调研里有可核验用例、社会证明或能力证据时使用；否则改用 `references/multi-angle-strategies.md` 的 `industry_insight` 或 `value_add`，并在策略概述写明替换。extended：用户选定的角度不重复；未选则按该文件推荐顺序补齐；`breakup_nudge` 只能作末封。角度所需证据（用例、数字、证言、竞品名、可寄出的资料）在上下文或调研里找不到 → 换角或减封，不编材料。完成：模式、封数、每封角度、收件角色均已写下；每封能预指出将引用的那条调研情报。
 
@@ -32,7 +32,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 一家目标 inline 做完。用户点名多家：每家一份报告；需要隔离时 dispatch a subagent, else do it inline。批量无调研的开发信走 `skills/lead-cold-email-gen/SKILL.md`（文件存在时）。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。不为「最佳实践」或回复率凑查询；方法已在本文件。
 - 外发工具、联系人/邮箱发现服务：仅当用户已配置（付费项须先告知并获准）。未配置则只产文案、邮箱标「联系人待补」，不编造地址、不发送。

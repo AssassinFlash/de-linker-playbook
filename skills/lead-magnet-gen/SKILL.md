@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。存在则读：`deliverables/lead/01-icp/icp-analysis.md`（编排硬依赖）、`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）。用户本轮给出的品类、买家类型、痛点、已有物料（规格表、目录、报价模板）或指定格式一并用。核心三项：品类、买家类型、至少一条痛点。缺核心：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并只要这三项。不要在本文件另写问卷。ICP 缺失：不编画像；买家与痛点改从产品上下文或本轮取，交付物注明「ICP 未在上游出现」。原文不拷进本仓库。完成：能指出品类、买家、痛点各依据哪几条。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。存在则读：`deliverables/lead/01-icp/icp-analysis.md`（编排硬依赖）、`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）。用户本轮给出的品类、买家类型、痛点、已有物料（规格表、目录、报价模板）或指定格式一并用。核心三项：品类、买家类型、至少一条痛点。缺核心：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并只要这三项。不要在本文件另写问卷。ICP 缺失：不编画像；买家与痛点改从产品上下文或本轮取，交付物注明「ICP 未在上游出现」。原文不拷进本仓库。完成：能指出品类、买家、痛点各依据哪几条。
 
 3. **查证**。用网页搜索查证该类买家在该品类上的 sourcing 痛点、常见错误、公开指南或清单形态。需要原文则抓取指定 URL 的正文。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。搜索不可用则停止并写缺口，不编造统计、法规、认证或案例。完成：每条将写入磁铁的行业判断有 URL 或摘录，或已标「未在来源出现」；`## 搜索日志` 有行。
 
@@ -33,7 +33,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 产地、供应地、目标市场以产品上下文为准，不预设某一出口国。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用则停止并写缺口。不并列多引擎菜单。
 - 单文件 inline 做完；需要隔离时 dispatch a subagent, else do it inline。

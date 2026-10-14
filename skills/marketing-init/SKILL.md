@@ -6,7 +6,7 @@ description: >
   asked to set up folders, config, or a product profile. Confirm
   both ledgers in state/ exist; ensure deliverables/marketing/ and
   deliverables/lead/ trees exist in this repo; keep product_context
-  pointing at ~/Documents/New/CONTEXT.md. Do not create an extra-repo
+  pointing at docs/fact-sources.md. Do not create an extra-repo
   output root, do not write a project-root config file, and do not use
   slash commands. If the product context is unreadable, open
   skills/marketing-profile/SKILL.md next; if ready, open
@@ -24,7 +24,7 @@ description: >
 2. **交付目录**。确认下列目录在本仓库内存在，缺则创建，已有文件不删不改。完成：两棵树每个子目录都在。
    - `deliverables/marketing/`：`00-system`、`00-research`、`01-foundation`、`02-seo`、`03-content`、`04-acquisition`、`05-cro`、`06-growth`、`07-measurement`
    - `deliverables/lead/`：`00-system`、`01-icp`、`02-companies`、`03-contacts`、`04-market`、`05-usp`、`06-outreach`、`07-targeted`、`08-linkedin`、`09-seo`、`10-sales`、`99-archive`
-3. **产品指针**。两张台账各自处理，仅当该台账存在时改键：缺 `product_context` 或值为空则写入 `~/Documents/New/CONTEXT.md`；已有非空值则保留。把 `~` 展开为用户主目录，检查该文件是否可读；需要隔离时 dispatch a subagent, else do it inline。完成：检查结果是「可读」或「不可读」；原文不写入本仓库。
+3. **产品指针**。两张台账各自处理，仅当该台账存在时改键：`product_context` 缺失、为空或不是 `docs/fact-sources.md` 时写成 `docs/fact-sources.md`。检查该文件在本仓库内存在；需要隔离时 dispatch a subagent, else do it inline。完成：检查结果是「可读」或「不可读」；原文不写入本仓库。
 4. **报告**。写入 `deliverables/marketing/00-system/init-report.md`，回复含「初始化完成」与下一步路径。完成：报告非空。任一台账缺失或上下文不可读 → `skills/marketing-profile/SKILL.md`；否则 → `skills/marketing-orchestrator/SKILL.md`。
 
 ## 默认
@@ -54,7 +54,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是仓库初始化，例子教目录与台账形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是仓库初始化，例子教目录与台账形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 台账已在、获客树缺 `08-linkedin`。只补建该空目录，不改台账其它键，报告写「初始化完成」，下一步打开 `skills/marketing-orchestrator/SKILL.md`。
 
@@ -63,14 +63,14 @@ description: >
 - 在仓外建产出目录，或改写已有交付物。
 - 把产品原文拷进本仓库，或另写一份公司档案。
 - 用斜杠命令名当入口，而不打开 `skills/<name>/SKILL.md`。
-- 覆盖已有台账的阶段表或已有非空 `product_context`。
+- 覆盖已有台账的阶段表。
 - 只建营销树、不建获客树，或只建当前会用到的子目录。
 
 ## 清单
 
 - [ ] 已读或已报告缺失 `state/marketing-status.md` 与 `state/lead-status.md`
 - [ ] `deliverables/marketing/` 与 `deliverables/lead/` 子目录齐全
-- [ ] `product_context` 已核对（缺键才写入 `~/Documents/New/CONTEXT.md`）
+- [ ] 两张台账的 `product_context` 都是 `docs/fact-sources.md`
 - [ ] 未把产品原文写入本仓库
 - [ ] `deliverables/marketing/00-system/init-report.md` 含「初始化完成」与下一步路径
 - [ ] 例子原文未进入交付物

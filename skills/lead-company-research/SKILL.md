@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。存在则读 `deliverables/lead/01-icp/icp-analysis.md` 与已批准的 `deliverables/lead/01-icp/icp-terms.xlsx`。记下品类、选定 ICP、地域、定位词。硬依赖是已批准的搜索词表；未批准且无台账 `user_waiver` → 停，打开 `skills/lead-search-term-expansion/SKILL.md`（文件存在时）。产品上下文与上游仍不够清楚时，打开 `skills/lead-interview/SKILL.md` 并按其做（访谈须 inline）；该文件不存在则把缺口写入台账，不自造问卷。原文不拷进本仓库。完成：能指出买家类型、地域与将使用的定位词各依据哪几条；缺核心项已停或已标缺口。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。存在则读 `deliverables/lead/01-icp/icp-analysis.md` 与已批准的 `deliverables/lead/01-icp/icp-terms.xlsx`。记下品类、选定 ICP、地域、定位词。硬依赖是已批准的搜索词表；未批准且无台账 `user_waiver` → 停，打开 `skills/lead-search-term-expansion/SKILL.md`（文件存在时）。产品上下文与上游仍不够清楚时，打开 `skills/lead-interview/SKILL.md` 并按其做（访谈须 inline）；该文件不存在则把缺口写入台账，不自造问卷。原文不拷进本仓库。完成：能指出买家类型、地域与将使用的定位词各依据哪几条；缺核心项已停或已标缺口。
 
 2. **定模式**。从用户本轮消息或访谈上下文取 `standard` 或 `emerging`；未指定则 `standard`。用户点名新兴公司、emerging、员工数上限时走 `emerging`。两种模式都要时：先标准名单落盘，再做新兴，仍用本文件，不另起 skill。`emerging` 的额外约束读 `references/emerging-mode.md`。完成：交付物抬头已写模式；新兴已核对其对标准名单的硬依赖或 `user_waiver`。
 
@@ -34,7 +34,7 @@ description: >
 ## 默认
 
 - 查证用网页搜索；需要原文时抓取指定 URL；动态页同样抓取；失败则人工接手，不用模型记忆填字段。
-- 产品事实只读台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）。
+- 产品事实只产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。
 - 联系人/邮箱发现服务、网页采集服务：仅当用户已配置（付费项须先告知并获准）。本 skill 不采集邮箱；下游打开 `skills/lead-contact-discovery/SKILL.md`。
 - 分销商 11 维、零售商规模定位不是本 skill；平行入口是 `lead-distributor-research`、`lead-retailer-research`。
 - 单文件、无并行机会的工作 inline 做完，不 dispatch。

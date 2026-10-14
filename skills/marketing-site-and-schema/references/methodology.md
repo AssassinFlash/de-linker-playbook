@@ -14,7 +14,7 @@
 
 ## 输入
 
-先读台账 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；需要参数再读同目录 `fact-base/`）。存在则读，不复制进本仓库：
+先读事实源入口 `docs/fact-sources.md`（台账 `product_context` 即指向它），按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。存在则读，不复制进本仓库：
 
 - `deliverables/marketing/01-foundation/product-positioning.md`
 - `deliverables/marketing/01-foundation/competitor-analysis.md`

@@ -6,7 +6,7 @@ description: >
   or to clarify a lead skill before it runs. Adaptive one-question-per-round
   interview that scores product-market fit, scope, success criteria, and
   upstream context, then gates the method skill at 80 percent clarity. Read
-  ledger product_context (default ~/Documents/New/CONTEXT.md) and approved
+  the fact-source entry docs/fact-sources.md and approved
   files under deliverables/lead/ before asking; never re-ask known facts.
   Compile to deliverables/lead/00-system/. Keep the interview inline. Not
   for outreach copy, contact discovery, SEO pages, or phase navigation.
@@ -23,7 +23,7 @@ description: >
 2. **锁定对象**。从用户本轮消息或台账 `state/lead-status.md` 的 `method_skill` 取出目标 skill。必须是已存在的 `skills/{name}/SKILL.md`，且目录名匹配 `lead-` 前缀。未点名则问要为哪个获客 skill 访谈，其他先不问。完成：写出目标目录名；对不上则停并写缺口。
 
 3. **加载与预打分**。只读、不把原文拷进本仓库。
-   - 台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）
+   - 事实源入口 `docs/fact-sources.md`（按其「什么问题查哪个源」取证；查不到标〔未证实〕）
    - 目标 `skills/{name}/SKILL.md` 的数据需求与产出规格
    - `deliverables/lead/` 下与该 skill 相关的已有交付物
    - 打分对照 `references/scoring-rubric.md`；需要问句起点时读 `references/skill-seeds.md`（未列出的 skill 按目标 SKILL.md 现场生成，不套其他 skill 的种子）
@@ -160,7 +160,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是执行前访谈，例子教提问形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是执行前访谈，例子教提问形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 目标 skill 是公司研究。产品上下文已写品类与三个市场，上游已有批准的 ICP。预打分 PMF 0.8、上游 0.8，范围与标准仍低。第一问只问「先覆盖全部目标市场还是先钉死一个」，不要问「你们卖什么」。用户说「先做优先市场、只要域名能验证的 15 家」。范围与标准升到门槛，编译进 `deliverables/lead/00-system/interview-lead-company-research.md`，再打开公司研究 skill。
 

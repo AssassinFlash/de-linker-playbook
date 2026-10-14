@@ -21,14 +21,14 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/09-seo/content.md`，或用户本轮贴出的成稿全文。软依赖（有则读，不阻塞）：`deliverables/lead/09-seo/editorial-guidelines.md`、`deliverables/lead/09-seo/outline.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。优先项（连贯 / 可读 / 密度 / 帮助性）、改动容忍度或目标关键词仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出成稿、规范、大纲、目标关键词各依据哪一份；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴成稿 → 停，不从头写文章。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/09-seo/content.md`，或用户本轮贴出的成稿全文。软依赖（有则读，不阻塞）：`deliverables/lead/09-seo/editorial-guidelines.md`、`deliverables/lead/09-seo/outline.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。优先项（连贯 / 可读 / 密度 / 帮助性）、改动容忍度或目标关键词仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出成稿、规范、大纲、目标关键词各依据哪一份；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴成稿 → 停，不从头写文章。
 3. **八点编辑**。按「写法」对成稿走完八点；每点只使用四种操作：Elaborate、Rephrase、Add、Remove。成稿默认是逐章生成的，段落衔接是本步主责。用户点名只做其中几项时，未做项写入缺口，不算全量完成（有 `user_waiver` 除外）。多篇成稿需要隔离时 dispatch a subagent, else do it inline；默认一篇 inline。完成：八点各有结论（改了什么，或「无问题」）；拟改每一处都有类型与理由；无理由的改动撤销。
 4. **查证链接与断言**。凡要保留或新加的统计、案例、外链：用网页搜索查证；需要原文则抓取指定 URL，确认页面存在且与锚文本相关。内链只指向产品上下文、用户给出的站点地图、或本仓库已有页面。用户要求对比竞争力时，用网页搜索看目标关键词的公开结果标题，记下可补的缺口；不据此整篇重写，不编造对手正文。搜索不可用 → 停止新增外链与新统计，语言层修改仍可保留，缺口写明。禁止为凑次数空搜。完成：拟用外链每条有 URL、访问日期、一句摘录；稿内数字能指回来源或已标「不可核验」；内链目标页有出处。
 5. **落盘**。把修改应用到全文，写入「产出」所列文件。本 skill 不发布、不代替用户审批。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`。完成：主文件含编辑报告与完整编辑后文章；断言满足；教学支架原文零出现。
 
 ## 默认
 
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止新增外链与新统计并写缺口，不编造。
 - 数字、证书、客户名、项目结果：上下文或已抓取页里有才写入文章。没有就删断言或标「未在上下文出现」，禁止补造。
 - 语气与可读性跟已批准的 `editorial-guidelines.md`；该文件缺失则用 down-to-earth + straightforward，可读性目标 Grade 6–7（清晰直接，不是幼稚化），并在缺口注明「规范未批准，暂用缺省」。不改成消费口语或俏皮话。

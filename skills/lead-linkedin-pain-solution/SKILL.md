@@ -23,7 +23,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖（有则读，不阻塞）：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的受众、痛点、产品能力或 CTA 视为本轮输入，来源记「用户本轮」。受众、品类或「产品能解哪类运营痛」仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出受众、角色、已知痛点、2–3 条相关能力各依据哪几条；原文不拷进本仓库。硬依赖缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖（有则读，不阻塞）：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的受众、痛点、产品能力或 CTA 视为本轮输入，来源记「用户本轮」。受众、品类或「产品能解哪类运营痛」仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出受众、角色、已知痛点、2–3 条相关能力各依据哪几条；原文不拷进本仓库。硬依赖缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。
 
 3. **确认画像**。从 ICP 抽出本帖受众：行业、典型角色、目标、现状、正在用的替代方案。多画像时，用户本轮点名则用该画像；未点名则用 ICP 中的优先画像，并在交付物标明。完成：一段可检查的画像摘要，每项能指回 ICP 或用户本轮。
 
@@ -35,7 +35,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖是已批准 ICP；软依赖是 USP、产品知识、话题研究。闸门口径见 `skills/lead-generation/references/dependency-graph.md`。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用则停止数字并写缺口，不编造。不并列搜索引擎菜单。
 - 本 skill 只产帖稿，不发布。用户已配置的发布工具仅在用户本轮要求发布时使用；付费项须先告知并获准。

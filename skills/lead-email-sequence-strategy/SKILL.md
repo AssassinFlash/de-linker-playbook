@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/06-outreach/cold-emails.md`、`deliverables/lead/06-outreach/followup-sequence.md`。软依赖存在则读：`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/03-contacts/contacts.xlsx`。资产是否齐、ICP 段数、外发工具名仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出首封、跟进、ICP 各依据哪份文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停，不编邮件凑序列。
+1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/06-outreach/cold-emails.md`、`deliverables/lead/06-outreach/followup-sequence.md`。软依赖存在则读：`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/03-contacts/contacts.xlsx`。资产是否齐、ICP 段数、外发工具名仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出首封、跟进、ICP 各依据哪份文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停，不编邮件凑序列。
 
 2. **资产盘点**。把已读邮件逐封列入清单：`asset_id, type, icp_name, strategy_name, source_path, human_review`。`type` 只取 `cold` / `warm` / `followup` / `lead_magnet`。跟进按策略名对齐（Friendly Reminder、Additional Value、Direct Yes/No、Social Proof、Limited-Time Incentive、Feedback Request、Previous Interaction、Breakup、New Angle），对不上的仍入表，`strategy_name` 写原文标题。缺哪封记哪封，不补写。完成：上游文件里每封信都有一行；无主的资产标 `unassigned`。
 
@@ -36,7 +36,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`；需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品事实只产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。，不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则不编造基准。
 - 外发/序列工具：仅当用户已配置；付费项须先告知并获准。未配置则只产文案与计划，不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。

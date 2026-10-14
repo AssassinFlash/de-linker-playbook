@@ -6,8 +6,7 @@ description: >
   displacement, information loop, 买家心理, 买家沉默, 展会策略, 价格卡点,
   成交卡点, MOQ 异议, 已有供应商, or 信息循环. Decode why a B2B buyer went
   silent, stalled, pushed price, or stayed with an incumbent, using a
-  two-step empathy-then-strategy frame across nine sales scenes. Read the
-  ledger product_context (default ~/Documents/New/CONTEXT.md); write
+  two-step empathy-then-strategy frame across nine sales scenes. Read the fact-source entry docs/fact-sources.md; write
   bilingual scripts under deliverables/lead/10-sales/. Invent no studies;
   do not default to discounting. Not for service-objection rebuttal
   scripts, ICP research, or phase navigation.
@@ -19,7 +18,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/10-sales/objection-handling.md`。本 skill 无硬依赖：上游缺失仍做，交付物标「未场景化」或「未在上下文出现」。完成：能指出品类、市场、买家类型各依据哪几条，或已标明缺项。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/10-sales/objection-handling.md`。本 skill 无硬依赖：上游缺失仍做，交付物标「未场景化」或「未在上下文出现」。完成：能指出品类、市场、买家类型各依据哪几条，或已标明缺项。
 
 2. **选场景**。只认用户本轮消息，不先弹九选项菜单。数字 1–9、场景名、或「all / 全部」直接锁定。描述现状则按下表映射。映射不上才问一轮（列出 1–9 的短名，不加强制 UI）。完成：场景编号已锁定；未锁定则停，不写分析。
 

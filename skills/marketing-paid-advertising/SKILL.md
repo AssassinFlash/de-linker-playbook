@@ -19,7 +19,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/01-foundation/` 竞品稿、`deliverables/marketing/02-seo/seo-audit.md` 关键词与 CPC 线索。用户本轮给出的广告账户导出一并列入。完成：能指出品类、目标市场、战役目标、月预算或目标询盘成本、落地页 URL、转化追踪状态、已开通平台各依据哪几条；原文不拷进本仓库。品类、目标市场或落地页缺到无法圈定投放则停并写缺口，不编造公司、CPC、转化率或竞品创意。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若存在则读 `deliverables/marketing/01-foundation/` 竞品稿、`deliverables/marketing/02-seo/seo-audit.md` 关键词与 CPC 线索。用户本轮给出的广告账户导出一并列入。完成：能指出品类、目标市场、战役目标、月预算或目标询盘成本、落地页 URL、转化追踪状态、已开通平台各依据哪几条；原文不拷进本仓库。品类、目标市场或落地页缺到无法圈定投放则停并写缺口，不编造公司、CPC、转化率或竞品创意。
 3. **采集**。用网页搜索查证关键词 CPC、平台基准、竞品创意与落地页；需要原文时抓取指定 URL 的正文（含 Meta Ad Library 等广告透明页）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多站点或多创意并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；关键词、创意、落地页达到最低条数，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据推导意图聚类、平台预算、战役结构、落地页缺口、创意角度与 A/B 变量。量表、结构与表列见 `references/methodology.md`。完成：每个预算情景能回溯已采集 CPC 区间；每个推荐平台有基准来源或显式缺口；创意角度覆盖 ≥3 个买家角色与四个漏斗阶段。
 5. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL 或查询串；否定词 ≥20；UTM 与询盘表转化追踪已写清；教学支架原文零出现；文末 5–10 条可验证断言。

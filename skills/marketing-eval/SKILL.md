@@ -31,7 +31,7 @@ description: >
 - 本 skill 只出 **pass / fail**，不打 0–100。定性八维走 `marketing-skill-eval`。
 - 一轮只评一份 skill；评的是正典，不是战役文案、不是 agent 定义。
 - 产出只进 `deliverables/marketing/00-system/`。不改目标 skill，不改 `AGENTS.md`、`state/`、`wayfinder/`。
-- 仓外路径只允许 `~/Documents/New/...`。本评测通常不读产品上下文。
+- 仓外路径只允许事实源入口 `docs/fact-sources.md` 里列出的那些。本评测通常不读产品上下文。
 
 ## 产出
 
@@ -75,7 +75,7 @@ pass：停。fail：打开 skills/marketing-evolve/SKILL.md；本轮不改目标
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是工作流评测，例子教验收形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是工作流评测，例子教验收形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 目标 `description` 折叠后 280 字：第 2 条记 fail，evidence 写测得字数；不得改口为「接近 300，算过」。`evals/` 只有占位文件：夹具节写「无夹具」，仍跑完十条。
 

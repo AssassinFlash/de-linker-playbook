@@ -23,8 +23,7 @@
 
 读这些（存在才读，不复制进本仓库）：
 
-- 台账 `product_context`（缺省 `~/Documents/New/CONTEXT.md`）
-- 需要参数时 `~/Documents/New/fact-base/`
+- 事实源入口 `docs/fact-sources.md`（按其「什么问题查哪个源」取证；查不到标〔未证实〕）
 - `deliverables/marketing/01-foundation/product-positioning.md`
 - `deliverables/marketing/01-foundation/competitor-analysis.md`
 - `deliverables/marketing/02-seo/` 下关键词与意图稿

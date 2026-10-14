@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。需要参数再读同目录 `fact-base/`。列出上市类型、目标买家、市场、日期或展会、样品就绪、贸易条款、当前漏斗指标。上游若存在则读 `deliverables/marketing/01-foundation/`、`03-content/`、`05-cro/`。完成：能指出受众与约束各依据哪几条陈述；缺项写成缺口清单后停，不编造公司、市场、价格、流量或竞品事实。原文不拷进本仓库。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。列出上市类型、目标买家、市场、日期或展会、样品就绪、贸易条款、当前漏斗指标。上游若存在则读 `deliverables/marketing/01-foundation/`、`03-content/`、`05-cro/`。完成：能指出受众与约束各依据哪几条陈述；缺项写成缺口清单后停，不编造公司、市场、价格、流量或竞品事实。原文不拷进本仓库。
 3. **范围**。判定类型（新产品 / 新市场 / 展会 / 网站 / 新能力）与规模（major / medium / minor）。完成：类型与规模各有一句可辩护理由，能回溯上下文或已采集来源。
 4. **采集**。用网页搜索查证上市框架、展会日历、竞品宣布、目标市场渠道偏好；需要原文时抓取指定 URL（用户落地页、询盘页、至少 3 个竞品页）。查询意图与最低条数见 `references/methodology.md`。多页抓取需要隔离时 dispatch a subagent, else do it inline。完成：每条证据有 URL、摘录、访问日期；搜索不可用则停止并写缺口。
 5. **设计**。按 Pre-Launch / Launch Week / Post-Launch 写任务，含责任人、依赖、证据；日期写成日历日或 T-xx / T-day / T+xx（禁止只写 Week 1）。渠道用 ORB（Owned / Rented / Borrowed），名单以产品上下文为准，不默认某一电商平台。完成：三阶段都有具体日期；每条渠道建议能回溯采集来源。

@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。硬依赖：已批准的 `deliverables/lead/10-sales/quotation-strategy.md`，或用户本轮贴出的报价要点 + 异议原文。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、买家类型、至少 1 条异议仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出产品、买家类型、已报价格结构、异议原文各依据哪一段。硬依赖缺失、无 `user_waiver`、用户也未贴报价要点与异议 → 停，不编报价、不编买家原话。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。硬依赖：已批准的 `deliverables/lead/10-sales/quotation-strategy.md`，或用户本轮贴出的报价要点 + 异议原文。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、买家类型、至少 1 条异议仍缺：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出产品、买家类型、已报价格结构、异议原文各依据哪一段。硬依赖缺失、无 `user_waiver`、用户也未贴报价要点与异议 → 停，不编报价、不编买家原话。
 
 3. **锁定四项**。从已读材料填四格，不另开问卷：① 所售产品与关键规格（价格区间只取上下文或报价稿）；② 买家类型（取 ICP / 产品上下文，不预设渠道角色）；③ 本买家点名的异议，最多取杠杆最高的 3 条；④ 竞品弱点（只取竞品稿、报价稿或用户本轮，不编质量事故）。完成：四格都有值或已标「未在上下文出现」；至少 1 条可回溯到买家原话或用户确认。
 
@@ -36,7 +36,7 @@ description: >
 
 - 硬依赖 `lead-service-quotation`。编排与闸门见 `skills/lead-generation/SKILL.md`，不在本文件另写服务链。
 - 本文件写点名异议的战术话术库，不写九场景共情分析、不起草报价、不写产品培训手册。场景分析打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。报价打开 `skills/lead-service-quotation/SKILL.md`（文件存在时）。产品知识打开 `skills/lead-product-knowledge/SKILL.md`（文件存在时）。下游首单打开 `skills/lead-service-first-order/SKILL.md`（文件存在时），本步骤不执行。
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用：不编造统计或「研究证明」；用户已给异议则仍写话术并在缺口记搜索失败，用户未给则停。不为凑数而搜「异议处理最佳实践」。
 - 数字、证书、案例、不良率、交期、ROI、客户名：上下文或已抓取页里有才写。没有就写「未在上下文出现」或 `[待补充]`。禁止补造检测报告、匿名成功故事或 12 个月节省额。
 - 价格异议默认重构总拥有成本与切换风险，不先让价、不把折扣当第一句。

@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则与帖规范**。读 `skills/marketing-playbook-standards/SKILL.md`。读 `skills/lead-generation/references/linkedin-post-guidelines.md`（篇幅、钩子、CTA、标签、四种风格、软广）。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及规范里的出门项。禁止把规范全文抄进本 skill 或交付物。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、目标海外受众/市场、已知顾虑、公司应对流程、证明点、CTA 一并用，来源记「用户本轮」。品类、受众或市场仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出品类、受众、市场、供应地各依据哪几条；原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出对等全文、且无 `user_waiver` → 停。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、目标海外受众/市场、已知顾虑、公司应对流程、证明点、CTA 一并用，来源记「用户本轮」。品类、受众或市场仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出品类、受众、市场、供应地各依据哪几条；原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出对等全文、且无 `user_waiver` → 停。
 
 3. **查证并列出候选**。用网页搜索查证该类买家向新的或远程供应商采购时，会卡住信任的真实犹豫；需要原文则抓取指定 URL。查询用品类、受众、目标市场、供应地（均取上下文，不预设出口国），意图覆盖买家顾虑、进口犹豫、首单信任、沟通与物流焦虑。搜到可核验顾虑即可，不凑搜索次数。搜索不可用：只采用 ICP 或用户本轮已说的顾虑，并写缺口；一条已核验的都没有 → 停，不编造。每条候选必须是**信任犹豫**（品质恐惧、沟通缺口、运输焦虑、定金犹豫、样品不符、首单信任、供应商可靠性），不是揭谣对象、不是运营痛点、不是事实问答。完成：2–3 条彼此不同的具体顾虑，每条有来源（ICP / 用户本轮 / URL）；不足 2 条则按实有条数写，少的在缺口写明，不补假顾虑。
 
@@ -33,7 +33,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 供应地与目标市场以产品上下文为准，不预设某一出口国。
 - 硬依赖 ICP；软读 USP、产品知识、话题研究。编排闸门见 `skills/lead-generation/SKILL.md`。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止编造并写缺口。

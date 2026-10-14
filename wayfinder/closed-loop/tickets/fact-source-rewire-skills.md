@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-code-fact-source-entry (同会话续) 2026-10-14
 step: 0
 blocked_by: [fact-source-entry]
@@ -33,3 +33,28 @@ blocked_by: [fact-source-entry]
 - `grep -rl "Documents/New" skills | wc -l` = 0。
 - `evals/` 现有校验脚本全绿；随机抽 5 个 skill 读一遍，指针读得通、无残留回退。
 - 不打开 `~/Documents/New` 的任何文件。
+
+## Resolution
+
+（2026-10-14）`skills/` 下 96 个文件（排除两个编排 skill 目录）全部改指事实源入口 `docs/fact-sources.md`，149 处旧路径清零。分三批：
+
+1. **正则批（90 个文件）**：五类句式。
+   - 闸门句和输入句「读台账 … 的 `product_context`（缺省/默认 旧路径；…）」连同后面「需要参数再读 …」整句换成标准指针句；紧跟其后的「读不到则停」改为「入口读不到则停」。
+   - 默认节「产品事实只读 `product_context`（需要参数再读 …）」换成标准指针句。
+   - 两份 methodology 里的输入清单两行合成一行，指向入口。
+   - 英文 description 里的 `ledger product_context (default …)` 改为 `the fact-source entry docs/fact-sources.md`。
+2. **手改（9 个文件）**：
+   - `marketing-profile`：指路三步改为「入口 → 三方」；指针模板改为 `source: docs/fact-sources.md`、`sources_opened`、`status: readable | partial | missing`；「改事实」改为以线上站点与新站仓库为准。
+   - `marketing-init`：`product_context` 缺失、为空或值不对，一律写成入口。
+   - 另外七个文件：`lead-data-validation`、`lead-interview` 及其 `skill-seeds`、`lead-buyer-psychology/nine-scenarios`、`lead-product-knowledge` 及其 `family-classifier`、`marketing-eval`。
+3. **统一说明句**：7 处例子说明「无对应 New/竞品材料可借」改为「无对应事实源材料可借」。
+
+刻意保留两类：
+- 4 处例子出处说明（`marketing-psychology`、`marketing-copywriting`、`lead-warm-email-transform`、`marketing-email-outreach`）说的是「例子形状借自 New」。它们不是读取指令，按本票规则不重写。
+- 交付物模板的 `source: 台账 product_context` 和清单里「已读 `product_context`」。这个键的值就是入口，不是回退。
+
+核验：
+- `grep -rl "Documents/New" skills | wc -l` = 0；「需要参数再读」「fact-base」「缺省/默认 `~`」残留也是 0。
+- `evals/validate_project.py`、`validate_deliverables.py` 全绿；68 条 WARN 改前改后数量一样，都是早就有的 workbook 提示。
+- 随机抽 5 个（seed 20261014）读改过的段落：`marketing-seo-audit`、`lead-magnet-gen`、`lead-linkedin-pain-solution`、`marketing-paid-advertising`、`marketing-visual-content`。指针都读得通，没有残留的缺省值或回退。
+- 没打开过旧目录里的任何文件。

@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/06-outreach/cold-emails.md`，或用户本轮粘贴的原文冷邮件。二者都没有、且无 `user_waiver` → 停并写缺口。软依赖存在则读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/05-usp/product-knowledge.md`。买家、原文、品类仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则本轮最多问两问，不另写问卷。完成：能指出每封原文、品类、买家角色各依据哪份文件或本轮消息；原文不拷进本仓库。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/06-outreach/cold-emails.md`，或用户本轮粘贴的原文冷邮件。二者都没有、且无 `user_waiver` → 停并写缺口。软依赖存在则读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/05-usp/product-knowledge.md`。买家、原文、品类仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则本轮最多问两问，不另写问卷。完成：能指出每封原文、品类、买家角色各依据哪份文件或本轮消息；原文不拷进本仓库。
 
 2. **收齐改写字段**。对每封待改写邮件记下四项：原文；品类（产品上下文）；买家角色（职位 + 行业 + 区域，优先 ICP）；一条买家情境线索（扩张 / 新品 / 旺季 / 合规压力 / 其他已核验公开事实）。品类与角色已在上游出现则不重问。用户收窄范围则只改指定的；否则上游每封冷邮件一则。完成：每封四项都有来源；线索来源已标为产品上下文、本轮消息、拟查证，或「suggested context — verify before sending」。
 
@@ -35,7 +35,7 @@ description: >
 ## 默认
 
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
 - 外发工具仅当用户已配置；未配置则只产文案不发送。本 skill 默认不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。

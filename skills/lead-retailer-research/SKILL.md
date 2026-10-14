@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/01-icp/icp-terms.xlsx`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors.xlsx`（及 `distributors-brief.xlsx`）。记下品类、目标市场、渠道偏好（线上 / 实体 / 都要）、员工数上限（未指定则 200）。品类或市场仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则本轮只补这两项，不另写问卷。完成：能指出品类与市场各依据哪几条；规模上限已写入本轮口径。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/01-icp/icp-terms.xlsx`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors.xlsx`（及 `distributors-brief.xlsx`）。记下品类、目标市场、渠道偏好（线上 / 实体 / 都要）、员工数上限（未指定则 200）。品类或市场仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则本轮只补这两项，不另写问卷。完成：能指出品类与市场各依据哪几条；规模上限已写入本轮口径。
 
 2. **发现**。用网页搜索查证零售品牌，查询模板见 `references/eligibility.md`。优先用已批准的 ICP 术语；没有术语就用产品上下文的品类词 + 市场。候选必须是自有品牌门店或品牌站点、把该品类卖给终端消费者或作为品牌门店卖给企业客户。完成：候选表每条有发现用查询与来源 URL；目录站、交易平台列表页不当成一家公司。
 

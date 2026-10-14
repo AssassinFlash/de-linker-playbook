@@ -14,7 +14,7 @@
 
 ## 输入
 
-先读台账 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；需要参数再读同目录 `fact-base/`）。上游若已存在则读：
+先读事实源入口 `docs/fact-sources.md`（台账 `product_context` 即指向它），按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若已存在则读：
 
 - `deliverables/marketing/02-seo/site-and-schema.md` 站点结构与转化页
 - `deliverables/marketing/04-acquisition/` 付费与邮件战役、已有 UTM

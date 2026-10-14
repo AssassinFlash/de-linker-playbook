@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。原文不拷进本仓库。已有风格指南或上游定位则读用户本轮给出的文件，以及 `deliverables/lead/01-icp/`、`deliverables/lead/05-usp/` 中已批准稿（有则用，无则不挡）。核心只要两项就能开写：品类/利基、目标读者。品牌语气、已有风格指南、阅读负担用户给了再用。缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出读者与语气各依据哪几条；缺项标「未在上下文出现」。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。已有风格指南或上游定位则读用户本轮给出的文件，以及 `deliverables/lead/01-icp/`、`deliverables/lead/05-usp/` 中已批准稿（有则用，无则不挡）。核心只要两项就能开写：品类/利基、目标读者。品牌语气、已有风格指南、阅读负担用户给了再用。缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出读者与语气各依据哪几条；缺项标「未在上下文出现」。
 
 3. **查证**。用网页搜索查证三类公开口径；需要原文则抓取指定 URL 的正文。查询年份用环境当前公历年。三类：
    - 可读性与扫读：公开讨论「一次能看懂 / 扫读 / 理解成本」与停留或转化的关系。记下 URL、访问日期、摘录。不要预设某一家工具的年级分数线。
@@ -39,7 +39,7 @@ description: >
 ## 默认
 
 - 本 skill 无硬上游，是获客 phase 9 入口。下游串行：`lead-seo-outline-gen` → `lead-seo-content-gen` → `lead-seo-content-edit`。下一方法打开对应 `SKILL.md`（文件存在时）；本文件不写大纲与正文。管线位置见 `skills/lead-generation/SKILL.md`。
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。单文件工作 inline 做完。
 - 数字、转化率、平台质量更新：产品上下文或已抓取页里有才写。没有就写「未在上下文出现」或 unverified，禁止补造。
 - 可读性目标必须写明（谁能一次看懂、句子与段落约束、术语是否首现解释）。禁止把未核验的工具分数线写成门槛。

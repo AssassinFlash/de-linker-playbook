@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。读 `skills/lead-generation/references/linkedin-post-guidelines.md`（篇幅、钩子、CTA、标签、四种风格、软广）；不要把该文件抄进本 skill 或交付物。完成：能复述数据锚定、例子禁引用、产出根、工具写能力；能复述钩子须落在折叠前、结尾恰好一个 CTA、3–5 个标签、产品句可删。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖（有则读，不阻塞）：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、受众、主题、技巧要点或 CTA 一并用作本轮输入，来源记「用户本轮」。品类、目标海外受众或至少一条可教育的痛点仍缺：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。完成：能指出品类、受众、痛点各依据哪几条；原文不拷进本仓库。硬依赖缺失、用户本轮也未给出对应受众与痛点、且无 `user_waiver` → 停。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖（有则读，不阻塞）：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、受众、主题、技巧要点或 CTA 一并用作本轮输入，来源记「用户本轮」。品类、目标海外受众或至少一条可教育的痛点仍缺：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。完成：能指出品类、受众、痛点各依据哪几条；原文不拷进本仓库。硬依赖缺失、用户本轮也未给出对应受众与痛点、且无 `user_waiver` → 停。
 
 3. **查证**。用网页搜索查证该类买家在该品类上的常见失误、选购问题或 how-to 缺口；需要原文则抓取指定 URL。帖中将点名的程序、标准、认证核验方法或数字：必须先搜到再写。搜索意图与降级见 `references/structure-6.md`；日志格式见 `skills/lead-generation/references/search-protocol.md`。搜索不可用：若还要发明程序或「常见错误」→ 停并写缺口；若用户已给出完整技巧且帖中无程序/标准/统计断言 → 可成稿，日志写「本轮未检索；帖中无程序/标准/统计断言」。禁止为凑次数空搜。禁止把搜到的他人帖原文写入交付物。需要隔离时 dispatch a subagent, else do it inline。完成：将写入帖子的程序/标准/数字有 URL 或已决定不使用；`## 搜索日志` 有行。
 
@@ -33,7 +33,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。产地、目标市场以产品上下文为准，不预设某一出口国。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。产地、目标市场以产品上下文为准，不预设某一出口国。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则按步骤 3 降级，不编造。
 - 本帖类型是可执行技巧 / 选购指南 / 维护 how-to。宏观趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）；出口法规、物流、市场准入走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。不要用本文件写揭谣、FAQ、个人故事或幕后厂拍。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）；选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。
 - 篇幅、钩子、CTA、标签、四种风格、软广只认 `skills/lead-generation/references/linkedin-post-guidelines.md`。

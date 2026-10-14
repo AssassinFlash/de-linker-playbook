@@ -24,7 +24,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。帖子篇幅、钩子、CTA、标签、四种风格升级、软广与出门清单读 `skills/lead-generation/references/linkedin-post-guidelines.md`，不把该文件抄进本 skill 或交付物。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及本帖必须走 Structure 20。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的国家/地区、该地买家角色、已知挑战主题、证明材料、CTA 视为本轮输入，来源记「用户本轮」。硬依赖文件缺失、用户本轮也未给出该地+受众、且无 `user_waiver` → 停。目标地仍有多国候选、用户未点名时，列出候选并停，不写跨国混帖。区域或受众缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出**单一**目标地、该地受众、品类各依据哪几条；原文不拷进本仓库。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的国家/地区、该地买家角色、已知挑战主题、证明材料、CTA 视为本轮输入，来源记「用户本轮」。硬依赖文件缺失、用户本轮也未给出该地+受众、且无 `user_waiver` → 停。目标地仍有多国候选、用户未点名时，列出候选并停，不写跨国混帖。区域或受众缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出**单一**目标地、该地受众、品类各依据哪几条；原文不拷进本仓库。
 
 3. **查证并列出区域挑战（管线第 1 步）**。用网页搜索查证该地、该受众、该品类下的障碍；需要原文则抓取指定 URL。查询年份用环境当前公历年。三类意图都要覆盖：区域挑战、本地气候/基建/标准、公开市场上是否已有针对性改型（用来核对「此地真有此题」，不是用来抄竞品卖点）。花括号是字段，不抄进交付物：
    - `"{product_niche}" challenges {target_country} {year}`
@@ -42,7 +42,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖是 ICP；软依赖（USP、产品知识、话题研究）有则读，不阻塞。话题研究只提供候选角度，不能把非区域话题改写成市场挑战帖。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。训练记忆不能充当当地法规、气候或标准的来源。
 - 本帖处理**地理特定**障碍（气候、法规、本地标准、该地基建）。普遍运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`（文件存在时）；供应关系顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。全局趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。

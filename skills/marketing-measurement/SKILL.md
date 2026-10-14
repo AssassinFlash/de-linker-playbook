@@ -21,7 +21,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
-2. **闸门**。读 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。读不到则停，打开 `skills/marketing-profile/SKILL.md`。读 `skills/marketing-orchestrator/references/dependency-graph.md` 的 measurement 段与机器可读 JSON，核对 `global_gates`、方法 skill 的依赖与产出路径。`deliverables/marketing/` 缺失则打开 `skills/marketing-init/SKILL.md`。硬依赖（着陆页、付费广告、漏斗优化）缺失且无 `user_waiver` → 停。方法 `SKILL.md` 不存在 → 停并写缺口，不自造方法。完成：能报出上下文可读、方法文件存在、三条硬依赖。
+2. **闸门**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。入口读不到则停，打开 `skills/marketing-profile/SKILL.md`。读 `skills/marketing-orchestrator/references/dependency-graph.md` 的 measurement 段与机器可读 JSON，核对 `global_gates`、方法 skill 的依赖与产出路径。`deliverables/marketing/` 缺失则打开 `skills/marketing-init/SKILL.md`。硬依赖（着陆页、付费广告、漏斗优化）缺失且无 `user_waiver` → 停。方法 `SKILL.md` 不存在 → 停并写缺口，不自造方法。完成：能报出上下文可读、方法文件存在、三条硬依赖。
 3. **分析与优化**。打开 `skills/marketing-analytics-and-optimization/SKILL.md`，dispatch a subagent, else do it inline。完成：下方两件均在 `deliverables/marketing/07-measurement/`、非空、不是例子原文。
 4. **收束**。回写 `state/marketing-status.md`（已完成与磁盘一致；`output_dir` 为 `deliverables/marketing/07-measurement/`）。当众列出两件交付物的本仓库相对路径，并给至少一项下一步。方法失败或降级时，总结写明阻塞点、影响范围及补救路径。度量是战役末阶段：评审未 `passed` 且无 `user_waiver` 时，不把战役标为完成；下一步给评审、补缺口或 `stop`，不另起阶段。完成：summary 含路径与下一步；未另写一套编排。
 

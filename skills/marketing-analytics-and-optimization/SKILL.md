@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
-2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。上游若存在则读 `deliverables/marketing/02-seo/site-and-schema.md`、`deliverables/marketing/04-acquisition/`、`deliverables/marketing/05-cro/`。列出站点 URL、表单、GA4/GTM 状态、已用渠道、月访问量、询盘/样品基线、销售工具、团队规模、销售周期、卡点阶段。完成：能指出品类、目标市场、转化目标、追踪现状各依据哪几条；原文不拷进本仓库。品类、站点或渠道缺到无法圈定测量面则停并写缺口，不编造公司、流量、转化价值或管道比率。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若存在则读 `deliverables/marketing/02-seo/site-and-schema.md`、`deliverables/marketing/04-acquisition/`、`deliverables/marketing/05-cro/`。列出站点 URL、表单、GA4/GTM 状态、已用渠道、月访问量、询盘/样品基线、销售工具、团队规模、销售周期、卡点阶段。完成：能指出品类、目标市场、转化目标、追踪现状各依据哪几条；原文不拷进本仓库。品类、站点或渠道缺到无法圈定测量面则停并写缺口，不编造公司、流量、转化价值或管道比率。
 3. **采集**。用网页搜索查证 GA4/GTM 事件模式、低流量实验方法与询盘管道基准；需要原文时抓取指定 URL 的正文（首页、询盘/联系表、高意向资产页，查现有标签与提交触发）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；表单清单与渠道名单达到最低项，或已把未达标项写入缺口。
 4. **分析**。只从已采集证据推导事件分级、UTM/渠道规则、漏斗阶段、线索评分、实验优先级与 CRM 选型。量表、分档与表列见 `references/methodology.md`。完成：每个事件能映射到本站已确认的页面元素或用户动作；UTM 只覆盖已确认在用的渠道；实验方法与已观测（或显式未知的）月访问量分档一致。
 5. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空；转化价值与管道目标无观测值时标明待填，不写成事实；教学支架原文零出现；文末 5–10 条可验证断言。

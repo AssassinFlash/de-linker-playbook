@@ -6,8 +6,7 @@ description: >
   首单引导, 买家欢迎, 转换摩擦, or onboarding flow. Design a bilingual
   first-order onboarding for a new overseas B2B buyer that builds
   confidence, pre-empts confusion, and embeds switching friction through
-  shared collaboration artifacts. Read the ledger product_context
-  (default ~/Documents/New/CONTEXT.md); write the buyer-facing checklist,
+  shared collaboration artifacts. Read the fact-source entry docs/fact-sources.md; write the buyer-facing checklist,
   welcome message, shared-folder spec, soft lock-in devices, and
   switching-friction hint under deliverables/lead/10-sales/. Phase 10
   after objection handling. Not for shipping or production updates,
@@ -22,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/10-sales/objection-handling.md`，或台账 `user_waiver`。未满足则停，宣布打开 `skills/lead-service-objection/SKILL.md`（文件存在时），不自造异议史、不跳到交付沟通。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批。从这些来源填四格：所交产品（名、规格、包装）、买家类型、确认订单到出货的交期、已知 onboarding 投诉。产品、买家类型或交期仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：四格各有依据或已标「未在上下文出现」；原文不拷进本仓库。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/10-sales/objection-handling.md`，或台账 `user_waiver`。未满足则停，宣布打开 `skills/lead-service-objection/SKILL.md`（文件存在时），不自造异议史、不跳到交付沟通。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批。从这些来源填四格：所交产品（名、规格、包装）、买家类型、确认订单到出货的交期、已知 onboarding 投诉。产品、买家类型或交期仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：四格各有依据或已标「未在上下文出现」；原文不拷进本仓库。
 
 3. **查证**。用网页搜索查证两类材料：B2B 出口首单 onboarding 实务（确认后到收货的节点、文件、联络节奏）；该品类或外贸首单的常见投诉（沉默、文件缺口、包装预期、质检节点）。品类取产品上下文，不在 skill 里填值。需要原文则抓取指定 URL。搜索不可用：不编造买家原话、研究名或投诉率；投诉只保留上下文与异议稿里已有的；搜索日志记「不可用」。搜到的是泛外贸而非本品类 → 采用并标明「已泛化」。完成：日志至少两类查询，或已记不可用；写入清单的痛点能回溯 URL / 异议稿 / 上下文。
 
@@ -32,7 +31,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。产地、工厂、认证、交期天数、员工名：上下文或已抓取页里有才写。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。产地、工厂、认证、交期天数、员工名：上下文或已抓取页里有才写。
 - 硬依赖未满足且无 `user_waiver` → 停。编排与服务链串行见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
 - 本文件做首单引导工件，不写异议话术、不写生产周报、不建真实网盘。异议打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。过程透明打开 `skills/lead-service-delivery/SKILL.md`（文件存在时）。复购打开 `skills/lead-service-retention/SKILL.md`（文件存在时）。沉默/卡点分析打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。
 - 查证用网页搜索；需要原文时抓取指定 URL。不为凑数搜「最佳实践排行」。搜索不可用则停止编造并写缺口。单买家 inline 做完；点名多家需要隔离时 dispatch a subagent, else do it inline。

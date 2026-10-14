@@ -5,9 +5,8 @@ description: >
   positioning, target audience, ICP, describe my product, 产品档案,
   产品上下文, 产品定位, 目标受众, company profile, 公司档案, set
   up my product, or needs product facts confirmed before a marketing
-  run. Read the ledger product_context path (default
-  ~/Documents/New/CONTEXT.md); if a number, cert, or spec is missing,
-  read fact-base/ under that same tree. Check coverage against the
+  run. Read the fact-source entry docs/fact-sources.md and follow it to
+  the live site, the new-site repo, and competitor research. Check coverage against the
   fifteen-section checklist; search only to judge coverage, never copy
   product facts into this repo, never write a second company dossier.
   Not for playbook init, phase navigation, or conversion copy.
@@ -15,22 +14,22 @@ description: >
 
 # 营销档案（指路）
 
-确认产品事实可从台账路径读到，对照十五节清单留下一份不含事实原文的指针。只指路，不在本仓库另写公司档案。
+确认产品事实可经事实源入口读到，对照十五节清单留下一份不含事实原文的指针。只指路，不在本仓库另写公司档案。
 
 ## 步骤
 
-1. **定位**。读 `state/marketing-status.md` 的 `product_context`；缺省为 `~/Documents/New/CONTEXT.md`。读时把 `~` 展开为用户主目录，不要把 `~` 当相对路径。完成：能报出将读的绝对路径；文件不存在或不可读则停，指针里标 `status: missing`，不编造、不另建档案。
-2. **读总览**。读该 `CONTEXT.md`。完成：本会话能口头指出买家是谁、卖什么、上下文里没有的数字或证据；原文不拷进本仓库。
-3. **缺参数再读**。数字、证书、规格、证明点若总览没有，再读 `~/Documents/New/fact-base/`。文件多时 dispatch a subagent, else do it inline：只回报「哪几个文件覆盖了哪几个主题」，不把正文搬进本仓库。完成：每个缺的参数要么能指到 fact-base 里的文件名，要么列入缺口主题名。不访谈写档、不发明。
+1. **定位**。读事实源入口 `docs/fact-sources.md`（台账 `product_context` 即指向它）。完成：能报出三个源（线上站点、新站仓库、竞品调研）各在哪、本机能否读到。入口本身读不到则停，指针里标 `status: missing`；某个源读不到，指针里记下，该源的内容按没有处理。不编造、不另建档案。
+2. **读总览**。按入口「什么问题查哪个源」先读总览：线上站点首页与产品分类、新站仓库 `AGENTS.md` 的公司与用词两节。完成：本会话能口头指出买家是谁、卖什么、上下文里没有的数字或证据；原文不拷进本仓库。
+3. **缺参数再读**。数字、证书、规格、证明点若总览没有，按入口的问题表去对应的源查，冲突按入口「谁为准」。要查的多时 dispatch a subagent, else do it inline：只回报「哪个源的哪几个 URL 或文件覆盖了哪几个主题」，不把正文搬进本仓库。完成：每个缺的参数要么能指到某个源里的 URL 或文件路径，要么列入缺口主题名（〔未证实〕）。不访谈写档、不发明。
 4. **覆盖核对**。按下方十五节给每个标「有」或「无」。公开信息尚未能判定时，可用网页搜索或抓取指定 URL，只用于判定覆盖；搜到的事实不得写入本仓库。搜索不可用则该节标无并列入缺口，不编造。已经在上下文里的不要再问用户。完成：15 行都有标记与指针；「无」只记主题名。
 5. **确认**。把覆盖判断（有/无，不贴原文）交给用户过一眼，至少覆盖业务概览、ICP、差异化、证据点。完成：用户确认或列出要改的节。
-6. **落盘指针** `deliverables/marketing/01-foundation/context-pointer.md`，用下方模板。完成：文件非空；只有路径、覆盖表、缺口主题名；无产品事实段落；教学支架原文零出现。用户若要改事实，改 `~/Documents/New`，不改本仓库。
+6. **落盘指针** `deliverables/marketing/01-foundation/context-pointer.md`，用下方模板。完成：文件非空；只有路径、覆盖表、缺口主题名；无产品事实段落；教学支架原文零出现。事实以线上站点与新站仓库为准，不改本仓库。
 
 ## 默认
 
-- 产品事实只存在 `~/Documents/New`（先 `CONTEXT.md`，需要参数再 `fact-base/`）。
-- 本仓库只写指针，不写第二份公司档案，不写 `data/profile-*`，不改台账里的 `product_context` 路径（交接他机由人改）。
-- 缺口保持缺口。下游 skill 同样读台账路径，不读本指针当事实源。
+- 产品事实只从事实源入口 `docs/fact-sources.md` 进：线上站点、新站仓库、竞品调研三方，冲突按入口「谁为准」。
+- 本仓库只写指针，不写第二份公司档案，不写 `data/profile-*`，不改台账里的 `product_context`（换机只改入口）。
+- 缺口保持缺口。下游 skill 同样读事实源入口，不读本指针当事实源。
 - 补搜只用于判定覆盖，不得把搜到的事实填进仓库。
 
 覆盖这十五节（只打勾，不把正文抄过来）：
@@ -65,9 +64,9 @@ description: >
 ```markdown
 # 产品上下文指针
 
-- source: （台账 product_context 路径，不粘贴原文）
-- fact_base_opened: （相对 ~/Documents/New/ 的文件名，无则 none）
-- status: readable | missing
+- source: docs/fact-sources.md
+- sources_opened: （打开过的 URL 或文件路径，无则 none）
+- status: readable | partial | missing
 - facts_copied: no
 - confirmed: 是 / 否
 
@@ -100,17 +99,17 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是产品上下文指路，例子教指针形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是产品上下文指路，例子教指针形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
-读完后指针写 `source: ~/Documents/New/CONTEXT.md`、`ICP：有`、`证书编号：无`，不把沿革或参数表粘进 `deliverables/`。
+读完后指针写 `source: docs/fact-sources.md`、`ICP：有`、`证书编号：无`，不把沿革或参数表粘进 `deliverables/`。
 
 ## 易错
 
-- 把 `CONTEXT.md` 或 fact-base 原文拷进本仓库。
+- 把线上页面、新站仓库或调研的原文拷进本仓库。
 - 档案缺失时现写一份公司简介顶上。
 - 把 `~` 当成仓库内相对路径。
 - 把补搜到的事实填进仓库；补搜只判定覆盖。
-- 问用户「用几句话描述业务」然后开写档案；纠正应改 `~/Documents/New`。
+- 问用户「用几句话描述业务」然后开写档案；纠正以线上站点与新站仓库为准。
 - 把 ICP 和买家角色写成同一段，下游文案打不准决策人。
 - 缺数时填价格、产能或交期。
 - 把证据库、定位表或十五节正文写进本仓库，造成第二真相源。
@@ -118,7 +117,7 @@ description: >
 
 ## 清单
 
-- [ ] 已按台账路径读过（或标 missing 并停止）
+- [ ] 已按事实源入口读过三方（入口读不到则标 missing 并停止）
 - [ ] 本会话能指出买家、所卖、缺口，且未把原文写入本仓库
 - [ ] 15 主题均已标有/无；缺口只列主题名
 - [ ] 用户已确认业务概览、ICP、差异化、证据点四项覆盖

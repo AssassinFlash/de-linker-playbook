@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/05-usp/usp-strategy.md`。软依赖存在则读：`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/03-contacts/collection-report.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮直接给出的 ICP / USP / 模式视为本轮输入，来源记「用户本轮」。模式、要用的 ICP 集合或主 USP 仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出每封将用的 ICP、痛点、USP 各依据哪几条；原文不拷进本仓库。任一硬依赖文件缺失、用户本轮也未给出该份对应全文、且无 `user_waiver` → 停。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/05-usp/usp-strategy.md`。软依赖存在则读：`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/03-contacts/collection-report.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮直接给出的 ICP / USP / 模式视为本轮输入，来源记「用户本轮」。模式、要用的 ICP 集合或主 USP 仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出每封将用的 ICP、痛点、USP 各依据哪几条；原文不拷进本仓库。任一硬依赖文件缺失、用户本轮也未给出该份对应全文、且无 `user_waiver` → 停。
 
 3. **选模式并映射**。用户本轮点名则用：Standard / Low-Pressure / Both。未点名默认 Standard。本 skill 写 ICP 段首触稿，不为名单里每家各写一封（单家定向走 `skills/lead-targeted-outreach/SKILL.md`，文件存在时）。每封只配 **一个 ICP × 一个痛点 × 一个 USP × 一个 CTA**。Standard：目标 5 封、5 组不同组合；组合不足 5 时按实有组合写，用结构或开场变化拉开差异，不编造额外 ICP 或 USP，少的在缺口写明。Low-Pressure：每个画像 1 封，上限 5。Both：同一文件写两节。联系人表只用来标注可替换钩子，不在本步做逐人成稿。完成：映射表列出拟写的每一封：模式、ICP、痛点、USP、结构式、CTA 类型。
 
@@ -34,7 +34,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止数字开场并写缺口，不编造。
 - 外发工具仅当用户已配置；未配置或未要求发出 → 只产文案不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。

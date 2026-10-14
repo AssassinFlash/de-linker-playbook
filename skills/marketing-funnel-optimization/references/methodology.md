@@ -14,7 +14,7 @@
 
 ## 输入
 
-先读台账 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；需要参数再读同目录 `fact-base/`）。上游若已存在则读：
+先读事实源入口 `docs/fact-sources.md`（台账 `product_context` 即指向它），按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若已存在则读：
 
 - `deliverables/marketing/01-foundation/` 定位、买家角色、定价、样品政策
 - `deliverables/marketing/03-content/` 内容与日历约束

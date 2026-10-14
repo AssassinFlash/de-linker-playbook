@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录）。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/04-market/market-analysis.md`。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读入，后续外发短句与证据不得与其矛盾。记下品类、可做菜单（3–6 项）、目标区域、已知能力数字、定位偏好（成本效率 / 灵活伙伴 / 溢价共创）。缺关键项时本轮最多问两问。完成：能指出买家、可做产品和已知优势各依据哪几条陈述；原文不拷进本仓库。上游文件缺失则在交付物标缺口，不编 ICP。
+1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/competitor-positioning.md`、`deliverables/lead/04-market/market-analysis.md`。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读入，后续外发短句与证据不得与其矛盾。记下品类、可做菜单（3–6 项）、目标区域、已知能力数字、定位偏好（成本效率 / 灵活伙伴 / 溢价共创）。缺关键项时本轮最多问两问。完成：能指出买家、可做产品和已知优势各依据哪几条陈述；原文不拷进本仓库。上游文件缺失则在交付物标缺口，不编 ICP。
 
 2. **利基与买家**。已有批准的 `deliverables/lead/01-icp/` 则摘编其决策人/痛点作买家卡片，不另开利基短名单。TAM / CAGR 有 `deliverables/lead/04-market/market-analysis.md` 则引用，不另估；该稿也没有则标「未在来源出现」。只补本步仍缺的进入容易度等字段（无来源同样标「未在来源出现」）。无批准 ICP 时才做微利基短名单表：利基 | TAM | 3 年 CAGR | 需求驱动 | 进入容易度/100（附一句依据）| 致命缺陷。推荐一个利基，写市场动态、价值链、进入壁垒。此时才写买家卡片：职位、KPI、日常、痛点、触发、交易破裂点。列 2–3 个不选的利基及红旗。默认：有来源的进入容易度 <60 或 CAGR <5% 不推荐；产品上下文已锁定的利基只记分数、不拒绝。完成：推荐利基与买家卡片齐全（有上游则引用、不重开）；无来源的 TAM/CAGR 写「未在来源出现」。
 

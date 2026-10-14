@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出只进 `deliverables/`、工具写能力。
-2. **输入**。读台账 `state/marketing-status.md` 的 `product_context`（缺省 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读同目录 `fact-base/`。若已有 `deliverables/marketing/01-foundation/product-positioning.md`，或调用方阶段目录里已有漏斗/落地页说明，一并读。完成：能指出受众、角色、差异化各依据哪几条；原文不拷进本仓库。上下文不存在则停并写缺口。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。若已有 `deliverables/marketing/01-foundation/product-positioning.md`，或调用方阶段目录里已有漏斗/落地页说明，一并读。完成：能指出受众、角色、差异化各依据哪几条；原文不拷进本仓库。上下文不存在则停并写缺口。
 3. **诊断**。写清四项再选原则，禁止先堆模型：
    - 失速阶段：访问 → 询盘 → 样品 → 报价 → 订单 → 复购
    - 目标角色：用产品上下文或定位文档里的买家，不发明角色

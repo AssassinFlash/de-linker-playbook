@@ -16,7 +16,7 @@
 
 种子是动态提问的起点，不是固定问卷。按产品上下文和上游交付物已有的信息改写、跳过或合并。
 
-**已在台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`）或 `deliverables/lead/` 上游文件里回答过的，不问。** 交付物只写用户确认的事实，不粘贴种子原句。
+**已在事实源入口 `docs/fact-sources.md` 所指的三方或 `deliverables/lead/` 上游文件里回答过的，不问。** 交付物只写用户确认的事实，不粘贴种子原句。
 
 未出现在本文的 `lead-*` skill：读该 skill 的 `SKILL.md` 数据需求，按四维现场生成，不拿下面某张表硬套。
 

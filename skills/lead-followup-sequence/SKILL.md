@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。硬依赖：已批准的 `deliverables/lead/06-outreach/cold-emails.md`，或用户本轮贴出的首封全文。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、首封主题与 CTA 仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出首封主题、核心利益、目标 ICP、已知买家信号各依据哪一段；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴首封 → 停，不编首封。
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/06-outreach/cold-emails.md`，或用户本轮贴出的首封全文。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批流程。产品、首封主题与 CTA 仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：能指出首封主题、核心利益、目标 ICP、已知买家信号各依据哪一段；原文不拷进本仓库。硬依赖缺失且无 `user_waiver`、用户也未贴首封 → 停，不编首封。
 
 3. **锁定约束**。从首封抽出：收件角色、所承诺的下一步、不可再重复的整段推销。确认场景是「已发、无回复」，不是写第一封。对方已明确拒绝或退订 → 不写后续封，交付物只记停发原因。完成：一张约束表（主题钩子 / 核心利益 / 禁用重复句 / 可引用证据 / 已知真实激励）；无证据、无时限的格子标「未在上下文出现」。
 
@@ -34,7 +34,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用则停止并写缺口，不编造。不为凑数而搜「跟进最佳实践」。
 - 联系人/邮箱发现服务仅当用户已配置；否则标「联系人待补」。外发工具仅当用户已配置；未配置或未要求发出 → 只产文案不发送。
 - 数字、证书、客户名、项目结果、折扣、截止日期：上下文或已抓取页里有才写。没有就用 `[待补充]` 或「未在上下文出现」。

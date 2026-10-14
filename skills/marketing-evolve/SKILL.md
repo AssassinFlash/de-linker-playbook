@@ -32,7 +32,7 @@ description: >
 - `-eval-report.md` 管验收条；`-skill-eval-report.md` 管八维。不要把验收最弱项当成八维来修。
 - 本仓库只回写 `skills/<name>/`（含其 `references/`）。不新建 harness 专属 agent 文件，不改 `AGENTS.md`、`state/` 下的两张台账、其他 skill。
 - 产出只进 `deliverables/marketing/00-system/`。
-- 产品事实不写进 skill。补丁会面会客数字或品类时，读台账 `product_context`（默认 `~/Documents/New/CONTEXT.md`，把 `~` 展开为主目录），只指路不复制。
+- 产品事实不写进 skill。补丁会面会客数字或品类时，产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。，只指路不复制。
 - 以仓库内文件为准。只有报告要求核对外方法时才用网页搜索查证；搜不到则标缺口，不编造。
 - 不把本 skill 当成人批准的替代。会改导航合同或面客事实时停。
 
@@ -71,7 +71,7 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-本 skill 是 skill 改进，例子教当轮修补形状不教营销内容，无对应 New/竞品材料可借，保留通用支架。
+本 skill 是 skill 改进，例子教当轮修补形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
 评测写「Beginner Clarity 低：步骤没有完成条件」。本轮只给每步补上「完成：…」，不顺手改标题文案，也不把其他维度列成待办。
 

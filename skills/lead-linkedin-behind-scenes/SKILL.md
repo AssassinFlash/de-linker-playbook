@@ -22,7 +22,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。篇幅、钩子、CTA、标签、四种风格、软广：读 `skills/lead-generation/references/linkedin-post-guidelines.md`（只遵守，不把该文抄进本文件或交付物）。完成：能复述数据锚定、例子禁引用、产出根、工具写能力，以及本帖必须走 Structure 3。
 
-2. **输入**。读台账 `state/lead-status.md` 的 `product_context`（默认 `~/Documents/New/CONTEXT.md`；把 `~` 展开为主目录，不当相对路径）。需要参数再读 `~/Documents/New/fact-base/`。无硬依赖。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）。ICP 存在则读 `deliverables/lead/01-icp/icp-analysis.md`（定受众与买家关切）；缺失不阻塞，受众改从产品上下文或本轮取，并注明「ICP 未在上游出现」。用户本轮给出的工序、画面、CTA 一并吸收，来源记「用户本轮」。原文不拷进本仓库。从已读材料填齐下方七项，已有的不问：
+2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。无硬依赖。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、产品知识稿（`deliverables/lead/05-usp/product-knowledge.md` 或 `deliverables/lead/10-sales/product-knowledge.md`，以磁盘已有为准）。ICP 存在则读 `deliverables/lead/01-icp/icp-analysis.md`（定受众与买家关切）；缺失不阻塞，受众改从产品上下文或本轮取，并注明「ICP 未在上游出现」。用户本轮给出的工序、画面、CTA 一并吸收，来源记「用户本轮」。原文不拷进本仓库。从已读材料填齐下方七项，已有的不问：
    1. 目标海外受众 / 市场
    2. 本工序对应的产品或品类
    3. 要展示的那一步内部工序（进料检、某一机加工序、装配、包装、出货检验等，必须具体到一步）
@@ -40,7 +40,7 @@ description: >
 
 ## 默认
 
-- 产品事实只读台账 `product_context`（需要参数再读 `~/Documents/New/fact-base/`），不在本仓库另存档案。
+- 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 无硬依赖，可独立执行。软依赖：USP、产品知识。产地、工厂所在地、目标市场以产品上下文为准，不预设某一出口国。
 - 本帖类型写 **内部发生了什么**（设备、工序、质检、原料到在制品）。出口法规、物流、认证知识走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。创始人或团队的人的故事走 `skills/lead-linkedin-personal-story/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止数字与竞品角度并写缺口，不编造。
