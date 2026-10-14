@@ -111,8 +111,8 @@ def home_page(schema: dict, sample: bool) -> Page:
         (["1. 第一行是表头，已冻结：往下滚动时表头一直在。"], "text"),
         (["2. 想只看某一类（比如只看「获客」线）：选中表头那一行 → 菜单「数据」→「创建过滤器」→ 点列名旁边的小漏斗勾选。不会改动数据。"], "text"),
         (["3. 有下拉箭头的列只能填固定的几个值，可选的值写在对应的说明页里。"], "text"),
-        (["4. 时刻都用 UTC（世界标准时间）：北京时间 = UTC + 8 小时；德国冬令时 = UTC + 1，夏令时 = UTC + 2。网页表现的日期按 Google 的美国太平洋时间切日。"], "text"),
-        (["5. 网页表现里某天没有行，表示 Google 那天没有这页的数据，当作 0。"], "text"),
+        (["4. 时刻都是北京时间，写成「年-月-日 时:分」。德国比北京晚 6 小时（冬令时晚 7 小时）。网页表现、搜索词的日期按 Google 的美国太平洋时间切日，和北京的「哪一天」可能差一天。"], "text"),
+        (["5. 网页表现里某个组合某天没有行，表示 Google 那天没有这个组合的数据，当作 0。搜索词表加起来比网页表现少是正常的（隐私原因）。"], "text"),
         (["6. 不知道某列什么意思：打开同名的说明页，每一列都写了是什么、从哪来、谁写、空着表示什么。"], "text"),
         ([], "text"),
         (["这本表不放什么"], "h2"),
@@ -144,6 +144,16 @@ def guide_page(name: str, spec: dict) -> Page:
         page.append(([col + must, meta["description"], meta["x-source"], meta["x-writer"],
                       "；".join(str(x) for x in meta.get("examples", [])), "；".join(meta.get("enum", [])),
                       meta["x-empty"], meta.get("x-read", "")], writer_key(meta)))
+    for col, meta in spec["properties"].items():
+        if "x-states" not in meta:
+            continue
+        english: dict[str, list[str]] = {}
+        for en, zh in meta.get("x-map", {}).items():
+            english.setdefault(zh, []).append(en)
+        page += [([], "text"), ([f"「{col}」每种取值是什么意思"], "h2"),
+                 (["取值", "属于哪个收录结论", "是什么意思", "Google 的英文原文"], "header")]
+        for state, info in meta["x-states"].items():
+            page.append(([state, info["收录结论"], info["意思"], "；".join(english.get(state, ["—"]))], "text"))
     return page
 
 
@@ -174,72 +184,108 @@ def text_row_px(text: str, style: str, widths: list[int]) -> int:
 
 # ---------------------------------------------------------------- sample data
 
+# Raw sample rows use the API's own values (coverageState, pageFetchState, country codes …) under
+# keys starting with "_"; translate_* turns them into the table's Chinese columns the same way the
+# pullback scripts will.
 SAMPLE_ROWS: dict[str, list[dict]] = {
     "执行登记": [
-        {"登记编号": "E-20261010-01", "登记时刻（UTC）": "2026-10-10T09:30:00Z", "执行日期": "2026-10-10",
-         "线": "营销", "渠道": "网站", "动作": "新发布", "内容说明": "样例：发布一篇英文选型指南",
+        {"登记编号": "E-20261010-01", "登记时刻（北京时间）": "2026-10-10 17:30", "执行日期": "2026-10-10",
+         "线": "营销", "渠道": "网站", "动作": "新发布页面", "内容说明": "样例：发布一篇英文选型指南",
          "网址": "https://de-linker.com/sample-guide-a/", "对应交付物": "marketing/05-content/sample-guide-a.md",
          "来源": "操作者口述", "查证结果": "已查证", "查证证据": "HTTP 200，页面标题与口述一致",
-         "查证时刻（UTC）": "2026-10-10T09:31:00Z"},
-        {"登记编号": "E-20261011-01", "登记时刻（UTC）": "2026-10-11T07:10:00Z", "执行日期": "2026-10-11",
-         "线": "营销", "渠道": "网站", "动作": "更新内容", "内容说明": "样例：给德文产品页补一张参数表",
+         "查证时刻（北京时间）": "2026-10-10 17:31"},
+        {"登记编号": "E-20261011-01", "登记时刻（北京时间）": "2026-10-11 15:10", "执行日期": "2026-10-11",
+         "线": "营销", "渠道": "网站", "动作": "改正文", "内容说明": "样例：给德文产品页补一张参数表",
          "网址": "https://de-linker.com/de/sample-produkt-b/", "来源": "操作者口述", "查证结果": "已查证",
-         "查证证据": "HTTP 200，参数表已出现在页面上", "查证时刻（UTC）": "2026-10-11T07:12:00Z"},
-        {"登记编号": "E-20261012-01", "登记时刻（UTC）": "2026-10-12T12:00:00Z", "执行日期": "2026-10-12",
-         "线": "营销", "渠道": "网站", "动作": "改网址", "内容说明": "样例：案例页换成更短的地址",
+         "查证证据": "HTTP 200，参数表已出现在页面上", "查证时刻（北京时间）": "2026-10-11 15:12"},
+        {"登记编号": "E-20261012-01", "登记时刻（北京时间）": "2026-10-12 20:00", "执行日期": "2026-10-12",
+         "线": "营销", "渠道": "网站", "动作": "改网址（旧址 301 跳新址）", "内容说明": "样例：案例页换成更短的地址",
          "网址": "https://de-linker.com/sample-new-c/", "旧网址": "https://de-linker.com/sample-old-c/",
          "来源": "新站 PR", "查证结果": "已查证",
          "查证证据": "新地址 HTTP 200；旧地址 301 跳到新地址；证据为新站仓库已合并的 PR（样例）",
-         "查证时刻（UTC）": "2026-10-12T12:02:00Z"},
-        {"登记编号": "E-20261012-02", "登记时刻（UTC）": "2026-10-12T15:20:00Z", "执行日期": "2026-10-12",
-         "线": "获客", "渠道": "邮件", "动作": "发出邮件", "内容说明": "样例：给样例公司甲发第 1 封外展邮件",
+         "查证时刻（北京时间）": "2026-10-12 20:02"},
+        {"登记编号": "E-20261012-02", "登记时刻（北京时间）": "2026-10-12 23:20", "执行日期": "2026-10-12",
+         "线": "获客", "渠道": "邮件", "动作": "发出首封", "内容说明": "样例：给样例公司甲发第 1 封外展邮件",
          "收件公司": "样例公司甲 GmbH", "邮件 Message-ID": "<sample-001@example.invalid>",
          "外展序列": "S-样例公司甲", "第几封": 1, "计划共几封": 3, "下一封计划日期": "2026-10-19",
          "对应交付物": "lead/06-outreach/sample-sequence-a.md", "来源": "操作者口述", "查证结果": "已查证",
-         "查证证据": "在「已发送」里找到这封信", "查证时刻（UTC）": "2026-10-13T06:00:00Z"},
-        {"登记编号": "E-20261013-01", "登记时刻（UTC）": "2026-10-13T08:40:00Z", "执行日期": "2026-10-13",
-         "线": "获客", "渠道": "邮件", "动作": "发出邮件", "内容说明": "样例：给样例公司乙发第 1 封外展邮件",
+         "查证证据": "在「已发送」里找到这封信", "查证时刻（北京时间）": "2026-10-13 14:00"},
+        {"登记编号": "E-20261013-01", "登记时刻（北京时间）": "2026-10-13 16:40", "执行日期": "2026-10-13",
+         "线": "获客", "渠道": "邮件", "动作": "发出首封", "内容说明": "样例：给样例公司乙发第 1 封外展邮件",
          "收件公司": "样例公司乙 AG", "邮件 Message-ID": "<sample-002@example.invalid>",
          "外展序列": "S-样例公司乙", "第几封": 1, "计划共几封": 3, "下一封计划日期": "2026-10-20",
          "对应交付物": "lead/06-outreach/sample-sequence-b.md", "来源": "操作者口述", "查证结果": "已查证",
-         "查证证据": "在「已发送」里找到这封信", "查证时刻（UTC）": "2026-10-14T06:00:00Z"},
-        {"登记编号": "E-20261014-01", "登记时刻（UTC）": "2026-10-14T10:05:00Z", "执行日期": "2026-10-14",
-         "线": "营销", "渠道": "LinkedIn", "动作": "新发布", "内容说明": "样例：在公司 LinkedIn 发一条产品帖",
+         "查证证据": "在「已发送」里找到这封信", "查证时刻（北京时间）": "2026-10-14 14:00"},
+        {"登记编号": "E-20261014-01", "登记时刻（北京时间）": "2026-10-14 18:05", "执行日期": "2026-10-14",
+         "线": "营销", "渠道": "LinkedIn", "动作": "发帖", "内容说明": "样例：在公司 LinkedIn 发一条产品帖",
          "网址": "https://www.linkedin.com/feed/update/sample-0001/", "来源": "操作者口述",
          "查证结果": "未查证（无法公开访问）", "查证证据": "需要登录才能打开，按操作者口述记录",
-         "查证时刻（UTC）": "2026-10-14T10:06:00Z"},
+         "查证时刻（北京时间）": "2026-10-14 18:06"},
     ],
     "网页收录": [
-        {"检查日期": "2026-10-11", "网址": "https://de-linker.com/sample-guide-a/", "收录结论": "未知",
-         "Google 状态原文": "URL is unknown to Google", "状态中文说明": "Google 还不知道这个网址（新页常见，先等）"},
-        {"检查日期": "2026-10-12", "网址": "https://de-linker.com/sample-guide-a/", "收录结论": "已收录",
-         "Google 状态原文": "Submitted and indexed", "状态中文说明": "已提交并已收录",
-         "上次抓取时间（UTC）": "2026-10-11T22:05:00Z", "抓取结果": "SUCCESSFUL",
-         "Google 选的规范网址": "https://de-linker.com/sample-guide-a/"},
-        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/de/sample-produkt-b/", "收录结论": "未收录",
-         "Google 状态原文": "Crawled - currently not indexed", "状态中文说明": "已抓取但尚未收录（不必重复提交）",
-         "上次抓取时间（UTC）": "2026-10-12T03:40:00Z", "抓取结果": "SUCCESSFUL",
-         "Google 选的规范网址": "https://de-linker.com/de/sample-produkt-b/"},
-        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-new-c/", "收录结论": "未收录",
-         "Google 状态原文": "Discovered - currently not indexed", "状态中文说明": "已发现但尚未抓取（不必反复请求）"},
-        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-old-c/", "收录结论": "未收录",
-         "Google 状态原文": "Page with redirect", "状态中文说明": "这是跳转页，本身不收录（看新地址那一行）",
-         "上次抓取时间（UTC）": "2026-10-13T09:15:00Z", "抓取结果": "SUCCESSFUL"},
-        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-about/", "收录结论": "已收录",
-         "Google 状态原文": "Submitted and indexed", "状态中文说明": "已提交并已收录",
-         "上次抓取时间（UTC）": "2026-10-09T17:30:00Z", "抓取结果": "SUCCESSFUL",
-         "Google 选的规范网址": "https://de-linker.com/sample-about/",
+        {"检查日期": "2026-10-11", "网址": "https://de-linker.com/sample-guide-a/",
+         "_coverage": "URL is unknown to Google"},
+        {"检查日期": "2026-10-12", "网址": "https://de-linker.com/sample-guide-a/",
+         "_coverage": "Submitted and indexed", "_robots": "ALLOWED", "_indexing": "INDEXING_ALLOWED",
+         "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-12 06:05",
+         "Google 选的正式地址": "https://de-linker.com/sample-guide-a/",
+         "页面声明的正式地址": "https://de-linker.com/sample-guide-a/"},
+        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-guide-a/",
+         "_coverage": "Submitted and indexed", "_robots": "ALLOWED", "_indexing": "INDEXING_ALLOWED",
+         "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-13 21:40",
+         "Google 选的正式地址": "https://de-linker.com/sample-guide-a/",
+         "页面声明的正式地址": "https://de-linker.com/sample-guide-a/"},
+        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/de/sample-produkt-b/",
+         "_coverage": "Crawled - currently not indexed", "_robots": "ALLOWED", "_indexing": "INDEXING_ALLOWED",
+         "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-12 11:40",
+         "Google 选的正式地址": "https://de-linker.com/de/sample-produkt-b/",
+         "页面声明的正式地址": "https://de-linker.com/de/sample-produkt-b/"},
+        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-new-c/",
+         "_coverage": "Discovered - currently not indexed"},
+        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-old-c/",
+         "_coverage": "Page with redirect", "_robots": "ALLOWED", "_indexing": "INDEXING_ALLOWED",
+         "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-13 17:15",
+         "Google 选的正式地址": "https://de-linker.com/sample-new-c/"},
+        {"检查日期": "2026-10-12", "网址": "https://de-linker.com/sample-about/",
+         "_coverage": "Submitted and indexed", "_robots": "ALLOWED", "_indexing": "INDEXING_ALLOWED",
+         "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-10 01:30",
+         "Google 选的正式地址": "https://de-linker.com/sample-about/",
+         "页面声明的正式地址": "https://de-linker.com/sample-about/",
          "备注": SAMPLE + "；站点地图里的老页面，没有执行登记"},
+        {"检查日期": "2026-10-14", "网址": "https://de-linker.com/sample-about/",
+         "_coverage": "Duplicate, Google chose different canonical than user", "_robots": "ALLOWED",
+         "_indexing": "INDEXING_ALLOWED", "_fetch": "SUCCESSFUL", "上次抓取时间（北京时间）": "2026-10-13 08:20",
+         "Google 选的正式地址": "https://de-linker.com/sample-about-us/",
+         "页面声明的正式地址": "https://de-linker.com/sample-about/",
+         "备注": SAMPLE + "；演示「掉出收录」：上次已收录，这次 Google 改选了另一个网址"},
     ],
     "网页表现": [
-        {"日期（太平洋时间）": "2026-10-10", "网址": "https://de-linker.com/sample-about/", "展示": 7, "点击": 0,
-         "点击率": 0.0, "平均排名": 23.1, "数据状态": "定稿", "备注": SAMPLE + "；没有执行登记的老页面"},
-        {"日期（太平洋时间）": "2026-10-11", "网址": "https://de-linker.com/sample-about/", "展示": 4, "点击": 1,
-         "点击率": 0.25, "平均排名": 19.0, "数据状态": "定稿", "备注": SAMPLE + "；没有执行登记的老页面"},
-        {"日期（太平洋时间）": "2026-10-12", "网址": "https://de-linker.com/sample-guide-a/", "展示": 2, "点击": 0,
-         "点击率": 0.0, "平均排名": 61.5, "数据状态": "初步"},
-        {"日期（太平洋时间）": "2026-10-13", "网址": "https://de-linker.com/sample-guide-a/", "展示": 5, "点击": 1,
-         "点击率": 0.2, "平均排名": 48.3, "数据状态": "初步"},
+        {"日期（太平洋时间）": "2026-10-10", "网址": "https://de-linker.com/sample-about/", "_type": "web",
+         "_country": "deu", "_device": "DESKTOP", "展示": 5, "点击": 0, "平均排名": 22.0, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-10", "网址": "https://de-linker.com/sample-about/", "_type": "web",
+         "_country": "aut", "_device": "MOBILE", "展示": 2, "点击": 0, "平均排名": 25.5, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-11", "网址": "https://de-linker.com/sample-about/", "_type": "web",
+         "_country": "deu", "_device": "DESKTOP", "展示": 3, "点击": 1, "平均排名": 18.0, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-11", "网址": "https://de-linker.com/sample-about/", "_type": "image",
+         "_country": "deu", "_device": "MOBILE", "展示": 1, "点击": 0, "平均排名": 7.0, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-12", "网址": "https://de-linker.com/sample-guide-a/", "_type": "web",
+         "_country": "deu", "_device": "DESKTOP", "展示": 2, "点击": 0, "平均排名": 61.5, "数据状态": "初步"},
+        {"日期（太平洋时间）": "2026-10-13", "网址": "https://de-linker.com/sample-guide-a/", "_type": "web",
+         "_country": "deu", "_device": "MOBILE", "展示": 3, "点击": 1, "平均排名": 47.0, "数据状态": "初步"},
+        {"日期（太平洋时间）": "2026-10-13", "网址": "https://de-linker.com/sample-guide-a/", "_type": "web",
+         "_country": "che", "_device": "DESKTOP", "展示": 2, "点击": 0, "平均排名": 50.0, "数据状态": "初步"},
+    ],
+    "搜索词": [
+        {"日期（太平洋时间）": "2026-10-10", "网址": "https://de-linker.com/sample-about/", "搜索词": "beispiel suchbegriff a",
+         "_type": "web", "_country": "deu", "_device": "DESKTOP", "展示": 3, "点击": 0, "平均排名": 21.0, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-11", "网址": "https://de-linker.com/sample-about/", "搜索词": "beispiel suchbegriff b",
+         "_type": "web", "_country": "deu", "_device": "DESKTOP", "展示": 2, "点击": 1, "平均排名": 12.0, "数据状态": "定稿"},
+        {"日期（太平洋时间）": "2026-10-12", "网址": "https://de-linker.com/sample-guide-a/", "搜索词": "beispiel suchbegriff c",
+         "_type": "web", "_country": "deu", "_device": "DESKTOP", "展示": 2, "点击": 0, "平均排名": 61.5, "数据状态": "初步"},
+        {"日期（太平洋时间）": "2026-10-13", "网址": "https://de-linker.com/sample-guide-a/", "搜索词": "beispiel suchbegriff c",
+         "_type": "web", "_country": "deu", "_device": "MOBILE", "展示": 2, "点击": 1, "平均排名": 45.0, "数据状态": "初步"},
+        {"日期（太平洋时间）": "2026-10-13", "网址": "https://de-linker.com/sample-guide-a/", "搜索词": "example search term d",
+         "_type": "web", "_country": "che", "_device": "DESKTOP", "展示": 1, "点击": 0, "平均排名": 52.0, "数据状态": "初步"},
     ],
     "邮件反馈": [
         {"事件日期": "2026-10-12", "登记编号": "E-20261012-02", "事件类型": "已发送里找到"},
@@ -252,11 +298,11 @@ SAMPLE_ROWS: dict[str, list[dict]] = {
          "备注": SAMPLE + "；5.1.1 = 收件邮箱不存在，这个地址停用"},
     ],
     "询盘": [
-        {"询盘内部编号": 90001, "单号": "90001", "公司": "样例公司甲 GmbH", "创建时刻（UTC）": "2026-10-14T13:12:00Z",
+        {"询盘内部编号": 90001, "单号": "90001", "公司": "样例公司甲 GmbH", "创建时刻（北京时间）": "2026-10-14 21:12",
          "状态": "询盘已收到", "归因登记编号": "E-20261012-02",
          "归因依据": "同一公司回信要报价后，当天提交了形式发票申请"},
-        {"询盘内部编号": 90002, "单号": "90002", "公司": "样例公司丙 KG", "创建时刻（UTC）": "2026-10-11T14:30:00Z",
-         "状态": "形式发票已开", "形式发票签发时刻（UTC）": "2026-10-13T10:00:00Z",
+        {"询盘内部编号": 90002, "单号": "90002", "公司": "样例公司丙 KG", "创建时刻（北京时间）": "2026-10-11 22:30",
+         "状态": "形式发票已开", "形式发票签发时刻（北京时间）": "2026-10-13 18:00",
          "备注": SAMPLE + "；找不到是哪次动作带来的，未归因，但照样算进询盘总数"},
     ],
 }
@@ -266,13 +312,73 @@ EVENT_LEVEL = {
     "已发送里找到": "L0", "未见退信（推断已送达）": "L1", "暂时退信": "未到 L1", "永久退信": "未到 L1",
     "认证或信誉拒收": "未到 L1", "改址通知": "未到 L1", "自动回复": "L1", "真人回复": "L2",
 }
-SAMPLE_WRITE_AT = "2026-10-14T06:00:00Z"
-SAMPLE_RECOMPUTE_AT = "2026-10-14T06:05:00Z"
+SAMPLE_WRITE_AT = "2026-10-14 14:00"
+SAMPLE_RECOMPUTE_AT = "2026-10-14 14:05"
+UNKNOWN_STATE = "不在对照表里（看英文原文）"
+
+
+def prop(schema: dict, sheet: str, col: str) -> dict:
+    return schema["$defs"][sheet]["properties"][col]
 
 
 def latest_registration(log: list[dict], url: str, day: str) -> str:
     hits = [r for r in log if url in (r.get("网址"), r.get("旧网址")) and r["执行日期"] <= day]
     return max(hits, key=lambda r: (r["执行日期"], r["登记编号"]))["登记编号"] if hits else ""
+
+
+def language(url: str) -> str:
+    return "德文" if "/de/" in url else "英文"
+
+
+def translate_inspection(schema: dict, raw: dict) -> dict:
+    """URL Inspection result (raw API values under _keys) -> 网页收录 columns, without 和上次比."""
+    r = {k: v for k, v in raw.items() if not k.startswith("_")}
+    states = prop(schema, "网页收录", "收录状态")
+    state = states["x-map"].get(raw["_coverage"], UNKNOWN_STATE)
+    r["Google 状态原文"] = raw["_coverage"]
+    r["收录状态"] = state
+    r["收录结论"] = states["x-states"][state]["收录结论"]
+    for col, key in (("robots 是否放行", "_robots"), ("是否允许收录", "_indexing"), ("抓取结果", "_fetch")):
+        if raw.get(key):
+            r[col] = prop(schema, "网页收录", col)["x-map"].get(raw[key], raw[key])
+    parts = [f"上次抓取：{r['抓取结果']}" if r.get("抓取结果") else "Google 还没来抓过"]
+    if r.get("robots 是否放行"):
+        parts.append(f"robots：{r['robots 是否放行']}")
+    if r.get("是否允许收录"):
+        parts.append(f"收录指令：{r['是否允许收录']}")
+    g, u = r.get("Google 选的正式地址"), r.get("页面声明的正式地址")
+    if g and u and g != u:
+        parts.append("Google 选的正式地址和页面声明的不同")
+    r["原因说明"] = states["x-states"][state]["意思"] + "；".join(parts) + "。"
+    r["反馈级别"] = "L1" if r["收录结论"] in ("已收录", "部分问题") else "L0"
+    return r
+
+
+def compare_with_previous(rows: list[dict]) -> None:
+    """Fill 和上次比 by comparing each check with the previous check of the same URL."""
+    indexed = ("已收录", "部分问题")
+    last: dict[str, dict] = {}
+    for r in sorted(rows, key=lambda r: (r["网址"], r["检查日期"])):
+        prev = last.get(r["网址"])
+        if prev is None:
+            r["和上次比"] = "首次检查"
+        elif (prev["收录结论"] in indexed) != (r["收录结论"] in indexed):
+            r["和上次比"] = "新收录" if r["收录结论"] in indexed else "掉出收录"
+        elif prev["收录状态"] != r["收录状态"]:
+            r["和上次比"] = "状态变了（仍已收录）" if r["收录结论"] in indexed else "状态变了（仍未收录）"
+        else:
+            r["和上次比"] = "没变"
+        last[r["网址"]] = r
+
+
+def translate_search_row(schema: dict, sheet: str, raw: dict) -> dict:
+    r = {k: v for k, v in raw.items() if not k.startswith("_")}
+    r["搜索类型"] = prop(schema, sheet, "搜索类型")["x-map"][raw["_type"]]
+    r["国家"] = prop(schema, sheet, "国家")["x-map"].get(raw["_country"], raw["_country"].upper())
+    r["设备"] = prop(schema, sheet, "设备")["x-map"][raw["_device"]]
+    r["点击率"] = round(r["点击"] / r["展示"], 4) if r["展示"] else None
+    r["反馈级别"] = "L2" if r["点击"] > 0 else "L1"
+    return r
 
 
 def action_progress(data: dict[str, list[dict]], now: str) -> list[dict]:
@@ -284,51 +390,63 @@ def action_progress(data: dict[str, list[dict]], now: str) -> list[dict]:
         eid = e["登记编号"]
         idx = [r for r in data["网页收录"] if r.get("登记编号") == eid]
         perf = [r for r in data["网页表现"] if r.get("登记编号") == eid]
+        queries = [r for r in data["搜索词"] if r.get("登记编号") == eid and r["日期（太平洋时间）"] >= window_start]
         mail = [r for r in data["邮件反馈"] if r.get("登记编号") == eid]
         inq = [r for r in data["询盘"] if r.get("归因登记编号") == eid]
         levels = ["L0"] + [r["反馈级别"] for r in idx + perf + mail] + (["L3"] if inq else [])
         own_idx = [r for r in idx if r["网址"] == e.get("网址")] or idx
+        latest = max(own_idx, key=lambda r: r["检查日期"]) if own_idx else {}
         recent = [r for r in perf if r["日期（太平洋时间）"] >= window_start]
+        de = [r for r in recent if r["国家"] == "德国"]
+        top: dict[str, int] = {}
+        for r in queries:
+            top[r["搜索词"]] = top.get(r["搜索词"], 0) + r["展示"]
         dates = [r["检查日期"] for r in idx] + [r["日期（太平洋时间）"] for r in perf] \
-            + [r["事件日期"] for r in mail] + [r["创建时刻（UTC）"][:10] for r in inq]
+            + [r["事件日期"] for r in mail] + [r["创建时刻（北京时间）"][:10] for r in inq]
         is_web = e["渠道"] == "网站"
         out.append({
-            "登记编号": eid, "执行日期": e["执行日期"], "线": e["线"], "渠道": e["渠道"], "动作": e["动作"],
-            "内容说明": e["内容说明"], "网址或收件公司": e.get("网址") or e.get("收件公司", ""),
+            "登记编号": eid, "执行日期": e["执行日期"], "线": e["线"], "渠道": e["渠道"], "动作大类": e["动作大类"],
+            "动作": e["动作"], "内容说明": e["内容说明"], "网址或收件公司": e.get("网址") or e.get("收件公司", ""),
             "查证结果": e["查证结果"],
             "当前最高级别": max(levels, key=LEVEL_RANK.__getitem__),
-            "最新收录状态": max(own_idx, key=lambda r: r["检查日期"])["状态中文说明"] if own_idx else "",
+            "收录状态": latest.get("收录状态", ""), "和上次比": latest.get("和上次比", ""),
             "近 7 天展示": sum(r["展示"] for r in recent) if is_web else None,
             "近 7 天点击": sum(r["点击"] for r in recent) if is_web else None,
+            "近 7 天展示（德国）": sum(r["展示"] for r in de) if is_web else None,
+            "近 7 天点击（德国）": sum(r["点击"] for r in de) if is_web else None,
+            "近 7 天主要搜索词": "；".join(f"{q}（{n}）" for q, n in sorted(top.items(), key=lambda x: -x[1])[:3]),
             "最新邮件事件": max(mail, key=lambda r: (r["事件日期"], LEVEL_RANK[r["反馈级别"]]))["事件类型"] if mail else "",
             "归因询盘数": len(inq),
             "最近一次反馈日期": max(dates) if dates else "",
-            "更新时刻（UTC）": now,
+            "更新时刻（北京时间）": now,
         })
     return out
 
 
 def sample_data(schema: dict) -> dict[str, list[dict]]:
-    data = {k: [dict(r) for r in v] for k, v in SAMPLE_ROWS.items()}
-    log = data["执行登记"]
-    by_id = {r["登记编号"]: r for r in log}
-    for name in ("网页收录", "网页表现"):
-        day_col = "检查日期" if name == "网页收录" else "日期（太平洋时间）"
-        for r in data[name]:
+    raw = {k: [dict(r) for r in v] for k, v in SAMPLE_ROWS.items()}
+    log = raw["执行登记"]
+    categories = prop(schema, "执行登记", "动作")["x-category"]
+    for r in log:
+        r["动作大类"] = categories[r["动作"]]
+    data: dict[str, list[dict]] = {"执行登记": log, "邮件反馈": raw["邮件反馈"], "询盘": raw["询盘"]}
+    data["网页收录"] = [translate_inspection(schema, r) for r in raw["网页收录"]]
+    compare_with_previous(data["网页收录"])
+    for sheet in ("网页表现", "搜索词"):
+        data[sheet] = [translate_search_row(schema, sheet, r) for r in raw[sheet]]
+    for sheet, day_col in (("网页收录", "检查日期"), ("网页表现", "日期（太平洋时间）"), ("搜索词", "日期（太平洋时间）")):
+        for r in data[sheet]:
             r["登记编号"] = latest_registration(log, r["网址"], r[day_col])
-            r["语言"] = "德文" if "/de/" in r["网址"] else "英文"
-            if name == "网页收录":
-                r["反馈级别"] = "L1" if r["收录结论"] == "已收录" else "L0"
-            else:
-                r["反馈级别"] = "L2" if r["点击"] > 0 else "L1"
+            r["语言"] = language(r["网址"])
+    by_id = {r["登记编号"]: r for r in log}
     for r in data["邮件反馈"]:
         r["收件公司"] = by_id[r["登记编号"]].get("收件公司", "")
         r["反馈级别"] = EVENT_LEVEL[r["事件类型"]]
-    for name in ("网页收录", "网页表现", "邮件反馈", "询盘"):
-        for r in data[name]:
-            r["写入时刻（UTC）"] = SAMPLE_WRITE_AT
-    for name in ("执行登记", "网页收录", "网页表现", "邮件反馈", "询盘"):
-        for r in data[name]:
+    for sheet in ("网页收录", "网页表现", "搜索词", "邮件反馈", "询盘"):
+        for r in data[sheet]:
+            r["写入时刻（北京时间）"] = SAMPLE_WRITE_AT
+    for sheet in ("执行登记", "网页收录", "网页表现", "搜索词", "邮件反馈", "询盘"):
+        for r in data[sheet]:
             r.setdefault("备注", SAMPLE)
     data["动作进度"] = action_progress(data, SAMPLE_RECOMPUTE_AT)
     for name in schema["x-sheet-order"]:
@@ -339,7 +457,9 @@ def sample_data(schema: dict) -> dict[str, list[dict]]:
 
 
 def data_widths(cols: list[str], rows: list[dict]) -> list[int]:
-    return [max(12, min(42, max([len(c) * 2 + 2] + [len(str(r.get(c) or "")) + 2 for r in rows]))) for c in cols]
+    def width(text: str) -> int:
+        return sum(2 if ord(ch) > 255 else 1 for ch in text) + 2
+    return [max(12, min(60, max([width(c)] + [width(str(r.get(c) or "")) for r in rows]))) for c in cols]
 
 
 # ---------------------------------------------------------------- xlsx
@@ -380,6 +500,9 @@ def write_xlsx(schema: dict) -> None:
     home = wb.active
     home.title = "首页"
     render(home, home_page(schema, sample=True), HOME_WIDTHS)
+    opt_ws = wb.create_sheet("_选项")
+    opt_ws.sheet_state = "hidden"
+    options: list[list[str]] = []
     for name in schema["x-sheet-order"]:
         spec = schema["$defs"][name]
         cols = columns(spec)
@@ -392,18 +515,26 @@ def write_xlsx(schema: dict) -> None:
         for r, row in enumerate(data[name], start=2):
             for c, col in enumerate(cols, start=1):
                 v = row.get(col)
-                ws.cell(row=r, column=c, value=None if v in ("", None) else v)
+                ws.cell(row=r, column=c, value=None if v in ("", None) else v).alignment = wrap
         for c, col in enumerate(cols, start=1):
             meta = spec["properties"][col]
             if "enum" in meta:
                 letter = get_column_letter(c)
-                dv = DataValidation(type="list", formula1='"' + ",".join(meta["enum"]) + '"', allow_blank=True)
+                inline = '"' + ",".join(meta["enum"]) + '"'
+                if len(inline) > 250:  # Excel caps inline lists at 255 chars; long lists live on a hidden tab
+                    options.append(meta["enum"])
+                    col_letter = get_column_letter(len(options))
+                    for i, v in enumerate(meta["enum"], start=1):
+                        opt_ws.cell(row=i, column=len(options), value=v)
+                    inline = f"'_选项'!${col_letter}$1:${col_letter}${len(meta['enum'])}"
+                dv = DataValidation(type="list", formula1=inline, allow_blank=True)
                 dv.add(f"{letter}2:{letter}{VALIDATION_ROWS}")
                 ws.add_data_validation(dv)
         ws.freeze_panes = "B2"
         ws.row_dimensions[1].height = 34
         widths(ws, data_widths(cols, data[name]))
         render(wb.create_sheet(f"{name}说明"), guide_page(name, spec), GUIDE_WIDTHS)
+    wb.move_sheet(opt_ws, offset=len(wb.sheetnames) - 1 - wb.sheetnames.index("_选项"))
     wb.save(XLSX_OUT)
     print(f"wrote {XLSX_OUT.relative_to(ROOT)}")
 
@@ -514,9 +645,11 @@ def data_sheet_requests(sheet_id: int, spec: dict, widths: list[int]) -> list[di
         kind = spec["properties"][col]["type"]
         fmt = {"numberFormat": {"type": "NUMBER", "pattern": "0.##"}} if kind in ("integer", "number") \
             else {"numberFormat": {"type": "TEXT"}}
+        fmt.update({"wrapStrategy": "WRAP", "verticalAlignment": "TOP"})
         reqs.append({"repeatCell": {"range": {"sheetId": sheet_id, "startRowIndex": 1, "endRowIndex": VALIDATION_ROWS,
                                               "startColumnIndex": c, "endColumnIndex": c + 1},
-                                    "cell": {"userEnteredFormat": fmt}, "fields": "userEnteredFormat.numberFormat"}})
+                                    "cell": {"userEnteredFormat": fmt},
+                                    "fields": "userEnteredFormat(numberFormat,wrapStrategy,verticalAlignment)"}})
         meta = spec["properties"][col]
         rule = None
         if "enum" in meta:
@@ -562,6 +695,8 @@ def build(schema: dict, target: str) -> None:
         has_rows = len(got) > 1 and any(got[1])
         if has_rows and got[0] != cols and target == "main":
             raise SystemExit(f"{name}: header differs from schema and the tab already has data; migrate by hand")
+        if got and got[0] != cols:  # drop stale header cells beyond the new column count
+            svc.spreadsheets().values().clear(spreadsheetId=sid, range=a1(name, "A1:ZZ1")).execute()
 
     title = "底表" if target == "main" else "底表（样例）"
     reqs = [{"updateSpreadsheetProperties": {"properties": {"title": title}, "fields": "title"}}]
