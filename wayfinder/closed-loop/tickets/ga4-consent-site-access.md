@@ -22,7 +22,7 @@ blocked_by: [consent-ga4-research, gsc-site-access]
 - 组合：Complianz 免费版 + WP Consent API + Site Kit；Site Kit 开 Consent Mode，Complianz 自己的 Consent Mode 不开；Script Center 在 statistics 同意前挡 `googletagmanager.com`、`google-analytics.com`、`googleads.g.doubleclick.net`（及 Tag Gateway 第一方 URL，若启用），不挡 Site Kit 内联 consent default 与本地 consent-mode JS → Basic。`ad_user_data` / `ad_personalization` 只跟 marketing，不随分析打开。
 - **必须在本地 / 评审站实测、未经实证不得上线的**：Script Center 能否在执行前挡住 Site Kit 已入队的 `gtag.js`；放行后 dataLayer 里排队的 consent update 是否生效；LiteSpeed 延迟 / 合并 JS 是否打乱「default → 横幅 → 放行」顺序（`wait_for_update` 仅 500 ms）；Tag Gateway 默认开关（Complianz changelog 声称已支持 Tag Gateway URL，仍要实测）；Complianz 免费版能否按 Polylang 为 EN / DE 各存一套横幅文案（readme 只写 WPML）。任一项不成立 → 按调研第 4 节的后备（仓库插件里把脚本推迟到同意后，不走 Code Snippets），或回到 CookieYes 备选，理由记入新站仓库规格。
 - 横幅第一层：同等的接受与拒绝；按 DSK 边号 (119)(120) 写目的、欧洲经济区外处理、逐一点名接收方；撤回与同意一样容易；保留旧横幅文本与流程说明（边号 (85)）。
-- **线上现状**：首页已在无横幅情况下加载 WooCommerce 订单归因（Sourcebuster，`sbjs_*`），按 DSK 边号 (80) 不属绝对必要。本票须把它纳入横幅管理（WP Consent API 对应类别，或在 WooCommerce → Settings → Advanced → Features 关闭订单归因），并在验收里证明拒绝前不写 `sbjs_*`。
+- **线上现状**：首页已在无横幅情况下加载 WooCommerce 订单归因（Sourcebuster，`sbjs_*`），按 DSK 边号 (80) 不属绝对必要。本票须把它纳入横幅管理（WP Consent API 对应类别），并在验收里证明拒绝前不写 `sbjs_*`。**优先纳入横幅管理而不是关掉**：订单来源是询盘归因的首选候选（见地图 Not yet specified「询盘归因到动作」），验收还要证明同意后它照常记录。
 - 若「GSC 站点接入」选了 Site Kit 作载体，本票直接复用；若没选，本票装 Site Kit 时注意不要与已有的 GSC 验证载体冲突。
 
 ## 完成标准

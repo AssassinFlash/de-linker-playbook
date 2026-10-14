@@ -25,6 +25,7 @@ blocked_by: [l3-inquiry-source, base-table-build, looker-dashboard]
 - 操作者清单：WP 后台 WooCommerce → Settings → Advanced → REST API 建一把 **Read** 密钥，绑到有 `read_private_shop_orders` 能力的后台用户（如 shop_manager 角色）；Consumer Key / Secret 放两个仓库之外，vault 只记位置。HTTPS Basic 认证。
 - 写表只留：内部 id（`id`）、单号（`number`）、公司（仅 `billing.company`）、创建时刻（`date_created_gmt`）、状态、签发秒（`_linker_proforma_issued`，无则空）。响应里的姓名、邮箱、电话、地址、IP、UA、备注在**内存中丢弃**，不落盘、不进日志。
 - 首次真实调用时核实调研留下的〔未证实〕：返回体里自定义状态确实被滤出；`_linker_proforma_issued` 在 `meta_data` 里；`number` 是否等于 `id`。另：调研按 Woo 11.1.2 源码推断（readme 的 Stable tag），但线上脚本版本号与 changelog 首条是 11.2.0（2026-10-14 主模型核查），过滤行为以真实响应为准。结果写进本票 Resolution。
+- **顺带核实订单来源（Order Attribution）**：线上首页已加载 `sourcebuster.min.js` 与 `order-attribution.min.js`。首次真实调用时看询盘订单的 `meta_data` 里有没有订单来源字段（来源类型、UTM、设备类型、会话页数；字段名以真实响应为准），以及自建的形式发票申请页提交的订单是否带上它们。只核实、记进 Resolution，不在本票写进底表（不进底表的个人数据边界不变：user agent 一类不要）；是否加列由地图「询盘归因到动作」那片 fog 毕业成票后再定。
 - 联系表单与直接来信**不可计**：看板与指南写明「L3 只含形式发票申请」，北极星因此偏低。
 
 ## 完成标准
