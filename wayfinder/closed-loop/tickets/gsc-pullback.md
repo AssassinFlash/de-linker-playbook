@@ -32,6 +32,12 @@ blocked_by: [gsc-site-access, cloud-service-account, execution-log-flow]
 - Search Console API 已启用；作用域 `https://www.googleapis.com/auth/webmasters.readonly`。2026-10-14 已用该密钥调通 `sites.list`：HTTP 200、空列表——加进 GSC 之前就是空的，加完后应出现 `https://de-linker.com/`，这可作为加用户这一步的核对。
 - 若脚本跑在服务 VPS 上（见「定时任务跑在哪」），密钥要拷到 VPS 的仓库外路径、权限 600，并在 vault 那份记录里补一行「另一份在哪」。
 
+## HITL 前置已完成（2026-10-14）
+
+- 服务账号已加进 GSC 资源 `https://de-linker.com/`。加的人是操作者，权限是**完整（Full）**：操作者宁可给多，免得以后再改。核对结果：用服务账号的密钥调 `sites.list`，返回 `https://de-linker.com/`，权限级别 `siteFullUser`。
+- 脚本仍然只用 `webmasters.readonly` 作用域。所以就算 GSC 里给的是完整权限，脚本也只能读。本票开工时这一步不用再做。
+- 同一天试调 `searchanalytics.query`（日期 2026-10-01 到 10-14）：0 行。这是正常的，因为数据从 2026-10-14 起才开始积累。
+
 ## 底表交接（「建底表」关票时写入，2026-10-14）
 
 - 表结构正典 `schemas/base-table.schema.json`（列顺序、中文表头、下拉选项、翻译对照都在里面）；人读说明 `docs/base-table.md`。要改列先改 schema，再 `uv run scripts/base_table.py build --target main`，然后 `check --target main`。
