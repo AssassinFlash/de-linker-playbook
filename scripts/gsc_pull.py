@@ -40,6 +40,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+sys.dont_write_bytecode = True  # keep scripts/__pycache__ out of the repo
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import base_table as bt  # noqa: E402
 

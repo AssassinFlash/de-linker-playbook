@@ -34,3 +34,4 @@ id_dsa
 *.secret
 secrets/
 credentials.json
+__pycache__/
