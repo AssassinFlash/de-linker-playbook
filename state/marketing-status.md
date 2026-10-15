@@ -54,7 +54,7 @@ current_action_log:
 
 ## 待补登
 
-「执行登记流程」定稿前，操作者做完的真实动作（上线页面、改页、发信、发帖）先记在这里，流程落地后补进底表「执行登记」，补完删行。GSC 里请求编入索引不记这里，直接用 `scripts/next_step.py log-request` 登记。
+底表写不进（没网、凭据缺）时，操作者做完的真实动作先记在这里；下次登记时按 `skills/marketing-execution-log/SKILL.md` 补进底表「执行登记」，补完删行。GSC 里请求编入索引用 `scripts/next_step.py log-request` 登记。
 
 | 日期 | 渠道 | 做了什么 | 网址或收件公司 | 查证结果 |
 | --- | --- | --- | --- | --- |

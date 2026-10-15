@@ -8,6 +8,8 @@
 
 「下一步」按反馈规则 [`docs/feedback-rules.md`](docs/feedback-rules.md) 挑动作：底表的反馈经 `uv run scripts/next_step.py` 读出并排好优先级，不手抄表格。
 
+操作者说「我发了 / 上线了 / 更新了」、或新站上线了影响收录或可见内容的 PR：按 [`skills/marketing-execution-log/SKILL.md`](skills/marketing-execution-log/SKILL.md) 查证后写进底表执行登记（两条线共用）。
+
 获客线索（lead）类任务：先读获客台账 [`state/lead-status.md`](state/lead-status.md)，再读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
 
 寒暄：可读台账并复述 `phase`，不要改文件。

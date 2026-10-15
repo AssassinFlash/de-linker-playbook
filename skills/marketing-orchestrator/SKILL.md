@@ -44,7 +44,7 @@ description: >
 6. **登记做完的事**（执行登记是 L0 的唯一来源，数据靠它挂回动作）。
    - 在 GSC 请求编入索引：`uv run scripts/next_step.py log-request --url <网址>`（一个网址一个 `--url`）。
    - AI 做完一次性核查：W-13 用 `uv run scripts/next_step.py mark --rule W-13 --url <网址> --note "<结论>"`；W-24 用 `mark --rule W-24 --id <登记编号> --note "<结论>"`。
-   - 其他真实动作（上线页面、改页、发信、发帖）：先查证（页面真的在线、信真的在已发送里），再按「执行登记流程」登记。该流程还没定稿时，写进台账「待补登」表（日期、渠道、做了什么、网址或收件公司、查证结果），等流程落地后补登。
+   - 其他真实动作（上线页面、改页、发信、发帖），以及新站上线的改动：打开 `skills/marketing-execution-log/SKILL.md`，按它查证并登记。
    - 完成：说清登记了什么、编号是多少；回写台账 `current_action_log`。
 7. **回写台账**（每轮都做；冷启动每个 phase 边界也做）。
    - `feedback_read_at` 写成本轮读反馈的时刻（北京时间「年-月-日 时:分」）；`current_action` 写成「规则编号 + 一句话」或「phase N：方法 skill」；`current_action_log` 写登记编号（没有就留空）。
@@ -138,7 +138,7 @@ description: >
 - [ ] 推进时按方法 skill 做完，而不是自造流程
 - [ ] 交给操作者的东西过了证据闸；`approved` 只在过闸后写
 - [ ] 「下一步」按规则第 11 节说，引用了底表的具体数据（哪页、哪天、什么状态）
-- [ ] 操作者做完的事已登记（或进了台账「待补登」）
+- [ ] 操作者做完的事已登记（底表写不进时进了台账「待补登」）
 - [ ] 硬依赖已满足或已记录 user_waiver
 - [ ] 交付物不是 skill 例子原文
 - [ ] 台账已回写（含 `feedback_read_at`、`current_action`）

@@ -19,6 +19,7 @@
                                                        W-24 用 --id 记在执行登记），之后不再排队
   uv run scripts/next_step.py log-request --url URL [--url URL ...]
                                                        操作者说已在 GSC 请求编入索引后，AI 登记进执行登记
+                                                       （编号、认重复同 scripts/execution_log.py；其他动作用那个脚本）
 
 两条编排（营销、获客）和每日提醒都调用本脚本，不另写规则。脚本只做机械的部分：对规则、排优先级、
 阻断类网页规则（W-01 至 W-08）先抓线上现状。起草回信、改页面、找询盘归因证据由 AI 在会话里做。
@@ -41,6 +42,7 @@ from urllib.parse import urljoin, urlsplit
 sys.dont_write_bytecode = True  # keep scripts/__pycache__ out of the repo
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import base_table as bt  # noqa: E402
+import execution_log as el  # noqa: E402
 
 RULES_DOC = "docs/feedback-rules.md"
 GSC_HOME = "https://search.google.com/search-console"
@@ -826,19 +828,12 @@ def log_request(args) -> int:
     sid = bt.load_target(args.target)
     now = bt.stamp(bt.beijing_now())
     day = args.date or now[:10]
-    rows = bt.read_table(svc, sid, schema, "执行登记")
-    prefix = "E-" + day.replace("-", "") + "-"
-    seq = max([int(r["登记编号"].rsplit("-", 1)[1]) for r in rows if r["登记编号"].startswith(prefix)], default=0)
-    new = []
-    for url in args.url:
-        seq += 1
-        new.append({"登记编号": f"{prefix}{seq:02d}", "登记时刻（北京时间）": now, "执行日期": day, "线": "营销",
-                    "渠道": "网站", "动作大类": "其他", "动作": "其他", "内容说明": REQUEST_NOTE, "网址": url,
-                    "来源": "操作者口述", "查证结果": "未查证（无法公开访问）",
-                    "查证证据": "GSC 后台里的操作，外部看不到；按操作者口述记录", "查证时刻（北京时间）": now})
-    added, _ = bt.upsert_rows(svc, sid, schema, "执行登记", new, now, existing=rows)
-    n = bt.refresh_progress(svc, sid, schema, now)
-    print(f"登记 {added} 行（{new[0]['登记编号']} 起）；动作进度重算 {n} 行")
+    new = [el.prepare(schema, {"执行日期": day, "线": "营销", "渠道": "网站", "动作": "其他", "内容说明": REQUEST_NOTE,
+                               "网址": url, "来源": "操作者口述", "查证结果": el.PRIVATE,
+                               "查证证据": "GSC 后台里的操作，外部看不到；按操作者口述记录"}, now)
+           for url in args.url]
+    for r in el.register(svc, sid, schema, new, now):  # same numbering and duplicate check as scripts/execution_log.py
+        print(el.describe(r))
     return 0
 
 
