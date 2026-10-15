@@ -10,7 +10,7 @@
 - [步骤 3 执行方法 skill](#步骤-3-执行方法-skill)
 - [步骤 4 数据验证](#步骤-4-数据验证)
 - [步骤 5 六维审查](#步骤-5-六维审查)
-- [步骤 6 证据闸](#步骤-6-证据闸)
+- [步骤 6 证据闸与审稿](#步骤-6-证据闸与审稿)
 - [步骤 7 写入与过期](#步骤-7-写入与过期)
 - [教学](#教学)
 - [发现状态](#发现状态)
@@ -79,13 +79,15 @@ Interview Context 只含已确认事实、偏好与约束，不含教学内容�
 
 自动修补不超过 3 轮，其后把决策交还操作者（修还是记 `user_waiver`）。
 
-## 步骤 6 证据闸
+## 步骤 6 证据闸与审稿
 
-六维审查通过后，AI 按 `docs/feedback-rules.md` 第 9 节逐条自查，在交付物末尾写 `## 证据闸` 一节，每条打 ✅ 或 ❌ 并写一句依据。不问操作者「行不行」：操作者只决定发不发、上不上，不审「写得好不好」，也不需要懂行业。
+六维审查通过后，AI 按 `docs/feedback-rules.md` 第 9 节逐条自查，在交付物末尾写 `## 证据闸` 一节，每条打 ✅ 或 ❌ 并写一句依据。证据闸只管事实，不请操作者核对事实，也不需要操作者懂行业。
 
 - 全部 ✅：frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`。`approved` 的意思就是「已过证据闸」，和营销线同一个意思，由 AI 自查后写。
 - 有 ❌：修一轮再查。还不过：`status` 留 `draft`，告诉操作者哪一条没过、为什么，编排换下一个动作。操作者明确接受某一条没过 → 记台账「豁免」表，再写 `approved`。
 - 外展邮件、LinkedIn 帖、SEO 正文这类要发出去的文字，第 9 节第 3、4 条（说法可追到事实源、〔未证实〕不进对外文字）逐句查。
+
+**审稿**（对外文字，范围见 `docs/feedback-rules.md` 第 10 节）：过了证据闸，把全文给操作者看，说清这稿想达到什么、AI 拿不准的地方。操作者说哪里要改就改，什么方面都可以；每轮在交付物末尾「## 审稿记录」记：第几轮、日期、操作者原话、改了什么。改完重过证据闸再给看，来回几轮都行，不催。写初稿前先读 `deliverables/marketing/00-system/writing-preferences.md`（两线共用，有就读），同一类意见第二次出现时记进去。操作者说「可以了」→ frontmatter 写 `operator_ok: <日期>`；之后 AI 再改任何字，`operator_ok` 清空、重新给看。`approved` 加 `operator_ok` 才算可以发；下游方法 skill 的硬依赖只看 `approved`，不等审稿。
 
 ## 步骤 7 写入与过期
 
@@ -99,6 +101,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 status: approved
 evidence_gate: YYYY-MM-DD
+operator_ok: ""          # 对外文字：操作者说「可以了」的日期；内部材料留空
 review_date: YYYY-MM-DD
 review_score: 0
 review_dimensions:
@@ -122,7 +125,7 @@ stale_confirmed: false
 
 | status | 意思 |
 | --- | --- |
-| `approved` | 六维审查通过，且已过证据闸；必须同时有 `evidence_gate` 日期 |
+| `approved` | 六维审查通过，且已过证据闸；必须同时有 `evidence_gate` 日期。对外文字还要 `operator_ok` 才能发 |
 | `draft` | 文件在，还没过审查或证据闸 |
 | `stale` | 曾是 `approved`，上游重写后过期；重过步骤 5、6 才回到 `approved` |
 | `missing` | 文件不在（只在台账索引里用） |

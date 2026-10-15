@@ -60,6 +60,10 @@ STOPPING_EVENTS = ("真人回复", "永久退信", "认证或信誉拒收", "改
 LINES = ("营销", "获客")
 SITE_LINE = "营销"             # a page nobody registered is the site's, i.e. the marketing line's
 
+REVIEW_DO = ("看 AI 起草的信，哪里不满意直接说（语气、长短、重点、用词都行），AI 改了再给你看，来回几轮都行；"
+             "你说「可以了」，再从你的邮箱亲手发出")   # rules §10: drafts go through the operator's review
+REVIEW_DECIDE = "哪里要改、改到什么时候算可以了、发不发"
+
 REQUEST_HOWTO = (
     f"打开 Search Console（{GSC_HOME}），左上角选资源 {SITE}；在最上面的搜索框粘贴网址，回车；"
     "点「测试实际网址」（Test live URL），等它说可以编入索引；再点「请求编入索引」（Request indexing）。"
@@ -422,7 +426,7 @@ def title_checks(data: dict, line: str | None = None) -> list[Action]:
                    why="底表「执行登记」里这些页新发布或改过，已查证上线，还没按 Google 的标题缺陷清单查过：" + lines,
                    ai_does="打开线上页面，对照规则文件 W-24 的清单逐条看标题和 meta description；命中才改命中的那一处（交给 marketing-copy-editing），"
                            "没命中什么都不做；查完用 `uv run scripts/next_step.py mark --rule W-24 --id 登记编号` 记下",
-                   you_decide="要改的话，AI 改好后你决定上不上",
+                   you_decide="要改的话，改后的标题和描述先给你看，改到你满意再决定上不上",
                    after="查完 AI 告诉你结论")]
 
 
@@ -452,15 +456,15 @@ def mail_actions(data: dict, today: str, ledger: dict, line: str | None = None) 
             cat = ev.get("回复分类") or "其他"
             why += f"，回复分类「{cat}」"
             if cat == "要报价、规格、价格或样品":
-                acts.append(Action(rule="M-01", priority=1, kind=0, **common, title=f"回复{who}的报价请求", you_do="看 AI 起草的信；决定发的话，从你的邮箱亲手发出", 
+                acts.append(Action(rule="M-01", priority=1, kind=0, **common, title=f"回复{who}的报价请求", you_do=REVIEW_DO,
                                    why=why + "。有真人在等我们回。",
-                                   you_decide="发不发",
-                                   ai_does="停掉这条冷序列，按报价路径起草回信（这封回信本身不算询盘）",
+                                   you_decide=REVIEW_DECIDE,
+                                   ai_does="停掉这条冷序列，按报价路径起草回信（这封回信本身不算询盘），按你的意见改到你满意",
                                    after="发出后跟 AI 说一声，AI 查证并登记进执行登记", skill="lead-service-quotation"))
             elif cat == "提出反对":
-                acts.append(Action(rule="M-02", priority=1, kind=0, **common, title=f"回应{who}提出的反对", you_do="看 AI 起草的信；决定发的话，从你的邮箱亲手发出", 
-                                   why=why + "。", you_decide="发不发",
-                                   ai_does="停掉这条冷序列，起草回应反对的回信", after="发出后跟 AI 说一声，AI 登记",
+                acts.append(Action(rule="M-02", priority=1, kind=0, **common, title=f"回应{who}提出的反对", you_do=REVIEW_DO,
+                                   why=why + "。", you_decide=REVIEW_DECIDE,
+                                   ai_does="停掉这条冷序列，起草回应反对的回信，按你的意见改到你满意", after="发出后跟 AI 说一声，AI 登记",
                                    skill="lead-service-objection"))
             elif cat == "拒绝或退订":
                 acts.append(Action(rule="M-04", priority=2, **common, title=f"停掉给{who}的序列（对方拒绝或退订）",
@@ -520,11 +524,11 @@ def sequence_actions(log: list[dict], latest: dict, today: str, ledger: dict) ->
         elif nxt and n and plan and nxt <= today:
             acts.append(Action(rule="M-11", priority=2, anchor=True, since=last["执行日期"], objects=[last["登记编号"]],
                                facts={"who": who, "n": int(n) + 1},
-                               title=f"给{who}发计划内的第 {int(n) + 1} 封", you_do="看 AI 起草的信；决定发的话，从你的邮箱亲手发出", 
+                               title=f"给{who}发计划内的第 {int(n) + 1} 封", you_do=REVIEW_DO,
                                why=f"底表「执行登记」{last['登记编号']}：序列 {seq} 已发第 {int(n)} 封，计划共 {int(plan)} 封，"
                                    f"下一封计划日期 {nxt} 已到；没有回复、没有退信。",
-                               you_decide="发不发",
-                               ai_does="下一封文案还没写就先补上；都写好了只差顺序就排好",
+                               you_decide=REVIEW_DECIDE,
+                               ai_does="下一封文案还没写就先补上；都写好了只差顺序就排好；给你看过、按你的意见改到你满意",
                                after="发出后跟 AI 说一声，AI 查证并登记",
                                skill="文案没写：lead-followup-sequence；只差顺序：lead-email-sequence-strategy"))
         elif nxt and nxt > today:
@@ -687,6 +691,8 @@ OPEN_GSC = [f"打开 {GSC_HOME} ，左上角选 {SITE}",
             "点「请求编入索引」",
             "换下一个网址，重复第 2–4 步"]
 SAY_NEXT = "开个对话，跟 AI 说「下一步」"
+REVIEW_STEPS = ["你看过，哪里不满意直接说，AI 改了再给你看，来回几轮都行",
+                "你说「可以了」，再从你的邮箱亲手发出，发完跟 AI 说「发了」"]
 
 
 def _when(days: list[str]) -> str:
@@ -738,11 +744,11 @@ def plain_action(a: dict) -> dict:
     if r == "M-01":
         return {"title": f"回复 {who}：对方要报价", "you": True,
                 "why": f"{who} 回信了，想要报价、规格、价格或样品。有人在等我们。",
-                "steps": [SAY_NEXT + "，AI 会起草回信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+                "steps": [SAY_NEXT + "，AI 会起草回信", *REVIEW_STEPS]}
     if r in ("M-02", "M-03"):
         what = "对方提出了顾虑" if r == "M-02" else "对方回信了"
         return {"title": f"回复 {who}：{what}", "you": True, "why": f"{who} {what}，有人在等我们。",
-                "steps": [SAY_NEXT + "，AI 会帮你起草回信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+                "steps": [SAY_NEXT + "，AI 会帮你起草回信", *REVIEW_STEPS]}
     if r == "M-04":
         return {"title": f"不再给 {who} 发后续邮件", "you": False, "why": "对方说不想再收。"}
     if r == "M-05":
@@ -759,7 +765,7 @@ def plain_action(a: dict) -> dict:
         return {"title": f"不再用 {who} 的旧邮箱地址", "you": False, "why": "对方通知说换了地址。"}
     if r == "M-11":
         return {"title": f"给 {who} 发第 {f.get('n')} 封跟进邮件", "you": True, "why": "按计划今天该发了，对方还没回信。",
-                "steps": [SAY_NEXT + "，AI 会准备好这封信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+                "steps": [SAY_NEXT + "，AI 会准备好这封信", *REVIEW_STEPS]}
     if r == "Q-01" and v == "report":
         return {"title": f"有 {n} 条新询盘", "you": True, "why": "来自：" + "、".join(f.get("companies", [])) + "。",
                 "steps": ["照平时的流程处理询盘就行，这里只是告诉你"]}

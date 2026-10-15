@@ -65,11 +65,11 @@ current_action_log:
 
 ## 审批与过期
 
-每份获客交付物一行，记它过没过证据闸、过没过期。`status` 取值和营销线同一套：`approved`（六维审查通过且已过证据闸，由 AI 自查后写，不需要操作者批准）| `draft`（还没过）| `stale`（过闸后因上游重写过期）| `missing`（文件不在）。`evidence_gate` 是最近一次过证据闸的日期，「运营里只剩记账时」按它挑最早的那份重查。含义见 `skills/lead-generation/references/orchestration-protocol.md` 步骤 6、7。交付物 frontmatter 是这份文件自己的记录，本表是全线索引：两边不一致时以 frontmatter 为准，当轮改正本表。
+每份获客交付物一行，记它过没过证据闸、过没过期。`status` 取值和营销线同一套：`approved`（六维审查通过且已过证据闸，由 AI 自查后写；证据闸不需要操作者批准）| `draft`（还没过）| `stale`（过闸后因上游重写过期）| `missing`（文件不在）。`evidence_gate` 是最近一次过证据闸的日期，「运营里只剩记账时」按它挑最早的那份重查。`operator_ok` 只对对外文字（外展信、帖子、SEO 正文等）填：操作者审稿后说「可以了」的日期，有它才能发；内部材料填「—」，还在等操作者看填「待看」（`docs/feedback-rules.md` 第 10 节）。含义见 `skills/lead-generation/references/orchestration-protocol.md` 步骤 6、7。交付物 frontmatter 是这份文件自己的记录，本表是全线索引：两边不一致时以 frontmatter 为准，当轮改正本表。
 
-| 交付物 | 方法 skill | status | evidence_gate | review_score | stale_reason | stale_date |
-| --- | --- | --- | --- | --- | --- | --- |
-| （无） | | | | | | |
+| 交付物 | 方法 skill | status | evidence_gate | operator_ok | review_score | stale_reason | stale_date |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| （无） | | | | | | | |
 
 ## 豁免（user_waiver）
 

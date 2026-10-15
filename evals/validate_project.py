@@ -273,14 +273,17 @@ LOOP_LEDGERS = {  # ledger -> (label, deliverables tree it gates)
     "state/lead-status.md": ("Lead", "deliverables/lead"),
 }
 LOOP_REFS = {
-    "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 营销", "证据闸"),
-    "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸"),
-    "skills/marketing-orchestrator/references/dependency-graph.md": ("证据闸", "evidence_gate"),
+    "docs/feedback-rules.md": ("操作者审稿", "operator_ok", "审稿记录", "writing-preferences.md"),
+    "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 营销", "证据闸",
+                                               "审稿", "operator_ok"),
+    "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸", "审稿", "operator_ok"),
+    "skills/marketing-orchestrator/references/dependency-graph.md": ("证据闸", "evidence_gate", "operator_ok"),
+    "skills/marketing-execution-log/SKILL.md": ("发前自改",),
     "skills/lead-generation/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 获客", "证据闸",
-                                        "skills/marketing-execution-log/SKILL.md"),
-    "skills/lead-generation/references/orchestration-protocol.md": ("证据闸", "evidence_gate"),
-    "skills/lead-generation/references/dependency-graph.md": ("证据闸", "evidence_gate"),
-    "state/lead-status.md": ("待补登", "evidence_gate"),
+                                        "skills/marketing-execution-log/SKILL.md", "审稿", "operator_ok"),
+    "skills/lead-generation/references/orchestration-protocol.md": ("证据闸", "evidence_gate", "审稿", "operator_ok"),
+    "skills/lead-generation/references/dependency-graph.md": ("证据闸", "evidence_gate", "operator_ok"),
+    "state/lead-status.md": ("待补登", "evidence_gate", "operator_ok"),
 }
 # approved means「passed the evidence gate」on both lines; the old lead-only approval states must not come back
 RETIRED_STATUS = ("approved_with_concerns",)
@@ -339,8 +342,15 @@ def validate_loop(project_root: Path) -> int:
             if re.search(r"^status:\s*approved\s*$", front, re.M) and not re.search(r"^evidence_gate:\s*\S", front, re.M):
                 log("error", f"{path} is approved without evidence_gate date (approved = passed the evidence gate)")
                 errors += 1
+            ok = re.search(r"""^operator_ok:\s*["']?(\d{4}-\d{2}-\d{2})""", front, re.M)
+            if ok and not re.search(r"^evidence_gate:\s*\S", front, re.M):
+                log("error", f"{path} has operator_ok without evidence_gate (review comes after the evidence gate)")
+                errors += 1
+            if ok and "## 审稿记录" not in text:
+                log("error", f"{path} has operator_ok but no ## 审稿记录 section (each review round is logged)")
+                errors += 1
     if errors == 0:
-        log("ok", "Operating loop wired on both lines: rules, next_step script (--line), evidence gate")
+        log("ok", "Operating loop wired on both lines: rules, next_step script (--line), evidence gate, operator review")
     return errors
 
 

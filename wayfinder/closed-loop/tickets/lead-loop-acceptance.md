@@ -28,3 +28,9 @@ blocked_by: [lead-loop-orchestrator, mailbox-pullback, activation-list-intake, l
 - **登记那一环**：发信后按 `skills/marketing-execution-log/SKILL.md` 登记，必须带 `--line 获客`、`--company`、`--sequence S-公司名`、`--nth`。最好再带 `--planned` 和 `--next-date`，不带的话无回复时只会落到 M-13，只记账。编号写进获客台账的 `current_action_log`。
 - **台账**：每轮都要回写 `feedback_read_at`、`current_action`、`current_action_log`。验收时可以对一下，营销台账没有被改。
 - **询盘**：没归因的询盘两条线都会报告。只有填了「归因登记编号」、并且指向获客登记的，才只出现在获客线。
+
+## 审稿交接（「操作者审稿」关票时写入，2026-10-15）
+
+- 「产出外展信」这一步要走审稿（`docs/feedback-rules.md` 第 10 节）：初稿过证据闸 → 给操作者看 → 按意见改到操作者说「可以了」（`operator_ok`）→ 操作者从 chester@ 手动发出。审稿至少一轮，记录留在交付物里。
+- 操作者在邮箱里发前又改过的，登记时把实际发出的版本同步回交付物，否则邮箱回流在「已发送」里对上的和交付物不是同一份字。
+- 有回复时，回信（M-01–M-03）同样先审稿再发。

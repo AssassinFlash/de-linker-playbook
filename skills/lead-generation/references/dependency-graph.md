@@ -178,7 +178,8 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 
 ## 状态判定
 
-- `approved` 的意思是「已过证据闸」：六维审查通过后，AI 按 `docs/feedback-rules.md` 第 9 节逐条自查通过，在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`（`references/orchestration-protocol.md` 步骤 6）。不需要操作者批准；操作者只决定发不发、上不上。和营销线同一个意思。
+- `approved` 的意思是「已过证据闸」：六维审查通过后，AI 按 `docs/feedback-rules.md` 第 9 节逐条自查通过，在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`（`references/orchestration-protocol.md` 步骤 6）。证据闸由 AI 自查，不需要操作者批准。和营销线同一个意思。
+- 对外文字（外展信、回信、帖子、SEO 正文、引流资料等，`docs/feedback-rules.md` 第 10 节的范围）另要操作者审稿：改到操作者说「可以了」，写 `operator_ok: <日期>`。可以发 = `approved` + `operator_ok`。下游硬依赖只看 `approved`，审稿只挡发出去。
 - 文件产出：看 frontmatter `status: approved`。
 - 仅有表、无 Markdown：表文件存在且非空 → `draft`，须补 companion `.md` 并过闸才算 `approved`。
 - 文件在但没过审查或证据闸 → `draft`；过闸后因上游重写过期 → `stale`，不算通过。
@@ -191,6 +192,7 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 - 硬依赖：上游为 `approved`（已过证据闸），或台账「豁免」表记录了 `user_waiver`。
 - 审查：六维审查已做，或显式 `user_waiver`。审查由 AI 做，不是操作者审批。
 - 证据闸：交付物交给操作者去发、去上线前，过 `docs/feedback-rules.md` 第 9 节清单。
+- 审稿：对外文字过了证据闸，按 `docs/feedback-rules.md` 第 10 节和操作者改到满意，有 `operator_ok` 才发。
 - 反馈闸：发出、上线以后，看底表里的 L1–L3（经 `scripts/next_step.py --line 获客` 读），不看操作者的意见。
 - 产出：策略文档与表进 `deliverables/lead/<阶段>/`；评审进 `deliverables/lead/<阶段>/review/`；元产出进 `deliverables/lead/00-system/`；归档进 `deliverables/lead/99-archive/`；进度只写 `state/lead-status.md`。
 
@@ -398,6 +400,13 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
       "checklist": "docs/feedback-rules.md#9",
       "pass_frontmatter": {"status": "approved", "evidence_gate": "<date>"},
       "set_by": "ai"
+    },
+    "operator_review": {
+      "applies_to": "outgoing copy, docs/feedback-rules.md#10",
+      "pass_frontmatter": {"operator_ok": "<date>"},
+      "log_section": "## 审稿记录",
+      "set_by": "operator",
+      "blocks": "sending or publishing only, not downstream hard dependencies"
     },
     "review": {
       "required": true,

@@ -30,3 +30,8 @@ blocked_by: [lead-loop-orchestrator, fact-source-rewire-skills]
   - `validate_loop` 查获客台账时，要求这些字样在：`待补登`、`evidence_gate`，以及四个循环键。新加的一节不要把它们弄丢。
 - **公司名写法要一致**：「运营里只剩记账时」第 1 条会拿外展交付物里已过闸的收件公司，去对 `uv run scripts/execution_log.py show` 的「收件公司」列，找还没发出的。询盘归因也按公司对。所以名单、调研交付物、外展交付物、执行登记里的公司名，要用同一种写法（原文，不翻译）。
 - 外展信只产文案，由操作者手动发；发完按 `skills/marketing-execution-log/SKILL.md` 登记，带 `--line 获客`。
+
+## 审稿交接（「操作者审稿」关票时写入，2026-10-15）
+
+- 本票只做到第 2 阶段调研，调研是内部材料，不需要逐份审稿（操作者想看随时可看）。名单公司进入外展以后，外展信按 `docs/feedback-rules.md` 第 10 节审稿，有 `operator_ok` 才发。
+- 获客台账「审批与过期」表现在多一列 `operator_ok`（在 evidence_gate 后面）；内部材料填「—」。

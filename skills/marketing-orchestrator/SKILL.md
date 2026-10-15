@@ -4,16 +4,18 @@ description: >
   Use when starting marketing, SEO, or content work in this repo, when the
   user asks for the next step, 下一步, 营销, 文案, 内容, 定位, CRO, 反馈,
   底表, or any multi-step marketing workflow with dependencies or gates, or
-  when the operator reports a real action is done (点完了, 发了, 上线了).
+  when the operator reports a real action is done (点完了, 发了, 上线了),
+  or when the operator comments on a draft (改一下, 这句不对, 可以了).
   Read state/marketing-status.md first, read feedback with
   scripts/next_step.py, pick one action by docs/feedback-rules.md, pass the
-  evidence gate, tell the operator, update the ledger. Use this navigator
+  evidence gate, revise outgoing copy with the operator until they say
+  it is fine, tell the operator, update the ledger. Use this navigator
   rather than a parallel workflow. Greetings get a phase recap only.
 ---
 
 # 营销编排（导航）
 
-读台账，读反馈，挑一个动作，过证据闸，说给操作者，回写台账。方法在方法 skill 里，规则在 `docs/feedback-rules.md`，依赖与产出路径在 `references/dependency-graph.md`。
+读台账，读反馈，挑一个动作，过证据闸，对外文字和操作者一起改到满意，说给操作者，回写台账。方法在方法 skill 里，规则在 `docs/feedback-rules.md`，依赖与产出路径在 `references/dependency-graph.md`。
 
 两种模式，记在台账 `mode`：
 
@@ -26,6 +28,7 @@ description: >
 2. **分流**。
    - 推进意图（下一步 / 营销 / 文案 / 内容 / 价值主张 / SEO / CRO / “Do the next step…”）→ 步骤 3。
    - 操作者报告做完了一件真实的事（「点完了」「发了」「上线了」）→ 步骤 6。
+   - 操作者对一份稿子提意见、或说「可以了」→ 步骤 5「审稿」那一条，接着上次那份稿子改。
    - 寒暄或无关问题 → 复述 `mode`、`phase`、`next`，停，不改文件。
 3. **读反馈**。跑 `uv run scripts/next_step.py --line 营销 --format json --since "<台账 feedback_read_at>"`（`feedback_read_at` 为空就不带 `--since`）。它读底表、按 `docs/feedback-rules.md` 对规则、排好优先级，只留营销线的对象（营销线的登记、没登记过的全站页面、没归因的询盘）。不要自己读表格、不要手抄数据。完成：拿到 `actions`（已排序）、`ledger`、`waiting`、`data`。
    - 脚本报错（没网、凭据缺、表格读不到）：如实说读不到反馈和原因。冷启动照常做阶段工作；运营模式停，写缺口。
@@ -35,11 +38,12 @@ description: >
    - 运营，`actions` 不空 → 本轮做 `actions[0]`。
    - 运营，`actions` 为空（只剩 P5）→ 按「运营里只剩记账时」挑一项新工作；挑不出就说「今天没有要动的」和在等什么，停。
 5. **做这个动作**。
-   - 反馈动作：照该条的「AI 会做的」做，有方法 skill 就先读它的 `SKILL.md`。要改新站的，按新站仓库 `AGENTS.md` 的规矩走分支、PR、CI；上不上由操作者决定。要发的信，AI 起草，发不发由操作者决定，并由操作者亲手发。
+   - 反馈动作：照该条的「AI 会做的」做，有方法 skill 就先读它的 `SKILL.md`。要改新站的，按新站仓库 `AGENTS.md` 的规矩走分支、PR、CI；上不上由操作者决定。要发的信、要上线的文字，AI 起草后走下面的「审稿」，改到操作者满意，发不发由操作者决定，并由操作者亲手发。
    - 阶段工作：台账 `method_skill` 的 `SKILL.md` 存在 → 先读再按其步骤做；不存在 → 停，宣布缺口，不自造流程。需要隔离时 dispatch a subagent, else do it inline。产出进台账 `output_dir`（空则用下表目录）。同一 phase 无硬依赖的方法 skill 可并行，有硬依赖的串行；硬依赖没满足且没有 `user_waiver` → 不跳。
    - 交给操作者去做、去发、去上线之前，过**证据闸**（规则第 9 节，逐条打勾）。过了的交付物在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`；`approved` 的意思就是「已过证据闸」，由 AI 自查后写，不需要操作者批准。过不了：修一轮再查；还不过就换下一个动作，并告诉操作者跳过了什么、为什么。
+   - **审稿**（对外文字：页面正文、标题和描述、帖子、邮件、定位句与信息支柱等，范围见规则第 10 节）：过了证据闸，把全文给操作者看，说清这稿想达到什么、AI 拿不准的地方。操作者说哪里要改就改，每轮记进交付物「## 审稿记录」，改完重过证据闸再给看，来回几轮都行，不催。写初稿前先读写作偏好 `deliverables/marketing/00-system/writing-preferences.md`（有就读），同一类意见第二次出现时记进去。操作者说「可以了」→ frontmatter 写 `operator_ok: <日期>`；之后再改任何字就清空、重新给看。`approved` 加 `operator_ok` 才算可以发、可以上线。
    - 说给操作者：用规则第 11 节的格式（脚本的 text 输出就是这个格式，可以直接用 `uv run scripts/next_step.py --line 营销` 再跑一次拿全文）。阶段工作也按同样五栏说：为什么、你要做的、你要决定、AI 会做的、做完以后。英文只在要操作者去某个后台找按钮时出现，加括号注明。
-   - 冷启动阶段里，要上线的页面、要发布的内容，在「做完以后」写明：操作者做完要告诉 AI，AI 走步骤 6 登记。
+   - 冷启动阶段里，要上线的页面、要发布的内容，在「做完以后」写明：操作者做完要告诉 AI，AI 走步骤 6 登记；发前自己又改过的，把实际版本贴给 AI。
    - 教学 / 评测 / 进化走 `skills/marketing-teach/SKILL.md`、`skills/marketing-eval/SKILL.md`、`skills/marketing-evolve/SKILL.md` 或 `skills/marketing-skill-eval/SKILL.md`；产出进 `deliverables/marketing/00-system/`，不改战役 `phase`。
 6. **登记做完的事**（执行登记是 L0 的唯一来源，数据靠它挂回动作）。
    - 在 GSC 请求编入索引：`uv run scripts/next_step.py log-request --url <网址>`（一个网址一个 `--url`）。
@@ -70,7 +74,7 @@ description: >
 
 `actions` 为空时，按顺序找一项新工作，找到第一项就做：
 
-1. 下表方法 skill 里，交付物缺失、或没过证据闸（没有 `status: approved`）的，按依赖顺序取第一个。
+1. 下表方法 skill 里，交付物缺失、或没过证据闸（没有 `status: approved`）的，按依赖顺序取第一个；对外文字过了证据闸、还没有 `operator_ok` 的，拿给操作者审稿。
 2. 都齐了：取 `evidence_gate` 日期最早的那份交付物，对照事实源入口重新过一遍证据闸。事实源（线上站点、新站仓库、竞品调研）有变化才改，没变化只把 `evidence_gate` 改成今天。
 3. 都没有：说「今天没有要动的」，列出脚本 `waiting` 里在等的事，停。
 
@@ -84,7 +88,7 @@ description: >
 - 台账或 `deliverables/marketing/` 缺失时，先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
 - 缺来源、缺搜索：停止并写缺口，不编造。需要查证时用网页搜索；需要原文时抓取指定 URL 的正文。
 - 交付物带来源栏；数字必须能回溯产品上下文、已抓取 URL 或底表里的某一行。
-- 质量闸：执行前是证据闸（AI 自查），执行后是反馈闸（看 L1–L3）。操作者只决定「发不发 / 上不上」，不审「写得好不好」，也不需要懂行业。
+- 质量闸：执行前是证据闸（AI 自查事实）加审稿（对外文字由操作者看、提意见、改到满意，规则第 10 节），执行后是反馈闸（看 L1–L3）。事实对不对、行业里该怎么做不靠操作者判断；文字发出去行不行、哪里想改，由操作者说了算。
 - 单文件、无并行机会的工作 inline 做完，不 dispatch。
 - 证据闸没过：修一轮，或记录 `user_waiver`（台账「豁免」表）。自动修补不超过 3 轮，其后把决策交还操作者。
 - 获客树 `deliverables/lead/` 不由本 skill 推进；获客线的反馈（外展邮件的回信、退信、挂在获客登记上的询盘）由 `skills/lead-generation/SKILL.md` 用 `--line 获客` 读，`--line 营销` 不会给出这类动作。
@@ -120,7 +124,9 @@ description: >
 - 不跑脚本，凭记忆或手抄表格说反馈。
 - 冷启动时 P1、P2 反馈排在阶段工作后面；或 P3–P5 反馈挤掉阶段工作。
 - phase 7 做完写 `next: stop`，没有转入运营。
-- 把操作者的审批当质量闸；或让操作者判断「写得好不好」。
+- 把操作者点头当成事实核查（事实归证据闸）；或反过来，对外文字没给操作者看、没改到满意就当成可以发。
+- 只给一稿就让操作者选「发 / 不发」，不接受修改意见；操作者提了意见却没记进审稿记录，同类意见不进写作偏好。
+- `operator_ok` 之后又改了字却没清空、没重新给看。
 - 没过证据闸就写 `status: approved`。
 - 操作者说做完了，却没有登记。
 - `product_context` 读不到仍往下做。
@@ -137,6 +143,7 @@ description: >
 - [ ] 反馈经 `scripts/next_step.py` 读出，动作按规则第 7 节挑
 - [ ] 推进时按方法 skill 做完，而不是自造流程
 - [ ] 交给操作者的东西过了证据闸；`approved` 只在过闸后写
+- [ ] 对外文字经操作者审稿、改到满意，有审稿记录和 `operator_ok`；发前自改的已同步成实际版本
 - [ ] 「下一步」按规则第 11 节说，引用了底表的具体数据（哪页、哪天、什么状态）
 - [ ] 操作者做完的事已登记（底表写不进时进了台账「待补登」）
 - [ ] 硬依赖已满足或已记录 user_waiver
