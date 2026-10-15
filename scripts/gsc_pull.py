@@ -11,7 +11,7 @@ GSC 数据回流：把 Google Search Console 的收录检查和搜索数据写�
 
   uv run scripts/gsc_pull.py run                 跑一次：网页收录、网页表现、搜索词，再重算动作进度
   uv run scripts/gsc_pull.py run --dry-run       只取数、打印条数，不写表
-  uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 10:30 北京时间）
+  uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 08:30 北京时间）
   uv run scripts/gsc_pull.py schedule status     看定时装没装、上次退出码、日志最后几行
   uv run scripts/gsc_pull.py schedule remove     卸掉定时
 
@@ -56,7 +56,7 @@ INSPECT_GAP = 0.11               # seconds between inspections, keeps under 600/
 LABEL = "com.de-linker-playbook.gsc-pull"
 PLIST = Path.home() / "Library" / "LaunchAgents" / f"{LABEL}.plist"
 LOG = Path.home() / "Library" / "Logs" / "de-linker-playbook" / "gsc-pull.log"
-RUN_AT = (10, 30)                # hour, minute, local time of this Mac
+RUN_AT = (8, 30)                 # hour, minute, local time of this Mac
 
 
 def log(msg: str) -> None:

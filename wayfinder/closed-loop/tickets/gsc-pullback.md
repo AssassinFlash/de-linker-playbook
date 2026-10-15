@@ -75,4 +75,5 @@ blocked_by: [gsc-site-access, cloud-service-account, base-table-build]
 - launchd 定时已装（`com.de-linker-playbook.gsc-pull`，每天 10:30）。装好后 Claude Code 的权限检查提示：装常驻任务要先问操作者。操作者 2026-10-15 说「当然可以留」，所以保留。
 - 2026-10-15 00:14 用 `launchctl kickstart` 经 launchd 手动触发了一次：读得到 `~/Documents` 下的仓库，没有被 macOS 权限拦住；查了 295 个网址，退出码 0，日志正常（`runs = 1`）。按计时器自动跑的那一次（10:30）还要等。
 - 2026-10-15 10:30 按计时器自动跑了第一次：当天已查 297 个，只补查 1 个，写入 1 行，网页表现和搜索词仍是 0 行（太平洋时间 10-05 至 10-14 没有数），退出码 0，`runs = 2`。定时这一条完成。
+- 2026-10-15 操作者定每日提醒在 08:30 回流后发（「反馈分级规则定稿」），定时从 10:30 改到 08:30：`RUN_AT = (8, 30)`，launchd 已重装，`plutil` 核对 Hour 8 / Minute 30。
 - **还不能关票**：「近 7 天展示」要等 GSC 出数（一般 2–3 天）。
