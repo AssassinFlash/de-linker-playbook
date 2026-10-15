@@ -62,6 +62,8 @@ spreadsheet_id = "..."         # 底表
 sample_spreadsheet_id = "..."  # 底表（样例）
 ```
 
+「下一步」脚本 [`scripts/next_step.py`](../scripts/next_step.py) 也复用这层读表，规则与用法见 [`docs/feedback-rules.md`](feedback-rules.md)。
+
 回流脚本复用 `base_table.py` 的读写层：`google_service`、`read_table`、`upsert_rows`（按不重复键新增或覆盖；内容没变的行不碰）、`replace_rows`、`refresh_progress`（按网址重挂登记编号，再重算动作进度）。写行一律写到固定行号，不用 `values.append`。所有接口调用都设了超时，遇到 429、5xx 或网络超时会自动重试。
 
 ## GSC 回流

@@ -101,17 +101,20 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
 
 ## 状态判定
 
+- `approved` 的意思是「已过证据闸」：AI 按 `docs/feedback-rules.md` 第 9 节逐条自查通过后，在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`。不需要操作者批准；操作者只决定发不发、上不上。
 - 文件产出：看 frontmatter `status: approved`。
 - 目录产出：至少 1 个 `.md` 为 `approved`。
-- 文件在但未批准 → `draft`。
+- 文件在但没过证据闸 → `draft`。
 - 文件不在 → `missing`。
 - 方法 `SKILL.md` 不在 → 该节点不可跑，编排器停并写缺口。
 
 ## 闸门
 
 - 产品上下文：台账 `product_context` 可读，否则停。
-- 硬依赖：上游为 `approved`，或台账记录 `user_waiver`。
-- 评审：交付物 `review.status: passed` 或显式 `user_waiver`。
+- 硬依赖：上游为 `approved`（已过证据闸），或台账「豁免」表记录了 `user_waiver`。
+- 证据闸：交付物交给操作者去做、去发、去上线前，过 `docs/feedback-rules.md` 第 9 节清单。
+- 评审：交付物 `review.status: passed` 或显式 `user_waiver`。评审由 AI 跑评测 skill 做，不是操作者审批。
+- 反馈闸：上线、发出以后，看底表里的 L1–L3（经 `scripts/next_step.py` 读），不看操作者的意见。
 - 产出：策略文档与表进 `deliverables/marketing/<阶段>/`；评审进 `deliverables/marketing/<阶段>/review/`；元产出进 `deliverables/marketing/00-system/`；进度只写 `state/marketing-status.md`。
 
 ## 附属贡献
@@ -135,6 +138,11 @@ marketing-analytics-and-optimization -> [marketing-landing-page, marketing-paid-
       "ledger_key": "product_context",
       "default": "docs/fact-sources.md",
       "block_if_unreadable": true
+    },
+    "evidence_gate": {
+      "checklist": "docs/feedback-rules.md#9",
+      "pass_frontmatter": {"status": "approved", "evidence_gate": "<date>"},
+      "set_by": "ai"
     },
     "review": {
       "required": true,

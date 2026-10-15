@@ -263,6 +263,56 @@ def validate_ledger(project_root: Path) -> int:
     if (project_root / "state" / "status.md").exists():
         log("error", "Old shared ledger state/status (pre-split) still exists; remove it")
         errors += 1
+    errors += validate_loop(project_root)
+    return errors
+
+
+LOOP_KEYS = ("mode", "feedback_read_at", "current_action", "current_action_log")
+LOOP_REFS = {
+    "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "证据闸"),
+    "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸"),
+    "skills/marketing-orchestrator/references/dependency-graph.md": ("证据闸", "evidence_gate"),
+}
+
+
+def validate_loop(project_root: Path) -> int:
+    """Operating loop wiring: ledger loop keys, rule/script references, evidence gate on approved deliverables."""
+    errors = 0
+    ledger = project_root / "state" / "marketing-status.md"
+    if ledger.exists():
+        head = ledger.read_text(encoding="utf-8").split("---")[1] if ledger.read_text(encoding="utf-8").startswith("---") else ""
+        keys = {line.split(":", 1)[0].strip(): line.split(":", 1)[1].strip() for line in head.splitlines() if ":" in line}
+        missing = [k for k in LOOP_KEYS if k not in keys]
+        if missing:
+            log("error", f"state/marketing-status.md lacks loop keys: {', '.join(missing)}")
+            errors += 1
+        elif keys["mode"] not in ("冷启动", "运营"):
+            log("error", f"state/marketing-status.md mode must be 冷启动 or 运营, got {keys['mode']!r}")
+            errors += 1
+        else:
+            log("ok", "Marketing ledger has operating-loop keys")
+    for rel in ("docs/feedback-rules.md", "scripts/next_step.py"):
+        if not (project_root / rel).exists():
+            log("error", f"Missing {rel}")
+            errors += 1
+    for rel, needles in LOOP_REFS.items():
+        path = project_root / rel
+        text = path.read_text(encoding="utf-8") if path.exists() else ""
+        lost = [n for n in needles if n not in text]
+        if lost:
+            log("error", f"{rel} does not mention: {', '.join(lost)}")
+            errors += 1
+    marketing = project_root / "deliverables" / "marketing"
+    for path in sorted(marketing.rglob("*.md")) if marketing.exists() else []:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if not text.startswith("---"):
+            continue
+        front = text.split("---")[1]
+        if re.search(r"^status:\s*approved\s*$", front, re.M) and not re.search(r"^evidence_gate:\s*\S", front, re.M):
+            log("error", f"{path} is approved without evidence_gate date (approved = passed the evidence gate)")
+            errors += 1
+    if errors == 0:
+        log("ok", "Operating loop wired: rules, next_step script, evidence gate")
     return errors
 
 

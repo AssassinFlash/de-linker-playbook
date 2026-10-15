@@ -1,10 +1,14 @@
 ---
+mode: 冷启动
 phase: 0
 phase_name: 读产品上下文
 next: 读 product_context（事实源入口 docs/fact-sources.md），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1
 method_skill: marketing-profile
 output_dir: deliverables/marketing/
 product_context: docs/fact-sources.md
+feedback_read_at: 2026-10-15 12:06
+current_action: phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作）
+current_action_log:
 ---
 
 # 营销台账
@@ -17,12 +21,16 @@ product_context: docs/fact-sources.md
 
 | 键 | 值 |
 | --- | --- |
+| mode | 冷启动 |
 | phase | 0 |
 | phase_name | 读产品上下文 |
 | next | 读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1 |
 | method_skill | marketing-profile |
 | output_dir | deliverables/marketing/ |
 | product_context | `docs/fact-sources.md` |
+| feedback_read_at | 2026-10-15 12:06 |
+| current_action | phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作） |
+| current_action_log | （无） |
 
 ## 阶段
 
@@ -37,10 +45,37 @@ product_context: docs/fact-sources.md
 | 6 | 增长 | `marketing-launch-strategy`、`marketing-referral-program`、`marketing-retention` | `deliverables/marketing/06-growth/` | 同上 |
 | 7 | 度量 | `marketing-analytics-and-optimization` | `deliverables/marketing/07-measurement/` | 同上 |
 
+键的意思：
+
+- `mode`：`冷启动`（按下面的阶段打底，反馈 P1、P2 先做）或 `运营`（phase 7 做完后转入，每次「下一步」完全按反馈规则）。
+- `feedback_read_at`：上次读底表反馈的时刻（北京时间「年-月-日 时:分」）。下次读反馈时作为 `--since` 传给 `scripts/next_step.py`，用来判断哪些询盘是新的。
+- `current_action`：本轮在做的动作，写成「规则编号 + 一句话」（如「W-04 在 GSC 给 6 个页面请求编入索引」）或「phase N：方法 skill」。
+- `current_action_log`：这个动作做完后登记的执行登记编号；还没登记就留空。
+
+## 待补登
+
+「执行登记流程」定稿前，操作者做完的真实动作（上线页面、改页、发信、发帖）先记在这里，流程落地后补进底表「执行登记」，补完删行。GSC 里请求编入索引不记这里，直接用 `scripts/next_step.py log-request` 登记。
+
+| 日期 | 渠道 | 做了什么 | 网址或收件公司 | 查证结果 |
+| --- | --- | --- | --- | --- |
+| （无） | | | | |
+
+## 豁免（user_waiver）
+
+操作者明确同意跳过某条硬依赖、或接受没过证据闸的某一处时记一行；依赖检查读本表。
+
+| 日期 | 方法 skill | 跳过的硬依赖或证据闸条目 | 操作者原话 |
+| --- | --- | --- | --- |
+| （无） | | | |
+
 ## 已完成
 
 - （无）
 
 ## 回写
 
-每完成一个 phase：同步改文件头 YAML 与「当前」表，在「已完成」追加一行（日期 + 做了什么 + 产物路径）。`next` 写成下一 phase 的动作。phase 7 完成后 `next` 为 `stop`。只写本文件，不碰 `state/lead-status.md`。
+每轮「下一步」后：改 `feedback_read_at`、`current_action`、`current_action_log`，文件头 YAML 与「当前」表同步。
+
+每完成一个 phase：同步改文件头 YAML 与「当前」表，在「已完成」追加一行（日期 + 做了什么 + 产物路径）。`next` 写成下一 phase 的动作。phase 7 完成后 `mode` 改为 `运营`，`next` 写「按反馈规则给下一步」，不写 `stop`。
+
+只写本文件，不碰 `state/lead-status.md`。

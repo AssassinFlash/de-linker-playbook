@@ -6,6 +6,8 @@
 
 营销、SEO、文案、内容、或「下一步」：先读营销台账 [`state/marketing-status.md`](state/marketing-status.md)，再读 [`skills/marketing-orchestrator/SKILL.md`](skills/marketing-orchestrator/SKILL.md) 并按其推进。产出写到 [`deliverables/`](deliverables/)。
 
+「下一步」按反馈规则 [`docs/feedback-rules.md`](docs/feedback-rules.md) 挑动作：底表的反馈经 `uv run scripts/next_step.py` 读出并排好优先级，不手抄表格。
+
 获客线索（lead）类任务：先读获客台账 [`state/lead-status.md`](state/lead-status.md)，再读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
 
 寒暄：可读台账并复述 `phase`，不要改文件。
@@ -23,7 +25,7 @@
 - 适配器：`.agents/skills/` 里对每个 skill 的软链。无扫描器时，按用户任务直接打开对应 `SKILL.md`。
 - 用任务匹配 `description`，然后只走那份正文。不要另写一套流程。
 
-`schemas/` = 交付物 JSON Schema；`templates/` = 产出 xlsx 模板与导出脚本；`evals/` = 校验/评测脚本；`scripts/` = 运行脚本（底表见 [`docs/base-table.md`](docs/base-table.md)）；`docs/` = 人读说明与事实源入口。
+`schemas/` = 交付物 JSON Schema；`templates/` = 产出 xlsx 模板与导出脚本；`evals/` = 校验/评测脚本；`scripts/` = 运行脚本（底表见 [`docs/base-table.md`](docs/base-table.md)，「下一步」见 [`docs/feedback-rules.md`](docs/feedback-rules.md)）；`docs/` = 人读说明与事实源入口。
 
 ## 事实源
 

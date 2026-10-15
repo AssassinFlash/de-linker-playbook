@@ -63,6 +63,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [底表原型](tickets/base-table-prototype.md)：七张数据表（执行登记、网页收录、网页表现、搜索词、邮件反馈、询盘、动作进度），每张后面跟一张说明页，正典 `schemas/base-table.schema.json`；时刻一律北京时间，列往细里分（国家 × 设备 × 搜索类型、收录分三层）；操作者确认看得懂。
 - [建底表](tickets/base-table-build.md)：建了两本 Google 表格「底表」和「底表（样例）」，由所有者账号建，共享给日常账号和服务账号；脚本 `uv run scripts/base_table.py build|check --target main|sample`，可重跑、不动数据；配置在仓外 `~/.config/de-linker-playbook/`，ID 记在 vault。
 - [反馈分级规则定稿](tickets/feedback-ladder-rules.md)：正典 `docs/feedback-rules.md`（W/M/Q/E 规则表 + P1–P5 优先级 + 证据闸）；每次给一个主动作附理由、排队最多 5 条；每天 08:30 回流后自动发「提醒事项」和邮件（新票「每日提醒」）；上移只记账。
+- [营销编排改循环](tickets/marketing-loop-orchestrator.md)：`scripts/next_step.py` 读底表、按规则排好下一步（两线共用，另有 `mark`、`log-request` 回写）；编排 7 步，冷启动 P1/P2 插队、走完转运营不 stop；`approved` = 已过证据闸（AI 自查 + `evidence_gate` 日期），不再要操作者批准；台账加循环键、待补登、豁免。
 
 ## Not yet specified
 

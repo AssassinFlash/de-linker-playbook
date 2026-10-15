@@ -14,14 +14,14 @@ description: >
 
 # 营销共用规则
 
-所有营销方法 skill 动手前先读本文件。四条硬约束：数据锚定、例子禁引用、产出只进 `deliverables/`、工具写能力。不注入会话开头，不锁产品。
+所有营销方法 skill 动手前先读本文件。五条硬约束：数据锚定、证据闸、例子禁引用、产出只进 `deliverables/`、工具写能力。不注入会话开头，不锁产品。
 
 ## 步骤
 
-1. **入口**。方法 skill 的步骤 0：读 `skills/marketing-playbook-standards/SKILL.md`。本文件被单独点开时，把下列规则应用到用户本轮任务。完成：能复述四条硬约束。禁止 session-start 预加载，禁止用 frontmatter 把本文件注入子代理。
+1. **入口**。方法 skill 的步骤 0：读 `skills/marketing-playbook-standards/SKILL.md`。本文件被单独点开时，把下列规则应用到用户本轮任务。完成：能复述五条硬约束。禁止 session-start 预加载，禁止用 frontmatter 把本文件注入子代理。
 2. **产品上下文**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。完成：能指出受众与约束各依据哪几条陈述。原文不拷进本仓库。文件不存在则停并写缺口，不另写公司档案。
 3. **执行当前方法**。打开台账或用户点名的方法 skill，按其步骤做。需要隔离时 dispatch a subagent, else do it inline。完成：战役产出在 `deliverables/marketing/` 或 `deliverables/lead/` 下对应阶段小写目录；teach/eval 元产出在 `deliverables/marketing/00-system/`。简单任务不派子代理。
-4. **出门检查**。对照下方清单。完成：每条对外声明有来源或已标明缺口；教学例子原文零出现。
+4. **出门检查（证据闸）**。对照下方清单与 `docs/feedback-rules.md` 第 9 节。完成：每条对外声明有来源或已标明缺口；教学例子原文零出现；过了的交付物 frontmatter 写 `status: approved` 与 `evidence_gate: <日期>`。
 
 ## 默认
 
@@ -31,6 +31,11 @@ description: >
 - 引用的 URL：已抓取则记下摘录；未抓取则标明「未验证」及原因。
 - 禁止：把模型记忆当来源、无出处的「普遍认为」、编造的地址或统计。
 - 缺数据：写明缺口，不编造。搜索不可用则停止并写缺口。
+
+**证据闸**
+
+- 执行前的质量关由 AI 自查，清单是 `docs/feedback-rules.md` 第 9 节：引用的底表数据写明哪张表、哪个网址或登记编号、哪天、什么状态；阻断类网页动作先看过线上现状；要上线的每条产品或公司说法能追到事实源入口所指的三方之一；查不到的标〔未证实〕，不写成事实也不进对外文字；没用第 8 节列为不采用的数字；例子原文没进交付物。
+- 过了才写 `status: approved`（意思就是「已过证据闸」）和 `evidence_gate: <日期>`。不请操作者审「写得好不好」；操作者只决定发不发、上不上。执行后的质量看反馈闸（底表 L1–L3）。
 
 **例子禁引用**
 
@@ -77,6 +82,7 @@ description: >
 - [ ] 方法 skill 步骤 0 已读本文件；未做 session-start 注入
 - [ ] 已读 `product_context`，原文未拷进本仓库
 - [ ] 每条外部声明有来源或已标明缺口
+- [ ] 已过证据闸（`docs/feedback-rules.md` 第 9 节）；`approved` 只在过闸后写
 - [ ] 产出在 `deliverables/marketing/` 或 `deliverables/lead/`（元产出在 `00-system/`）
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；子代理句为 dispatch a subagent, else do it inline

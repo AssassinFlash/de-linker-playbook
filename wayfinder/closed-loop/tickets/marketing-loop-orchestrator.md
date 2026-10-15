@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-opus-5-5 会话 2026-10-15
 step: 3
 blocked_by: [ledger-split, feedback-ladder-rules, gsc-pullback, fact-source-rewire-skills]
@@ -40,3 +40,24 @@ blocked_by: [ledger-split, feedback-ladder-rules, gsc-pullback, fact-source-rewi
 - 「GSC 数据回流」还没关，只差「近 7 天展示」那部分数据（等 Google 出数）。操作者同意不等它，先开工，因为每日提醒要靠本票。原话是「现在的话可以开始做「营销编排改循环」这个」。
 - 底表里现在已经有真实的网页收录数据（约 300 行），够本票验收时引用「哪页、哪天、什么状态」。网页表现那部分，等有数后规则自然会用上，不用返工。
 
+## Resolution（2026-10-15）
+
+- **公共读表部分**：`scripts/next_step.py`。它读底表七张表，按 `docs/feedback-rules.md` 对全部规则（网页 W、邮件 M、询盘 Q、执行登记 E），排好 P1–P5，阻断类网页规则先抓线上现状。输出两种格式：text 是规则第 11 节的中文格式，JSON 给编排判断优先级。还有两个回写命令：`mark`（AI 做完的一次性核查 W-13、W-24）和 `log-request`（GSC 请求编入索引后登记）。用法写在规则文件第 1 节。
+- **编排**：`skills/marketing-orchestrator/SKILL.md` 重写成 7 步：读台账 → 分流 → 读反馈（跑脚本）→ 挑一个动作 → 做、过证据闸、按第 11 节说 → 登记做完的事 → 回写台账。
+  - 两种模式：冷启动下 P1、P2 先做，其余让位给阶段工作并顺带报告；phase 7 做完转运营，不 stop。
+  - 运营里只剩记账时：先补缺失或没过证据闸的交付物，再复核 `evidence_gate` 最早的那份，都没有就说在等什么。
+- **质量闸**：`approved` 改成「已过证据闸」，由 AI 自查后写 `status: approved` 和 `evidence_gate: <日期>`，不需要操作者批准。改动处：
+  - 依赖图（含机器可读图）、`marketing-playbook-standards`（五条硬约束，加证据闸）；
+  - `marketing-positioning`、`marketing-profile` 原来的「用户确认」一步，改成证据闸；
+  - `marketing-skill-eval` 的条数。
+- **台账**：`state/marketing-status.md` 加 `mode`、`feedback_read_at`、`current_action`、`current_action_log`，以及「待补登」「豁免（user_waiver）」两张表，「回写」节同步改。
+- **evals**：`evals/validate_project.py` 新增 `validate_loop`，查四件事：
+  - 台账循环键齐全、`mode` 合法；
+  - 规则文件和脚本都在；
+  - 编排、共用规则、依赖图都指向它们；
+  - `deliverables/marketing/` 里写了 `status: approved` 的都带 `evidence_gate` 日期。造了一份反例，确实会报错。
+- **AGENTS.md**：加了一句指路，指向规则文件和脚本。
+- **验收**：
+  - 样例：脚本跑样例表和内置样例，结果一致，和规则第 13 节对得上。`mark`、`log-request` 在样例表上试过，样例表已重建复原。
+  - 真实底表（2026-10-15 12:06）：引用了「网页收录」2026-10-15 的检查，6 个网址「被 noindex 挡住」，线上抓取都是 HTTP 200、`index, follow`；动作是在 GSC 请求编入索引一次（W-04，P3）。因为是冷启动、最高只到 P3，本轮按阶段做 phase 0，并顺带报告这件反馈。台账已回写 `feedback_read_at`、`current_action`。
+  - 寒暄只复述 `mode`、`phase`、`next`，不改文件（写在步骤 2 和易错里）。

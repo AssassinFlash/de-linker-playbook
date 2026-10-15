@@ -19,7 +19,7 @@ description: >
 
 ## 步骤
 
-1. **步骤 0 与锁定目标**。读 `skills/marketing-playbook-standards/SKILL.md`。从用户本轮消息取目标 skill 名；不明、不存在或一次点了多份则停，不猜测。完成：唯一路径 `skills/<name>/SKILL.md` 存在；能复述共用规则四条硬约束。
+1. **步骤 0 与锁定目标**。读 `skills/marketing-playbook-standards/SKILL.md`。从用户本轮消息取目标 skill 名；不明、不存在或一次点了多份则停，不猜测。完成：唯一路径 `skills/<name>/SKILL.md` 存在；能复述共用规则五条硬约束。
 2. **采集**。读目标 `SKILL.md` 全文（有 `references/` 再按需读）。读 `skills/marketing-orchestrator/references/dependency-graph.md` 对应条目；没有该文件或没有该条目则标 `[MISSING_REGISTRY_ENTRY]`，跳过注册表相关分，不编造。读该 skill 最近一份已落地交付物；没有则标 `[NO_DELIVERABLE]`，只评定义。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。只为核对 skill 是否要求用上下文，原文不拷进本仓库。用网页搜索查证该 skill 领域现行 B2B 做法，至少 2 个可打开的 URL；需要原文时抓取指定 URL 的正文。搜索不可用则停止并写缺口，不编造。完成：目标文件已读完；注册表/交付物/两条 URL 齐或缺口已标明。
 3. **Pass 1 产出质量**。有交付物时，对照目标 skill 的清单与产出规格逐项勾。需要隔离时 dispatch a subagent, else do it inline。无交付物则整节写 `[NO_DELIVERABLE]`，不打产出分。完成：通过项与失败项列表，每条有文件路径。
 4. **Pass 2 定义质量**。按「写法」八维各打 0–100，权重见下。每分必须引用步骤 2 的章节、行或 URL；无证据的维度不打分、整份停。`composite` = 各维 `score × weight` 之和，保留一位小数。最弱维取分数最低的一个；并列取表中最先写出的那个。细则不够用时读 `references/skill-eval-protocol.md` 与 `references/eval-rubric.md`。完成：八行评分表 + composite + 最弱维 + 证据。
