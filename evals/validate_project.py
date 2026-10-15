@@ -199,8 +199,9 @@ def validate_support_references(project_root: Path) -> int:
             if ref in seen:
                 continue
             seen.add(ref)
+            # skill-local first (references/…); repo-root paths such as scripts/next_step.py are fine too
             target = skill_md.parent / ref
-            if not target.exists():
+            if not target.exists() and not (project_root / ref).exists():
                 log("warn", f"{skill_md} references missing support file: {ref}")
                 warnings += 1
     if warnings == 0:
