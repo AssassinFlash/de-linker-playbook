@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "openpyxl>=3.1",
+# ]
+# ///
 """Validate playbook deliverable contracts (schemas, JSON refs, workbooks)."""
 from __future__ import annotations
 
@@ -112,7 +118,7 @@ def json_reference_schema_errors(project_root: Path | None = None) -> list[str]:
 
 def validate_workbook(path: Path) -> list[str]:
     if load_workbook is None:
-        return []
+        return [f"{path}: 缺 openpyxl，未校验（用 uv run 跑）"]
     errors = []
     workbook = load_workbook(path, read_only=True, data_only=True)
     for sheet in workbook.worksheets:
@@ -150,10 +156,11 @@ def validate_deliverable_workbooks(project_root: Path | None = None) -> list[str
     deliverables = root / "deliverables"
     if not deliverables.exists():
         return []
+    workbooks = sorted(deliverables.rglob("*.xlsx"))
     if load_workbook is None:
-        return []
+        return ["缺 openpyxl，" + str(len(workbooks)) + " 个工作簿未校验：用 `uv run evals/validate_deliverables.py` 跑，或先 `pip install openpyxl`"] if workbooks else []
     errors = []
-    for path in sorted(deliverables.rglob("*.xlsx")):
+    for path in workbooks:
         errors.extend(validate_workbook(path))
     return errors
 
@@ -175,7 +182,7 @@ def validate_json_file(path: Path, schema: dict[str, Any]) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv if argv is None else argv)
     if "-h" in argv or "--help" in argv:
-        print("Usage: python evals/validate_deliverables.py [project_root]")
+        print("Usage: uv run evals/validate_deliverables.py [project_root]")
         return 0
     positional = [a for a in argv[1:] if not a.startswith("-")]
     project_root = Path(positional[0]).resolve() if positional else default_project_root()

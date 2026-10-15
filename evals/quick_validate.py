@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyyaml>=6",
+# ]
+# ///
 """Quick validation for a single canonical skill directory."""
 import re
 import sys
@@ -25,7 +31,9 @@ def validate_skill(skill_path):
     frontmatter_text = match.group(1)
     try:
         import yaml
-
+    except ImportError:
+        raise SystemExit("缺 PyYAML，无法解析 frontmatter：用 `uv run evals/<脚本>.py` 跑（依赖写在脚本头），或先 `pip install pyyaml`。")
+    try:
         frontmatter = yaml.safe_load(frontmatter_text)
         if not isinstance(frontmatter, dict):
             return False, "Frontmatter must be a YAML dictionary"

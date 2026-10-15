@@ -10,7 +10,9 @@ def parse_frontmatter_and_body(content: str) -> tuple[dict, str]:
         return {}, content
     try:
         import yaml
-
+    except ImportError:
+        raise SystemExit("缺 PyYAML，无法解析 frontmatter：用 `uv run evals/<脚本>.py` 跑（依赖写在脚本头），或先 `pip install pyyaml`。")
+    try:
         loaded = yaml.safe_load(match.group(1))
     except Exception:
         return {}, content

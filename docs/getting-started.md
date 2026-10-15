@@ -88,8 +88,9 @@
 仓库级校验：
 
 ```
-python3 evals/validate_project.py
-python3 evals/validate_deliverables.py
+uv run evals/validate_project.py
+uv run evals/validate_deliverables.py
+# 没装 uv：python3 也行，但要先装 pyyaml 和 openpyxl；缺了会直接报「缺 PyYAML / 缺 openpyxl」
 ```
 
 ## 第七步：持续改进
@@ -131,7 +132,7 @@ python3 evals/validate_deliverables.py
 
 | 问题 | 解决方法 |
 |------|---------|
-| 助手说找不到 skill | 运行 `python3 evals/validate_project.py`；正典在 `skills/<name>/SKILL.md` |
+| 助手说找不到 skill | 运行 `uv run evals/validate_project.py`；正典在 `skills/<name>/SKILL.md` |
 | 产出质量差 | 确认已按台账路径读过产品上下文；再跑 `skills/marketing-eval/SKILL.md` |
 | Excel 没有生成 | 空表在 `templates/`；导出脚本在 `templates/scripts/`（填写工作簿需要本机已装相应库） |
 | 不知道下一步该做什么 | 营销：读 `state/marketing-status.md`，打开 `skills/marketing-orchestrator/SKILL.md`；获客：读 `state/lead-status.md`，打开 `skills/lead-generation/SKILL.md` |

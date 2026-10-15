@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyyaml>=6",
+#   "openpyxl>=3.1",
+# ]
+# ///
 """
 Project validation for this playbook.
 
@@ -12,7 +19,7 @@ Validates:
 - Optional: .agents/skills/<name> symlink layer
 
 Usage:
-    python evals/validate_project.py [project_root]
+    uv run evals/validate_project.py [project_root]   (or python3 with pyyaml + openpyxl installed)
 
 Exit codes:
     0 = all checks passed
@@ -367,7 +374,7 @@ def validate_loop(project_root: Path) -> int:
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv if argv is None else argv)
     if "-h" in argv or "--help" in argv:
-        print("Usage: python evals/validate_project.py [project_root]")
+        print("Usage: uv run evals/validate_project.py [project_root]")
         return 0
     project_root = resolve_project_root(argv)
     print(f"Project root: {project_root}")
