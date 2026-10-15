@@ -217,7 +217,7 @@
   - 脚本做的：对规则、排优先级；W-01 到 W-08 的「先看线上现状」（抓这个网址，看状态码、`<meta name="robots">`、`X-Robots-Tag`、canonical）。
   - 脚本不做的：起草回信、改页面、给询盘找归因证据。这几件在提醒的「AI 会做的」里写成「开 AI 会话说『下一步』，AI 接着做」。
 - **和会话里的「下一步」的关系**：规则一样，格式一样。会话里 AI 还会过证据闸（第 9 节），并动手做 AI 那一部分。
-- **实现**：「每日提醒」票。
+- **实现**：[`scripts/daily_reminder.py`](../scripts/daily_reminder.py)，由 08:30 的定时任务在回流后调用；怎么看、怎么关见 [`docs/daily-reminder.md`](daily-reminder.md)。
 
 ## 13. 用数据走一遍
 

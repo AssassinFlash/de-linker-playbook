@@ -73,7 +73,7 @@ sample_spreadsheet_id = "..."  # 底表（样例）
 ```sh
 uv run scripts/gsc_pull.py run                # 跑一次
 uv run scripts/gsc_pull.py run --dry-run      # 只取数、打印条数，不写表
-uv run scripts/gsc_pull.py schedule install   # 装每日定时（这台 Mac 的 launchd，每天 08:30）
+uv run scripts/gsc_pull.py schedule install   # 装每日定时（这台 Mac 的 launchd，每天 08:30；回流跑完接着发每日提醒，见 docs/daily-reminder.md）
 uv run scripts/gsc_pull.py schedule status    # 看装没装、上次退出码、日志最后几行
 uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
 ```

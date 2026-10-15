@@ -11,7 +11,8 @@ GSC 数据回流：把 Google Search Console 的收录检查和搜索数据写�
 
   uv run scripts/gsc_pull.py run                 跑一次：网页收录、网页表现、搜索词，再重算动作进度
   uv run scripts/gsc_pull.py run --dry-run       只取数、打印条数，不写表
-  uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 08:30 北京时间）
+  uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 08:30 北京时间）；
+                                                 回流跑完接着跑每日提醒（scripts/daily_reminder.py）
   uv run scripts/gsc_pull.py schedule status     看定时装没装、上次退出码、日志最后几行
   uv run scripts/gsc_pull.py schedule remove     卸掉定时
 
@@ -30,11 +31,13 @@ GSC 数据回流：把 Google Search Console 的收录检查和搜索数据写�
 from __future__ import annotations
 
 import argparse
+from xml.sax.saxutils import escape
 import os
 import re
 import subprocess
 import sys
 import time
+import traceback
 import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -232,14 +235,20 @@ def plist_text() -> str:
     uv = subprocess.run(["/usr/bin/which", "uv"], capture_output=True, text=True).stdout.strip() \
         or "/opt/homebrew/bin/uv"
     script = Path(__file__).resolve()
+    reminder = script.with_name("daily_reminder.py")
     env_path = f"{Path(uv).parent}:/usr/local/bin:/usr/bin:/bin"
+    # pull first; the daily reminder runs after it whether or not the pull succeeded, then the job
+    # exits non-zero if either failed (schedule status shows it)
+    chain = (f"'{uv}' run --quiet '{script}' run; p=$?; "
+             f"'{uv}' run --quiet '{reminder}' run --pull-exit $p; r=$?; "
+             f"[ $p -eq 0 ] && [ $r -eq 0 ]")
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
   <key>Label</key><string>{LABEL}</string>
   <key>ProgramArguments</key>
-  <array><string>{uv}</string><string>run</string><string>--quiet</string><string>{script}</string><string>run</string></array>
+  <array><string>/bin/zsh</string><string>-c</string><string>{escape(chain)}</string></array>
   <key>WorkingDirectory</key><string>{script.parents[1]}</string>
   <key>EnvironmentVariables</key><dict><key>PATH</key><string>{env_path}</string></dict>
   <key>StartCalendarInterval</key><dict><key>Hour</key><integer>{RUN_AT[0]}</integer><key>Minute</key><integer>{RUN_AT[1]}</integer></dict>
@@ -289,7 +298,12 @@ def main() -> None:
     s.add_argument("action", choices=["install", "status", "remove"])
     args = ap.parse_args()
     if args.command == "run":
-        sys.exit(run(args.days, args.max_inspections, args.dry_run))
+        try:
+            sys.exit(run(args.days, args.max_inspections, args.dry_run))
+        except Exception as e:  # traceback for debugging, then one plain line that the daily reminder quotes last
+            traceback.print_exc()
+            log(f"出错，没跑完：{type(e).__name__}: {e}")
+            sys.exit(1)
     sys.exit(schedule(args.action))
 
 
