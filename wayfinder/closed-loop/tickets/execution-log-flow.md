@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-opus-5-5 会话 2026-10-15
 step: 1
 blocked_by: [base-table-build, ledger-split]
@@ -54,3 +54,16 @@ blocked_by: [base-table-build, ledger-split]
 - **本票还要做**：
   - 定稿时把 `log-request` 并进统一的登记命令（或保留它作为一种特例），编号规则保持一致。
   - 营销台账有一张「待补登」表：流程定稿前操作者做完的真实动作先记在那里。本票落地后把那里的行补进底表，补完删行。获客台账会照加同一张表。
+
+## Resolution
+
+2026-10-15 完成。
+
+- **流程正典**：`skills/marketing-execution-log/SKILL.md`（仓内命名规则要求 `marketing-` / `lead-` 前缀；两条线共用），`AGENTS.md` 与 `skills/marketing-orchestrator/SKILL.md` 第 6 步已指向它。
+- **脚本**：`scripts/execution_log.py`（`check`、`add`、`add --from-json`、`recheck`、`show`），写入走 `scripts/base_table.py` 的 `read_table` / `upsert_rows`，写完 `refresh_progress`。`scripts/next_step.py log-request` 改为调用同一个 `register()`，编号与认重复一致。
+- **查证失败定为「照写」**：行写入、查证结果「查证失败」，「下一步」按 E-01 排队；弄清后 `recheck` 就地改。演练在「底表（样例）」做过（404 → 查证失败 → recheck 改对网址 → 已查证），样例表已复原。
+- **认重复**：同一执行日期 + 渠道 + 动作 + 对象（网址；邮件看收件公司 + 外展序列 + 第几封）已有一行就不写，退出码 3；`--again` 放行。
+- **补登 67 条**：`E-20261015-01` 至 `-67`，来源「补登」，全部已查证；证据 = 新站 PR 链接 + 部署记录 `docs/acceptance/2026-10-15/deploy/README.md` + 线上复核。执行日期取生产部署日 2026-10-15（WindPress 编译戳 07:30 北京时间；#172 当天增量部署）。#125–#142 在 GitHub 上显示 10-14 合并，实为 10-13 本地合并、随切换上线，早于 GSC，不登；文档、测试、后台、部署工具 PR 与 #146（GSC 接入本身）不登。拆法：一个网址一天一行；同日改同一网址的 PR 合成一行；全站页头只登英、德首页；站内搜索一行、网址空。
+- **补登时发现的新站缺陷**：5 个德语博客分类归档的文章卡链接缺 `/de/`，10 个链接 404。已开新站 issue #175（业主定暂不开工），记在 `E-20261015-39` 至 `-43` 的备注。
+- **演示**：操作者口述「我更新了联系页」→ 认出已登记 `E-20261015-12`（联系页，补登，已查证），未重复写入。
+- **台账「待补登」表**：原表为空，无行可补；改为底表写不进时的暂存（营销台账已改说明）。

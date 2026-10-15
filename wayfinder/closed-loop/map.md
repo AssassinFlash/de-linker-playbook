@@ -65,6 +65,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [反馈分级规则定稿](tickets/feedback-ladder-rules.md)：正典 `docs/feedback-rules.md`（W/M/Q/E 规则表 + P1–P5 优先级 + 证据闸）；每次给一个主动作附理由、排队最多 5 条；每天 08:30 回流后自动发「提醒事项」和邮件（新票「每日提醒」）；上移只记账。
 - [营销编排改循环](tickets/marketing-loop-orchestrator.md)：`scripts/next_step.py` 读底表、按规则排好下一步（两线共用，另有 `mark`、`log-request` 回写）；编排 7 步，冷启动 P1/P2 插队、走完转运营不 stop；`approved` = 已过证据闸（AI 自查 + `evidence_gate` 日期），不再要操作者批准；台账加循环键、待补登、豁免。
 - [每日提醒](tickets/daily-reminder.md)：每天 08:30 回流后由 `scripts/daily_reminder.py` 算出大白话版「下一步」，送「提醒事项」和两个邮箱；没事也发、出错一句话；说明 `docs/daily-reminder.md`。
+- [执行登记流程](tickets/execution-log-flow.md)：skill `marketing-execution-log` + `scripts/execution_log.py`，查证后一网址一行写底表，查证失败照写（E-01 排队），认重复、编号 `E-执行日期-NN`；新站 PR 按上生产日登记；补登 67 条（2026-10-15 部署），顺带查出德语分类归档 10 个 404 链接（新站 #175）。
 
 ## Not yet specified
 

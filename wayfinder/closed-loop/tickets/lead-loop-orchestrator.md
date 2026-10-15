@@ -41,3 +41,11 @@ blocked_by: [marketing-loop-orchestrator, execution-log-flow]
 - **登记**：
   - 操作者说「发了」，AI 查证后登记。
   - 「执行登记流程」定稿前，先记进台账「待补登」表（营销台账已有这张表，获客台账照加）。
+
+## 执行登记交接（「执行登记流程」关票时写入，2026-10-15）
+
+- **怎么登**：读 `skills/marketing-execution-log/SKILL.md`（两条线共用，名字带 `marketing-` 只因仓内命名规则）。发信登记：`uv run scripts/execution_log.py add --line 获客 --channel 邮件 --action 发出首封|发出跟进|回复对方来信 --desc "一句话" --company "公司名" --sequence S-公司名 --nth N [--planned 计划共几封] [--next-date 下一封计划日期] [--deliverable lead/06-outreach/…]`。收件人姓名、邮箱地址不进表。
+- **编号**：`E-执行日期-两位序号`（例 `E-20261015-12`），按执行日期顺延、全表唯一；脚本输出里就有，写进获客台账 `current_action_log`。需要在代码里登记时调 `execution_log.prepare()` + `execution_log.register()`（`next_step.py log-request` 就是这么用的），不要另写编号。
+- **邮件的查证留给「邮箱 IMAP 回流」**：登记时查证结果是「待邮箱接入后查证」，Message-ID、查证证据、查证时刻都空着，由那张票的脚本在「已发送」里找到后回填。
+- **认重复**：同一天、同一公司、同一序列、同一封已有一行就不写（退出码 3）。
+- **「待补登」表**：流程已定稿，这张表的意思改成「底表写不进（没网、凭据缺）时的暂存，下次登记时补进底表、补完删行」。获客台账照这个意思加，不再是「流程定稿前」。
