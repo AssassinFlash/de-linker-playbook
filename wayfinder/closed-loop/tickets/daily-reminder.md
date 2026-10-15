@@ -12,7 +12,7 @@ blocked_by: [marketing-loop-orchestrator]
 
 （AFK，邮件发信凭据那一步 HITL）每天早上回流写完后，按 `docs/feedback-rules.md` 自动算一次「下一步」，同时送到 Mac「提醒事项」和操作者邮箱。规格写在规则文件第 12 节，本票照做；操作者 2026-10-15 定了三件事：
 
-- 送到哪：「提醒事项」App 加邮件，两处一起送（原话：「写到那个提醒事项里面……然后再发邮件给我，就是两个动作一起做」）。邮件收件人是 `日常账号`，真实地址在 vault `deliverables/marketing/00-system/base-table.md` 的共享名单里。
+- 送到哪：「提醒事项」App 加邮件，两处一起送（原话：「写到那个提醒事项里面……然后再发邮件给我，就是两个动作一起做」）。邮件收件人是 `日常账号`，同日操作者又加了工作邮箱 `chester@de-linker.com`（原话：「我还是想 chester@de-linker.com 也收到。因为作为工作留痕。」）。仓外配置 `[reminder] to` 已改成两个地址的列表，真实地址也记在 vault `deliverables/marketing/00-system/base-table.md`。
 - 几点：GSC 回流 2026-10-15 已从 10:30 改到 08:30（`scripts/gsc_pull.py` 的 `RUN_AT`，launchd 已重装）。提醒在回流写完后立刻发，大约 09:10 送到。
 - 没事也发：每天都发，取数出错也要发，并说明出错了。
 

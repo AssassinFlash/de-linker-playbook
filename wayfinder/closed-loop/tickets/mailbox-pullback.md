@@ -33,3 +33,9 @@ blocked_by: [execution-log-flow, base-table-build, looker-dashboard]
 ## 完成标准
 
 - 用一封真实已发信演练：执行登记 → 已发送里查到 → 底表 L0 查证为真；若有回复，L2 有行；脚本运行前后邮箱未读状态不变（抽查）。
+
+## 每日提醒交接（「每日提醒」票写入，2026-10-15）
+
+- 每天早上约 09:10，每日提醒会发一封信到 `chester@de-linker.com`（工作留痕）。发件人是日常账号的 QQ 邮箱，主题以「de-linker 下一步」开头，不带 `In-Reply-To`，`Message-ID` 的域名是 `de-linker-playbook.local`。
+- 按归因规则，它对不上任何执行登记，本来就不会进邮件反馈表。脚本里还是明确跳过这类信，不要把它当成未归因来信去统计或报警。
+
