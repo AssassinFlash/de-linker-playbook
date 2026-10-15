@@ -268,30 +268,47 @@ def validate_ledger(project_root: Path) -> int:
 
 
 LOOP_KEYS = ("mode", "feedback_read_at", "current_action", "current_action_log")
+LOOP_LEDGERS = {  # ledger -> (label, deliverables tree it gates)
+    "state/marketing-status.md": ("Marketing", "deliverables/marketing"),
+    "state/lead-status.md": ("Lead", "deliverables/lead"),
+}
 LOOP_REFS = {
-    "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "证据闸"),
+    "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 营销", "证据闸"),
     "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸"),
     "skills/marketing-orchestrator/references/dependency-graph.md": ("证据闸", "evidence_gate"),
+    "skills/lead-generation/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 获客", "证据闸",
+                                        "skills/marketing-execution-log/SKILL.md"),
+    "skills/lead-generation/references/orchestration-protocol.md": ("证据闸", "evidence_gate"),
+    "skills/lead-generation/references/dependency-graph.md": ("证据闸", "evidence_gate"),
+    "state/lead-status.md": ("待补登", "evidence_gate"),
 }
+# approved means「passed the evidence gate」on both lines; the old lead-only approval states must not come back
+RETIRED_STATUS = ("approved_with_concerns",)
 
 
 def validate_loop(project_root: Path) -> int:
     """Operating loop wiring: ledger loop keys, rule/script references, evidence gate on approved deliverables."""
     errors = 0
-    ledger = project_root / "state" / "marketing-status.md"
-    if ledger.exists():
-        head = ledger.read_text(encoding="utf-8").split("---")[1] if ledger.read_text(encoding="utf-8").startswith("---") else ""
+    for rel, (label, _) in LOOP_LEDGERS.items():
+        ledger = project_root / rel
+        if not ledger.exists():
+            continue
+        text = ledger.read_text(encoding="utf-8")
+        head = text.split("---")[1] if text.startswith("---") else ""
         keys = {line.split(":", 1)[0].strip(): line.split(":", 1)[1].strip() for line in head.splitlines() if ":" in line}
         missing = [k for k in LOOP_KEYS if k not in keys]
         if missing:
-            log("error", f"state/marketing-status.md lacks loop keys: {', '.join(missing)}")
+            log("error", f"{rel} lacks loop keys: {', '.join(missing)}")
             errors += 1
         elif keys["mode"] not in ("冷启动", "运营"):
-            log("error", f"state/marketing-status.md mode must be 冷启动 or 运营, got {keys['mode']!r}")
+            log("error", f"{rel} mode must be 冷启动 or 运营, got {keys['mode']!r}")
+            errors += 1
+        elif keys.get("next", "").strip().lower() == "stop":
+            log("error", f"{rel} next is stop; after cold start the ledger switches to 运营 instead")
             errors += 1
         else:
-            log("ok", "Marketing ledger has operating-loop keys")
-    for rel in ("docs/feedback-rules.md", "scripts/next_step.py"):
+            log("ok", f"{label} ledger has operating-loop keys")
+    for rel in ("docs/feedback-rules.md", "scripts/next_step.py", "scripts/execution_log.py"):
         if not (project_root / rel).exists():
             log("error", f"Missing {rel}")
             errors += 1
@@ -302,17 +319,28 @@ def validate_loop(project_root: Path) -> int:
         if lost:
             log("error", f"{rel} does not mention: {', '.join(lost)}")
             errors += 1
-    marketing = project_root / "deliverables" / "marketing"
-    for path in sorted(marketing.rglob("*.md")) if marketing.exists() else []:
-        text = path.read_text(encoding="utf-8", errors="replace")
-        if not text.startswith("---"):
-            continue
-        front = text.split("---")[1]
-        if re.search(r"^status:\s*approved\s*$", front, re.M) and not re.search(r"^evidence_gate:\s*\S", front, re.M):
-            log("error", f"{path} is approved without evidence_gate date (approved = passed the evidence gate)")
+    lead_texts = [project_root / "state" / "lead-status.md", *sorted((project_root / "skills").glob("lead-*/**/*.md"))]
+    for path in lead_texts:
+        text = path.read_text(encoding="utf-8") if path.exists() else ""
+        stale = [w for w in RETIRED_STATUS if w in text and "已并入 `approved`" not in text]
+        if stale:
+            log("error", f"{path} still uses retired status {', '.join(stale)} (approved = passed the evidence gate)")
             errors += 1
+    for _, tree in LOOP_LEDGERS.values():
+        root = project_root / tree
+        for path in sorted(root.rglob("*.md")) if root.exists() else []:
+            text = path.read_text(encoding="utf-8", errors="replace")
+            if not text.startswith("---"):
+                continue
+            front = text.split("---")[1]
+            if re.search(r"^status:\s*approved_with_concerns\s*$", front, re.M):
+                log("error", f"{path} uses retired status approved_with_concerns; re-pass the evidence gate and write approved")
+                errors += 1
+            if re.search(r"^status:\s*approved\s*$", front, re.M) and not re.search(r"^evidence_gate:\s*\S", front, re.M):
+                log("error", f"{path} is approved without evidence_gate date (approved = passed the evidence gate)")
+                errors += 1
     if errors == 0:
-        log("ok", "Operating loop wired: rules, next_step script, evidence gate")
+        log("ok", "Operating loop wired on both lines: rules, next_step script (--line), evidence gate")
     return errors
 
 

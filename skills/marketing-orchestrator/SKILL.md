@@ -27,7 +27,7 @@ description: >
    - 推进意图（下一步 / 营销 / 文案 / 内容 / 价值主张 / SEO / CRO / “Do the next step…”）→ 步骤 3。
    - 操作者报告做完了一件真实的事（「点完了」「发了」「上线了」）→ 步骤 6。
    - 寒暄或无关问题 → 复述 `mode`、`phase`、`next`，停，不改文件。
-3. **读反馈**。跑 `uv run scripts/next_step.py --format json --since "<台账 feedback_read_at>"`（`feedback_read_at` 为空就不带 `--since`）。它读底表、按 `docs/feedback-rules.md` 对规则、排好优先级。不要自己读表格、不要手抄数据。完成：拿到 `actions`（已排序）、`ledger`、`waiting`、`data`。
+3. **读反馈**。跑 `uv run scripts/next_step.py --line 营销 --format json --since "<台账 feedback_read_at>"`（`feedback_read_at` 为空就不带 `--since`）。它读底表、按 `docs/feedback-rules.md` 对规则、排好优先级，只留营销线的对象（营销线的登记、没登记过的全站页面、没归因的询盘）。不要自己读表格、不要手抄数据。完成：拿到 `actions`（已排序）、`ledger`、`waiting`、`data`。
    - 脚本报错（没网、凭据缺、表格读不到）：如实说读不到反馈和原因。冷启动照常做阶段工作；运营模式停，写缺口。
 4. **挑一个动作**（规则第 7 节）。
    - 冷启动，`actions[0]` 是 P1 或 P2 → 本轮做这个反馈动作。
@@ -38,7 +38,7 @@ description: >
    - 反馈动作：照该条的「AI 会做的」做，有方法 skill 就先读它的 `SKILL.md`。要改新站的，按新站仓库 `AGENTS.md` 的规矩走分支、PR、CI；上不上由操作者决定。要发的信，AI 起草，发不发由操作者决定，并由操作者亲手发。
    - 阶段工作：台账 `method_skill` 的 `SKILL.md` 存在 → 先读再按其步骤做；不存在 → 停，宣布缺口，不自造流程。需要隔离时 dispatch a subagent, else do it inline。产出进台账 `output_dir`（空则用下表目录）。同一 phase 无硬依赖的方法 skill 可并行，有硬依赖的串行；硬依赖没满足且没有 `user_waiver` → 不跳。
    - 交给操作者去做、去发、去上线之前，过**证据闸**（规则第 9 节，逐条打勾）。过了的交付物在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`；`approved` 的意思就是「已过证据闸」，由 AI 自查后写，不需要操作者批准。过不了：修一轮再查；还不过就换下一个动作，并告诉操作者跳过了什么、为什么。
-   - 说给操作者：用规则第 11 节的格式（脚本的 text 输出就是这个格式，可以直接用 `uv run scripts/next_step.py` 再跑一次拿全文）。阶段工作也按同样五栏说：为什么、你要做的、你要决定、AI 会做的、做完以后。英文只在要操作者去某个后台找按钮时出现，加括号注明。
+   - 说给操作者：用规则第 11 节的格式（脚本的 text 输出就是这个格式，可以直接用 `uv run scripts/next_step.py --line 营销` 再跑一次拿全文）。阶段工作也按同样五栏说：为什么、你要做的、你要决定、AI 会做的、做完以后。英文只在要操作者去某个后台找按钮时出现，加括号注明。
    - 冷启动阶段里，要上线的页面、要发布的内容，在「做完以后」写明：操作者做完要告诉 AI，AI 走步骤 6 登记。
    - 教学 / 评测 / 进化走 `skills/marketing-teach/SKILL.md`、`skills/marketing-eval/SKILL.md`、`skills/marketing-evolve/SKILL.md` 或 `skills/marketing-skill-eval/SKILL.md`；产出进 `deliverables/marketing/00-system/`，不改战役 `phase`。
 6. **登记做完的事**（执行登记是 L0 的唯一来源，数据靠它挂回动作）。
@@ -78,7 +78,7 @@ description: >
 
 ## 默认
 
-- 进度只认台账；反馈只认底表（经 `scripts/next_step.py` 读）。
+- 进度只认台账；反馈只认底表（经 `scripts/next_step.py --line 营销` 读）。
 - 产品事实只读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；查不到标〔未证实〕，按没有处理；不在本仓库另存一份。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 台账或 `deliverables/marketing/` 缺失时，先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
@@ -87,7 +87,7 @@ description: >
 - 质量闸：执行前是证据闸（AI 自查），执行后是反馈闸（看 L1–L3）。操作者只决定「发不发 / 上不上」，不审「写得好不好」，也不需要懂行业。
 - 单文件、无并行机会的工作 inline 做完，不 dispatch。
 - 证据闸没过：修一轮，或记录 `user_waiver`（台账「豁免」表）。自动修补不超过 3 轮，其后把决策交还操作者。
-- 获客树 `deliverables/lead/` 不由本 skill 推进；邮件、询盘类反馈动作若属获客线，说给操作者后交给 `skills/lead-generation/SKILL.md`。
+- 获客树 `deliverables/lead/` 不由本 skill 推进；获客线的反馈（外展邮件的回信、退信、挂在获客登记上的询盘）由 `skills/lead-generation/SKILL.md` 用 `--line 获客` 读，`--line 营销` 不会给出这类动作。
 - 每天早上另有一份自动的「下一步」送到操作者的「提醒事项」和邮箱（规则第 12 节），和本 skill 用同一个脚本、同一套规则。操作者说「下一步」时以本轮现读的为准。
 
 ## 产出

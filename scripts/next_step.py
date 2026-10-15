@@ -14,6 +14,9 @@
   uv run scripts/next_step.py --target sample --now "2026-10-15 09:00"
                                                        用样例表走一遍（样例网址是假的，不抓线上）
   uv run scripts/next_step.py --offline-sample ...     不连网：用脚本内置的样例数据（同样例表）
+  uv run scripts/next_step.py --line 获客 --format json
+                                                       只看一条线：执行登记「线」= 获客 的对象（邮件、获客线登记的页），
+                                                       以及没归因、两线共有的询盘；没登记过的全站页面算营销
   uv run scripts/next_step.py mark --rule W-13 --url URL [--url URL ...] --note "没查出问题"
                                                        记下 AI 已做完的一次性核查（W-13 记在网页收录，
                                                        W-24 用 --id 记在执行登记），之后不再排队
@@ -21,7 +24,7 @@
                                                        操作者说已在 GSC 请求编入索引后，AI 登记进执行登记
                                                        （编号、认重复同 scripts/execution_log.py；其他动作用那个脚本）
 
-两条编排（营销、获客）和每日提醒都调用本脚本，不另写规则。脚本只做机械的部分：对规则、排优先级、
+两条编排（营销、获客）和每日提醒都调用本脚本，不另写规则；编排各带 --line，每日提醒不带（两线合看）。脚本只做机械的部分：对规则、排优先级、
 阻断类网页规则（W-01 至 W-08）先抓线上现状。起草回信、改页面、找询盘归因证据由 AI 在会话里做。
 凭据、表格 ID 的读取方式同 scripts/base_table.py。
 """
@@ -54,6 +57,8 @@ INDEXED = ("已收录", "已收录但有问题")
 REQUEST_NOTE = "在 GSC 请求编入索引"
 W24_ACTIONS = ("新发布页面", "改标题或描述", "改正文")
 STOPPING_EVENTS = ("真人回复", "永久退信", "认证或信誉拒收", "改址通知")
+LINES = ("营销", "获客")
+SITE_LINE = "营销"             # a page nobody registered is the site's, i.e. the marketing line's
 
 REQUEST_HOWTO = (
     f"打开 Search Console（{GSC_HOME}），左上角选资源 {SITE}；在最上面的搜索框粘贴网址，回车；"
@@ -112,6 +117,10 @@ def episode(rows: list[dict]) -> list[dict]:
             break
         run.append(r)
     return run
+
+
+def on_line(row_line: str, line: str | None) -> bool:
+    return not line or row_line == line
 
 
 def marked(rows: list[dict], rule: str) -> bool:
@@ -219,7 +228,7 @@ WAIT_STATES = {
 }
 
 
-def web_actions(data: dict, today: str, live: bool, ledger: dict) -> list[Action]:
+def web_actions(data: dict, today: str, live: bool, ledger: dict, line: str | None = None) -> list[Action]:
     log = data["执行登记"]
     registered = {u: e for e in sorted(log, key=lambda e: (e["执行日期"], e["登记编号"]))
                   for u in (e.get("网址"), e.get("旧网址")) if u}
@@ -233,6 +242,8 @@ def web_actions(data: dict, today: str, live: bool, ledger: dict) -> list[Action
         r = run[0]
         state = r["收录状态"]
         reg = registered.get(url)
+        if not on_line(reg["线"] if reg else SITE_LINE, line):
+            continue
         anchor = reg is not None
         should_index = not (reg and reg["动作"] == "下线页面")
         info = {"url": url, "row": r, "reg": reg, "anchor": anchor, "start": run[-1]["检查日期"],
@@ -398,8 +409,8 @@ def web_action(key: str, infos: list[dict], today: str) -> Action:
     raise ValueError(key)
 
 
-def title_checks(data: dict) -> list[Action]:
-    todo = [e for e in data["执行登记"] if e["动作"] in W24_ACTIONS and e["查证结果"] == "已查证"
+def title_checks(data: dict, line: str | None = None) -> list[Action]:
+    todo = [e for e in data["执行登记"] if on_line(e["线"], line) and e["动作"] in W24_ACTIONS and e["查证结果"] == "已查证"
             and e.get("网址") and "已查（W-24）" not in (e.get("备注") or "")]
     if not todo:
         return []
@@ -418,8 +429,8 @@ def title_checks(data: dict) -> list[Action]:
 # ---------------------------------------------------------------- mail rules (rules §4)
 
 
-def mail_actions(data: dict, today: str, ledger: dict) -> list[Action]:
-    log = [e for e in data["执行登记"] if e["渠道"] == "邮件"]
+def mail_actions(data: dict, today: str, ledger: dict, line: str | None = None) -> list[Action]:
+    log = [e for e in data["执行登记"] if e["渠道"] == "邮件" and on_line(e["线"], line)]
     if not log:
         return []
     events: dict[str, list[dict]] = {}
@@ -526,11 +537,14 @@ def sequence_actions(log: list[dict], latest: dict, today: str, ledger: dict) ->
 # ---------------------------------------------------------------- inquiry & log rules (rules §5, §6)
 
 
-def inquiry_actions(data: dict, since: str, ledger: dict) -> list[Action]:
+def inquiry_actions(data: dict, since: str, ledger: dict, line: str | None = None) -> list[Action]:
     rows = data["询盘"]
     if not rows:
         return []   # said once under「在等的」
-    new = [r for r in rows if (r.get("写入时刻（北京时间）") or "") > since]
+    line_of = {e["登记编号"]: e["线"] for e in data["执行登记"]}
+    # an attributed inquiry belongs to its action's line; an unattributed one to both (north star is shared)
+    new = [r for r in rows if (r.get("写入时刻（北京时间）") or "") > since
+           and (not r.get("归因登记编号") or on_line(line_of.get(r["归因登记编号"], ""), line))]
     acts = []
     if new:
         lines = "\n" + "\n".join(
@@ -554,10 +568,12 @@ def inquiry_actions(data: dict, since: str, ledger: dict) -> list[Action]:
     return acts
 
 
-def log_actions(data: dict, ledger: dict) -> list[Action]:
+def log_actions(data: dict, ledger: dict, line: str | None = None) -> list[Action]:
     acts = []
     seen = {r["网址"] for r in data["网页收录"]}
     for e in data["执行登记"]:
+        if not on_line(e["线"], line):
+            continue
         if e["查证结果"] == "查证失败":
             acts.append(Action(rule="E-01", priority=2, anchor=True, since=e["执行日期"], objects=[e["登记编号"]],
                                title=f"弄清登记 {e['登记编号']} 为什么查证失败",
@@ -576,7 +592,7 @@ def log_actions(data: dict, ledger: dict) -> list[Action]:
 # ---------------------------------------------------------------- assemble & render
 
 
-def data_dates(data: dict) -> str:
+def data_dates(data: dict, line: str | None = None) -> str:
     def newest(sheet: str, col: str) -> str:
         days = [str(r.get(col, ""))[:10] for r in data[sheet] if r.get(col)]
         return max(days) if days else "还没有数"
@@ -584,12 +600,16 @@ def data_dates(data: dict) -> str:
             + "；网页表现最新 " + newest("网页表现", "日期（太平洋时间）")
             + "；邮件反馈最新 " + newest("邮件反馈", "事件日期")
             + "；询盘最新 " + newest("询盘", "创建时刻（北京时间）")
-            + "；执行登记 " + str(len(data["执行登记"])) + " 条")
+            + "；执行登记 " + (f"{len(data['执行登记'])} 条" if not line else
+                               f"{line}线 {sum(e['线'] == line for e in data['执行登记'])} 条（全表 {len(data['执行登记'])} 条）"))
 
 
-def waiting_notes(data: dict) -> list[str]:
+def waiting_notes(data: dict, line: str | None = None) -> list[str]:
     notes = []
-    if not data["网页表现"]:
+    if line == "获客" and not any(e["线"] == "获客" for e in data["执行登记"]):
+        notes.append("执行登记里还没有获客线的登记：还没发过外展邮件，邮件规则（M-01 至 M-15）没有对象；"
+                     "外展文案出来、操作者发出后登记，第二天起才有可对的")
+    if not data["网页表现"] and line != "获客":
         notes.append("网页表现、搜索词还没有数：GSC 一般晚 2–3 天出数")
     if not data["询盘"]:
         notes.append("询盘表还是空的：在等「询盘回流 L3」")
@@ -598,17 +618,17 @@ def waiting_notes(data: dict) -> list[str]:
     return notes
 
 
-def next_step(data: dict, now: str, since: str, live: bool) -> dict:
+def next_step(data: dict, now: str, since: str, live: bool, line: str | None = None) -> dict:
     today = now[:10]
     ledger: dict[str, list[str]] = {}
-    acts = web_actions(data, today, live, ledger) + title_checks(data) + mail_actions(data, today, ledger) \
-        + inquiry_actions(data, since, ledger) + log_actions(data, ledger)
+    acts = web_actions(data, today, live, ledger, line) + title_checks(data, line) \
+        + mail_actions(data, today, ledger, line) + inquiry_actions(data, since, ledger, line) + log_actions(data, ledger, line)
     acts.sort(key=Action.sort_key)
-    return {"generated_at": now, "since": since, "rules": RULES_DOC, "data": data_dates(data),
+    return {"generated_at": now, "since": since, "line": line or "全部", "rules": RULES_DOC, "data": data_dates(data, line),
             "actions": [asdict(a) for a in acts],
             "ledger": [{"what": k, "count": len(v) if v != ["—"] else None, "items": v if v != ["—"] else []}
                        for k, v in ledger.items()],
-            "waiting": waiting_notes(data), "site": site_summary(data, today)}
+            "waiting": waiting_notes(data, line), "site": site_summary(data, today)}
 
 
 def site_summary(data: dict, today: str) -> dict:
@@ -647,7 +667,8 @@ def render(result: dict) -> str:
     out += ["", f"**只在记账的**：{ledger}"]
     if result["waiting"]:
         out.append("**在等的**：" + "；".join(result["waiting"]))
-    out += ["", f"_{result['data']}。规则：{result['rules']}。生成于 {result['generated_at']}（北京时间）。_"]
+    scope = "" if result.get("line", "全部") == "全部" else f"只看{result['line']}线。"
+    out += ["", f"_{scope}{result['data']}。规则：{result['rules']}。生成于 {result['generated_at']}（北京时间）。_"]
     return "\n".join(out)
 
 
@@ -845,6 +866,7 @@ def main() -> None:
                     help="text = 规则第 11 节格式（会话用）；plain = 大白话短版（每日提醒用）；json = 给编排")
     ap.add_argument("--now", help="北京时间「年-月-日 时:分」，默认现在")
     ap.add_argument("--since", help="询盘「新行」从哪个时刻算起，默认 --now 往前 24 小时；编排传台账里的「上次读反馈」")
+    ap.add_argument("--line", choices=LINES, help="只看一条线（编排用）；不带 = 两线合看（每日提醒）")
     ap.add_argument("--no-live", action="store_true", help="不抓线上（阻断类规则改为「AI 先看线上」）")
     ap.add_argument("--offline-sample", action="store_true", help="不连网，用脚本内置的样例数据")
     m = sub.add_parser("mark")
@@ -865,7 +887,7 @@ def main() -> None:
     now = args.now or bt.stamp(bt.beijing_now())
     since = args.since or (datetime.strptime(now, "%Y-%m-%d %H:%M") - timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
     sample = args.offline_sample or args.target == "sample"
-    result = next_step(load(args), now, since, live=not (args.no_live or sample))
+    result = next_step(load(args), now, since, live=not (args.no_live or sample), line=args.line)
     print(json.dumps(result, ensure_ascii=False, indent=2) if args.format == "json"
           else render_plain(result) if args.format == "plain" else render(result))
 

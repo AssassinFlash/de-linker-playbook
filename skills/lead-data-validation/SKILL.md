@@ -15,7 +15,7 @@ description: >
 
 # 数据验证
 
-对获客名单与来源 URL 做五项检查，只标记不删除。报告写在被验证数据同一阶段目录。六维审查与用户审批不在本文件，见 `skills/lead-generation/references/orchestration-protocol.md`。
+对获客名单与来源 URL 做五项检查，只标记不删除。报告写在被验证数据同一阶段目录。六维审查与证据闸不在本文件，见 `skills/lead-generation/references/orchestration-protocol.md`。
 
 ## 步骤
 
@@ -102,7 +102,7 @@ description: >
 - 把默认抓取 + 一次动态页逃逸再展开成多引擎菜单。
 - 同域名反复抓；或把目录站、平台列表页当成公司域名通过。
 - 未配置发现服务仍写出邮箱。
-- 在本文件做六维审查或向用户要审批。
+- 在本文件做六维审查或证据闸，或写 `status: approved`。
 - 把报告写到 `00-system/`，而数据在别的阶段。
 - 把 skill 例子原文写入交付物。
 

@@ -20,7 +20,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 
-2. **输入与闸门**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。记下品类/利基、目标市场、用途（内部决策 / 投资人 / 销售支持，未指定则内部决策）。硬依赖：`deliverables/lead/04-market/competitor-positioning.md` 与 `competitor-comparison.xlsx` 的 frontmatter `status` 为 `approved` 或 `approved_with_concerns`，或台账已记 `user_waiver`。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/` 下目标公司 / 分销商 / 零售商文件。硬依赖未满足：停，打开 `skills/lead-competitor-analysis/SKILL.md`（存在则按其做）；该文件也不存在则只报缺口，不自造竞品表。产品上下文仍不够圈定利基或市场时，打开 `skills/lead-interview/SKILL.md`（存在则按其做），不在本文件另写问卷。范围默认 10 板块全做；访谈或用户本轮明确收窄时，只做点名板块，并在摘要列出跳过的板块名与原因。完成：能指出利基、目标市场、竞品文件状态各依据哪几条；原文不拷进本仓库。
+2. **输入与闸门**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。记下品类/利基、目标市场、用途（内部决策 / 投资人 / 销售支持，未指定则内部决策）。硬依赖：`deliverables/lead/04-market/competitor-positioning.md` 与 `competitor-comparison.xlsx` 的 frontmatter `status` 为 `approved`（已过证据闸），或台账已记 `user_waiver`。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/` 下目标公司 / 分销商 / 零售商文件。硬依赖未满足：停，打开 `skills/lead-competitor-analysis/SKILL.md`（存在则按其做）；该文件也不存在则只报缺口，不自造竞品表。产品上下文仍不够圈定利基或市场时，打开 `skills/lead-interview/SKILL.md`（存在则按其做），不在本文件另写问卷。范围默认 10 板块全做；访谈或用户本轮明确收窄时，只做点名板块，并在摘要列出跳过的板块名与原因。完成：能指出利基、目标市场、竞品文件状态各依据哪几条；原文不拷进本仓库。
 
 3. **采集规模与增长**。用网页搜索查证当前规模、近 3–5 年历史增速、未来 3–5 年展望、CAGR。需要原文时抓取指定 URL。规模与 CAGR 各至少两个独立来源交叉；来源相差超过约 30% 时写区间并解释差异，不挑一个当唯一真值。查证次数对齐 `skills/lead-generation/references/search-protocol.md` 的数据型最低要求（覆盖规模 / CAGR / 统计，至少 8 次网页搜索）；有用结果不够则报告实际次数与缺口，不用训练记忆填数。搜索不可用则停止并写缺口。完成：规模与 CAGR 各有 ≥2 条带来源名、年份、时间窗的记录，或已标「未在来源出现」。
 

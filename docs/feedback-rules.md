@@ -17,6 +17,7 @@
    uv run scripts/next_step.py                     # 读正式底表，打印第 11 节格式的「下一步」
    uv run scripts/next_step.py --format json       # 同上，JSON（编排按优先级决定先做反馈还是阶段工作）
    uv run scripts/next_step.py --since "年-月-日 时:分"   # 询盘「新行」从哪个时刻算起，编排传台账的 feedback_read_at
+   uv run scripts/next_step.py --line 获客 --format json  # 只看一条线：营销编排带 --line 营销，获客编排带 --line 获客；每日提醒不带，两线合看
    uv run scripts/next_step.py --target sample --now "2026-10-15 09:00"   # 用样例表走一遍
    uv run scripts/next_step.py mark --rule W-13 --url 网址 --note "结论"   # 记下 AI 已做完的一次性核查（W-24 用 --id 登记编号）
    uv run scripts/next_step.py log-request --url 网址                      # 操作者在 GSC 请求编入索引后登记
@@ -148,7 +149,7 @@
 - 冷启动阶段还没走完时，编排照旧按阶段推进。每次「下一步」顺带报告反馈：说一句当前最高优先级的反馈，以及还有几件在等。
 - 反馈命中 **P1 或 P2** 时，先做反馈动作，再回到阶段工作。有人等回信、页面被挡，都比写下一份交付物急。
 - 反馈只有 **P3–P5** 时，阶段工作优先，反馈动作排在后面。
-- 冷启动走完以后，「下一步」完全由本文决定。全部只剩 P5 时，说明在等什么，并请编排从方法 skill 里挑下一项新工作。营销线怎么挑见 `skills/marketing-orchestrator/SKILL.md`「运营里只剩记账时」（先补缺失或没过证据闸的交付物，再复核证据闸日期最早的那份）；获客线由「获客编排改循环」定。
+- 冷启动走完以后，「下一步」完全由本文决定。全部只剩 P5 时，说明在等什么，并请编排从方法 skill 里挑下一项新工作。营销线怎么挑见 `skills/marketing-orchestrator/SKILL.md`「运营里只剩记账时」（先补缺失或没过证据闸的交付物，再复核证据闸日期最早的那份）；获客线见 `skills/lead-generation/SKILL.md`「运营里只剩记账时」（先提示发出已过闸、还没发的外展，再补缺失、没过闸或过期的交付物，再复核证据闸日期最早的那份）。
 
 ## 8. 上移：暂不决策，只记账
 
