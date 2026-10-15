@@ -75,6 +75,8 @@ class Action:
     kind: int = 2              # 0 someone waiting on mail, 1 inquiry report, 2 everything else
     since: str = "9999-99-99"  # 执行日期 of the anchor (older first)
     objects: list[str] = field(default_factory=list)
+    variant: str = ""          # request / fix / look / check …, picks the plain wording
+    facts: dict = field(default_factory=dict)  # small facts the plain wording needs (company, crawl dates …)
 
     def sort_key(self) -> tuple:
         return (self.priority, not self.dropped, not self.anchor, self.kind, self.since, self.rule, self.title)
@@ -247,6 +249,11 @@ def web_actions(data: dict, today: str, live: bool, ledger: dict) -> list[Action
                 hits.append((f"{rule}|look|{anchor}", info))
                 continue
             info["live"] = live_state(url)
+            if info["live"].get("error") or info["live"].get("status", 0) >= 500:
+                info["live"] = live_state(url)        # one retry: a network blip must not read as「still broken」
+            if info["live"].get("error"):
+                hits.append((f"{rule}|look|{anchor}", info))
+                continue
             variant = "request" if live_ok(url, info["live"]) else "fix"
             hits.append((f"{rule}|{variant}|{anchor}", info))
         elif state in FIX_ELSEWHERE:
@@ -312,14 +319,16 @@ def web_action(key: str, infos: list[dict], today: str) -> Action:
     pri_block = 2 if anchor else 3
     common = dict(rule=rule, anchor=anchor, dropped=any(i["dropped"] for i in infos),
                   since=min((i["reg"]["执行日期"] for i in infos if i["reg"]), default="9999-99-99"),
-                  objects=[i["url"] for i in infos])
+                  objects=[i["url"] for i in infos], variant=variant,
+                  facts={"state": state, "crawled": sorted(i["row"]["上次抓取时间（北京时间）"][:10] for i in infos
+                                                           if i["row"].get("上次抓取时间（北京时间）"))})
     if rule in ("W-01", "W-02", "W-03", "W-04", "W-05", "W-06", "W-07"):
         _, _, wrong, fix = BLOCKING[state]
         if variant == "request":
             return Action(
                 priority=pri_block, **common,
                 title=f"在 GSC 给 {pages}各请求编入索引一次" if n > 1 else f"在 GSC 给 {pages} 请求编入索引一次",
-                why=why + f"，但线上现在已经正常，只是 Google 记的还是旧的抓取。"
+                why=why + "，但线上现在已经正常，只是 Google 记的还是旧的抓取。"
                     + url_list(infos, lambda i: describe_live(i["url"], i["live"], today)
                                + (f"；Google 上次抓取 {i['row']['上次抓取时间（北京时间）']}"
                                   if i["row"].get("上次抓取时间（北京时间）") else "")),
@@ -424,8 +433,8 @@ def mail_actions(data: dict, today: str, ledger: dict) -> list[Action]:
             continue
         who, eid, kind, day = e.get("收件公司", ""), e["登记编号"], ev["事件类型"], ev["事件日期"]
         why = f"底表「邮件反馈」{day}：{who}（登记 {eid}）的最新事件是「{kind}」"
-        common = dict(anchor=True, since=e["执行日期"], objects=[eid])
         code = ev.get("退信状态码") or ""
+        common = dict(anchor=True, since=e["执行日期"], objects=[eid], facts={"who": who, "code": code})
         if kind == "真人回复":
             cat = ev.get("回复分类") or "其他"
             why += f"，回复分类「{cat}」"
@@ -497,6 +506,7 @@ def sequence_actions(log: list[dict], latest: dict, today: str, ledger: dict) ->
             ledger.setdefault("序列计划封数已发完、没有回复（停，记账）", []).append(f"{who}（{seq}）")
         elif nxt and n and plan and nxt <= today:
             acts.append(Action(rule="M-11", priority=2, anchor=True, since=last["执行日期"], objects=[last["登记编号"]],
+                               facts={"who": who, "n": int(n) + 1},
                                title=f"给{who}发计划内的第 {int(n) + 1} 封", you_do="看 AI 起草的信；决定发的话，从你的邮箱亲手发出", 
                                why=f"底表「执行登记」{last['登记编号']}：序列 {seq} 已发第 {int(n)} 封，计划共 {int(plan)} 封，"
                                    f"下一封计划日期 {nxt} 已到；没有回复、没有退信。",
@@ -524,14 +534,15 @@ def inquiry_actions(data: dict, since: str, ledger: dict) -> list[Action]:
         lines = "\n" + "\n".join(
             f"    - 询盘 {r['询盘内部编号']}：{r.get('公司', '')}，{r.get('创建时刻（北京时间）', '')} 创建，状态「{r['状态']}」，"
             + (f"归因到 {r['归因登记编号']}" if r.get("归因登记编号") else "未归因") for r in new)
-        acts.append(Action(rule="Q-01", priority=1, kind=1, objects=[str(r["询盘内部编号"]) for r in new],
+        acts.append(Action(rule="Q-01", priority=1, kind=1, objects=[str(r["询盘内部编号"]) for r in new], variant="report",
+                           facts={"companies": [r.get("公司", "") for r in new]},
                            title=f"报告 {len(new)} 条新询盘",
                            why=f"底表「询盘」{since} 之后写进来的新行：" + lines,
                            you_do="询盘本身照现有流程处理（每日摘要会发到团队邮箱），这里只是告诉你",
                            after="不用等什么"))
         loose = [r for r in new if not r.get("归因登记编号")]
         if loose:
-            acts.append(Action(rule="Q-01", priority=4, objects=[str(r["询盘内部编号"]) for r in loose],
+            acts.append(Action(rule="Q-01", priority=4, objects=[str(r["询盘内部编号"]) for r in loose], variant="attribute",
                                title=f"AI 给 {len(loose)} 条未归因的新询盘找归因证据",
                                why="底表「询盘」：" + "、".join(str(r["询盘内部编号"]) for r in loose) + " 还没有「归因登记编号」。",
                                ai_does="找证据（同一公司的回信、带 UTM 的链接……）把它挂到某次执行登记上；有证据才填编号和依据，没有就留空",
@@ -595,7 +606,16 @@ def next_step(data: dict, now: str, since: str, live: bool) -> dict:
             "actions": [asdict(a) for a in acts],
             "ledger": [{"what": k, "count": len(v) if v != ["—"] else None, "items": v if v != ["—"] else []}
                        for k, v in ledger.items()],
-            "waiting": waiting_notes(data)}
+            "waiting": waiting_notes(data), "site": site_summary(data, today)}
+
+
+def site_summary(data: dict, today: str) -> dict:
+    latest = latest_by(data["网页收录"], "网址", "检查日期")
+    week = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=8)).strftime("%Y-%m-%d")
+    perf = [r for r in data["网页表现"] if r["日期（太平洋时间）"] >= week]
+    return {"pages": len(latest), "indexed": sum(r["收录状态"] in INDEXED for r in latest.values()),
+            "has_perf": bool(data["网页表现"]), "impressions_7d": sum(r.get("展示", 0) for r in perf),
+            "clicks_7d": sum(r.get("点击", 0) for r in perf), "inquiries": len(data["询盘"])}
 
 
 def render(result: dict) -> str:
@@ -626,6 +646,144 @@ def render(result: dict) -> str:
     if result["waiting"]:
         out.append("**在等的**：" + "；".join(result["waiting"]))
     out += ["", f"_{result['data']}。规则：{result['rules']}。生成于 {result['generated_at']}（北京时间）。_"]
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------- plain wording (daily reminder)
+# The operator reads this every morning: everyday words, no rule codes, no P levels, no table names.
+
+THEN = {  # 收录状态 -> what Google saw last time, in everyday words
+    "服务器错误（5xx）": "网站出错打不开", "跳转出错": "页面跳转出了问题", "被 robots.txt 挡住": "网站设置挡着不让 Google 看",
+    "被 noindex 挡住": "页面上写着「别收录我」", "软 404（看起来像空页）": "页面看起来像空页",
+    "要求登录（401）": "页面要登录才能看", "禁止访问（403）": "页面不让外人看", "其他 4xx 错误": "页面打不开",
+    "404 找不到": "页面打不开（找不到）",
+}
+OPEN_GSC = [f"打开 {GSC_HOME} ，左上角选 {SITE}",
+            "把下面一个网址粘到最上面的搜索框，按回车",
+            "点「测试实际网址」，等它说「可以编入索引」",
+            "点「请求编入索引」",
+            "换下一个网址，重复第 2–4 步"]
+SAY_NEXT = "开个对话，跟 AI 说「下一步」"
+
+
+def _when(days: list[str]) -> str:
+    if not days:
+        return "很久以前"
+    a, b = days[0], days[-1]
+    fa = f"{int(a[5:7])} 月 {int(a[8:10])} 日"
+    if a == b:
+        return fa
+    return fa + "到" + (f" {int(b[8:10])} 日" if a[:7] == b[:7] else f" {int(b[5:7])} 月 {int(b[8:10])} 日")
+
+
+def plain_action(a: dict) -> dict:
+    """{title, why, steps, urls, you} — you=True when the operator has something to do."""
+    r, v, f, objs = a["rule"], a["variant"], a["facts"], a["objects"]
+    n, who = len(objs), f.get("who", "")
+    pages = f"{n} 个页面" if n > 1 else "1 个页面"
+    if r in ("W-01", "W-02", "W-03", "W-04", "W-05", "W-06", "W-07"):
+        then = THEN.get(f.get("state", ""), "页面有问题")
+        if v == "request":
+            return {"title": f"去 Google 后台点几下，让 Google 重新看 {pages}", "you": True,
+                    "why": f"Google 上次看这些页面是在 {_when(f.get('crawled', []))}，那时{then}。现在页面早就好了，"
+                           "但 Google 还没回来看，所以这些页一直搜不到。",
+                    "steps": OPEN_GSC[:4] + (OPEN_GSC[4:] if n > 1 else []), "urls": objs,
+                    "after": "嫌麻烦的话，跟 AI 说「你来点」，AI 帮你点。做完跟 AI 说一声「点完了」，之后等 Google 来看就行。"}
+        if v == "fix":
+            return {"title": f"AI 要修 {pages}：{then}", "you": True,
+                    "why": f"这些页面现在还是{then}，Google 收录不了。", "urls": objs,
+                    "steps": [SAY_NEXT + "，AI 会在网站代码里改好", "AI 改好后会问你「上不上线」，你回答就行"]}
+        return {"title": f"AI 要看一下 {pages}现在是不是好的", "you": False, "urls": objs,
+                "why": f"Google 记的是{then}，要先看看网站上现在是不是还这样。"}
+    if r in ("W-16", "W-17", "W-09", "W-08", "W-19"):
+        what = {"W-16": "网站设置不让 Google 看，它却收录了", "W-17": "Google 收录了但读不到内容",
+                "W-09": "Google 把它当成了别的页面的重复", "W-08": "会自动跳到别的页面，要确认是不是故意的",
+                "W-19": "Google 给了一个新的状态说法，AI 要把它翻译进表里"}[r]
+        return {"title": f"AI 要处理 {pages}：{what}", "you": False, "urls": objs, "why": what + "。",
+                "after": "要改网站的话，AI 改好后会问你「上不上线」。"}
+    if r == "W-11":
+        return {"title": "去 Google 后台点几下，告诉 Google 有新页面", "you": True, "urls": objs,
+                "why": "这是你新发布的页面，Google 还不知道它。点一次能让 Google 早点来看。",
+                "steps": OPEN_GSC[:4] + (OPEN_GSC[4:] if n > 1 else []),
+                "after": "嫌麻烦的话，跟 AI 说「你来点」。做完跟 AI 说一声「点完了」。"}
+    if r == "W-13":
+        return {"title": f"AI 检查 {pages}：Google 知道" + ("它们" if n > 1 else "它") + "，但还没来看", "you": False,
+                "why": "看看是不是网站哪里挡住了 Google，有问题才修。"}
+    if r == "W-24":
+        return {"title": f"AI 检查 {pages}的标题和简介写得对不对", "you": False,
+                "why": "这些是你新发或改过的页面，按 Google 的要求检查一次。"}
+    if r == "M-01":
+        return {"title": f"回复 {who}：对方要报价", "you": True,
+                "why": f"{who} 回信了，想要报价、规格、价格或样品。有人在等我们。",
+                "steps": [SAY_NEXT + "，AI 会起草回信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+    if r in ("M-02", "M-03"):
+        what = "对方提出了顾虑" if r == "M-02" else "对方回信了"
+        return {"title": f"回复 {who}：{what}", "you": True, "why": f"{who} {what}，有人在等我们。",
+                "steps": [SAY_NEXT + "，AI 会帮你起草回信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+    if r == "M-04":
+        return {"title": f"不再给 {who} 发后续邮件", "you": False, "why": "对方说不想再收。"}
+    if r == "M-05":
+        return {"title": f"{who} 的邮箱地址不存在了", "you": True,
+                "why": "信被退回来，说这个地址不存在，再发也收不到。",
+                "steps": ["要不要另找这个人的公开邮箱？在对话里跟 AI 说一声「找」或「不找」就行"]}
+    if r == "M-07":
+        return {"title": f"AI 查一下为什么 {who} 不收我们的信", "you": False,
+                "why": "对方的邮件服务器拒收，问题多半出在我们发信域名的设置上，不是信的内容。"}
+    if r == "M-08":
+        return {"title": "这几天少发几封外展邮件", "you": True,
+                "why": "好几家公司的邮件服务器在退我们的信，发太多会更糟。", "steps": ["这几天少发几封，等退信变少再慢慢加回"]}
+    if r == "M-09":
+        return {"title": f"不再用 {who} 的旧邮箱地址", "you": False, "why": "对方通知说换了地址。"}
+    if r == "M-11":
+        return {"title": f"给 {who} 发第 {f.get('n')} 封跟进邮件", "you": True, "why": "按计划今天该发了，对方还没回信。",
+                "steps": [SAY_NEXT + "，AI 会准备好这封信", "你看过，决定发不发", "从你的邮箱亲手发出，发完跟 AI 说「发了」"]}
+    if r == "Q-01" and v == "report":
+        return {"title": f"有 {n} 条新询盘", "you": True, "why": "来自：" + "、".join(f.get("companies", [])) + "。",
+                "steps": ["照平时的流程处理询盘就行，这里只是告诉你"]}
+    if r == "Q-01":
+        return {"title": f"AI 查一下 {n} 条新询盘是哪次推广带来的", "you": False, "why": "有证据才记上，没有就留空。"}
+    if r == "E-01":
+        return {"title": f"说一句：{objs[0]} 那次登记的链接对不对", "you": True,
+                "why": "AI 打不开你给的链接。", "steps": [f"{SAY_NEXT}，告诉 AI 链接是不是给错了，还是还没上线"]}
+    return {"title": a["title"], "you": a["you_do"] != "不用你动手", "why": a["why"].split("\n")[0]}
+
+
+def render_plain(result: dict) -> str:
+    acts = [dict(a, plain=plain_action(a)) for a in result["actions"]]
+    out = []
+    if acts:
+        p = acts[0]["plain"]
+        out += [f"下一步：{p['title']}", "", p["why"]]
+        if p.get("steps"):
+            out += ["", "怎么做：" if p["you"] else "AI 会这样做："] + [f"{i}. {x}" for i, x in enumerate(p["steps"], 1)]
+        if p.get("urls"):
+            shown = p["urls"][:SHOW]
+            out += ["", "网址：" if len(p["urls"]) > 1 else "网址："] + shown
+            if len(p["urls"]) > SHOW:
+                out.append(f"……还有 {len(p['urls']) - SHOW} 个，跟 AI 要完整名单")
+        if p.get("after"):
+            out += ["", p["after"]]
+        if not p["you"]:
+            out += ["", "这件不用你做。想让 AI 现在就做，" + SAY_NEXT + "。"]
+        rest = acts[1:]
+        if rest:
+            out += ["", "之后还有："]
+            for b in rest[:QUEUE]:
+                out.append(f"- {b['plain']['title']}" + ("" if b["plain"]["you"] else "（不用你做）"))
+            if len(rest) > QUEUE:
+                out.append(f"- 另外还有 {len(rest) - QUEUE} 件")
+    else:
+        out += ["下一步：今天没有要你做的事", "", "网站和邮件都在正常等反馈。"]
+    st = result["site"]
+    line = f"网站现在：{st['pages']} 个页面里，Google 已收录 {st['indexed']} 个"
+    line += "，其余的大多在等 Google 来看，正常。" if st["pages"] > st["indexed"] else "。"
+    if st["has_perf"]:
+        line += f"最近一周被搜到 {st['impressions_7d']} 次，点进来 {st['clicks_7d']} 次。"
+    else:
+        line += "有多少人搜到、点进来，要再等两三天才有数。"
+    if st["inquiries"]:
+        line += f"询盘一共 {st['inquiries']} 条。"
+    out += ["", line]
     return "\n".join(out)
 
 
@@ -688,7 +846,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--target", choices=["main", "sample"], default="main")
     sub = ap.add_subparsers(dest="command")
-    ap.add_argument("--format", choices=["text", "json"], default="text")
+    ap.add_argument("--format", choices=["text", "plain", "json"], default="text",
+                    help="text = 规则第 11 节格式（会话用）；plain = 大白话短版（每日提醒用）；json = 给编排")
     ap.add_argument("--now", help="北京时间「年-月-日 时:分」，默认现在")
     ap.add_argument("--since", help="询盘「新行」从哪个时刻算起，默认 --now 往前 24 小时；编排传台账里的「上次读反馈」")
     ap.add_argument("--no-live", action="store_true", help="不抓线上（阻断类规则改为「AI 先看线上」）")
@@ -712,7 +871,8 @@ def main() -> None:
     since = args.since or (datetime.strptime(now, "%Y-%m-%d %H:%M") - timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
     sample = args.offline_sample or args.target == "sample"
     result = next_step(load(args), now, since, live=not (args.no_live or sample))
-    print(json.dumps(result, ensure_ascii=False, indent=2) if args.format == "json" else render(result))
+    print(json.dumps(result, ensure_ascii=False, indent=2) if args.format == "json"
+          else render_plain(result) if args.format == "plain" else render(result))
 
 
 if __name__ == "__main__":

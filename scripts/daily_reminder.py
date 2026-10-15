@@ -43,13 +43,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import base_table as bt  # noqa: E402
 import next_step as ns  # noqa: E402
 
-ROOT = Path(__file__).resolve().parents[1]
 LIST_NAME = "de-linker 下一步"
 MARK = "（每日提醒自动生成）"
 TEST_MARK = "（每日提醒测试）"   # test runs only tick off earlier tests, never the real reminder
-PULL_LOG = Path(os.environ.get("DAILY_REMINDER_PULL_LOG",
-                               Path.home() / "Library" / "Logs" / "de-linker-playbook" / "gsc-pull.log"))
-LEDGERS = (("营销", ROOT / "state" / "marketing-status.md"), ("获客", ROOT / "state" / "lead-status.md"))
+SAY_NEXT_AGAIN = "开个对话，跟 AI 说「下一步」，AI 会再算一次，并查是什么原因。"
 
 # Reminders: complete the earlier automatic reminder (its notes carry the marker passed in), then add today's.
 APPLESCRIPT = f'''
@@ -76,71 +73,33 @@ def log(msg: str) -> None:
     print(f"[{bt.stamp(bt.beijing_now())}] 每日提醒：{msg}", flush=True)
 
 
-def plain(md: str) -> str:
-    """The rules' markdown, readable as plain text in Reminders and mail."""
-    out = []
-    for line in md.splitlines():
-        line = line.replace("**", "").replace("`", "")
-        if line.startswith("_") and line.endswith("_"):
-            line = line[1:-1]
-        out.append(line)
-    return "\n".join(out)
-
-
-def ledger_stage() -> str:
-    lines = []
-    for name, path in LEDGERS:
-        try:
-            head = path.read_text(encoding="utf-8").split("---")[1]
-        except (OSError, IndexError):
-            lines.append(f"- {name}线：台账读不到（{path.name}）")
-            continue
-        kv = {k.strip(): v.strip() for k, v in (l.split(":", 1) for l in head.splitlines() if ":" in l)}
-        mode = kv.get("mode") or "冷启动"
-        stage = f"phase {kv.get('phase', '?')} {kv.get('phase_name', '')}".strip() if mode == "冷启动" else "运营"
-        lines.append(f"- {name}线：{mode}，{stage}；台账写的下一件：{kv.get('next', '')}")
-    return ("两条线现在在哪（台账）：\n" + "\n".join(lines) + "\n"
-            "开会话说「下一步」时：冷启动阶段会先做阶段工作，上面这件反馈只有到 P1、P2 才插队；"
-            "这条提醒只看反馈，所以两边可能不一样，这是正常的。")
-
-
-def pull_trouble(exit_code: int | None) -> str:
-    """Lines of today's pull run that tell what went wrong ('' when the pull was fine)."""
-    if not exit_code:
-        return ""
-    try:
-        text = PULL_LOG.read_text(encoding="utf-8", errors="replace").splitlines()
-    except OSError:
-        return f"回流退出码 {exit_code}，日志读不到（{PULL_LOG}）"
-    start = max((i for i, l in enumerate(text) if "开始（写正式底表）" in l), default=max(0, len(text) - 12))
-    # only the pull's own timestamped lines (plain Chinese); the traceback stays in the log for debugging
-    tail = [l for l in text[start:] if l.startswith("[20")][-8:] or [l for l in text if l.strip()][-1:]
-    return f"回流退出码 {exit_code}。日志里写的（完整日志在 {PULL_LOG}）：\n" + "\n".join("    " + l for l in tail)
+def pull_failed(exit_code: int | None) -> bool:
+    return bool(exit_code)
 
 
 def compose(now: str, pull_exit: int | None, test: bool) -> tuple[str, str, bool]:
-    """(title, body, computed) — computed is False when the next step could not be worked out."""
+    """(title, body, computed) in everyday words (operator 2026-10-15: short, no codes, no logs)."""
     since = (datetime.strptime(now, "%Y-%m-%d %H:%M") - timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
     try:
         schema = bt.load_schema()
         svc = bt.sheets_service()
         sid = bt.load_target("main")
         data = {name: bt.read_table(svc, sid, schema, name) for name in schema["x-sheet-order"]}
-        text = plain(ns.render(ns.next_step(data, now, since, live=True)))
-        title = text.splitlines()[0]
-        body, computed = text, True
-    except Exception as e:  # say so in the reminder instead of staying silent
+        text = ns.render_plain(ns.next_step(data, now, since, live=True))
+        title, _, body = text.partition("\n\n")   # the title line is the reminder/mail title; not repeated in the body
+        computed = True
+    except Exception as e:  # details go to the log; the operator gets one plain sentence
+        log(f"算下一步出错：{type(e).__name__}: {e}")
         title = "今天没算出下一步"
-        body = f"按规则算「下一步」时出错：{type(e).__name__}: {e}\n开会话说「下一步」，AI 会再试一次并查原因。"
+        body = "今天早上算的时候出了问题（多半是网络或表格连不上）。" + SAY_NEXT_AGAIN
         computed = False
-    trouble = pull_trouble(pull_exit)
-    if trouble:
-        title = f"今天取数出错｜{title}"
-        body = ("今天 08:30 的 GSC 回流没有跑完，下面的「下一步」按底表里最近一次成功写入的数据算"
-                "（看末尾「底表数据」那一行的日期）。\n" + trouble + "\n\n" + body)
+    if pull_failed(pull_exit):
+        title = f"今天取数没成功｜{title}"
+        body = ("今天早上从 Google 取数没成功，下面是按上次取到的数据算的。原因 AI 下次对话时会查，你不用管。\n\n"
+                + body)
     if test:
         title = f"【测试】{title}"
-    body += "\n\n" + ledger_stage() + f"\n\n{TEST_MARK if test else MARK} {now}（北京时间）"
+    body += f"\n\n{TEST_MARK if test else MARK} {now}"
     return title, body, computed
 
 
