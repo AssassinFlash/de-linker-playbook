@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-opus-5-5 会话 2026-10-15
 step: 3
 blocked_by: [marketing-loop-orchestrator]
@@ -81,3 +81,11 @@ blocked_by: [marketing-loop-orchestrator]
 - **测试**：13:12 经 launchd 发了一次【测试】，提醒事项和 2 个邮箱都送达。规则第 12 节和 `docs/daily-reminder.md` 已同步。
 
 - 操作者看了 13:12 的大白话版：「OKOK。这样就足够了」。格式定稿；剩下只等 10-16、10-17 两天早上的真实送达。
+
+## Resolution（2026-10-15）
+
+- 脚本 `scripts/daily_reminder.py`。每天 08:30 的 launchd 任务（`gsc_pull.py schedule install`）先跑回流，再跑它；回流失败也照发。
+- 内容用 `scripts/next_step.py --format plain` 的大白话短版，同时送到「提醒事项」列表「de-linker 下一步」和两个邮箱（日常账号 + 工作邮箱）。出错只写一句话，细节进日志。
+- 说明页 `docs/daily-reminder.md`；规格在 `docs/feedback-rules.md` 第 12 节。配置和授权码都在仓外 `~/.config/de-linker-playbook/`。
+- **提前关票**：完成标准原本要「连续两天早上收到」，操作者 2026-10-15 同意提前关（原话「那我们这里可以关票了吗？」）。理由：送达路径已经三次经 launchd 验证（正常 12:59、回流失败 13:01、大白话版 13:12），08:30 计时器同类的 10:30 计时那天早上也按时触发过。明早若没收到，由操作者告知，再开票查。
+
