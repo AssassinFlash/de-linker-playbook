@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-opus-5-5 会话 2026-10-15
 step: 3
 blocked_by: [ledger-split, feedback-ladder-rules, gsc-pullback, fact-source-rewire-skills]
 ---
@@ -34,3 +34,9 @@ blocked_by: [ledger-split, feedback-ladder-rules, gsc-pullback, fact-source-rewi
 - 「下一步」的输出格式见第 11 节；冷启动阶段和反馈怎么排（P1、P2 先做，P3–P5 让位给阶段工作）见第 7 节；证据闸清单见第 9 节，写进编排步骤。
 - 每天早上会自动算一次「下一步」并发出去（第 12 节，「每日提醒」票）。所以规则匹配那一部分要做成脚本：不进对话，直接在命令行输出第 11 节格式的文字，「每日提醒」票直接调用。会话里说「下一步」时，跑同一个脚本，再由 AI 过证据闸、展开讲。
 - AGENTS.md 和编排 skill 里要加一处指向 `docs/feedback-rules.md` 的指针。
+
+## 提前开工（2026-10-15）
+
+- 「GSC 数据回流」还没关，只差「近 7 天展示」那部分数据（等 Google 出数）。操作者同意不等它，先开工，因为每日提醒要靠本票。原话是「现在的话可以开始做「营销编排改循环」这个」。
+- 底表里现在已经有真实的网页收录数据（约 300 行），够本票验收时引用「哪页、哪天、什么状态」。网页表现那部分，等有数后规则自然会用上，不用返工。
+
