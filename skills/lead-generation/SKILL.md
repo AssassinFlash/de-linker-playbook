@@ -67,8 +67,8 @@ description: >
 | --- | --- | --- | --- | --- |
 | 0 | 读产品上下文 | 只读 `product_context`；需要档案时打开 `skills/marketing-profile/SKILL.md` | 不把原文写入本仓库 | 三条陈述：买家、所卖、缺口 |
 | 1 | 画像 | `lead-icp-analysis`、`lead-search-term-expansion` | `deliverables/lead/01-icp/` | 每 ICP 含画像 + 销售策略 + 数据洞察；每 ICP ≥10 个已验证术语；交付物不是例子原文；已过证据闸 |
-| 2 | 公司 | `lead-company-research`、`lead-distributor-research`、`lead-retailer-research` | `deliverables/lead/02-companies/` | 目标公司每家 3 信息块；分销商 11 维或简版字段齐；零售商规模与定位字段齐；域名已抓取验证；已过证据闸 |
-| 3 | 联系人 | `lead-contact-discovery` | `deliverables/lead/03-contacts/` | 按 ICP / 公司类型 / 职位分列；未配置发现服务则标「联系人待补」，不编造邮箱；已过证据闸 |
+| 2 | 公司 | `lead-company-research`、`lead-distributor-research`、`lead-retailer-research` | `deliverables/lead/02-companies/` | 目标公司每家 3 信息块；分销商 11 维或简版字段齐；零售商规模与定位字段齐；域名已抓取验证；已过证据闸。有激活名单时从名单开始（见表下） |
+| 3 | 联系人 | `lead-contact-discovery` | `deliverables/lead/03-contacts/` | 按 ICP / 公司类型 / 职位分列；未配置发现服务则标「联系人待补」，不编造邮箱；名单公司的联系人以名单为准；已过证据闸 |
 | 4 | 市场 | `lead-competitor-analysis`、`lead-market-analysis` | `deliverables/lead/04-market/` | 定位×代表公司 + 空白；市场 10 板块；数字有来源与年份；已过证据闸 |
 | 5 | USP | `lead-usp-extraction`、`lead-product-knowledge` | `deliverables/lead/05-usp/` | 差异化方案可执行；产品知识可回溯事实源，不编造合规；已过证据闸 |
 | 6 | 外展 | `lead-cold-email-gen`、`lead-warm-email-transform`、`lead-followup-sequence`、`lead-email-sequence-strategy`、`lead-magnet-gen` | `deliverables/lead/06-outreach/` | 文案非空且不是例子原文；每条序列写明计划共几封与间隔；已过证据闸；只产文案，由操作者手动发 |
@@ -79,12 +79,14 @@ description: >
 
 `lead-company-research` 的 emerging 产出、`lead-distributor-research` 的 brief 产出是同一 skill 的第二种交付物，不是另一个入口。归档进 `deliverables/lead/99-archive/`。
 
+**激活名单**（`CONTEXT.md`「激活名单」）是第 2、3 阶段多一个输入来源，不是新阶段、不是新 skill。名单只在私有 vault `deliverables/lead/00-system/activation-list/`；进度跑 `uv run scripts/activation_list.py progress`，台账「激活名单」节只写数字和 vault 相对路径。phase 2 有名单时先从名单开始：按 `progress` 给的下一家，用 `lead-company-research` 的名单模式（`skills/lead-company-research/references/list-mode.md`）逐家调研，按陌生开发，先调研再接触。名单调研不设完成数、不挡 phase 推进：phase 2 其余方法 skill 达标就进 phase 3，名单剩下的公司之后逐家接着做（「运营里只剩记账时」第 2 条；操作者点名「名单下一家」随时做）。phase 3 里，`list_verdict: 可接触` 的名单公司，联系人从名单取（`lead-contact-discovery` 步骤 1）。
+
 ## 运营里只剩记账时
 
 `actions` 为空时，按顺序找一项新工作，找到第一项就做：
 
 1. **还没审完、还没发出的外展**：外展交付物（`06-outreach/`、`07-targeted/`）里过了证据闸、还没有 `operator_ok` 的 → 拿给操作者审稿。已有 `operator_ok` 的收件公司，在执行登记里还没有「线」= 获客、渠道 = 邮件的行（`uv run scripts/execution_log.py show` 对照「收件公司」列）。有 → 提示操作者发下一家，说清发哪封、第几封、计划共几封；没发出就不会有回信、退信，反馈规则也没有对象。
-2. **缺的、没过闸的、过期的**：下表方法 skill 里，交付物缺失、`draft`、或 `stale` 的，按依赖顺序取第一个，按协议做到 `approved`。
+2. **缺的、没过闸的、过期的**：下表方法 skill 里，交付物缺失、`draft`、或 `stale` 的，按依赖顺序取第一个，按协议做到 `approved`。都齐了而激活名单还有没调研的公司（`uv run scripts/activation_list.py progress` 有「下一家」），就调研下一家。
 3. **都齐了**：取「审批与过期」表里 `evidence_gate` 日期最早的那份交付物重过证据闸。名单类（公司、联系人）先按 `skills/lead-data-validation/SKILL.md` 重查五项；其余对照事实源入口。有变化才改，没变化只把 `evidence_gate` 改成今天。
 4. **都没有**：说「今天没有要动的」，列出脚本 `waiting` 里在等的事，停。
 

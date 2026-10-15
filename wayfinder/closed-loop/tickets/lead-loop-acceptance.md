@@ -38,3 +38,15 @@ blocked_by: [lead-loop-orchestrator, mailbox-pullback, activation-list-intake, l
 ## 不代发（用户 2026-10-15 写入）
 
 - 验收时确认：这一轮对外文字全部由操作者亲手发出，AI 没有代发、代发布或在任何工具里建活动 / 排期；交付物的 `send_status` / `publish_status` 为 `copy_only`，发没发以执行登记为准。`python3 evals/validate_project.py` 会拦 skill 里的代发口子。
+
+## 激活名单交接（「激活名单入口」关票时写入，2026-10-15）
+
+- **从哪家出发**：名单里已调研的是 `L-0002`，调研文件在 vault `deliverables/lead/02-companies/activation/L-0002.md`，`approved`，结论 `可接触`。
+  - 查名单原行：`uv run scripts/activation_list.py show --id L-0002`。
+  - 再要别家：`uv run scripts/activation_list.py progress` 给下一家，下一家是 L-0021（priority 1）。
+- **公司名写法**：执行登记的 `--company` 和 `--sequence S-公司名`，都照名单 CSV 的 `company_name` 原文，和调研文件的标题、表行一致。官网或 Creditreform 上的其他写法只记在调研文件里，不用。
+- **外展前还缺什么**：依赖图里 `lead-cold-email-gen -> [lead-icp-analysis, lead-usp-extraction]` 没改，而获客台账还在 phase 0，这两份都没有。所以写外展信之前，二选一：
+  - 先把 phase 1 的 ICP、phase 4 的竞品分析、phase 5 的 USP 做到 `approved`；
+  - 或者操作者明确同意跳过，记进获客台账「豁免」表。
+- **联系人**：`lead-contact-discovery/list -> [lead-company-research/list]`，从名单取，`data_source` 指回名单行。名单里约 1612 行是免费邮箱（gmx、gmail、web.de 等），照录，在采集报告里列出。L-0002 的调研结论里写了接触前要知道的两点（细节在 vault 调研文件「结论」节）：它现在经一家电气批发商拿材料和方案支持；它用哪家的逆变器或储能〔未证实〕。
+- **隐私**：名单有约 8 千人的姓名、邮箱、电话，只在私有 vault。验收证据里写编号，不写人名或邮箱。

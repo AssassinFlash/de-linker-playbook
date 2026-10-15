@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: claude-code activation-list-intake 2026-10-15
 step: 6
 blocked_by: [lead-loop-orchestrator, fact-source-rewire-skills]
@@ -35,3 +35,23 @@ blocked_by: [lead-loop-orchestrator, fact-source-rewire-skills]
 
 - 本票只做到第 2 阶段调研，调研是内部材料，不需要逐份审稿（操作者想看随时可看）。名单公司进入外展以后，外展信按 `docs/feedback-rules.md` 第 10 节审稿，有 `operator_ok` 才发。
 - 获客台账「审批与过期」表现在多一列 `operator_ok`（在 evidence_gate 后面）；内部材料填「—」。
+
+## Resolution（2026-10-15）
+
+- **名单进了 vault**：操作者给的原表复制到 vault `lead/00-system/activation-list/original/`，与源文件 SHA-1 一致，没有改动。转出的 `activation-list.csv` 在同一目录，UTF-8 带 BOM，一位联系人一行。
+  - 共 7966 行（原表另有 1001 个空行，不转），7904 家公司（`list_id` L-0001 起）。
+  - 逐格对照原表：0 处不一致（490 格只去掉了首尾空格）。重跑转格式输出完全相同，同一家的编号不变。
+- **列定义**：`schemas/activation-list.schema.json`，公开，没有数据。脚本 `uv run scripts/activation_list.py convert | progress | show --id`。原表出现没定义的列时，脚本报错停下，不会静默丢列。
+- **只加入口**：
+  - `lead-company-research` 加名单模式（`references/list-mode.md`），是同一 skill 的第三种交付物，一家一份 `02-companies/activation/<list_id>.md`，结论写 `list_verdict`（可接触 / 暂不接触 / 查无此公司）。
+  - `lead-contact-discovery` 步骤 1：名单公司的联系人以名单为准，硬依赖是这家的调研已过闸且结论为可接触。
+  - 依赖图加 `lead-company-research/list -> []`、`lead-contact-discovery/list -> [lead-company-research/list]`，加登记行和审查清单。
+  - `lead-generation`：phase 2 有名单时先从名单开始，名单调研不挡 phase 推进；运营「只剩记账时」第 2 条接着调研下一家。
+  - 获客台账加「激活名单」节。
+  - 方法和闸门都没改。
+- **走了一家**：`L-0002`（priority 1，`progress` 排在第一）。
+  - 名单模式第 2 阶段：抓了 14 页官网、1 次搜索、4 个外部页。
+  - 数据验证五项、六维审查 93 分（ICP 还没有，Market Relevance 一项 CONCERN）、证据闸 6 条全过，写成 `approved`，`evidence_gate: 2026-10-15`，结论 `可接触`。
+  - 台账：已调研 1 / 共 7904。
+- `uv run evals/validate_project.py`：All checks passed（81 skills）。
+  - 新增 2 条 warning，都是「support file 找不到 `scripts/activation_list.py`」：检查器按 skill 目录解析仓库根路径，`scripts/next_step.py` 早就有同样的 warning，是检查器的老问题，不是缺文件。

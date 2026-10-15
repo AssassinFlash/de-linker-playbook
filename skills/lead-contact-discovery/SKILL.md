@@ -20,6 +20,7 @@ description: >
 ## 步骤
 
 1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`，以及 `ANY(deliverables/lead/02-companies/target-companies.xlsx, deliverables/lead/02-companies/distributors.xlsx, deliverables/lead/02-companies/retailers.xlsx)`（有对应 `.md` 也可）。软依赖存在则读：`deliverables/lead/02-companies/emerging-companies.xlsx`、其余公司名单。职位、每家人数、名单范围、质检标准仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出买家角色与目标公司名单各依据哪份已批准文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停。
+   - **名单公司**（激活名单里、已按 `skills/lead-company-research/references/list-mode.md` 调研的公司）：联系人以名单为准。硬依赖换成这家的调研文件 `deliverables/lead/02-companies/activation/<list_id>.md` 为 `approved` 且 `list_verdict: 可接触`（按陌生开发：先调研再接触）；ICP 是软依赖，没有已批准的 ICP 就进 sheet `unassigned`。联系人从 `uv run scripts/activation_list.py show --id <list_id>` 取，每位一行，`data_source` 写「激活名单 <list_id> 原件第 n 行」，名单给的邮箱照录（免费邮箱也照录，在采集概况里列出是哪几行）；`job_title` 名单没有就从公开页查证，查不到写「待补」。不另找名单以外的人，除非操作者点名要。公司名照名单原文。名单只在私有 vault，联系人不进公开仓库。
 
 2. **编域名**。从已读名单抽出 `company_name, domain, icp_category, company_type`。无已验证域名的公司不进采集表，记入失败分析。域名去重。用户或访谈限定了 ICP / 公司类型则只保留该子集。完成：目标域名表非空；若无可用域名，跳到步骤 7，报告只写失败分析，不编造联系人。
 

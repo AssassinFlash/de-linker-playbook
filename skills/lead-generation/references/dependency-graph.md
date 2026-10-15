@@ -22,6 +22,7 @@
 - 教学产出进 `deliverables/lead/00-system/`，不占用战役 phase。
 - 方法 skill 文件不存在 → 该节点不可跑，编排器停并写缺口。
 - `lead-company-research` 的 emerging 产出、`lead-distributor-research` 的 brief 产出是同一 skill 的第二种交付物，不是另一个入口。
+- 激活名单（`CONTEXT.md`「激活名单」）是第 2、3 阶段多出的一个输入来源，只在私有 vault `deliverables/lead/00-system/activation-list/`（列定义 `schemas/activation-list.schema.json`，进度 `uv run scripts/activation_list.py progress`）。名单公司按陌生开发：第 2 阶段 `lead-company-research/list` 逐家调研，第 3 阶段 `lead-contact-discovery/list` 联系人以名单为准。下面带 `/list` 的节点是这两个 skill 的名单入口，不是新 skill。
 
 ## 阶段
 
@@ -51,10 +52,12 @@
 | `lead-search-term-expansion` | — | `deliverables/lead/01-icp/icp-terms.xlsx` |
 | `lead-company-research` | `deliverables/lead/02-companies/target-companies.md` | `target-companies.xlsx` |
 | `lead-company-research`（emerging） | `deliverables/lead/02-companies/emerging-companies.md` | `emerging-companies.xlsx` |
+| `lead-company-research`（list） | `deliverables/lead/02-companies/activation/<list_id>.md`，一家一份 | —（表行在文件里） |
 | `lead-distributor-research` | `deliverables/lead/02-companies/distributors-analysis.md` | `distributors.xlsx` |
 | `lead-distributor-research`（brief） | — | `deliverables/lead/02-companies/distributors-brief.xlsx` |
 | `lead-retailer-research` | — | `deliverables/lead/02-companies/retailers.xlsx` |
 | `lead-contact-discovery` | `deliverables/lead/03-contacts/collection-report.md` | `contacts.xlsx`；辅助 `domains-for-contact-finder.csv` |
+| `lead-contact-discovery`（list） | 同上；名单公司的行 `data_source` 指回名单 | 同上 |
 | `lead-competitor-analysis` | `deliverables/lead/04-market/competitor-positioning.md` | `competitor-comparison.xlsx` |
 | `lead-market-analysis` | `deliverables/lead/04-market/market-analysis.md` | `market-data.xlsx` |
 | `lead-usp-extraction` | `deliverables/lead/05-usp/usp-strategy.md` | `usp-matrix.xlsx` |
@@ -100,10 +103,12 @@ lead-icp-analysis -> []
 lead-search-term-expansion -> [lead-icp-analysis]
 lead-company-research -> [lead-search-term-expansion]
 lead-company-research/emerging -> [lead-company-research]
+lead-company-research/list -> []    # 输入是激活名单（存在即可），不做发现，所以不要搜索词；product_context 仍是全局闸
 lead-distributor-research -> [lead-search-term-expansion]
 lead-distributor-research/brief -> [lead-distributor-research]
 lead-retailer-research -> [lead-search-term-expansion]
 lead-contact-discovery -> [lead-icp-analysis, ANY(lead-company-research, lead-distributor-research, lead-retailer-research)]
+lead-contact-discovery/list -> [lead-company-research/list]    # 同一个 list_id 的调研文件 approved，且 list_verdict: 可接触
 lead-competitor-analysis -> [lead-icp-analysis]
 lead-market-analysis -> [lead-competitor-analysis]
 lead-usp-extraction -> [lead-icp-analysis, lead-competitor-analysis]
@@ -147,6 +152,8 @@ lead-buyer-psychology -> []
 lead-distributor-research ~> [lead-company-research]
 lead-retailer-research ~> [lead-company-research]
 lead-contact-discovery ~> [lead-company-research, lead-distributor-research, lead-retailer-research]
+lead-company-research/list ~> [lead-icp-analysis, lead-search-term-expansion]
+lead-contact-discovery/list ~> [lead-icp-analysis]
 lead-competitor-analysis ~> [lead-company-research]
 lead-market-analysis ~> [lead-company-research, lead-distributor-research, lead-retailer-research]
 lead-usp-extraction ~> [lead-market-analysis]
@@ -224,6 +231,12 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 
 - 表 `emerging-companies.xlsx` 至少 10 行；上表列 + `founded_year, growth_signals`
 - 检查：员工数小于 200；排除知名大公司；不与 `target-companies.xlsx` 重复；`growth_signals` 有具体证据（融资、招聘、新产品、扩张）
+
+### lead-company-research（list）
+
+- 一家一份 `deliverables/lead/02-companies/activation/<list_id>.md`；结构见 `skills/lead-company-research/references/list-mode.md`
+- 必含：三信息块、结论（`list_verdict`）、表行（标准 14 列 + `list_id, official_name, list_verdict`）、缺口、搜索日志、证据闸
+- 检查：`list_id` 对得上名单；`company_name` 照名单原文；官网已抓取且与名单的名称、城市或地址对上，否则不算 `url_verified`；没有把「已同意」写成客户认知；文件里没有名单上的姓名、邮箱、电话；`暂不接触`、`查无此公司` 写了原因与来源
 
 ### lead-distributor-research
 

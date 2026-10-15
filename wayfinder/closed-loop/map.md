@@ -70,6 +70,7 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [执行登记流程](tickets/execution-log-flow.md)：skill `marketing-execution-log` + `scripts/execution_log.py`，查证后一网址一行写底表，查证失败照写（E-01 排队），认重复、编号 `E-执行日期-NN`；新站 PR 按上生产日登记；补登 67 条（2026-10-15 部署），顺带查出德语分类归档 10 个 404 链接（新站 #175）。
 - [获客编排改循环](tickets/lead-loop-orchestrator.md)：`skills/lead-generation` 按营销编排的形态改成 7 步、冷启动 phase 0–10 后转运营；反馈经 `scripts/next_step.py --line 获客` 读（脚本加了 `--line`，不带时输出不变）；用户审批改为六维审查 + 证据闸，`approved_with_concerns` 并入 `approved`（两线同义），过期传播保留；获客台账加循环键、待补登、`evidence_gate` 列；`validate_loop` 两张台账都查；真实底表上获客线输出「今天没有要动的」，并说明在等外展登记、邮箱回流、询盘回流。
 - [操作者审稿](tickets/operator-review.md)：文案不一步到位——对外文字过证据闸后给操作者看、按意见反复改，操作者说「可以了」记 `operator_ok`，`approved` + `operator_ok` 才能发；每轮记审稿记录，同类意见进写作偏好，发前自改同步回交付物；正典规则第 10 节，两条编排、协议、依赖图、执行登记、脚本说法、evals 同步改。
+- [激活名单入口](tickets/activation-list-intake.md)：名单原样进 vault，转成 CSV（7904 家 / 7966 位联系人），列定义 `schemas/activation-list.schema.json`，脚本 `scripts/activation_list.py`；`lead-company-research` 加名单模式（一家一份、写 `list_verdict`），联系人以名单为准，依赖图加两个 `/list` 节点，只加入口不改方法；第一家已过闸，台账「已调研 1 / 共 7904」。
 
 ## Not yet specified
 

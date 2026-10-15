@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/activation-list.schema.json",
+  "title": "激活名单",
+  "description": "激活名单（CONTEXT.md「激活名单」）转格式后的列定义。名单本身只在私有 vault：原件原样放 deliverables/lead/00-system/activation-list/original/，转出的 deliverables/lead/00-system/activation-list/activation-list.csv 每行按本定义校验。转格式用 uv run scripts/activation_list.py convert。properties 的顺序就是列的顺序。本文件公开，不含任何名单数据。",
+  "x-file": {
+    "path": "deliverables/lead/00-system/activation-list/activation-list.csv",
+    "encoding": "UTF-8 带 BOM（Excel 双击打开不乱码）",
+    "row": "原件里一行（一位联系人）= 一行。同一家公司有几位联系人就有几行，共用一个 list_id。原件的空行不转。",
+    "company": "一家公司 = 一个 list_id。按 company_name 原文（只去掉首尾空格）完全相同来认同一家，不做模糊合并、不翻译、不改大小写。原件没写公司名的行各自一个 list_id。",
+    "order": "调研顺序：priority 1 → 2 → 空，同级按 list_id。",
+    "stable_ids": "重新转格式时，已有 activation-list.csv 里出现过的公司沿用原 list_id，新公司接着往后编。"
+  },
+  "x-conventions": [
+    "值照原件抄，只去掉首尾空格；数字（邮编、电话）转成文字，不补零、不改写。",
+    "公司名用原文，名单、调研交付物、外展交付物、执行登记里同一种写法。",
+    "原件出现本定义没有的列 → 转格式脚本停下报错，先在这里加列，不静默丢信息。"
+  ],
+  "type": "object",
+  "required": ["list_id", "company_name", "source_file", "source_row"],
+  "properties": {
+    "list_id": {
+      "type": "string",
+      "pattern": "^L-[0-9]{4,}$",
+      "description": "这家公司在名单里的编号。调研文件按它命名：deliverables/lead/02-companies/activation/<list_id>.md。公开仓库只写编号，不写公司名。",
+      "examples": ["L-0001"]
+    },
+    "priority": {
+      "type": "string",
+      "description": "原件给的优先级（原件列 Priority）。空 = 原件没标。",
+      "examples": ["1", "2", ""]
+    },
+    "company_name": {
+      "type": "string",
+      "description": "公司名，照原件（原件列 Firmenname）。空 = 原件这一行没写公司名。"
+    },
+    "first_name": {"type": "string", "description": "联系人名（原件列 Vorname）。"},
+    "last_name": {"type": "string", "description": "联系人姓（原件列 Nachname）。"},
+    "postal_code": {"type": "string", "description": "邮编（原件列 PLZ），照原件，不补前导零。"},
+    "address": {"type": "string", "description": "街道地址（原件列 Adresse）。"},
+    "city": {"type": "string", "description": "城市（原件列 Stadt）。"},
+    "country": {"type": "string", "description": "国家，照原件的德文写法（原件列 Land），不翻译。"},
+    "email": {"type": "string", "description": "联系人邮箱（原件列 Email）。第 3 阶段联系人以名单为准；发不发、发给谁由操作者定。"},
+    "phone": {"type": "string", "description": "电话（原件列 Telefon）。"},
+    "homepage": {"type": "string", "description": "网站（原件列 Homepage），照原件，可能不带 https://。调研时以抓取到的官网为准。"},
+    "source_file": {"type": "string", "description": "这一行来自哪个原件（文件名）。"},
+    "source_sheet": {"type": "string", "description": "原件里的工作表名。"},
+    "source_row": {"type": "integer", "minimum": 2, "description": "原件里的行号（表头是第 1 行），用来回原件核对。"}
+  },
+  "additionalProperties": false
+}

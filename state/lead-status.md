@@ -63,13 +63,26 @@ current_action_log:
 | --- | --- | --- | --- | --- |
 | （无） | | | | |
 
+## 激活名单
+
+操作者交来的已同意客户表（`CONTEXT.md`「激活名单」），按陌生开发：先调研再接触。名单和公司名只在私有 vault；本节只写数字和 vault 相对路径。进度用 `uv run scripts/activation_list.py progress` 数（已调研 = `02-companies/activation/` 里 `status: approved` 的文件），每调研完一家改这里。怎么用见 `skills/lead-company-research/references/list-mode.md`。
+
+| 项 | 值 |
+| --- | --- |
+| 名单 | `deliverables/lead/00-system/activation-list/activation-list.csv`（原件原样在同目录 `original/`；列定义 `schemas/activation-list.schema.json`） |
+| 转格式日期 | 2026-10-15 |
+| 共 | 7904 家公司（7966 位联系人；priority 1、2 的行共 750 行） |
+| 进度 | 已调研 1 / 共 7904 |
+| 结论分布 | 可接触 1，暂不接触 0，查无此公司 0 |
+| 调研文件 | `deliverables/lead/02-companies/activation/<list_id>.md` |
+
 ## 审批与过期
 
 每份获客交付物一行，记它过没过证据闸、过没过期。`status` 取值和营销线同一套：`approved`（六维审查通过且已过证据闸，由 AI 自查后写；证据闸不需要操作者批准）| `draft`（还没过）| `stale`（过闸后因上游重写过期）| `missing`（文件不在）。`evidence_gate` 是最近一次过证据闸的日期，「运营里只剩记账时」按它挑最早的那份重查。`operator_ok` 只对对外文字（外展信、帖子、SEO 正文等）填：操作者审稿后说「可以了」的日期，有它才能发；内部材料填「—」，还在等操作者看填「待看」（`docs/feedback-rules.md` 第 10 节）。含义见 `skills/lead-generation/references/orchestration-protocol.md` 步骤 6、7。交付物 frontmatter 是这份文件自己的记录，本表是全线索引：两边不一致时以 frontmatter 为准，当轮改正本表。
 
 | 交付物 | 方法 skill | status | evidence_gate | operator_ok | review_score | stale_reason | stale_date |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| （无） | | | | | | | |
+| `deliverables/lead/02-companies/activation/L-0002.md` | lead-company-research（list） | approved | 2026-10-15 | — | 93 | | |
 
 ## 豁免（user_waiver）
 
