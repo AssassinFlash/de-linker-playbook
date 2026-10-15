@@ -33,6 +33,7 @@ blocked_by: [marketing-loop-orchestrator]
 - QQ 邮箱网页版「设置 → 账号与安全 → 安全设置」里，「POP3/IMAP/SMTP/Exchange/CardDAV 服务」已经是开启状态；但「生成授权码」按钮是灰的，提示要先绑定手机号码。绑手机、生成授权码都是账号安全设置，由操作者自己点。
 - 仓外配置 `~/.config/de-linker-playbook/config.toml` 已加 `[reminder]` 段：收件人、`smtp.qq.com:465`、发件账号，以及授权码文件的位置 `~/.config/de-linker-playbook/qq-smtp-auth-code`（文件由操作者用终端命令写入，权限 600，AI 不读不打印）。
 - 「提醒事项」的授权框要等提醒脚本第一次运行才会出现，现在没有可点的。
+- 同日：操作者绑好手机、生成了授权码，文件已放到 `~/.config/de-linker-playbook/qq-smtp-auth-code`（600）。用它登录 `smtp.qq.com:465` 成功（235），没有发信。邮件这一路的凭据已经齐了。
 
 ## 完成标准
 
