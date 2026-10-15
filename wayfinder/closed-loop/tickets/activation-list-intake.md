@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-code activation-list-intake 2026-10-15
 step: 6
 blocked_by: [lead-loop-orchestrator, fact-source-rewire-skills]
 ---
