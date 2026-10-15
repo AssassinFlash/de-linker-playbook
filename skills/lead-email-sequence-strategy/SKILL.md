@@ -20,7 +20,7 @@ description: >
 
 ## 步骤
 
-1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/06-outreach/cold-emails.md`、`deliverables/lead/06-outreach/followup-sequence.md`。软依赖存在则读：`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/03-contacts/contacts.xlsx`。资产是否齐、ICP 段数、外发工具名仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出首封、跟进、ICP 各依据哪份文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停，不编邮件凑序列。
+1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/06-outreach/cold-emails.md`、`deliverables/lead/06-outreach/followup-sequence.md`。软依赖存在则读：`deliverables/lead/06-outreach/warm-emails.md`、`deliverables/lead/06-outreach/lead-magnet.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/03-contacts/contacts.xlsx`。资产是否齐、ICP 段数仍不清时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。完成：能指出首封、跟进、ICP 各依据哪份文件；原文不拷进本仓库。硬依赖未满足且无 `user_waiver` → 停，不编邮件凑序列。
 
 2. **资产盘点**。把已读邮件逐封列入清单：`asset_id, type, icp_name, strategy_name, source_path, human_review`。`type` 只取 `cold` / `warm` / `followup` / `lead_magnet`。跟进按策略名对齐（Friendly Reminder、Additional Value、Direct Yes/No、Social Proof、Limited-Time Incentive、Feedback Request、Previous Interaction、Breakup、New Angle），对不上的仍入表，`strategy_name` 写原文标题。缺哪封记哪封，不补写。完成：上游文件里每封信都有一行；无主的资产标 `unassigned`。
 
@@ -138,14 +138,14 @@ description: >
 
 > 仅供理解，禁止引用到输出。
 
-输入写两份 ICP 的冷邮件、一封暖化、一组跟进，却把安装商与 EPC 采购装进同一活动。成稿应拆成两个活动：安装商序列把 Day 0 当备线开口，不写成换商；EPC 序列按双闸排发送序——商务闸（价、交期、报价有效期）与技术闸（文件包、认证、兼容证据）分槽，技术闸可否决商务闸，故不要用价/交期独占首封、再把技术证据当附件塞给未打开的人。有暖化的 ICP 用暖化作 Day 0、冷稿作 A/B；没有暖化的只用冷稿，不编第二封首封。报价有效期是买方锁一口价的风险工具，不是 Limited-Time Incentive。采购周期更长则拉长默认骨架，不另写一套日表。未配置外发工具则只写 `email-strategy.md`，不发送。不要把本节句子粘进交付物。
+输入写两份 ICP 的冷邮件、一封暖化、一组跟进，却把安装商与 EPC 采购装进同一活动。成稿应拆成两个活动：安装商序列把 Day 0 当备线开口，不写成换商；EPC 序列按双闸排发送序——商务闸（价、交期、报价有效期）与技术闸（文件包、认证、兼容证据）分槽，技术闸可否决商务闸，故不要用价/交期独占首封、再把技术证据当附件塞给未打开的人。有暖化的 ICP 用暖化作 Day 0、冷稿作 A/B；没有暖化的只用冷稿，不编第二封首封。报价有效期是买方锁一口价的风险工具，不是 Limited-Time Incentive。采购周期更长则拉长默认骨架，不另写一套日表。只写 `email-strategy.md`，不建活动、不发送。不要把本节句子粘进交付物。
 
 ## 易错
 
 - 多个 ICP 装进同一个序列活动。
 - 硬依赖缺失时编邮件凑槽。
 - 把本文件当写手，重写跟进或发明优惠。
-- 未配置外发工具却写「已创建活动」或已经发送。
+- AI 在任何外发工具里建活动或发送（不论是否配置、用户是否要求），或写「已创建活动」。
 - 编造打开率、回复率或退订上限。
 - 决裂信里夹推销。
 - 有打开追踪时，对从未打开首封的人发附件。
@@ -162,6 +162,6 @@ description: >
 - [ ] 每个 ICP 独立序列；槽位有日偏移与资产或 skip_reason
 - [ ] 节拍有来源，或已标默认模板；无编造基准
 - [ ] A/B 可执行或已延期；停发含回复 / 退订 / 退信
-- [ ] 未配置外发工具则只产计划、未发送
+- [ ] 只产计划，未建活动、未发送
 - [ ] 文件在 `deliverables/lead/06-outreach/email-strategy.md`；例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

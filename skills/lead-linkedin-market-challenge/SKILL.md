@@ -38,7 +38,7 @@ description: >
 
 4. **针对性方案（管线第 2 步）**。入帖挑战优先：用户本轮点名且通过换国测试的 → 证据最强且产品上下文能对上的。对入帖的每一条，从产品上下文、USP、产品知识或用户本轮确认的能力里写 2–4 句方案，直接回答该条挑战。只检查上下文里真实存在的侧面：设计、工艺、材料、质检、测试、技术支持。禁止用「公司理应具备」补造工艺、材料、认证或该地项目。对不上则换一条；能对上的少于 1 条 → 只交付挑战表并停，不写面客方案段。用户点名多条则每条一篇，仍写入同一主文件。完成：入帖方案能指回 `capability_source`；买家收益写成该地买家能感到的结果，不是规格复读。
 
-5. **按 Structure 20 起草并落盘（管线第 3 步）**。钩子必须点名该国/地区与该条挑战。正文五段按「写法」一次写齐，再写成可复制的整帖。标签 3–5 个且含 1 个区域标签，其余按共用规范。用户点名四种风格升级之一时，只改语气与结构，不改核心信息。对照共用规范出门清单后写入 `deliverables/lead/08-linkedin/market-challenge-post.md`。仅当用户本轮要求发布 **且** 已配置发布工具时才发；否则 `publish_status: copy_only`，不代发。付费发布须先告知并获准。完成：主文件含挑战表、入帖方案、可复制英文帖、中文策略说明、来源与搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+5. **按 Structure 20 起草并落盘（管线第 3 步）**。钩子必须点名该国/地区与该条挑战。正文五段按「写法」一次写齐，再写成可复制的整帖。标签 3–5 个且含 1 个区域标签，其余按共用规范。用户点名四种风格升级之一时，只改语气与结构，不改核心信息。对照共用规范出门清单后写入 `deliverables/lead/08-linkedin/market-challenge-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件含挑战表、入帖方案、可复制英文帖、中文策略说明、来源与搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -48,7 +48,7 @@ description: >
 - 本帖处理**地理特定**障碍（气候、法规、本地标准、该地基建）。普遍运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`（文件存在时）；供应关系顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。全局趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表文件。
 - 策略与缺口用本轮语言（缺省中文）；帖子正文与标签缺省英语，用户本轮点名其他面客语种再改；同一段不中英混排。
-- 本 skill 只产帖稿。用户自行发布或经用户已配置的工具发布；未配置或未要求发布 → 只产文案不发送。
+- 本 skill 只产帖稿，不经任何工具代发布；发帖一律由操作者亲手做。
 - 单文件、无并行机会的工作 inline 做完，不 dispatch。
 
 ## 写法
@@ -78,7 +78,7 @@ description: >
 - target_audience:
 - selected_challenge:
 - selected_by: user | agent_recommended
-- publish_status: copy_only | published_via_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 
 ## 挑战列表（目标 10）
 
@@ -126,7 +126,7 @@ description: >
 - 可复制帖含 Structure 20 五段；恰好一个 CTA；3–5 个标签且含区域标签
 - 已对照 `skills/lead-generation/references/linkedin-post-guidelines.md`
 - 含数字的句子有来源或已删除
-- `publish_status` 与是否真正发布一致；未配置发布工具时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -144,7 +144,7 @@ description: >
 - 把痛点帖或关系顾虑帖改贴一个地名交差。
 - 无证据写该地项目经验或年限。
 - 把教学例子或搜到的帖文原文写入交付物。
-- 未配置发布工具仍代发，或把成稿当成已发布。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 终稿残留未解释的 `{{...}}`。
 - 跳过查证，用训练记忆当当地标准。
 
@@ -155,6 +155,6 @@ description: >
 - [ ] 三类查证意图已覆盖；搜索日志非空；缺搜索已停并写缺口
 - [ ] 方案能指回能力来源；无来源统计；无未持有的该地经验
 - [ ] Structure 20 五段齐全；钩子点名国家/地区；恰好一个 CTA；3–5 个标签含区域标签
-- [ ] 文件在 `deliverables/lead/08-linkedin/market-challenge-post.md`；未配置或未要求发布时未发送
+- [ ] 文件在 `deliverables/lead/08-linkedin/market-challenge-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

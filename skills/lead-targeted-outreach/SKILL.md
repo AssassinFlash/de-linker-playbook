@@ -16,7 +16,7 @@ description: >
 
 # 定向外展（单公司个性化邮件序列）
 
-根据已批准的定向调研，为一家已点名公司写个性化冷邮件序列，写入 `deliverables/lead/07-targeted/outreach.md`。缺情报标缺口，不编造；未配置外发工具则只产文案不发送。
+根据已批准的定向调研，为一家已点名公司写个性化冷邮件序列，写入 `deliverables/lead/07-targeted/outreach.md`。缺情报标缺口，不编造；只产文案，AI 不代发；审稿到 `operator_ok` 后由操作者亲手发。
 
 ## 步骤
 
@@ -26,7 +26,7 @@ description: >
 
 3. **起草**。按「写法」写每一封：Purpose、Subject、Body、CTA，并标注 `research_insight`（调研章节 + 一句摘录）。default 正文 ≤150 词，extended ≤180 词（英文按空格分词；上限不是目标）。策略叙事可作 Hook 开场材料，不整段粘贴。主句只使用价值匹配为 strong 或 moderate 的维；产品解决不了的痛点不写进邮件。完成：每封一词上限内、一个 CTA、首句关于对方；每封有调研引用；教学支架原文零出现。
 
-4. **落盘**。按下方模板写入 `deliverables/lead/07-targeted/outreach.md`。节奏写具体 Day 偏移，取 `references/multi-angle-strategies.md` 默认表，时区取调研总部；调研没有时区则写「时区未在调研出现」。无 Excel。完成：文件非空；序列与节奏都在；未发信（或用户已配置外发工具且本轮明确要求发送时，在报告记录工具名，仍把文案留在本文件）。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批。
+4. **落盘**。按下方模板写入 `deliverables/lead/07-targeted/outreach.md`。节奏写具体 Day 偏移，取 `references/multi-angle-strategies.md` 默认表，时区取调研总部；调研没有时区则写「时区未在调研出现」。无 Excel。完成：文件非空；序列与节奏都在；未发信（AI 不代发；过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`））。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批。
 
 5. **出门检查**。对照「清单」。完成：个性化测试通过（换一家公司则整封站不住）；空证据已换角或标缺口；没有用模型记忆填的公司细节。
 
@@ -35,7 +35,7 @@ description: >
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 一家目标 inline 做完。用户点名多家：每家一份报告；需要隔离时 dispatch a subagent, else do it inline。批量无调研的开发信走 `skills/lead-cold-email-gen/SKILL.md`（文件存在时）。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。不为「最佳实践」或回复率凑查询；方法已在本文件。
-- 外发工具、联系人/邮箱发现服务：仅当用户已配置（付费项须先告知并获准）。未配置则只产文案、邮箱标「联系人待补」，不编造地址、不发送。
+- 联系人/邮箱发现服务：仅当用户已配置（付费项须先告知并获准）；未配置则邮箱标「联系人待补」，不编造地址。外发工具不接：不论是否配置、用户是否要求，AI 都不代发；发信一律由操作者亲手做。
 - 同一家重跑：覆盖 `outreach.md`，旧版交编排协议归档。换一家且用户要保留旧稿：写 `outreach-<slug>.md`，并在报告开头注明当前目标。
 - 分析用本轮语言；面客正文用买家语言（缺省英语），同一封不混用。公司名不翻译。
 - 产出只进 `deliverables/lead/07-targeted/`。
@@ -116,7 +116,7 @@ extended 九角的目的、结构、选用与节奏见 `references/multi-angle-s
 - 每封一个 CTA；`word_count` 不超过该模式上限
 - 含数字或案例的句子有来源，或已标「未在上下文出现」
 - `recipient_email` 有值或为「联系人待补」
-- `sent` 为 `no`，除非用户已配置外发工具且本轮要求发送
+- `sent` 必为 `no`（AI 不代发；发没发以执行登记为准）
 - 教学支架原文零出现
 
 ## 例子
@@ -141,7 +141,7 @@ extended 九角的目的、结构、选用与节奏见 `references/multi-angle-s
 - 首句介绍我方公司；一封里多个 CTA。
 - 把产品解决不了的痛点写进承诺。
 - 为凑查询去搜回复率或「冷邮件最佳实践」。
-- 未配置外发工具却声称已发送，或编造收件邮箱。
+- AI 代发（不论是否配置外发工具、用户是否要求），或声称已发送，或编造收件邮箱。
 - 把教学例子原文写入交付物。
 - 终稿残留未解释占位符。
 

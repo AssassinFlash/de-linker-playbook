@@ -29,7 +29,7 @@ description: >
 
 5. **起草**。按 Structure 2 四拍写完整英文帖。篇幅、钩子类型、CTA、标签、语气、软广与四种风格只读 `skills/lead-generation/references/linkedin-post-guidelines.md`，不要把该文件抄进交付物。用户点名四种风格之一时，只改语气与结构，不改趋势事实与来源。未点名不升级。CTA：用户本轮点名且落在规范四类之一则用；否则默认评论型，问一句该 ICP 可答的经验问题。完成：四拍齐全；钩子在折叠前；恰好一个 CTA；3–5 个标签；产品句（若有）最多 1–2 句，删掉后帖子仍有用。
 
-6. **质检并落盘**。对照清单与共用规范出门清单后，写入 `deliverables/lead/08-linkedin/authority-post.md`。不发布。仅当用户本轮要求发布 **且** 已配置发布工具时，才经该工具发出并记 `publish_status`；否则 `copy_only`。付费能力须先告知并获准。完成：主文件非空；含可复制正文、趋势来源、策略说明、搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。对照清单与共用规范出门清单后，写入 `deliverables/lead/08-linkedin/authority-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含可复制正文、趋势来源、策略说明、搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -65,7 +65,7 @@ description: >
 - trend:
 - structure: 2
 - style: default | micro_blog | storytelling | slippery_slide | direct_response
-- publish_status: copy_only | published_by_user | sent_via_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - publish_tool: not_configured | configured
 
 ## 策略说明
@@ -100,7 +100,7 @@ description: >
 - 分析同时出现 ICP 角色、区域、具体后果
 - 产品句 0–2 句；有产品句则可删且帖子仍有用
 - 钩子在折叠前；恰好一个 CTA；3–5 个标签且品类标签取产品上下文
-- `publish_status` 与是否真正发出一致；未要求发布或未配置工具时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -119,7 +119,7 @@ description: >
 - 硬塞产品规格，删掉产品句后帖子站不住。
 - 把 how-to 或合规手册写成权威帖。
 - 把教学例子或共用规范原文写入交付物。
-- 未配置或不要求发布时仍当作已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 终稿残留未解释占位符，或把 `[待补充]` 假装成已核实署名。
 
 ## 清单
@@ -128,6 +128,6 @@ description: >
 - [ ] 一条趋势已按三条意图核验；数字均有来源；无来源则未使用统计
 - [ ] 分析含 ICP、区域、具体后果；产品句已赚到或已省略
 - [ ] 英文帖为 Structure 2；钩子在折叠前；一个 CTA；3–5 个标签
-- [ ] 文件在 `deliverables/lead/08-linkedin/authority-post.md`；未要求发布时未发送
+- [ ] 文件在 `deliverables/lead/08-linkedin/authority-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

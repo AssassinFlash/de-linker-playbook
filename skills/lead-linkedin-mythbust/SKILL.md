@@ -30,7 +30,7 @@ description: >
 
 5. **成稿**。按 Structure 7 写英文帖：Hook → Myth / Comparison → Reality / Expert Analysis（含证据）→ Buyer Benefit → CTA。篇幅、钩子、CTA、标签、软广、四种风格只读 `skills/lead-generation/references/linkedin-post-guidelines.md`，不在本文件复述。用户点名一种风格则成稿后只改语气与结构，不改事实。CTA：用户指定且符合该规范则用；否则用一条可回答的经验问题，不承诺未有材料。产品句最多 1–2 句，删掉后帖子仍独立有用。数字、证书、案例、成本：产品上下文或已抓取页里有才写。完成：五段齐全；过共用规范清单；含数字的句子能指回来源。
 
-6. **落盘**。写入 `deliverables/lead/08-linkedin/mythbust-post.md`。`publish_status: copy_only`。用户自行发布，或经用户已配置的工具发布；本 skill 不发帖。付费发布须先告知并获准。完成：主文件非空；含候选、选定、可复制帖、中文策略、搜索日志、来源表、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **落盘**。写入 `deliverables/lead/08-linkedin/mythbust-post.md`。`publish_status: copy_only`。本 skill 不发帖，也不经任何工具代发布；过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含候选、选定、可复制帖、中文策略、搜索日志、来源表、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -120,7 +120,7 @@ description: >
 - Reality 至少一条证据有 URL 或产品上下文出处
 - 帖子五段按 Structure 7 齐全，并可单独复制
 - 过 `skills/lead-generation/references/linkedin-post-guidelines.md` 清单
-- `publish_status` 为 `copy_only`，除非用户本轮要求发布且已配置工具
+- `publish_status` 必为 `copy_only`；AI 不代发布
 - 教学支架原文零出现
 
 ## 例子

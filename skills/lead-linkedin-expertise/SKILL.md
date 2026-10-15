@@ -30,7 +30,7 @@ description: >
 
 5. **起草**。读 `references/structure-12.md` 与 `skills/lead-generation/references/linkedin-post-guidelines.md`（只核对其清单，不复制其正文）。按 Structure 12 五拍写英文帖：Hook → Knowledge → Simplification → Benefit → CTA，然后 3–5 个标签。用户点名四种风格之一时，成稿后再改语气与分段，不改已核验事实。面客语种缺省英语；策略笔记用中文。完成：五拍齐；钩子含领域与区域；法规句能指回来源表。
 
-6. **质检并落盘**。按清单自检后写入 `deliverables/lead/08-linkedin/expertise-post.md`。本 skill 不发布；`publish_status: copy_only`。用户自行发布，或经用户已配置的工具发布。付费发布须先告知并获准。完成：主文件非空；含选题、可复制英文帖、策略说明、来源与搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。按清单自检后写入 `deliverables/lead/08-linkedin/expertise-post.md`。本 skill 不发布；`publish_status: copy_only`。也不经任何工具代发布；过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含选题、可复制英文帖、策略说明、来源与搜索日志；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -64,7 +64,7 @@ description: >
 - audience:
 - product_niche:
 - selection_source: user | agent_pick
-- publish_status: copy_only | published_by_user
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - style: default | microblog | story | slider | direct
 
 ## 选题
@@ -97,7 +97,7 @@ description: >
 - 帖文含 Structure 12 五拍，顺序不乱；钩子在前 210 字符内点名领域与区域
 - 每条法规、标志、税则、单据句有来源行；无来源则该句不存在
 - 3–5 个标签且含目标区域
-- `publish_status` 为 `copy_only`，除非用户已自行或经已配置工具发布
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -116,7 +116,7 @@ description: >
 - 用「我们懂法规」当 Knowledge 拍。
 - 法规未核现行页，或把过期转载当现行口径。
 - 把进口方义务写成我方已代办。
-- 未配置发布工具仍发布，或把成稿当成已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 为凑搜索次数空搜，或搜索不可用仍写合规句。
 - 终稿残留未解释的 `{{...}}`。
 - 把共用规范全文粘进交付物。
@@ -127,6 +127,6 @@ description: >
 - [ ] 品类、区域、受众可回溯；专业领域通过可核验测试
 - [ ] 每条法规句有 URL 与日期；公司代办与上下文一致
 - [ ] Structure 12 五拍齐；钩子含区域；3–5 个标签含区域
-- [ ] 文件在 `deliverables/lead/08-linkedin/expertise-post.md`；未要求发布时未发布
+- [ ] 文件在 `deliverables/lead/08-linkedin/expertise-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

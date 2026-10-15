@@ -276,7 +276,7 @@ LOOP_REFS = {
     "docs/feedback-rules.md": ("操作者审稿", "operator_ok", "审稿记录", "writing-preferences.md"),
     "skills/marketing-orchestrator/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 营销", "证据闸",
                                                "审稿", "operator_ok"),
-    "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸", "审稿", "operator_ok"),
+    "skills/marketing-playbook-standards/SKILL.md": ("docs/feedback-rules.md", "证据闸", "审稿", "operator_ok", "任何代发都不要做"),
     "skills/marketing-orchestrator/references/dependency-graph.md": ("证据闸", "evidence_gate", "operator_ok"),
     "skills/marketing-execution-log/SKILL.md": ("发前自改",),
     "skills/lead-generation/SKILL.md": ("docs/feedback-rules.md", "scripts/next_step.py", "--line 获客", "证据闸",
@@ -285,6 +285,11 @@ LOOP_REFS = {
     "skills/lead-generation/references/dependency-graph.md": ("证据闸", "evidence_gate", "operator_ok"),
     "state/lead-status.md": ("待补登", "evidence_gate", "operator_ok"),
 }
+# operator 2026-10-15: AI never sends or publishes on the operator's behalf, configured tool or not
+SEND_ON_BEHALF = re.compile(
+    r"已配置(的)?(外发|发布)工具(发信|发布|发出|时才发)|经该工具发出|要求发[出布] \*\*且\*\*"
+    r"|configured_tool|sent_via|published_via|published_by_user"
+)
 # approved means「passed the evidence gate」on both lines; the old lead-only approval states must not come back
 RETIRED_STATUS = ("approved_with_concerns",)
 
@@ -329,6 +334,11 @@ def validate_loop(project_root: Path) -> int:
         if stale:
             log("error", f"{path} still uses retired status {', '.join(stale)} (approved = passed the evidence gate)")
             errors += 1
+    for path in sorted((project_root / "skills").glob("*/**/*.md")):
+        hit = SEND_ON_BEHALF.search(path.read_text(encoding="utf-8"))
+        if hit:
+            log("error", f"{path} lets the AI send or publish on the operator's behalf ({hit.group(0)!r}); only produce copy")
+            errors += 1
     for _, tree in LOOP_LEDGERS.values():
         root = project_root / tree
         for path in sorted(root.rglob("*.md")) if root.exists() else []:
@@ -350,7 +360,7 @@ def validate_loop(project_root: Path) -> int:
                 log("error", f"{path} has operator_ok but no ## 审稿记录 section (each review round is logged)")
                 errors += 1
     if errors == 0:
-        log("ok", "Operating loop wired on both lines: rules, next_step script (--line), evidence gate, operator review")
+        log("ok", "Operating loop wired on both lines: rules, next_step script (--line), evidence gate, operator review, no sending on behalf")
     return errors
 
 

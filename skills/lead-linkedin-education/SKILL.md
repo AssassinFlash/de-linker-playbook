@@ -29,7 +29,7 @@ description: >
 
 5. **成稿**。选题：用户点名 → 用该条；本轮能问则只问一句选哪个；用户已说直接做、或本轮不能问 → 取卡片 1，交付物写「选题未经用户确认」。按 Structure 6 顺序写英文帖：Hook → Tip → Why (Benefit) → Resource offer → CTA，然后 3–5 个标签。骨架与「Why this matters」映射见 `references/structure-6.md`。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏之一时，成稿后再按共用规范改语气与结构，不改核心信息。面客语种以产品上下文为准，缺省英语；策略说明用本轮语言。完成：一篇可复制正文；五段齐全；钩子落在折叠前；恰好一个 CTA；产品句 0–2 句且删掉后帖子仍有用。
 
-6. **质检并落盘**。对照共用规范出门清单与本文件清单后，写入 `deliverables/lead/08-linkedin/education-post.md`。发布由用户自行完成，或经用户已配置的工具发布；未要求发布或未配置 → `publish_status: copy_only`，不发送。完成：主文件非空；候选与成稿都在；教学支架原文零出现。
+6. **质检并落盘**。对照共用规范出门清单与本文件清单后，写入 `deliverables/lead/08-linkedin/education-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；候选与成稿都在；教学支架原文零出现。
 
 ## 默认
 
@@ -65,7 +65,7 @@ description: >
 - icp:
 - selected_tip:
 - selection: user_chose | default_first_unconfirmed | user_specified
-- publish_status: copy_only | published_by_user_or_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - style: default | named_upgrade
 
 ## 候选 Tip
@@ -106,7 +106,7 @@ description: >
 - 钩子落在折叠前；结尾恰好一个 CTA；3–5 个标签
 - 产品句 ≤2，且可删
 - 含程序/标准/数字的句子有来源，或未使用
-- `publish_status` 与是否真正发布一致；未配置或未要求时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -124,7 +124,7 @@ description: >
 - 技巧其实是伪装产品推销；删掉产品句后无剩余价值。
 - 程序、认证核验方法或统计未查证就写成事实。
 - 为凑满 2–3 条用跨品类空话。
-- 未配置发布工具仍代为发送，或把成稿当成已发布。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 忽略共用规范的折叠前钩子、单一 CTA 或标签组合。
 - 终稿残留未解释的 `{{...}}`，或把 `[待补充]` 假装成已核实步骤。
 

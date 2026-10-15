@@ -29,7 +29,7 @@ description: >
 
 5. **起草**。按「写法」写一篇完整可复制的英文帖，严格 Structure 14 五拍：Hook → FAQ → Answer → Offer for more detail → CTA。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按 guidelines 只改语气与结构，不改问句与答案事实。面客语种以产品上下文为准（缺省英语）；策略笔记用中文；同一段不中英混排。完成：五拍齐全；钩子落在折叠前；去掉产品句后帖子仍有用；恰好一个 CTA；文后 3–5 个标签。
 
-6. **质检并落盘**。按清单与 guidelines 出门清单自检后写入 `deliverables/lead/08-linkedin/faq-post.md`。仅当用户本轮要求发布 **且** 已配置发布工具时才发；否则 `publish_status: copy_only`。付费发布须先告知并获准。完成：主文件非空；含候选 FAQ、入选理由、英文帖、中文策略、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。按清单与 guidelines 出门清单自检后写入 `deliverables/lead/08-linkedin/faq-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含候选 FAQ、入选理由、英文帖、中文策略、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -37,7 +37,7 @@ description: >
 - 硬依赖：已批准 ICP。软依赖：USP、产品知识、话题研究。产地、供应地、目标市场以产品上下文为准，不预设某一出口国。
 - 本帖类型只答 **事实问题**（MOQ、交期、样品、付款、包装、质检流程、定制边界）。情绪顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。揭穿误区走 `skills/lead-linkedin-mythbust/SKILL.md`（文件存在时）。教选购或操作走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止编造新 FAQ 与未核验标准，并写缺口。
-- 发布：用户自行发布，或经用户已配置的工具发布。未配置或未要求发布 → 只产帖稿。
+- 发布：AI 不代发布（不论是否配置工具、用户是否要求），只产帖稿；发帖一律由操作者亲手做。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，无 Excel。
 - 单帖 inline 做完。需要隔离时 dispatch a subagent, else do it inline。
 - 数字、证书、MOQ、交期、付款条件、样品规则：产品上下文、用户本轮或已抓取页里有才写。没有就写「未在上下文出现」或 `[待补充]`，禁止补造。
@@ -68,7 +68,7 @@ description: >
 - structure: 14
 - faq_confirmed_by_user: yes / no
 - audience:
-- publish_status: copy_only | published_via_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - publish_tool: not_configured | configured
 - style: default | named_upgrade
 
@@ -119,7 +119,7 @@ description: >
 - FAQ 能指回 ICP、话题研究或用户本轮；答案能指回产品上下文、本轮或已查证页
 - 含数字或政策的句子有来源，或已改为「未在上下文出现」/ `[待补充]`
 - 恰好一个 CTA；3–5 个标签；遵守 guidelines 出门清单
-- `publish_status` 与是否真正发出一致；未配置或未要求发布时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -138,7 +138,7 @@ description: >
 - 一帖塞多个问题，或答案空到只剩「视情况而定」。
 - 把未公开报价写进帖子，或把公开答案掏空只为逼私信。
 - 无来源的统计、认证、互动率承诺。
-- 未配置发布工具仍发布，或把成稿当成已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 终稿残留未解释的 `{{...}}`，或把 `[待补充]` 假装成已核实政策。
 
 ## 清单
@@ -147,6 +147,6 @@ description: >
 - [ ] 候选 2–3 条或本轮指定 1 条；入选是买家属问句；与关切 / 揭谣 / 教育不混
 - [ ] 答案有来源；无来源则未编造政策；搜索未空转
 - [ ] Structure 14 五拍按序；一帖一问；恰好一个 CTA；3–5 个标签
-- [ ] 文件在 `deliverables/lead/08-linkedin/faq-post.md`；未配置或未要求发布时未发布
+- [ ] 文件在 `deliverables/lead/08-linkedin/faq-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

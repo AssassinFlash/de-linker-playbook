@@ -16,7 +16,7 @@ description: >
 
 # 冷邮件生成（双模式）
 
-根据已批准 ICP 与 USP 写首触冷邮件：标准模式强 CTA，低压模式弱 CTA。落到 `deliverables/lead/06-outreach/`。未配置外发工具或用户未要求发出时，只产文案不发送。痛点、卖点、统计缺证据则标缺口，不编造。
+根据已批准 ICP 与 USP 写首触冷邮件：标准模式强 CTA，低压模式弱 CTA。落到 `deliverables/lead/06-outreach/`。只产文案，AI 不代发（不论是否配置外发工具、用户是否要求）；审稿到 `operator_ok` 后由操作者亲手发。痛点、卖点、统计缺证据则标缺口，不编造。
 
 ## 步骤
 
@@ -30,13 +30,13 @@ description: >
 
 5. **起草**。按「写法」写完整可复制的信。低压或 Both 时读 `references/weak-cta-module.md`。个性化深度读 `references/personalization-layers.md`。面客语种以产品上下文为准（缺省英语）；同一封不中英混排。落款只用上下文已有的人名或公司名，没有则 `[待补充]`。微要约或好奇心 CTA 所承诺的材料，必须是已有交付物或本轮能立刻写出的短件；不能承诺未做的竞品拆解或未持有的数据。完成：映射表每一封都有主题、A/B 主题、正文；正文（不含主题与元数据）<200 词；低压主题 <50 字符。
 
-6. **质检并落盘**。按清单自检后写入 `deliverables/lead/06-outreach/cold-emails.md`。仅当用户本轮要求发出 **且** 已配置外发工具时才发；否则 `send_status: copy_only`，不发送。付费外发须先告知并获准。完成：主文件非空；每封含 Target Persona、Pain Point Focus、USP Applied、Subject、A/B Variant、正文、Performance Notes；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发送。
+6. **质检并落盘**。按清单自检后写入 `deliverables/lead/06-outreach/cold-emails.md`。不代发：`send_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；每封含 Target Persona、Pain Point Focus、USP Applied、Subject、A/B Variant、正文、Performance Notes；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发送。
 
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止数字开场并写缺口，不编造。
-- 外发工具仅当用户已配置；未配置或未要求发出 → 只产文案不发送。
+- 外发工具不接：不论是否配置、用户是否要求，AI 都不代发；发信一律由操作者亲手做。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
 - 分析与缺口用本轮语言（缺省中文）；信体、主题、CTA 用买家语言（缺省英语）。
 - 发送须遵守 GDPR、CAN-SPAM 及收件人所在地同类规则。本文件不是法律意见。
@@ -63,7 +63,7 @@ description: >
 - source: 台账 product_context（不粘贴原文）
 - accessed:
 - mode: Standard | Low-Pressure | Both
-- send_status: copy_only | sent_via_configured_tool
+- send_status: copy_only（AI 不代发；发没发以执行登记为准）
 - outbound_tool: not_configured | configured
 
 ## 映射
@@ -105,7 +105,7 @@ description: >
 - 每封正文 <200 词；低压主题 <50 字符；每封有 A/B 主题
 - 痛点能指回 ICP 文件或用户本轮；USP 能指回 USP 文件或用户本轮
 - 含数字的句子有来源或已删除
-- `send_status` 与是否真正发出一致；未配置外发工具时必为 `copy_only`
+- `send_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -126,7 +126,7 @@ EPC 输入若只写价和交期，成稿仍应让技术闸（文件包、兼容�
 - 编造统计、客户故事、竞品基准或「看到贵司在增长」。
 - 承诺发一份本轮并不存在、也无法立刻写的材料。
 - 正文超过 200 词，或低压主题超过 50 字符。
-- 未配置外发工具仍发送，或把本文件的成稿当成已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 做成营销获客阶段的名单研究或生命周期培育体系（那是 `marketing-email-outreach`）。
 - 为名单每家各写一封，做成定向外展。
 - 终稿残留未解释的 `{{...}}` 或把 `[待补充]` 假装成已核实签名。
@@ -138,6 +138,6 @@ EPC 输入若只写价和交期，成稿仍应让技术闸（文件包、兼容�
 - [ ] 数字开场均有来源；无来源则未使用统计
 - [ ] 每封 <200 词、结构不重复、有 A/B 主题；低压主题 <50 字符且弱 CTA 四式不重复
 - [ ] 痛点与 USP 可回溯上游；个性化钩子无假事件
-- [ ] 文件在 `deliverables/lead/06-outreach/cold-emails.md`；未配置或未要求发出时未发送
+- [ ] 文件在 `deliverables/lead/06-outreach/cold-emails.md`；未代发
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

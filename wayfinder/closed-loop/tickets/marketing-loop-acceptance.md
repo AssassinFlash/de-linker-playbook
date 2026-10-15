@@ -24,3 +24,7 @@ blocked_by: [marketing-loop-orchestrator, l3-pullback, ga4-dashboard, daily-remi
 - 用来验收的那个页面或内容，上线前要先走审稿（`docs/feedback-rules.md` 第 10 节）：AI 初稿过证据闸 → 给操作者看 → 按意见改到操作者说「可以了」（`operator_ok`）→ 操作者上线。审稿至少一轮，审稿记录留在交付物里。
 - 操作者上线前自己又改过的，登记时把实际版本同步回交付物（执行登记 skill 第 1 步已写）。
 - 验收链里加一环：交付物有 `operator_ok` 和审稿记录，执行登记查到的核对字样来自操作者认可的版本。
+
+## 不代发（用户 2026-10-15 写入）
+
+- 验收时确认：这一轮对外文字全部由操作者亲手发出，AI 没有代发、代发布或在任何工具里建活动 / 排期；交付物的 `send_status` / `publish_status` 为 `copy_only`，发没发以执行登记为准。`python3 evals/validate_project.py` 会拦 skill 里的代发口子。

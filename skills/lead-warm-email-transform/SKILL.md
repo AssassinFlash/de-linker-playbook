@@ -37,7 +37,7 @@ description: >
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
-- 外发工具仅当用户已配置；未配置则只产文案不发送。本 skill 默认不发送。
+- 外发工具不接：不论是否配置、用户是否要求，AI 都不代发；发信一律由操作者亲手做。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
 - 下游跟进应继续遵守本文件暖化原则：`skills/lead-followup-sequence/SKILL.md`、`skills/lead-email-sequence-strategy/SKILL.md`（文件存在时）。暖化稿在发送序列中的优先级以 `lead-email-sequence-strategy` 为准（有暖化则暖化作默认 Day 0，冷稿作 A/B 或回退）；本文件不另排战役日历。从零写冷邮件走 `skills/lead-cold-email-gen/SKILL.md`，不走本文件。
 - 买家心理背景可读 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）；不存在则只用本文件四条机制，不编造理论名。

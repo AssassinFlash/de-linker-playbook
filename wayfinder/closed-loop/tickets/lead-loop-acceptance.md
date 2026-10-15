@@ -34,3 +34,7 @@ blocked_by: [lead-loop-orchestrator, mailbox-pullback, activation-list-intake, l
 - 「产出外展信」这一步要走审稿（`docs/feedback-rules.md` 第 10 节）：初稿过证据闸 → 给操作者看 → 按意见改到操作者说「可以了」（`operator_ok`）→ 操作者从 chester@ 手动发出。审稿至少一轮，记录留在交付物里。
 - 操作者在邮箱里发前又改过的，登记时把实际发出的版本同步回交付物，否则邮箱回流在「已发送」里对上的和交付物不是同一份字。
 - 有回复时，回信（M-01–M-03）同样先审稿再发。
+
+## 不代发（用户 2026-10-15 写入）
+
+- 验收时确认：这一轮对外文字全部由操作者亲手发出，AI 没有代发、代发布或在任何工具里建活动 / 排期；交付物的 `send_status` / `publish_status` 为 `copy_only`，发没发以执行登记为准。`python3 evals/validate_project.py` 会拦 skill 里的代发口子。

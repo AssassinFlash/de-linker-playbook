@@ -36,7 +36,7 @@ description: >
 
 4. **起草**。按「写法」写一篇完整可复制的英文帖，严格 Structure 3 六拍：Hook → Process → Differentiation → Visual → Benefits → CTA。无第 5 项则 Differentiation 拍只陈述该步在流程中的位置，不写「优于同行」。视觉拍必须有一句指向配图或视频的指示；无现成画面则改写拍摄要点，并在帖中用「this step」一类指向，不假装照片已附。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按 guidelines 只改语气与结构，不改工序事实。面客语种以产品上下文为准（缺省英语）；策略笔记用中文；同一段不中英混排。完成：六拍齐全；钩子对准该步工序；利益从该受众读得懂；恰好一个 CTA；文后 3–5 个标签。
 
-5. **质检并落盘**。按清单与 guidelines 出门清单自检后写入 `deliverables/lead/08-linkedin/behind-scenes-post.md`。仅当用户本轮要求发布 **且** 已配置发布工具时才发；否则 `publish_status: copy_only`。付费发布须先告知并获准。完成：主文件非空；含输入映射、英文帖、视觉说明、中文策略、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+5. **质检并落盘**。按清单与 guidelines 出门清单自检后写入 `deliverables/lead/08-linkedin/behind-scenes-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含输入映射、英文帖、视觉说明、中文策略、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -44,7 +44,7 @@ description: >
 - 无硬依赖，可独立执行。软依赖：USP、产品知识。产地、工厂所在地、目标市场以产品上下文为准，不预设某一出口国。
 - 本帖类型写 **内部发生了什么**（设备、工序、质检、原料到在制品）。出口法规、物流、认证知识走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。创始人或团队的人的故事走 `skills/lead-linkedin-personal-story/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止数字与竞品角度并写缺口，不编造。
-- 发布：用户自行发布，或经用户已配置的工具发布。未配置或未要求发布 → 只产帖稿。
+- 发布：AI 不代发布（不论是否配置工具、用户是否要求），只产帖稿；发帖一律由操作者亲手做。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，无 Excel。
 - 单帖 inline 做完。需要隔离时 dispatch a subagent, else do it inline。
 - 数字、证书、案例、缺陷率、抽检比例、设备型号：产品上下文、用户本轮或已抓取页里有才写。没有就写「未在上下文出现」或删掉该句。
@@ -78,7 +78,7 @@ description: >
 - process:
 - audience:
 - visual_status: described | missing
-- publish_status: copy_only | published_via_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - publish_tool: not_configured | configured
 - style: default | named_upgrade
 
@@ -132,7 +132,7 @@ description: >
 - `visual_status: described` 时帖内有指向画面的句子；`missing` 时有拍摄要点且 `publish_status` 必为 `copy_only`
 - 利益从该受众出发；含数字的句子有来源或已删除
 - 恰好一个 CTA；3–5 个标签；遵守 guidelines 出门清单
-- `publish_status` 与是否真正发出一致；未配置或未要求发布时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -153,7 +153,7 @@ description: >
 - 术语堆到非专家买家读不下去，或写成工厂宣传册。
 - 用无来源的缺陷率、抽检比例、互动率承诺当卖点。
 - 写成出口合规知识帖或创始人故事帖。
-- 未配置发布工具仍发布，或把成稿当成已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 终稿残留未解释的 `{{...}}`，或把 `[待补充]` 假装成已核实数字。
 
 ## 清单
@@ -163,6 +163,6 @@ description: >
 - [ ] 数字均有来源；无来源则未使用统计；搜索未空转
 - [ ] Structure 3 六拍按序；利益从买家读；恰好一个 CTA；3–5 个标签
 - [ ] 视觉已描述或已写拍摄要点；`missing` 时未标可发布
-- [ ] 文件在 `deliverables/lead/08-linkedin/behind-scenes-post.md`；未配置或未要求发布时未发布
+- [ ] 文件在 `deliverables/lead/08-linkedin/behind-scenes-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline

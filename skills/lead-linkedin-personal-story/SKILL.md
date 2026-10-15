@@ -112,7 +112,7 @@ CTA 之后 3–5 个标签，组合按共用规范；品类标签取产品上下
 - `story_confirmed_by_user: no` 时，英文帖顶有「未确认草稿」声明
 - 含数字的句子有来源，或未使用数字
 - 教学支架原文零出现
-- `publish_status: copy_only`，除非用户本轮要求发布且已配置发布工具
+- `publish_status: copy_only`；AI 不代发布，发帖由操作者亲手做
 
 ## 例子
 

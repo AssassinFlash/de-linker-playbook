@@ -338,7 +338,7 @@ lead-buyer-psychology ~> [lead-icp-analysis, lead-service-first-contact, lead-se
 - 必含：场景选择、买家视角、顶尖销售视角、推荐话术
 - 检查：共情 + 策略都在；洞察具体；话术像人说的；展会场景含肢体语言建议
 
-外展类（cold / warm / followup / sequence / magnet）与定向类：交付物非空、不是例子原文；未配置外发工具则只产文案不发送。具体字段以各方法 skill 为准。
+外展类（cold / warm / followup / sequence / magnet）与定向类：交付物非空、不是例子原文；只产文案，AI 不代发。具体字段以各方法 skill 为准。
 
 ## 中文名
 

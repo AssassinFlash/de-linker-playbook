@@ -29,7 +29,7 @@ description: >
 
 5. **按 Structure 9 起草**。帖子正文按「写法」六段一次写完，顺序不得调换。先共情后方案。面客语种以产品上下文为准（缺省英语）；策略笔记用本轮语言（缺省中文）；同一段不混用。标签 3–5 个，放在 CTA 之后，组合按已读的帖规范。用户点名四种风格之一时，按帖规范只改语气与结构，不改顾虑与方案事实。多 ICP 需隔离时 dispatch a subagent, else do it inline。完成：一篇可复制英文帖（除非用户指定其他面客语种）；六段都在；钩子落在规范要求的折叠前；证明点无则 Proof 段只写已核验流程，不补数字。
 
-6. **质检并落盘**。对照本文件清单与已读帖规范出门项自检后，写入 `deliverables/lead/08-linkedin/buyer-concern-post.md`。发布由用户自行发布，或经用户已配置的工具发布；未要求发布或未配置 → `publish_status: copy_only`，不发送。付费发布须先告知并获准。完成：主文件非空；含候选、入选理由、完整帖、结构标注、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。对照本文件清单与已读帖规范出门项自检后，写入 `deliverables/lead/08-linkedin/buyer-concern-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；含候选、入选理由、完整帖、结构标注、来源、搜索日志、缺口；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
@@ -75,7 +75,7 @@ Structure 9（顺序固定）：
 - target_market:
 - selected_concern:
 - concern_confirmed_by_user: yes / no
-- publish_status: copy_only | published_by_user_or_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 - style_upgrade: none | 微博客 | 故事叙事 | 滑梯式 | 直销节奏
 
 ## 候选顾虑
@@ -113,7 +113,7 @@ Hook / Acknowledgment / Validation / Solution / Proof / CTA / Hashtags
 - 方案能回溯上下文、USP、产品知识或用户本轮；含数字的句子有来源或已删除
 - 标签 3–5 个；结尾恰好一个 CTA
 - 对照帖规范出门项已过
-- `publish_status` 与是否真正发布一致；未要求或未配置时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -134,7 +134,7 @@ Hook / Acknowledgment / Validation / Solution / Proof / CTA / Hashtags
 - 承诺上下文里做不到的交期或赔偿。
 - 忽略目标市场的商务习惯选词。
 - 把帖规范全文抄进交付物，或把教学例子当正文。
-- 未要求发布仍去发帖，或把成稿当成已发布。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 终稿残留未解释的占位符。
 
 ## 清单

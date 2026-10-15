@@ -31,14 +31,14 @@ description: >
 
 5. **起草**。读 `references/structure-5.md` 与 `skills/lead-generation/references/linkedin-post-guidelines.md`。按 Structure 5 写一篇英文帖：Hook → Elaboration → Solution → Benefits → CTA。一帖只解选定的那一条痛。利益句把能力接到该痛的结果，不堆规格。CTA：用户本轮指定则用（须落在共用规范的四种之一）；否则用接到该痛的评论型问句。标签、篇幅、钩子位置、软广只按共用规范，不在本文件重写。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按共用规范只改语气与结构，不改核心信息。面客语种缺省英语；策略笔记用本轮语言（缺省中文）。多画像需隔离时 dispatch a subagent, else do it inline。完成：一篇可复制英文正文；五段齐全；含数字的句子能指回来源。
 
-6. **质检并落盘**。对照本文件清单与共用规范出门清单。写入 `deliverables/lead/08-linkedin/pain-solution-post.md`。发布由用户自行发布，或经用户已配置的工具发布；未要求发布或未配置 → `publish_status: copy_only`，不发布。完成：主文件非空；分类痛点、选定痛、特征-利益映射、英文正文、中文策略说明均在；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
+6. **质检并落盘**。对照本文件清单与共用规范出门清单。写入 `deliverables/lead/08-linkedin/pain-solution-post.md`。不代发布：`publish_status: copy_only`。过证据闸、审稿到 `operator_ok` 后由操作者亲手发，发完走执行登记（`skills/marketing-execution-log/SKILL.md`）。完成：主文件非空；分类痛点、选定痛、特征-利益映射、英文正文、中文策略说明均在；教学例子原文零出现。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本 skill 不代替审批、不代替发布。
 
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖是已批准 ICP；软依赖是 USP、产品知识、话题研究。闸门口径见 `skills/lead-generation/references/dependency-graph.md`。
 - 查证用网页搜索；需要原文时抓取指定 URL。搜索不可用则停止数字并写缺口，不编造。不并列搜索引擎菜单。
-- 本 skill 只产帖稿，不发布。用户已配置的发布工具仅在用户本轮要求发布时使用；付费项须先告知并获准。
+- 本 skill 只产帖稿，不发布，也不经任何工具代发布；发帖一律由操作者亲手做。
 - 数字、证书、案例、产能、交期、价格：产品上下文或已抓取页里有才写。没有就写「未在上下文出现」或删掉该句。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。
 - 分析与缺口用本轮语言（缺省中文）；帖子正文与标签缺省英语。同一段不中英混排。
@@ -66,7 +66,7 @@ description: >
 - icp:
 - selected_pain:
 - pain_category:
-- publish_status: copy_only | published_via_user_or_configured_tool
+- publish_status: copy_only（AI 不代发；发没发以执行登记为准）
 
 ## 买家画像确认
 
@@ -112,7 +112,7 @@ description: >
 - 英文正文含 Hook / Elaboration / Solution / Benefits / CTA 五段，顺序不变
 - 利益表每行 `traces_to_selected_pain` 非空
 - 含数字的句子有来源，或该句已删
-- `publish_status` 与是否真正发布一致；未配置或未要求发布时必为 `copy_only`
+- `publish_status` 必为 `copy_only`
 - 教学支架原文零出现
 
 ## 例子
@@ -129,7 +129,7 @@ description: >
 - 编造停机成本、返工率、ROI 或客户引言。
 - 方案段堆型号，利益句接不回选定痛。
 - 把教学例子或共用规范原文写入交付物。
-- 未配置发布工具仍发布，或把成稿当成已发出。
+- AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
 - 预测点赞或互动率。
 - 终稿残留未解释的 `{{...}}`。
 
@@ -140,6 +140,6 @@ description: >
 - [ ] 痛点为买家视角；五类只填有证据的；点名或不能问时选定恰好一条（不能问则标「痛点未经用户确认」）；能问且未点名则只问选哪条、未写帖
 - [ ] 数字均有来源；无来源则未使用统计
 - [ ] 英文正文为 Structure 5；利益能回溯该痛；共用规范出门清单已核
-- [ ] 文件在 `deliverables/lead/08-linkedin/pain-solution-post.md`；未配置或未要求发布时未发布
+- [ ] 文件在 `deliverables/lead/08-linkedin/pain-solution-post.md`；未代发布
 - [ ] 教学例子原文未进入交付物
 - [ ] 工具只写能力；需要隔离时为 dispatch a subagent, else do it inline
