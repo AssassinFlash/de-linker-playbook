@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: claude-opus-5-5 会话 e637a317 2026-10-16
 step: 5
 blocked_by: [consent-ga4-research, gsc-site-access]
 ---
