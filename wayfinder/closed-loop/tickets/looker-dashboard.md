@@ -1,6 +1,6 @@
 ---
 wayfinder: task
-status: open
+status: closed
 assignee: Codex 会话 2026-10-19（本会话）
 step: 1
 blocked_by: []
@@ -18,11 +18,11 @@ blocked_by: []
 ## 2026-10-19 用户改裁定：agent 直接完成正式看板
 
 - 用户明确表示没有时间亲手搭建，要求 agent 把看板做到完美；因此操作者不再需要另搭一份对照报表。指南保留为维护 / 复建说明，不再作为本票的人工施工步骤。
-- agent 已用 `所有者账号`（srchesterjohn@gmail.com）创建正式报表 `De-linker 运营看板`，并完成两页结构、真实数据源、筛选 / 拆分版面与刷新后读回验证。
+- agent 已用 `所有者账号`创建正式报表 `De-linker 运营看板`，并完成两页结构、真实数据源、筛选 / 拆分版面与刷新后读回验证。
 - 页 1「今日总览」：L0=71、L1=28、L2=0、L3=0、形式发票询盘=0；动作进度最新 20 条；最近 5 条执行登记。
 - 页 2「趋势与页面」：Search Console URL Impression 近 28 天趋势（Impressions / Url Clicks）；Country 与 Date 控件；Device Category 交互拆分表；Landing Page 表；Query 表；Search type 固定为 web；L3 / 邮件 / GA4 留位与同意提示。
 - 正式报表链接与截图见私有 vault `marketing/00-system/looker-dashboard.md`。
-- 剩余动作：经用户确认后把 `日常账号`（857558227@qq.com）加为 Editor，再关票。
+- 共享由本票 Resolution 记录；公开仓库只保留角色名，真实账号与链接见私有 vault。
 
 ## 2026-10-19 agent 参照稿完成（未替代操作者验收）
 
@@ -67,3 +67,12 @@ blocked_by: []
 ## 交接
 
 - 看板结构与「补版面」的方法，写进「询盘回流 L3」「邮箱 IMAP 回流」「GA4 进看板」三票正文。
+
+## Resolution（2026-10-19）
+
+- 用户改裁定“没有时间亲手搭，要求 agent 做到完美”；agent 直接完成正式报表，不再要求操作者另搭对照稿。
+- 正式报表 `De-linker 运营看板` 已由 `所有者账号` 创建，含「今日总览」「趋势与页面」两页；链接和最终截图在私有 vault `marketing/00-system/looker-dashboard.md`。
+- 页 1 读回：L0=71、L1=28、L2=0、L3=0、形式发票询盘=0；动作进度表显示 1–20 / 71；最近执行登记表显示 1–5 / 71。
+- 页 2 读回：Search Console URL Impression / web / 近 28 天；Country 与 Date 控件、Device Category 拆分表、Landing Page 表、Query 表、趋势图和 L3 / 邮件 / GA4 留位均在。Query 当前 No data，性能补验仍归「看板表现面板补验」。
+- 权限读回：`所有者账号` 为 Owner；`日常账号` 为 Editor。又用 `日常账号` 打开报表并读回两页编辑界面，确认共享生效。报表链接保持 Restricted。
+- 刷新报表后重新加载，两页结构、数据源和组件均持久化；公开指南保留为维护 / 复建说明。

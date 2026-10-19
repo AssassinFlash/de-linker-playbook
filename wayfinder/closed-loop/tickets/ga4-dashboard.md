@@ -19,6 +19,13 @@ blocked_by: [ga4-consent-site-access, looker-dashboard]
 
 - 站点按 Consent Mode **Basic** 接入：拒绝的访客在 GA4 里**完全没有事件**，也达不到 GA4 行为建模资格（需 Advanced + 每日 1,000 事件 / 用户门槛）。看板与指南要写明「GA4 只含同意了的访客、无建模补齐」，不要拿它和 GSC 点击数对账。
 
+
+## 看板交接（「Looker Studio 看板」关票时写入，2026-10-19）
+
+- 正式报表链接在私有 vault `marketing/00-system/looker-dashboard.md`；页 2 已有 GA4 文本留位和“仅统计同意分析的访客；不能与 GSC 点击直接对账”提示。
+- 本票直接在正式报表页 2 扩 GA4 版面：用 Looker Studio GA4 原生连接器接 de-linker 媒体资源，替换 / 扩展 GA4 留位，展示访问、来源、着陆页和询盘相关事件（真实触发并核验后）。不新建对照报表。
+- 若决定同时写底表，仍先改 schema / 脚本并过 `check`，不让 GA4 原生连接器替代底表正典。
+
 ## 完成标准
 
 - 操作者能在看板上说出近 7 天访问量与主要来源，并知道为什么它比真实访问少。

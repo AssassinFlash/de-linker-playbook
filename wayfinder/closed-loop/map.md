@@ -73,6 +73,8 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [激活名单入口](tickets/activation-list-intake.md)：名单原样进 vault，转成 CSV（7904 家 / 7966 位联系人），列定义 `schemas/activation-list.schema.json`，脚本 `scripts/activation_list.py`；`lead-company-research` 加名单模式（一家一份、写 `list_verdict`），联系人以名单为准，依赖图加两个 `/list` 节点，只加入口不改方法；第一家已过闸，台账「已调研 1 / 共 7904」。
 
 - [GA4 与同意横幅站点接入](tickets/ga4-consent-site-access.md)：CookieYes 英德版本、本地与生产同步，Basic GA4 接入；首次/拒绝/撤回无追踪、独立用途与实时报告均实测通过；资源私有指针与限制已交给「GA4 进看板」，执行登记 E-20261019-01 至 E-20261019-04。
+- [Looker Studio 看板](tickets/looker-dashboard.md)：正式报表由 `所有者账号` 创建、`日常账号` 编辑；两页覆盖 L0–L3、动作进度、最近执行登记、Search Console 趋势 / 国家 / 日期 / 设备 / 页面 / 查询，L3 / 邮件 / GA4 留位；权限与双账号打开均读回，性能数值补验另归补验票。
+
 
 ## Not yet specified
 
