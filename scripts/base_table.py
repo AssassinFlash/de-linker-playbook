@@ -615,8 +615,34 @@ def read_table(svc, sid: str, schema: dict, sheet: str) -> list[dict]:
     return out
 
 
+_grid_rows: dict[tuple[str, str], int] = {}  # (sid, sheet) -> rowCount seen this process
+
+
+def ensure_grid(svc, sid: str, sheet: str, max_row: int) -> None:
+    """Grow the tab's row grid before a write would pass its end (build leaves tabs at the default 1000 rows)."""
+    if max_row <= _grid_rows.get((sid, sheet), 0):
+        return
+    fields = "sheets(properties(sheetId,title,gridProperties(rowCount)))"
+    props = next((s["properties"] for s in svc.spreadsheets().get(spreadsheetId=sid, fields=fields)
+                  .execute(num_retries=RETRIES).get("sheets", []) if s["properties"]["title"] == sheet), None)
+    if props is None:
+        raise SystemExit(f"底表里没有「{sheet}」页")
+    rows_now = props["gridProperties"]["rowCount"]
+    if max_row <= rows_now:
+        _grid_rows[(sid, sheet)] = rows_now
+        return
+    rows_new = max(rows_now * 2, max_row + 1000)
+    req = {"updateSheetProperties": {"properties": {"sheetId": props["sheetId"],
+                                                    "gridProperties": {"rowCount": rows_new}},
+                                     "fields": "gridProperties.rowCount"}}
+    svc.spreadsheets().batchUpdate(spreadsheetId=sid, body={"requests": [req]}).execute(num_retries=RETRIES)
+    _grid_rows[(sid, sheet)] = rows_new
+
+
 def write_rows(svc, sid: str, sheet: str, data: list[tuple[int, list]]) -> None:
     """Write whole rows at fixed row numbers (never values.append: it guesses where the table is)."""
+    if data:
+        ensure_grid(svc, sid, sheet, max(n for n, _ in data))
     for i in range(0, len(data), 2000):
         body = {"valueInputOption": "RAW",
                 "data": [{"range": a1(sheet, f"A{n}"), "values": [vals]} for n, vals in data[i:i + 2000]]}
