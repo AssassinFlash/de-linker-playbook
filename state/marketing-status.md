@@ -8,7 +8,7 @@ output_dir: deliverables/marketing/
 product_context: docs/fact-sources.md
 feedback_read_at: 2026-10-15 12:06
 current_action: phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作）
-current_action_log:
+current_action_log: E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04
 ---
 
 # 营销台账
@@ -30,7 +30,7 @@ current_action_log:
 | product_context | `docs/fact-sources.md` |
 | feedback_read_at | 2026-10-15 12:06 |
 | current_action | phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作） |
-| current_action_log | （无） |
+| current_action_log | E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04 |
 
 ## 阶段
 
@@ -70,7 +70,7 @@ current_action_log:
 
 ## 已完成
 
-- （无）
+- 2026-10-19：closed-loop「GA4 与同意横幅站点接入」完成；执行登记 E-20261019-01 至 E-20261019-04，见该票 Resolution；冷启动阶段仍为 phase 0。
 
 ## 回写
 

@@ -72,6 +72,8 @@ grep -l "^status: open" wayfinder/closed-loop/tickets/*.md | xargs grep -H -E "^
 - [操作者审稿](tickets/operator-review.md)：文案不一步到位——对外文字过证据闸后给操作者看、按意见反复改，操作者说「可以了」记 `operator_ok`，`approved` + `operator_ok` 才能发；每轮记审稿记录，同类意见进写作偏好，发前自改同步回交付物；正典规则第 10 节，两条编排、协议、依赖图、执行登记、脚本说法、evals 同步改。
 - [激活名单入口](tickets/activation-list-intake.md)：名单原样进 vault，转成 CSV（7904 家 / 7966 位联系人），列定义 `schemas/activation-list.schema.json`，脚本 `scripts/activation_list.py`；`lead-company-research` 加名单模式（一家一份、写 `list_verdict`），联系人以名单为准，依赖图加两个 `/list` 节点，只加入口不改方法；第一家已过闸，台账「已调研 1 / 共 7904」。
 
+- [GA4 与同意横幅站点接入](tickets/ga4-consent-site-access.md)：CookieYes 英德版本、本地与生产同步，Basic GA4 接入；首次/拒绝/撤回无追踪、独立用途与实时报告均实测通过；资源私有指针与限制已交给「GA4 进看板」，执行登记 E-20261019-01 至 E-20261019-04。
+
 ## Not yet specified
 
 - **非 Google 渠道的 L1/L2**：操作者可在任意渠道发布（LinkedIn、行业论坛、目录站……）。执行登记能记 L0；这些渠道的到达与互动怎么回流（口述 + 截图？平台导出？）要等底表与反馈规则定形后才看得清。

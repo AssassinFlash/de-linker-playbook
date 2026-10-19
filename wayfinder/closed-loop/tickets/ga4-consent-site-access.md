@@ -1,7 +1,7 @@
 ---
 wayfinder: task
-status: open
-assignee: claude-opus-5-5 会话 e637a317 2026-10-16
+status: closed
+assignee: Codex 会话 01a152c8-81b1-7bf1-8521-f55ce229ff7f 2026-10-19
 step: 5
 blocked_by: [consent-ga4-research, gsc-site-access]
 ---
@@ -12,7 +12,7 @@ blocked_by: [consent-ga4-research, gsc-site-access]
 
 （agent 在新站仓库执行；操作者建 GA4 资源并验收）按「同意横幅与 GA4 选型调研」的推荐，在线上站点装好同意横幅与 GA4。
 
-- 操作者清单：`所有者账号` 建 GA4 账号 + 媒体资源 + 网站数据流（时区 Europe/Berlin、币种按站点），取衡量 ID 交 agent；`日常账号` 加账号层管理员；服务账号加查看者（供后续读数）。
+- 操作者清单：`所有者账号` 建 GA4 账号 + 媒体资源 + 网站数据流（时区 Europe/Berlin、币种按站点），取衡量 ID 交 agent；`日常账号` 加账号层管理员；服务账号加媒体资源管理员（用户 2026-10-19 当场裁定，供后续任务）。
 - 新站仓库按其 `AGENTS.md` 规矩：开票、规格、PR、CI、验收三件套（含 1440 / 390 × EN / DE 视觉验收）；横幅文案 EN 先行、DE 独立撰写，走对抗评审；横幅作为裁定过的变更进变更台账，其余像素零差异。
 - 验收：拒绝前无 GA4 请求、无 `sbjs_*` Cookie（浏览器网络面板 / Tag Assistant 证据）；接受后 GA4 实时报告可见自己的访问；撤回可用。
 
@@ -39,3 +39,22 @@ blocked_by: [consent-ga4-research, gsc-site-access]
 ## 审稿交接（「操作者审稿」关票时写入，2026-10-15）
 
 - 同意横幅的 EN / DE 文案是对外文字：新站仓库的对抗评审照走，另外上线前要按本仓库 `docs/feedback-rules.md` 第 10 节给操作者审稿，按意见改到操作者说「可以了」再进 PR。两道互不替代：对抗评审查合规与表述，审稿是操作者看行不行、想不想改。
+
+## 2026-10-19 重新认领
+
+用户要求从头做，取代旧施工会话；新站原撤案票已重开，当前分支与证据链接在本轮完成时回填。
+
+- Google 账号角色沿用地图：所有者账号持有，日常账号共同管理。
+- **权限裁定**：用户原话“都是管理员权限，我不想因为权限分太细导致后续任务无法执行”。按本次待执行授权的原范围落实：日常账号为账号层管理员，服务账号由媒体资源查看者改为媒体资源管理员。
+- 所有者已亲自接受德国条款，专属 GA4 账号、媒体资源、网站数据流已创建并浏览器读回；ID 只进私有 vault `marketing/00-system/ga4-owner-checklist.md`。站点标签尚未连接。
+
+## Resolution · 2026-10-19
+
+- 已完成。用户改定 **CookieYes**，并明确要求本地与线上同步；英德文案与外观经过对抗评审和操作者多轮实看，最终批准“可以了，英德两版一起上线”。原调研中的 Complianz 组合由本轮实现取代，不再执行其 Script Center 步骤。
+- 新站实现 [GA4 与 CookieYes 接入](https://github.com/AssassinFlash/de-linker/pull/358)，两个 CI 检查通过后合并为 `21020e094ac5011d63363e91691aa6eb68b174d0`。Spec、Standards 独立复核完成；原生 CookieYes 3.5.7 + WP Consent API 2.1.0 + Site Kit 1.189.0，无付费服务、无 Code Snippets。
+- 生产部署 `20261019T082705433994Z-21020e09` 已完成原生 `resume-deploy` 验证与归档；维护已关闭。Search Console 插件、原资源与所有者用户 1 保留，虚拟验证文件 HTTP 200。首页、产品、询盘、账号英德路线及既有重定向回归通过。
+- 先发布 CookieYes 与解析前阻断，再在所有者账号下完成 Site Kit 连接。用户已当场确认其额外请求的两项权限。GA4 专属账号、媒体资源、网站数据流和共同管理员均已读回，真实值只在私有 vault 清单。保留期 14 个月，Google Signals、用户提供数据和广告个性化关闭。
+- **真实生产验收 7 组通过**：EN/DE × 1440/390 首次与拒绝后没有 Google 追踪请求、`_ga`、`sbjs_*`；分析、来源、双用途可分别生效；撤回后清 Cookie，下一德语页没有后续 Google 追踪请求。测量传输未拦截、未绕过 CSP。三个 Ads 同意信号在默认及全部更新后均保持 denied。GA4 实时报告已实际看到 1 位活跃用户及首页 `page_view`、`session_start` 等事件。
+- 本地实例 `c201_20261019`（9156）同步相同代码、双语配置、隐私政策、永久页脚撤回入口与 WindPress 原生缓存；隔离环境不向生产 GA4 写夹具。本地 9 项真实插件浏览器测试、全仓 `just test`、静态检查均通过。1440/390 × EN/DE Computer Use 验收及本地变更前后非授权区域零像素差异记录在新站 `docs/acceptance/2026-10-19/201-consent/`。生产截图也已保存；生产与本地 3/4 全页完全相同，英语手机页仅既有语言胶囊区域有像素差异，细节如实记入私有验收，不声称线上四页全部零差异。
+- 最终线上证据与账号交接：私有 vault `marketing/00-system/ga4-owner-checklist.md` 末节；`marketing/00-system/evidence/2026-10-19-ga4/` 的 `site-kit-connected.png`、`realtime-accepted-visit.png`、`live/network-cookies.json`、`live-visual/`。PR 内验收 README 是合并前截面，本 Resolution 与私有清单补齐生产完成状态。
+- 执行登记四行已查证：`E-20261019-01`、`E-20261019-02`（全站首页 EN/DE），`E-20261019-03`、`E-20261019-04`（隐私政策 EN/DE）。后续「GA4 进看板」已直接写入 Basic 模式、用途及资源指针交接；未在本会话提前执行后续票。
