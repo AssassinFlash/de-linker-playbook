@@ -15,6 +15,15 @@ blocked_by: []
 - 参照稿使用当前浏览器中已登录的 Google 身份创建；若身份不是 `所有者账号`，只作为可删除 / 可迁移的练习稿，不承担正式所有权要求。
 - 操作者的正式报表仍必须由 `所有者账号` 创建并共享给 `日常账号` 编辑。
 
+## 2026-10-19 用户改裁定：agent 直接完成正式看板
+
+- 用户明确表示没有时间亲手搭建，要求 agent 把看板做到完美；因此操作者不再需要另搭一份对照报表。指南保留为维护 / 复建说明，不再作为本票的人工施工步骤。
+- agent 已用 `所有者账号`（srchesterjohn@gmail.com）创建正式报表 `De-linker 运营看板`，并完成两页结构、真实数据源、筛选 / 拆分版面与刷新后读回验证。
+- 页 1「今日总览」：L0=71、L1=28、L2=0、L3=0、形式发票询盘=0；动作进度最新 20 条；最近 5 条执行登记。
+- 页 2「趋势与页面」：Search Console URL Impression 近 28 天趋势（Impressions / Url Clicks）；Country 与 Date 控件；Device Category 交互拆分表；Landing Page 表；Query 表；Search type 固定为 web；L3 / 邮件 / GA4 留位与同意提示。
+- 正式报表链接与截图见私有 vault `marketing/00-system/looker-dashboard.md`。
+- 剩余动作：经用户确认后把 `日常账号`（857558227@qq.com）加为 Editor，再关票。
+
 ## 2026-10-19 agent 参照稿完成（未替代操作者验收）
 
 - 参照稿已由 agent 用当前 Chrome 登录身份创建并保存；链接、身份、截图见私有 vault `marketing/00-system/looker-dashboard.md`。它不是 `所有者账号` 正式资产，未共享，不能替代操作者亲手搭建与口头验收。
