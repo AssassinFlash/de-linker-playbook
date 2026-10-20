@@ -7,7 +7,7 @@
 # ]
 # ///
 """
-每日提醒：GSC 回流写完后，按 docs/feedback-rules.md 算出当天的「下一步」，同时送到 Mac「提醒事项」
+每日提醒：GSC 与询盘回流写完后，按 docs/feedback-rules.md 算出当天的「下一步」，同时送到 Mac「提醒事项」
 （列表「de-linker 下一步」）和操作者的邮箱。规格见 docs/feedback-rules.md 第 12 节，用法见
 docs/daily-reminder.md。
 
@@ -95,7 +95,7 @@ def compose(now: str, pull_exit: int | None, test: bool) -> tuple[str, str, bool
         computed = False
     if pull_failed(pull_exit):
         title = f"今天取数没成功｜{title}"
-        body = ("今天早上从 Google 取数没成功，下面是按上次取到的数据算的。原因 AI 下次对话时会查，你不用管。\n\n"
+        body = ("今天早上 GSC 或询盘取数没成功，下面是按上次取到的数据算的。原因 AI 下次对话时会查，你不用管。\n\n"
                 + body)
     if test:
         title = f"【测试】{title}"
@@ -158,7 +158,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="command", required=True)
     p = sub.add_parser("run")
-    p.add_argument("--pull-exit", type=int, help="今天 GSC 回流的退出码；非 0 时标题写「今天取数出错」")
+    p.add_argument("--pull-exit", type=int, help="今天回流任务的聚合退出码；非 0 时标题写「今天取数出错」")
     p.add_argument("--now", help="北京时间「年-月-日 时:分」，默认现在")
     p.add_argument("--test", action="store_true")
     p.add_argument("--dry-run", action="store_true")

@@ -38,7 +38,7 @@
 
 ## 隐私
 
-公司名可以进表。人名、邮箱地址、电话、地址、邮件正文、询盘备注和 IP 都不进表，读取时在内存里丢弃。询盘只保留「询盘数据从哪读」那张票定下的最小集合。回信只记 Message-ID、公司、日期和分类，不放正文。
+公司名可以进表。人名、邮箱地址、电话、地址、邮件正文、询盘备注、IP 和浏览器标识都不进表，读取时在内存里丢弃。询盘只保留「询盘数据从哪读」那张票定下的最小集合，丢弃细则见「询盘回流」。回信只记 Message-ID、公司、日期和分类，不放正文。
 
 ## 脚本
 
@@ -64,6 +64,8 @@ sample_spreadsheet_id = "..."  # 底表（样例）
 
 「下一步」脚本 [`scripts/next_step.py`](../scripts/next_step.py) 也复用这层读表，规则与用法见 [`docs/feedback-rules.md`](feedback-rules.md)。
 
+询盘回流不用这把服务账号读网站。Woo 只读密钥的文件和 `config.toml` 指针见「询盘回流」，密钥本身不写进本页。
+
 回流脚本复用 `base_table.py` 的读写层：`google_service`、`read_table`、`upsert_rows`（按不重复键新增或覆盖；内容没变的行不碰）、`replace_rows`、`refresh_progress`（按网址重挂登记编号，再重算动作进度）。写行一律写到固定行号，不用 `values.append`。所有接口调用都设了超时，遇到 429、5xx 或网络超时会自动重试。
 
 ## GSC 回流
@@ -73,7 +75,7 @@ sample_spreadsheet_id = "..."  # 底表（样例）
 ```sh
 uv run scripts/gsc_pull.py run                # 跑一次
 uv run scripts/gsc_pull.py run --dry-run      # 只取数、打印条数，不写表
-uv run scripts/gsc_pull.py schedule install   # 装每日定时（这台 Mac 的 launchd，每天 08:30；回流跑完接着发每日提醒，见 docs/daily-reminder.md）
+uv run scripts/gsc_pull.py schedule install   # 装/更新每日定时（这台 Mac 的 launchd，每天 08:30）。同一条任务先跑本脚本，再跑询盘回流，然后发每日提醒；必须先按「询盘回流」配好 Woo 只读密钥再重装
 uv run scripts/gsc_pull.py schedule status    # 看装没装、上次退出码、日志最后几行
 uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
 ```
@@ -88,6 +90,50 @@ uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
 - **容量**：一本 Google 表格最多 1000 万个格子。网页收录每天大约 300 行 × 18 列，一年约 200 万格，是最大的一张。总量接近上限时，要把旧数据移到存档表里（见地图「Not yet specified」）。
 
 `build` 每次都整页重写首页和各「说明」页。数据表只重写表头、格式、下拉、冻结行和列宽。若某张数据表已经有数据，而表头又与 schema 不同，`build --target main` 会停下来报错，不会覆盖；这种情况需要手动迁移。所有数据单元格都设为纯文本（数字列除外），日期和编号不会被表格自作主张改格式。
+
+## 询盘回流
+
+[`scripts/inquiry_pull.py`](../scripts/inquiry_pull.py) 把网站上的形式发票申请写进「询盘」表，写完后重算一次动作进度。它和 GSC 回流共用上面那条每日定时：08:30 先跑 GSC，再跑本脚本，然后发每日提醒。手动跑：
+
+```sh
+uv run scripts/inquiry_pull.py run                              # 对账并写表
+uv run scripts/inquiry_pull.py run --dry-run                    # 只取数、打印条数，不写表
+uv run scripts/inquiry_pull.py run --audit-order-attribution    # 只核对订单来源字段在不在，不写表
+uv run scripts/inquiry_pull.py run --dry-run --audit-order-attribution
+```
+
+两个可选开关可以单独用，也可以一起用。`--audit-order-attribution` 只看询盘订单上有没有订单来源（来源类型、UTM、设备、会话页数；字段名以当次响应为准），把有没有打印出来。这些字段不进底表，浏览器标识一类也不记。要不要加列，不在这次回流里定。
+
+### 操作者清单：建一把 Woo 只读密钥
+
+密钥由操作者在站点后台建，放在两个仓库之外。本页不写后台地址、账号或密钥内容。
+
+1. 登录站点后台。
+2. 打开 **WooCommerce → Settings → Advanced → REST API**。
+3. 添加一把密钥。用户绑到 `shop_manager`，或另一个具有 `read_private_shop_orders` 能力的后台用户。
+4. 权限只选 **Read**。不要选 Write 或 Read/Write。这把密钥不能改订单。
+5. 生成后页面只显示一次。用文本编辑把 Consumer Key、Consumer Secret 各存成一行，分别覆盖写入下面两个文件。不要贴进仓库、对话、日志或截图。
+6. 脚本用 HTTPS Basic 认证，密钥只进 Authorization 头；不要把 Consumer Key / Secret 放进 URL 或查询参数。
+7. 把两个文件的权限设为 600：
+
+```sh
+chmod 600 ~/.config/de-linker-playbook/woo-consumer-key ~/.config/de-linker-playbook/woo-consumer-secret
+```
+
+把下面这段**追加**到现有的 `~/.config/de-linker-playbook/config.toml`，保留原有的 `[base_table]`、`[reminder]` 等段落；本文件只放指针，不放密钥本身：
+
+```toml
+[woocommerce]
+consumer_key_file = "~/.config/de-linker-playbook/woo-consumer-key"
+consumer_secret_file = "~/.config/de-linker-playbook/woo-consumer-secret"
+```
+
+### 写进表的规则
+
+- **全量状态对账**：每次按四个计入状态把线上询盘和表对一遍，不是只追加新单。四个状态是 `inquiry-received`（询盘已收到）、`proforma-issued`（形式发票已开）、`completed`（已完成）、`cancelled`（已取消）。新单追加一行；单号、公司、创建时刻、状态、签发时刻任一脚本字段变了，都按「询盘内部编号」改原行，不另起一行。重跑不重复。还没发出去的 `pending`（后台显示 Not sent），以及其他状态，不进表；已经进表后又离开四个状态的行要删除，让表和线上口径一致。
+- **AI 列保留**：回流先从旧行合并「归因登记编号」「归因依据」「备注」，再整行更新脚本列（询盘内部编号、单号、公司、创建时刻、状态、形式发票签发时刻、写入时刻）。这三列若已有内容，原样留下，不覆盖、不清空。没有证据不要填归因。
+- **隐私丢弃**：读到的响应只留内部编号、单号、账单公司名、创建时刻、状态、签发时刻。姓名、邮箱、电话、地址、IP、浏览器标识、询盘备注在内存里丢掉，不进表、不进日志、不落盘。
+- **L3 只含形式发票申请**：联系表单和直接发到邮箱的询盘现在读不到，表里没有它们。看板和每日提醒里的询盘数因此偏低。未归因的询盘仍计入北极星，但不计入任何一次动作的成效。
 
 ## 翻译对照
 

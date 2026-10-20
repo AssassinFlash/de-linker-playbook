@@ -12,7 +12,7 @@ GSC 数据回流：把 Google Search Console 的收录检查和搜索数据写�
   uv run scripts/gsc_pull.py run                 跑一次：网页收录、网页表现、搜索词，再重算动作进度
   uv run scripts/gsc_pull.py run --dry-run       只取数、打印条数，不写表
   uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 08:30 北京时间）；
-                                                 回流跑完接着跑每日提醒（scripts/daily_reminder.py）
+                                                 同一条任务先跑本脚本，再跑询盘回流，然后发每日提醒
   uv run scripts/gsc_pull.py schedule status     看定时装没装、上次退出码、日志最后几行
   uv run scripts/gsc_pull.py schedule remove     卸掉定时
 
@@ -236,12 +236,17 @@ def plist_text() -> str:
         or "/opt/homebrew/bin/uv"
     script = Path(__file__).resolve()
     reminder = script.with_name("daily_reminder.py")
+    inquiry = script.with_name("inquiry_pull.py")
     env_path = f"{Path(uv).parent}:/usr/local/bin:/usr/bin:/bin"
-    # pull first; the daily reminder runs after it whether or not the pull succeeded, then the job
-    # exits non-zero if either failed (schedule status shows it)
-    chain = (f"'{uv}' run --quiet '{script}' run; p=$?; "
-             f"'{uv}' run --quiet '{reminder}' run --pull-exit $p; r=$?; "
-             f"[ $p -eq 0 ] && [ $r -eq 0 ]")
+    # GSC, then inquiry, then the daily reminder. The reminder runs even if a pull
+    # failed; --pull-exit is 1 when either pull failed. Exit non-zero if any failed.
+    # Label and 08:30 are unchanged.
+    chain = (
+        f"'{uv}' run --quiet '{script}' run; g=$?; "
+        f"'{uv}' run --quiet '{inquiry}' run; i=$?; "
+        f"'{uv}' run --quiet '{reminder}' run --pull-exit $(( (g != 0 || i != 0) ? 1 : 0 )); r=$?; "
+        f"[ $g -eq 0 ] && [ $i -eq 0 ] && [ $r -eq 0 ]"
+    )
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
