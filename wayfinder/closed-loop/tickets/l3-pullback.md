@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: Codex 会话 2026-10-20（本会话）
 step: 2
 blocked_by: [l3-inquiry-source, base-table-build, looker-dashboard]
 ---
