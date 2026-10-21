@@ -31,6 +31,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -812,7 +813,12 @@ def render_plain(result: dict) -> str:
                 out.append(f"- 另外还有 {len(rest) - QUEUE} 件")
     else:
         out += ["下一步：今天没有要你做的事", "", "网站和邮件都在正常等反馈。"]
-    st = result["site"]
+    out += ["", _site_line(result["site"])]
+    return "\n".join(out)
+
+
+def _site_line(st: dict) -> str:
+    """网站现状一句话，纯文本与 HTML 共用，保持两边一致。"""
     line = f"网站现在：{st['pages']} 个页面里，Google 已收录 {st['indexed']} 个"
     line += "，其余的大多在等 Google 来看，正常。" if st["pages"] > st["indexed"] else "。"
     if st["has_perf"]:
@@ -821,8 +827,81 @@ def render_plain(result: dict) -> str:
         line += "有多少人搜到、点进来，要再等两三天才有数。"
     if st["inquiries"]:
         line += f"询盘一共 {st['inquiries']} 条。"
-    out += ["", line]
-    return "\n".join(out)
+    return line
+
+
+def render_html(result: dict, *, notice: str = "", mark: str = "") -> str:
+    """和 render_plain 同一份内容，排成自包含 HTML：全部内联样式（QQ 邮箱网页版与 Apple Mail 都保留内联）。
+    邮件里纯文本仍是 multipart/alternative 的第一部分，Apple 提醒事项也照常收纯文本。"""
+    e = html.escape
+    acts = [dict(a, plain=plain_action(a)) for a in result["actions"]]
+    card = ("background:#ffffff;border:1px solid #e8e8ed;border-radius:14px;"
+            "padding:18px 22px;margin-bottom:12px")
+    out = ['<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0">',
+           "<div style=\"background:#f5f5f7;padding:24px 12px;"
+           "font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',Arial,sans-serif\">",
+           '<div style="max-width:600px;margin:0 auto">',
+           '<div style="text-align:center;padding:2px 0 16px;font-size:14px">'
+           '<span style="color:#7c3aed;font-weight:600">Linker</span>'
+           '<span style="color:#8e8e93"> · de-linker 下一步</span></div>']
+    if notice:
+        out.append("<div style=\"background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;"
+                   "padding:10px 16px;font-size:13px;color:#9a3412;line-height:1.6;margin-bottom:12px\">"
+                   + e(notice) + "</div>")
+    if acts:
+        p0 = acts[0]["plain"]
+        out.append(f'<div style="{card};border-left:3px solid #7c3aed">')
+        out.append('<div style="font-size:12px;color:#8e8e93;margin-bottom:6px">下一步</div>')
+        out.append(f'<div style="font-size:19px;font-weight:600;color:#1d1d1f;line-height:1.4">{e(p0["title"])}</div>')
+        out.append(f'<div style="margin-top:10px;font-size:14px;color:#3a3a3c;line-height:1.7">{e(p0["why"])}</div>')
+        if p0.get("steps"):
+            out.append("<div style=\"margin-top:12px;font-size:13px;font-weight:600;color:#6e6e73\">"
+                       + ("怎么做：" if p0["you"] else "AI 会这样做：") + "</div>")
+            out.append('<ol style="margin:6px 0 0;padding-left:22px">')
+            for x in p0["steps"]:
+                out.append(f'<li style="font-size:14px;color:#1d1d1f;line-height:1.7;margin:2px 0">{e(x)}</li>')
+            out.append("</ol>")
+        if p0.get("urls"):
+            out.append('<div style="margin-top:12px;font-size:13px;font-weight:600;color:#6e6e73">网址：</div>')
+            for u in p0["urls"][:SHOW]:
+                out.append('<div style="font-size:13px;line-height:1.7;word-break:break-all">'
+                           f'<a href="{e(u)}" style="color:#7c3aed;text-decoration:none">{e(u)}</a></div>')
+            if len(p0["urls"]) > SHOW:
+                out.append('<div style="font-size:12px;color:#8e8e93;margin-top:4px">'
+                           f"……还有 {len(p0['urls']) - SHOW} 个，跟 AI 要完整名单</div>")
+        if p0.get("after"):
+            out.append(f'<div style="margin-top:12px;font-size:13px;color:#6e6e73">{e(p0["after"])}</div>')
+        if not p0["you"]:
+            out.append('<div style="margin-top:12px;font-size:13px;color:#8e8e93">'
+                       f'这件不用你做。想让 AI 现在就做，{e(SAY_NEXT)}。</div>')
+        out.append("</div>")
+        rest = acts[1:]
+        if rest:
+            out.append(f'<div style="{card}">')
+            out.append('<div style="font-size:13px;font-weight:600;color:#6e6e73;margin-bottom:8px">之后还有</div>')
+            out.append('<ul style="margin:0;padding-left:20px">')
+            for b in rest[:QUEUE]:
+                pill = ("" if b["plain"]["you"]
+                        else '<span style="background:#f2f2f7;border-radius:8px;padding:1px 8px;'
+                             'font-size:12px;color:#8e8e93;margin-left:6px">不用你做</span>')
+                out.append('<li style="font-size:14px;color:#1d1d1f;line-height:1.7;margin:3px 0">'
+                           f'{e(b["plain"]["title"])}{pill}</li>')
+            if len(rest) > QUEUE:
+                out.append('<li style="font-size:13px;color:#8e8e93;margin:3px 0">'
+                           f"另外还有 {len(rest) - QUEUE} 件</li>")
+            out.append("</ul></div>")
+    else:
+        out.append(f'<div style="{card};text-align:center">'
+                   '<div style="font-size:19px;font-weight:600;color:#1d1d1f">今天没有要你做的事</div>'
+                   '<div style="margin-top:8px;font-size:14px;color:#3a3a3c">网站和邮件都在正常等反馈。</div></div>')
+    out.append('<div style="background:#efeff4;border-radius:10px;padding:10px 16px;'
+               'font-size:13px;color:#6e6e73;line-height:1.6">'
+               + e(_site_line(result["site"])) + "</div>")
+    if mark:
+        out.append('<div style="text-align:center;font-size:12px;color:#aeaeb2;padding:14px 0 2px">'
+                   f"{e(mark)}</div>")
+    out.append("</div></div></body></html>")
+    return "".join(out)
 
 
 # ---------------------------------------------------------------- write-backs

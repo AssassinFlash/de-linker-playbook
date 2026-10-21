@@ -77,30 +77,36 @@ def pull_failed(exit_code: int | None) -> bool:
     return bool(exit_code)
 
 
-def compose(now: str, pull_exit: int | None, test: bool) -> tuple[str, str, bool]:
-    """(title, body, computed) in everyday words (operator 2026-10-15: short, no codes, no logs)."""
+def compose(now: str, pull_exit: int | None, test: bool) -> tuple[str, str, str, bool]:
+    """(title, body, html, computed) in everyday words (operator 2026-10-15: short, no codes, no logs)."""
     since = (datetime.strptime(now, "%Y-%m-%d %H:%M") - timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
+    mark = f"{TEST_MARK if test else MARK} {now}"
+    notice = ""
+    if pull_failed(pull_exit):
+        notice = "今天早上 GSC 或询盘取数没成功，下面是按上次取到的数据算的。原因 AI 下次对话时会查，你不用管。"
     try:
         schema = bt.load_schema()
         svc = bt.sheets_service()
         sid = bt.load_target("main")
         data = {name: bt.read_table(svc, sid, schema, name) for name in schema["x-sheet-order"]}
-        text = ns.render_plain(ns.next_step(data, now, since, live=True))
+        result = ns.next_step(data, now, since, live=True)
+        text = ns.render_plain(result)
         title, _, body = text.partition("\n\n")   # the title line is the reminder/mail title; not repeated in the body
+        html_body = ns.render_html(result, notice=notice, mark=mark)
         computed = True
     except Exception as e:  # details go to the log; the operator gets one plain sentence
         log(f"算下一步出错：{type(e).__name__}: {e}")
         title = "今天没算出下一步"
         body = "今天早上算的时候出了问题（多半是网络或表格连不上）。" + SAY_NEXT_AGAIN
+        html_body = ""
         computed = False
     if pull_failed(pull_exit):
         title = f"今天取数没成功｜{title}"
-        body = ("今天早上 GSC 或询盘取数没成功，下面是按上次取到的数据算的。原因 AI 下次对话时会查，你不用管。\n\n"
-                + body)
+        body = (notice + "\n\n" + body) if notice else body
     if test:
         title = f"【测试】{title}"
-    body += f"\n\n{TEST_MARK if test else MARK} {now}"
-    return title, body, computed
+    body += f"\n\n{mark}"
+    return title, body, html_body, computed
 
 
 def to_reminders(title: str, body: str, test: bool) -> None:
@@ -110,7 +116,7 @@ def to_reminders(title: str, body: str, test: bool) -> None:
         raise RuntimeError((r.stderr or r.stdout).strip())
 
 
-def to_mail(title: str, body: str, day: str) -> list[str]:
+def to_mail(title: str, body: str, html_body: str, day: str) -> list[str]:
     path = Path(os.environ.get("PLAYBOOK_CONFIG", bt.CONFIG_DIR / "config.toml"))
     cfg = tomllib.loads(path.read_text(encoding="utf-8"))["reminder"]
     to = cfg["to"] if isinstance(cfg["to"], list) else [cfg["to"]]
@@ -124,6 +130,8 @@ def to_mail(title: str, body: str, day: str) -> list[str]:
     m["Date"] = formatdate(localtime=True)
     m["Message-ID"] = make_msgid(domain="de-linker-playbook.local")
     m.set_content(body)
+    if html_body:
+        m.add_alternative(html_body, subtype="html")   # QQ 邮箱/Apple Mail 显示 HTML，纯文本作兜底
     with smtplib.SMTP_SSL(cfg["smtp_host"], int(cfg["smtp_port"]), context=ssl.create_default_context(),
                           timeout=60) as s:
         s.login(cfg["smtp_user"], pw)
@@ -133,7 +141,7 @@ def to_mail(title: str, body: str, day: str) -> list[str]:
 
 def run(args) -> int:
     now = args.now or bt.stamp(bt.beijing_now())
-    title, body, computed = compose(now, args.pull_exit, args.test)
+    title, body, html_body, computed = compose(now, args.pull_exit, args.test)
     if args.dry_run:
         print(title + "\n\n" + body)
         return 0
@@ -145,7 +153,7 @@ def run(args) -> int:
         failed.append("提醒事项")
         log(f"提醒事项：没建成（{type(e).__name__}: {e}）")
     try:
-        got = to_mail(title, body, now[:10])
+        got = to_mail(title, body, html_body, now[:10])
         log(f"邮件：已发出，收件 {len(got)} 个地址")
     except Exception as e:
         failed.append("邮件")
