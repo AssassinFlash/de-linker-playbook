@@ -35,7 +35,7 @@ import sys
 import tomllib
 from datetime import datetime, timedelta
 from email.message import EmailMessage
-from email.utils import formatdate, make_msgid
+from email.utils import formataddr, formatdate, make_msgid
 from pathlib import Path
 
 sys.dont_write_bytecode = True  # keep scripts/__pycache__ out of the repo
@@ -124,8 +124,8 @@ def to_mail(title: str, body: str, html_body: str, day: str) -> list[str]:
     m = EmailMessage()
     test = title.startswith("【测试】")
     core = title.removeprefix("【测试】").replace("下一步：", "", 1)
-    m["Subject"] = ("【测试】" if test else "") + f"de-linker 下一步 · {day}：{core}"
-    m["From"] = cfg["smtp_user"]
+    m["Subject"] = ("【测试】" if test else "") + f"【今日待办】{core}"
+    m["From"] = formataddr(("Linker 执行助手", cfg["smtp_user"]))
     m["To"] = ", ".join(to)
     m["Date"] = formatdate(localtime=True)
     m["Message-ID"] = make_msgid(domain="de-linker-playbook.local")

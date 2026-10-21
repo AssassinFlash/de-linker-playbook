@@ -552,15 +552,6 @@ def inquiry_actions(data: dict, since: str, ledger: dict, line: str | None = Non
            and (not r.get("归因登记编号") or on_line(line_of.get(r["归因登记编号"], ""), line))]
     acts = []
     if new:
-        lines = "\n" + "\n".join(
-            f"    - 询盘 {r['询盘内部编号']}：{r.get('公司', '')}，{r.get('创建时刻（北京时间）', '')} 创建，状态「{r['状态']}」，"
-            + (f"归因到 {r['归因登记编号']}" if r.get("归因登记编号") else "未归因") for r in new)
-        acts.append(Action(rule="Q-01", priority=1, kind=1, objects=[str(r["询盘内部编号"]) for r in new], variant="report",
-                           facts={"companies": [r.get("公司", "") for r in new]},
-                           title=f"报告 {len(new)} 条新询盘",
-                           why=f"底表「询盘」{since} 之后写进来的新行：" + lines,
-                           you_do="询盘本身照现有流程处理（每日摘要会发到团队邮箱），这里只是告诉你",
-                           after="不用等什么"))
         loose = [r for r in new if not r.get("归因登记编号")]
         if loose:
             acts.append(Action(rule="Q-01", priority=4, objects=[str(r["询盘内部编号"]) for r in loose], variant="attribute",
@@ -633,16 +624,18 @@ def next_step(data: dict, now: str, since: str, live: bool, line: str | None = N
             "actions": [asdict(a) for a in acts],
             "ledger": [{"what": k, "count": len(v) if v != ["—"] else None, "items": v if v != ["—"] else []}
                        for k, v in ledger.items()],
-            "waiting": waiting_notes(data, line), "site": site_summary(data, today)}
+            "waiting": waiting_notes(data, line), "site": site_summary(data, today, since=since)}
 
 
-def site_summary(data: dict, today: str) -> dict:
+def site_summary(data: dict, today: str, since: str = "") -> dict:
     latest = latest_by(data["网页收录"], "网址", "检查日期")
     week = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=8)).strftime("%Y-%m-%d")
     perf = [r for r in data["网页表现"] if r["日期（太平洋时间）"] >= week]
+    new_inq = sum(1 for r in data.get("询盘", []) if (r.get("写入时刻（北京时间）") or "") > since) if since else 0
     return {"pages": len(latest), "indexed": sum(r["收录状态"] in INDEXED for r in latest.values()),
             "has_perf": bool(data["网页表现"]), "impressions_7d": sum(r.get("展示", 0) for r in perf),
-            "clicks_7d": sum(r.get("点击", 0) for r in perf), "inquiries": len(data["询盘"])}
+            "clicks_7d": sum(r.get("点击", 0) for r in perf), "inquiries": len(data["询盘"]),
+            "new_inquiries": new_inq}
 
 
 def render(result: dict) -> str:
@@ -680,17 +673,15 @@ def render(result: dict) -> str:
 # ---------------------------------------------------------------- plain wording (daily reminder)
 # The operator reads this every morning: everyday words, no rule codes, no P levels, no table names.
 
-THEN = {  # 收录状态 -> what Google saw last time, in everyday words
-    "服务器错误（5xx）": "网站出错打不开", "跳转出错": "页面跳转出了问题", "被 robots.txt 挡住": "网站设置挡着不让 Google 看",
-    "被 noindex 挡住": "页面上写着「别收录我」", "软 404（看起来像空页）": "页面看起来像空页",
-    "要求登录（401）": "页面要登录才能看", "禁止访问（403）": "页面不让外人看", "其他 4xx 错误": "页面打不开",
-    "404 找不到": "页面打不开（找不到）",
+THEN = {  # 收录状态 -> 规范的专业业务说法
+    "服务器错误（5xx）": "服务器 5xx 响应异常", "跳转出错": "页面重定向跳转异常", "被 robots.txt 挡住": "robots.txt 规则阻挡抓取",
+    "被 noindex 挡住": "页面存在 noindex 阻断标记", "软 404（看起来像空页）": "页面内容过低（软 404）",
+    "要求登录（401）": "页面设置了登录限制（401）", "禁止访问（403）": "页面被禁止公开访问（403）", "其他 4xx 错误": "页面访问返回 4xx 错误",
+    "404 找不到": "页面 404 不存在",
 }
-OPEN_GSC = [f"打开 {GSC_HOME} ，左上角选 {SITE}",
-            "把下面一个网址粘到最上面的搜索框，按回车",
-            "点「测试实际网址」，等它说「可以编入索引」",
-            "点「请求编入索引」",
-            "换下一个网址，重复第 2–4 步"]
+OPEN_GSC = [f"打开 Search Console 顶栏，输入网址测试实际状态",
+            "确认测试通过（可编入索引）后，点击「请求编入索引」",
+            "多条网址时，按顺序依次测试并请求"]
 SAY_NEXT = "开个对话，跟 AI 说「下一步」"
 REVIEW_STEPS = ["你看过，哪里不满意直接说，AI 改了再给你看，来回几轮都行",
                 "你说「可以了」，再从你的邮箱亲手发出，发完跟 AI 说「发了」"]
@@ -714,17 +705,16 @@ def plain_action(a: dict) -> dict:
     if r in ("W-01", "W-02", "W-03", "W-04", "W-05", "W-06", "W-07"):
         then = THEN.get(f.get("state", ""), "页面有问题")
         if v == "request":
-            return {"title": f"去 Google 后台点几下，让 Google 重新看 {pages}", "you": True,
-                    "why": f"Google 上次看这些页面是在 {_when(f.get('crawled', []))}，那时{then}。现在页面早就好了，"
-                           "但 Google 还没回来看，所以这些页一直搜不到。",
-                    "steps": OPEN_GSC[:4] + (OPEN_GSC[4:] if n > 1 else []), "urls": objs,
-                    "after": "嫌麻烦的话，跟 AI 说「你来点」，AI 帮你点。做完跟 AI 说一声「点完了」，之后等 Google 来看就行。"}
+            return {"title": f"在 Google Search Console 请求重新编入 {pages}", "you": True,
+                    "why": f"Google 上次抓取于 {_when(f.get('crawled', []))}，检测到{then}。线上现已修复正常（HTTP 200），需请求 Google 重新编入索引。",
+                    "steps": OPEN_GSC[:2] + (OPEN_GSC[2:] if n > 1 else []), "urls": objs,
+                    "after": "完成后在会话中跟 AI 说一声「点完了」，AI 记录归档。"}
         if v == "fix":
-            return {"title": f"AI 要修 {pages}：{then}", "you": True,
-                    "why": f"这些页面现在还是{then}，Google 收录不了。", "urls": objs,
-                    "steps": [SAY_NEXT + "，AI 会在网站代码里改好", "AI 改好后会问你「上不上线」，你回答就行"]}
-        return {"title": f"AI 要看一下 {pages}现在是不是好的", "you": False, "urls": objs,
-                "why": f"Google 记的是{then}，要先看看网站上现在是不是还这样。"}
+            return {"title": f"修复 {pages}：{then}", "you": True,
+                    "why": f"这些页面目前线上检测仍为{then}，阻碍 Google 正常收录。", "urls": objs,
+                    "steps": [SAY_NEXT + "，AI 将在代码库中进行修复", "修复并测试通过后，AI 将提示部署上线"]}
+        return {"title": f"核对 {pages} 的线上状态", "you": False, "urls": objs,
+                "why": f"Google 记录此前存在{then}，需自动巡检线上是否仍存在此问题。"}
     if r in ("W-16", "W-17", "W-09", "W-08", "W-19"):
         what = {"W-16": "网站设置不让 Google 看，它却收录了", "W-17": "Google 收录了但读不到内容",
                 "W-09": "Google 把它当成了别的页面的重复", "W-08": "会自动跳到别的页面，要确认是不是故意的",
@@ -732,16 +722,16 @@ def plain_action(a: dict) -> dict:
         return {"title": f"AI 要处理 {pages}：{what}", "you": False, "urls": objs, "why": what + "。",
                 "after": "要改网站的话，AI 改好后会问你「上不上线」。"}
     if r == "W-11":
-        return {"title": "去 Google 后台点几下，告诉 Google 有新页面", "you": True, "urls": objs,
-                "why": "这是你新发布的页面，Google 还不知道它。点一次能让 Google 早点来看。",
-                "steps": OPEN_GSC[:4] + (OPEN_GSC[4:] if n > 1 else []),
-                "after": "嫌麻烦的话，跟 AI 说「你来点」。做完跟 AI 说一声「点完了」。"}
+        return {"title": f"在 Google Search Console 提交新页面收录请求", "you": True, "urls": objs,
+                "why": f"这是新发布的 {pages}，提交请求可加快 Google 首次抓取收录。",
+                "steps": OPEN_GSC[:2] + (OPEN_GSC[2:] if n > 1 else []),
+                "after": "提交后在会话中跟 AI 说一声「点完了」。"}
     if r == "W-13":
-        return {"title": f"AI 检查 {pages}：Google 知道" + ("它们" if n > 1 else "它") + "，但还没来看", "you": False,
-                "why": "看看是不是网站哪里挡住了 Google，有问题才修。"}
+        return {"title": f"检查 {pages} 已发现未收录原因", "you": False,
+                "why": "排查网站结构或内容是否存在抓取阻碍，有问题即时修复。"}
     if r == "W-24":
-        return {"title": f"AI 检查 {pages}的标题和简介写得对不对", "you": False,
-                "why": "这些是你新发或改过的页面，按 Google 的要求检查一次。"}
+        return {"title": f"校对 {pages} 的 SEO 标题与 Meta 描述", "you": False,
+                "why": "按 Google 搜索展示规范巡检标题与 Meta 描述质量。"}
     if r == "M-01":
         return {"title": f"回复 {who}：对方要报价", "you": True,
                 "why": f"{who} 回信了，想要报价、规格、价格或样品。有人在等我们。",
@@ -818,89 +808,127 @@ def render_plain(result: dict) -> str:
 
 
 def _site_line(st: dict) -> str:
-    """网站现状一句话，纯文本与 HTML 共用，保持两边一致。"""
+    """网站现状一句话，纯文本使用。"""
     line = f"网站现在：{st['pages']} 个页面里，Google 已收录 {st['indexed']} 个"
     line += "，其余的大多在等 Google 来看，正常。" if st["pages"] > st["indexed"] else "。"
-    if st["has_perf"]:
+    if st.get("has_perf"):
         line += f"最近一周被搜到 {st['impressions_7d']} 次，点进来 {st['clicks_7d']} 次。"
     else:
         line += "有多少人搜到、点进来，要再等两三天才有数。"
-    if st["inquiries"]:
-        line += f"询盘一共 {st['inquiries']} 条。"
+    if st.get("inquiries"):
+        new_txt = f"（今日新增 {st['new_inquiries']} 条）" if st.get("new_inquiries") else ""
+        line += f"询盘一共 {st['inquiries']} 条{new_txt}。"
     return line
 
 
 def render_html(result: dict, *, notice: str = "", mark: str = "") -> str:
-    """和 render_plain 同一份内容，排成自包含 HTML：全部内联样式（QQ 邮箱网页版与 Apple Mail 都保留内联）。
-    邮件里纯文本仍是 multipart/alternative 的第一部分，Apple 提醒事项也照常收纯文本。"""
+    """Variant A：现代任务看板风 (Linear/Raycast 质感)，纯内联样式，多端兼容。"""
     e = html.escape
     acts = [dict(a, plain=plain_action(a)) for a in result["actions"]]
-    card = ("background:#ffffff;border:1px solid #e8e8ed;border-radius:14px;"
-            "padding:18px 22px;margin-bottom:12px")
-    out = ['<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0">',
-           "<div style=\"background:#f5f5f7;padding:24px 12px;"
-           "font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',Arial,sans-serif\">",
-           '<div style="max-width:600px;margin:0 auto">',
-           '<div style="text-align:center;padding:2px 0 16px;font-size:14px">'
-           '<span style="color:#7c3aed;font-weight:600">Linker</span>'
-           '<span style="color:#8e8e93"> · de-linker 下一步</span></div>']
+    st = result["site"]
+    now_date = result.get("generated_at", "")[:10]
+    
+    out = [
+        '<!DOCTYPE html><html><head><meta charset="utf-8"></head>',
+        '<body style="margin:0;padding:0;background-color:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",Helvetica,Arial,sans-serif;">',
+        '<div style="background-color:#f8fafc;padding:32px 16px;min-height:100vh;">',
+        '<div style="max-width:580px;margin:0 auto;">',
+        '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding-bottom:16px;border-bottom:1px solid #e2e8f0;margin-bottom:20px;"><tr>',
+        '<td>',
+        '<span style="background-color:#7c3aed;color:#ffffff;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:3px 8px;border-radius:6px;text-transform:uppercase;">Linker</span>',
+        '<span style="font-size:14px;font-weight:600;color:#0f172a;margin-left:8px;">每日执行待办</span>',
+        '</td>',
+        f'<td align="right" style="font-size:12px;color:#64748b;font-weight:500;">{e(now_date)}</td>',
+        '</tr></table>'
+    ]
+    
     if notice:
-        out.append("<div style=\"background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;"
-                   "padding:10px 16px;font-size:13px;color:#9a3412;line-height:1.6;margin-bottom:12px\">"
-                   + e(notice) + "</div>")
+        out.append(f'<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;font-size:13px;color:#92400e;line-height:1.6;margin-bottom:16px;">{e(notice)}</div>')
+        
     if acts:
         p0 = acts[0]["plain"]
-        out.append(f'<div style="{card};border-left:3px solid #7c3aed">')
-        out.append('<div style="font-size:12px;color:#8e8e93;margin-bottom:6px">下一步</div>')
-        out.append(f'<div style="font-size:19px;font-weight:600;color:#1d1d1f;line-height:1.4">{e(p0["title"])}</div>')
-        out.append(f'<div style="margin-top:10px;font-size:14px;color:#3a3a3c;line-height:1.7">{e(p0["why"])}</div>')
+        time_est = "预计耗时：2 分钟" if p0["you"] else "AI 自动执行"
+        badge_bg = "#fef3c7" if p0["you"] else "#f1f5f9"
+        badge_color = "#92400e" if p0["you"] else "#475569"
+        badge_border = "#fde68a" if p0["you"] else "#e2e8f0"
+        badge_text = "● 今日优先行动" if p0["you"] else "● 后台自动处理"
+        
+        # Hero Card
+        out.append('<div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);overflow:hidden;margin-bottom:16px;">')
+        out.append(f'<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f1f5f9;border-bottom:1px solid #e2e8f0;padding:10px 16px;"><tr>'
+                   f'<td><span style="display:inline-block;background:{badge_bg};color:{badge_color};font-size:11px;font-weight:700;padding:2px 8px;border-radius:9999px;border:1px solid {badge_border};">{badge_text}</span></td>'
+                   f'<td align="right" style="font-size:12px;color:#64748b;">{time_est}</td>'
+                   f'</tr></table>')
+        out.append('<div style="padding:20px 20px 16px;">')
+        out.append(f'<h2 style="margin:0 0 10px;font-size:18px;font-weight:700;color:#0f172a;line-height:1.4;">{e(p0["title"])}</h2>')
+        out.append(f'<div style="font-size:13px;color:#475569;line-height:1.6;background:#f8fafc;padding:12px;border-radius:8px;border:1px solid #f1f5f9;margin-bottom:16px;"><strong style="color:#0f172a;">触发原因：</strong>{e(p0["why"])}</div>')
+        
         if p0.get("steps"):
-            out.append("<div style=\"margin-top:12px;font-size:13px;font-weight:600;color:#6e6e73\">"
-                       + ("怎么做：" if p0["you"] else "AI 会这样做：") + "</div>")
-            out.append('<ol style="margin:6px 0 0;padding-left:22px">')
-            for x in p0["steps"]:
-                out.append(f'<li style="font-size:14px;color:#1d1d1f;line-height:1.7;margin:2px 0">{e(x)}</li>')
-            out.append("</ol>")
+            out.append('<div style="font-size:12px;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;">执行步骤：</div>')
+            for i, stp in enumerate(p0["steps"], 1):
+                out.append(f'<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;"><tr>'
+                           f'<td width="24" valign="top"><span style="background:#7c3aed;color:#ffffff;font-size:11px;font-weight:700;width:18px;height:18px;border-radius:50%;display:inline-block;text-align:center;line-height:18px;">{i}</span></td>'
+                           f'<td style="font-size:13px;color:#1e293b;line-height:1.5;">{e(stp)}</td>'
+                           f'</tr></table>')
         if p0.get("urls"):
-            out.append('<div style="margin-top:12px;font-size:13px;font-weight:600;color:#6e6e73">网址：</div>')
+            out.append('<div style="font-size:12px;font-weight:700;color:#334155;margin-top:10px;margin-bottom:6px;">目标网址：</div>')
             for u in p0["urls"][:SHOW]:
-                out.append('<div style="font-size:13px;line-height:1.7;word-break:break-all">'
-                           f'<a href="{e(u)}" style="color:#7c3aed;text-decoration:none">{e(u)}</a></div>')
+                out.append(f'<div style="font-size:12px;color:#7c3aed;line-height:1.6;word-break:break-all;"><a href="{e(u)}" style="color:#7c3aed;text-decoration:none;">{e(u)}</a></div>')
             if len(p0["urls"]) > SHOW:
-                out.append('<div style="font-size:12px;color:#8e8e93;margin-top:4px">'
-                           f"……还有 {len(p0['urls']) - SHOW} 个，跟 AI 要完整名单</div>")
+                out.append(f'<div style="font-size:11px;color:#94a3b8;margin-top:4px;">……还有 {len(p0["urls"]) - SHOW} 个，可在对话中查看完整清单</div>')
         if p0.get("after"):
-            out.append(f'<div style="margin-top:12px;font-size:13px;color:#6e6e73">{e(p0["after"])}</div>')
-        if not p0["you"]:
-            out.append('<div style="margin-top:12px;font-size:13px;color:#8e8e93">'
-                       f'这件不用你做。想让 AI 现在就做，{e(SAY_NEXT)}。</div>')
-        out.append("</div>")
+            out.append(f'<div style="margin-top:12px;font-size:12px;color:#64748b;line-height:1.5;">{e(p0["after"])}</div>')
+        out.append('</div></div>')
+        
+        # Secondary Queue Card
         rest = acts[1:]
         if rest:
-            out.append(f'<div style="{card}">')
-            out.append('<div style="font-size:13px;font-weight:600;color:#6e6e73;margin-bottom:8px">之后还有</div>')
-            out.append('<ul style="margin:0;padding-left:20px">')
+            out.append('<div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 20px;margin-bottom:16px;">')
+            out.append('<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:12px;">后续待办与排队任务</div>')
+            out.append('<table width="100%" cellpadding="0" cellspacing="0" border="0">')
             for b in rest[:QUEUE]:
-                pill = ("" if b["plain"]["you"]
-                        else '<span style="background:#f2f2f7;border-radius:8px;padding:1px 8px;'
-                             'font-size:12px;color:#8e8e93;margin-left:6px">不用你做</span>')
-                out.append('<li style="font-size:14px;color:#1d1d1f;line-height:1.7;margin:3px 0">'
-                           f'{e(b["plain"]["title"])}{pill}</li>')
+                tag_bg = "#fef3c7" if b["plain"]["you"] else "#f1f5f9"
+                tag_col = "#92400e" if b["plain"]["you"] else "#475569"
+                tag_label = "需你处理" if b["plain"]["you"] else "后台排队"
+                out.append(f'<tr>'
+                           f'<td style="border-top:1px solid #f1f5f9;padding:10px 0;font-size:13px;color:#334155;">{e(b["plain"]["title"])}</td>'
+                           f'<td align="right" style="border-top:1px solid #f1f5f9;padding:10px 0;"><span style="background:{tag_bg};color:{tag_col};font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;">{tag_label}</span></td>'
+                           f'</tr>')
             if len(rest) > QUEUE:
-                out.append('<li style="font-size:13px;color:#8e8e93;margin:3px 0">'
-                           f"另外还有 {len(rest) - QUEUE} 件</li>")
-            out.append("</ul></div>")
+                out.append(f'<tr><td colspan="2" style="border-top:1px solid #f1f5f9;padding:10px 0;font-size:12px;color:#94a3b8;">另外还有 {len(rest) - QUEUE} 项任务在队列中</td></tr>')
+            out.append('</table></div>')
     else:
-        out.append(f'<div style="{card};text-align:center">'
-                   '<div style="font-size:19px;font-weight:600;color:#1d1d1f">今天没有要你做的事</div>'
-                   '<div style="margin-top:8px;font-size:14px;color:#3a3a3c">网站和邮件都在正常等反馈。</div></div>')
-    out.append('<div style="background:#efeff4;border-radius:10px;padding:10px 16px;'
-               'font-size:13px;color:#6e6e73;line-height:1.6">'
-               + e(_site_line(result["site"])) + "</div>")
-    if mark:
-        out.append('<div style="text-align:center;font-size:12px;color:#aeaeb2;padding:14px 0 2px">'
-                   f"{e(mark)}</div>")
-    out.append("</div></div></body></html>")
+        out.append('<div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:12px;padding:24px;text-align:center;margin-bottom:16px;">'
+                   '<div style="font-size:18px;font-weight:700;color:#0f172a;">今天没有需要你介入的事项</div>'
+                   '<div style="margin-top:8px;font-size:13px;color:#64748b;">全站服务与自动化任务均在正常运行中。</div>'
+                   '</div>')
+                   
+    # Metrics Bottom Strip
+    inq_sub = f'<span style="font-size:11px;color:#16a34a;font-weight:600;">(今日 +{st.get("new_inquiries", 0)})</span>' if st.get("new_inquiries") else ""
+    out.append('<div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 18px;margin-bottom:16px;">'
+               '<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+               '<td width="33%" align="center">'
+               '<div style="font-size:11px;color:#64748b;font-weight:500;">Google 页面收录</div>'
+               f'<div style="font-size:16px;font-weight:700;color:#0f172a;margin-top:2px;">{st["indexed"]} <span style="font-size:12px;font-weight:400;color:#64748b;">/ {st["pages"]} 页</span></div>'
+               '</td>'
+               '<td width="1" style="background:#e2e8f0;"></td>'
+               '<td width="33%" align="center">'
+               '<div style="font-size:11px;color:#64748b;font-weight:500;">询盘总计</div>'
+               f'<div style="font-size:16px;font-weight:700;color:#0f172a;margin-top:2px;">{st["inquiries"]} 条 {inq_sub}</div>'
+               '</td>'
+               '<td width="1" style="background:#e2e8f0;"></td>'
+               '<td width="33%" align="center">'
+               '<div style="font-size:11px;color:#64748b;font-weight:500;">回流状态</div>'
+               '<div style="font-size:13px;font-weight:600;color:#16a34a;margin-top:2px;">● 正常对账</div>'
+               '</td>'
+               '</tr></table></div>')
+               
+    # Footer
+    out.append('<div style="text-align:center;font-size:11px;color:#94a3b8;margin-top:20px;">'
+               f'{e(mark or "Playbook 自动化调度生成 · 每天 08:30 发送")}'
+               '</div>')
+               
+    out.append('</div></div></body></html>')
     return "".join(out)
 
 
