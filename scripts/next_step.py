@@ -767,7 +767,16 @@ def plain_action(a: dict) -> dict:
         return {"title": f"给 {who} 发第 {f.get('n')} 封跟进邮件", "you": True, "why": "按计划今天该发了，对方还没回信。",
                 "steps": [SAY_NEXT + "，AI 会准备好这封信", *REVIEW_STEPS]}
     if r == "Q-01" and v == "report":
-        return {"title": f"有 {n} 条新询盘", "you": True, "why": "来自：" + "、".join(f.get("companies", [])) + "。",
+        names = []
+        for name in f.get("companies", []):
+            name = (name or "").strip()
+            if name and name not in names:
+                names.append(name)
+        shown = "、".join(names[:5])
+        if len(names) > 5:
+            shown += f" 等 {len(names)} 家"
+        return {"title": f"有 {n} 条新询盘", "you": True,
+                "why": ("来自：" + shown + "。") if shown else "新询盘已进底表（这几条没写公司名）。",
                 "steps": ["照平时的流程处理询盘就行，这里只是告诉你"]}
     if r == "Q-01":
         return {"title": f"AI 查一下 {n} 条新询盘是哪次推广带来的", "you": False, "why": "有证据才记上，没有就留空。"}
