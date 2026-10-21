@@ -49,6 +49,9 @@ TEST_MARK = "（每日提醒测试）"   # test runs only tick off earlier tests
 SAY_NEXT_AGAIN = "开个对话，跟 AI 说「下一步」，AI 会再算一次，并查是什么原因。"
 
 # Reminders: complete the earlier automatic reminder (its notes carry the marker passed in), then add today's.
+# Completing while iterating the live "whose" query shrinks the set and breaks the remaining
+# references ("Invalid index", hit 2026-10-21), so snapshot the IDs first, then process by ID,
+# each in its own try: a reminder deleted mid-run must not lose today's entry.
 APPLESCRIPT = f'''
 on run argv
 	set t to item 1 of argv
@@ -57,11 +60,15 @@ on run argv
 	tell application "Reminders"
 		if not (exists list "{LIST_NAME}") then make new list with properties {{name:"{LIST_NAME}"}}
 		set L to list "{LIST_NAME}"
-		repeat with r in (reminders of L whose completed is false)
-			set nb to body of r
-			if nb is not missing value then
-				if nb contains mk then set completed of r to true
-			end if
+		set openIds to id of (reminders of L whose completed is false)
+		repeat with rid in openIds
+			try
+				set r to first reminder of L whose id is (rid as text)
+				set nb to body of r
+				if nb is not missing value then
+					if nb contains mk then set completed of r to true
+				end if
+			end try
 		end repeat
 		tell L to make new reminder with properties {{name:t, body:b, remind me date:((current date) + 60)}}
 	end tell
