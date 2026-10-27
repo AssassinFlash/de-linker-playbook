@@ -1,14 +1,14 @@
 ---
 mode: 冷启动
-phase: 0
-phase_name: 读产品上下文
-next: 读 product_context（事实源入口 docs/fact-sources.md），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1
-method_skill: marketing-profile
-output_dir: deliverables/marketing/
+phase: 1
+phase_name: 基础
+next: 做 marketing-positioning，按事实源入口写定位，产出放 deliverables/marketing/01-foundation/
+method_skill: marketing-positioning
+output_dir: deliverables/marketing/01-foundation/
 product_context: docs/fact-sources.md
-feedback_read_at: 2026-10-15 12:06
-current_action: phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作）
-current_action_log: E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04
+feedback_read_at: 2026-10-27 22:35
+current_action: W-13 / W-24 一次性核查（18 个登记页 + 61 个登记页，结论已写底表备注）
+current_action_log:
 ---
 
 # 营销台账
@@ -22,15 +22,15 @@ current_action_log: E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04
 | 键 | 值 |
 | --- | --- |
 | mode | 冷启动 |
-| phase | 0 |
-| phase_name | 读产品上下文 |
-| next | 读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；需要档案时执行 marketing-profile；确认可读后进入 phase 1 |
-| method_skill | marketing-profile |
-| output_dir | deliverables/marketing/ |
+| phase | 1 |
+| phase_name | 基础 |
+| next | 做 marketing-positioning，按事实源入口写定位，产出放 deliverables/marketing/01-foundation/ |
+| method_skill | marketing-positioning |
+| output_dir | deliverables/marketing/01-foundation/ |
 | product_context | `docs/fact-sources.md` |
-| feedback_read_at | 2026-10-15 12:06 |
-| current_action | phase 0：marketing-profile（反馈最高 P3 W-04，让位给阶段工作） |
-| current_action_log | E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04 |
+| feedback_read_at | 2026-10-27 22:35 |
+| current_action | W-13 / W-24 一次性核查（18 个登记页 + 61 个登记页，结论已写底表备注） |
+| current_action_log | |
 
 ## 阶段
 
@@ -71,6 +71,8 @@ current_action_log: E-20261019-01, E-20261019-02, E-20261019-03, E-20261019-04
 ## 已完成
 
 - 2026-10-19：closed-loop「GA4 与同意横幅站点接入」完成；执行登记 E-20261019-01 至 E-20261019-04，见该票 Resolution；冷启动阶段仍为 phase 0。
+- 2026-10-27：phase 0 完成。指针 `deliverables/marketing/01-foundation/context-pointer.md`；三条陈述 `deliverables/marketing/00-system/phase-0-三条陈述.md`。三源可读；缺口见指针。进入 phase 1。
+- 2026-10-27：W-13 的 18 个登记页、W-24 的 61 个登记页核查完成，结论写进底表备注，`next_step.py` 队列里这两批已清零。发现：整站首字节 4.1–9.7 秒（18 页实测），偏慢，交站点侧；5 个分类归档缺 meta description（其中 4 个按操作者决定不要求收录）。
 
 ## 回写
 
