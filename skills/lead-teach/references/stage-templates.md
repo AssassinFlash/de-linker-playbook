@@ -113,7 +113,7 @@ coverage: null
 ```markdown
 ## 系统执行讲解
 
-> 正在用网页搜索查证…
+> 正在用 Apify 搜索查证…
 > 选择搜索词: "{term}" — 因为 {reasoning}
 > 找到 {N} 个结果，筛选标准: {criteria}
 > 决策: {what} — 因为 {why}
@@ -123,7 +123,7 @@ coverage: null
 
 - 只叙述关键决策，不报能力清单或每次查询。
 - 搜索词、筛选、验证的理由要写出来。
-- 需要原文时抓取指定 URL 的正文；搜索不可用则停止并写缺口，不编造。
+- 需要原文时抓取指定 URL 的正文；Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。
 - 系统稿路径：`deliverables/lead/00-system/{skill}-system-output.md`
 
 ---

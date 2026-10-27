@@ -21,7 +21,7 @@ description: >
 
 1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。硬依赖（须已批准，或有 `user_waiver`）：`deliverables/lead/10-sales/delivery.md`。软依赖存在则读：`deliverables/lead/10-sales/first-order.md`、`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/01-icp/icp-analysis.md`。从上下文、上游与用户本轮凑齐四项：在售产品与规格量级、买家类型、典型复购周期、能让好买家停留 12 个月以上的驱动。品类或买家类型缺到无法定制则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口，不自造访谈。完成：能指出四项各依据哪几条，或已标明缺项；硬依赖未满足且无 `user_waiver` → 停，不编交付后节奏。
 
-2. **查证**。用网页搜索查证本品类、本买家类型的 B2B 复购与供应商忠诚做法；需要原文时抓取指定 URL。做惊喜时再搜买家市场的节庆与送礼习惯。品类无公开数据则改用一般制造业出口留存口径，并在来源表标明「一般口径」。搜索不可用：三阶段与阶梯仍按「写法」默认骨架写，但禁止写行业复购率、节省额或「研究证明」；缺口写入来源表。多买家类型需隔离时 dispatch a subagent, else do it inline。完成：来源表有 URL 与访问日期，或已记录搜索不可用 / 一般口径。
+2. **查证**。用 Apify 搜索查证本品类、本买家类型的 B2B 复购与供应商忠诚做法；需要原文时抓取指定 URL。做惊喜时再搜买家市场的节庆与送礼习惯。品类无公开数据则改用一般制造业出口留存口径，并在来源表标明「一般口径」。Apify 修复与替代取证后仍不可得：三阶段与阶梯仍按「写法」默认骨架写，但禁止写行业复购率、节省额或「研究证明」；缺口写入来源表。多买家类型需隔离时 dispatch a subagent, else do it inline。完成：来源表有 URL 与访问日期，或已记录Apify 修复与替代取证后仍不可得 / 一般口径。
 
 3. **设计五件套**。按「写法」一次写完：3-Phase Retention Plan、Loyalty Ladder、Reorder Lock-In Tools、Surprise Moment、ROI Boost Mechanism。节奏锚在复购周期；阶梯权益与账期、样品、质保、返点只取产品上下文或已批准报价稿里已有的政策，没有就标候选 + `[待补充]`，不写成已批准条款。完成：五件套均非空；每阶段含时间、动作、交付物、渠道、预期反应、可复制话术；阶梯 ≥3 层且每层有下一档预告；锁客工具 ≥3 个且各写清便利与累积价值；ROI 有可核验公式（无数则公式 + `[待补充]`）。
 
@@ -32,7 +32,7 @@ description: >
 - 编排与闸门见 `skills/lead-generation/SKILL.md`。硬依赖 `lead-service-delivery`；软依赖 `lead-service-first-order`、`lead-service-quotation`。不在本文件另写管线。
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 本文件做交付后的复购与忠诚。出运物流打开 `skills/lead-service-delivery/SKILL.md`（文件存在时）。首单入职打开 `skills/lead-service-first-order/SKILL.md`（文件存在时）。组合健康度、流失预警、沉默挽回打开 `marketing-retention`（文件存在时）。已有供应商/信息循环打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。成功案例回馈获客打开 `skills/lead-service-first-contact/SKILL.md`（文件存在时）；本文件只在「下一步」指路，不代写开发信。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎。不写工具 ID。单买家类型 inline 做完。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎。不写工具 ID。单买家类型 inline 做完。
 - 数字、复购率、节省额、账期、质保、返点、样品政策、访厂费用：只来自产品上下文、用户本轮或已抓取页。没有就写「未在上下文出现」或 `[待补充]`，禁止补造。不把无来源的获客/留存成本倍数写进交付物。
 - 目标渠道与买家类型以产品上下文或已批准 ICP 为准，不预设某一电商平台。不同类型不共用同一套权益。
 - 产出只进 `deliverables/lead/10-sales/`。不在仓外建共享盘或仪表盘；共享档案只在交付物里给字段清单与维护节奏。

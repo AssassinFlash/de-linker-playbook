@@ -2,7 +2,8 @@
 name: lead-generation
 description: >
   Use when starting B2B lead generation, 获客, 客户开发, ICP, 找客户,
-  分销商调研, 联系人采集, 冷邮件, 开发信, 外展, LinkedIn 获客, 定向开发,
+  分销商调研, 联系人采集, 冷邮件, 开发信, 外展, LinkedIn 获客, 社媒调研,
+  social listening, OpenCLI 取证, 定向开发,
   when the user asks 下一步获客 or about 回信, 退信, 询盘, when the operator
   reports an outreach email is sent (发了), or comments on a draft (改一下,
   可以了). Read state/lead-status.md first, read lead-line feedback with
@@ -42,6 +43,7 @@ description: >
 5. **做这个动作**。
    - 反馈动作：照该条的「AI 会做的」做，有承接 skill（如 M-01 的 `lead-service-quotation`、M-11 的 `lead-followup-sequence`）就先读它的 `SKILL.md`。回信、跟进信由 AI 起草，走下面的「审稿」改到操作者满意，发不发由操作者决定，并由操作者从自己的邮箱亲手发；停序列、停用地址这类只记在外展交付物和台账里。
    - 阶段工作：台账 `method_skill` 的 `SKILL.md` 存在 → 先读再按其步骤做；不存在 → 停，宣布缺口，不自造流程。按 `references/orchestration-protocol.md` 走完依赖检查、意图确认、执行、数据验证（优先 `skills/lead-data-validation/SKILL.md`）、六维审查、证据闸、写入与下游过期。需要隔离时 dispatch a subagent, else do it inline。产出进台账 `output_dir`（空则用下表目录）。同一 phase 无硬依赖的方法 skill 可并行，有硬依赖的串行；`ANY(...)` 表示括号内至少一个 `approved` 即可；硬依赖没满足且没有 `user_waiver` → 不跳。
+   - 公开社媒补证：Apify 基线之后，按 `docs/social-research-opencli.md` 用 OpenCLI 读取平台原帖与评论。先画上游供应商、渠道、EPC/安装商、下游和规则闸门的完整链路；只有直接采购角色进入 ICP，其他角色进入链路证据或下游压力。
    - 产品上下文与已过闸的上游仍不够清楚时，先打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不自造访谈。
    - 交给操作者去发、去上线之前，过**证据闸**（规则第 9 节，逐条打勾；协议步骤 6）。过了的交付物在 frontmatter 写 `status: approved` 和 `evidence_gate: <日期>`；`approved` 的意思就是「已过证据闸」，和营销线同一个意思，由 AI 自查后写，不需要操作者批准。过不了：修一轮再查；还不过就换下一个动作，并告诉操作者跳过了什么、为什么。
    - **审稿**（对外文字：外展信、跟进信、回信、LinkedIn 帖、SEO 正文、引流资料等，范围见规则第 10 节；协议步骤 6）：过了证据闸，把全文给操作者看，说清这稿想达到什么、AI 拿不准的地方。操作者说哪里要改就改，每轮记进交付物「## 审稿记录」，改完重过证据闸再给看，来回几轮都行，不催。写初稿前先读写作偏好 `deliverables/marketing/00-system/writing-preferences.md`（两线共用，有就读），同一类意见第二次出现时记进去。操作者说「可以了」→ frontmatter 写 `operator_ok: <日期>`；之后再改任何字就清空、重新给看。`approved` 加 `operator_ok` 才算可以发。
@@ -98,7 +100,7 @@ description: >
 - 产品事实只读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；查不到标〔未证实〕，按没有处理；不在本仓库另存一份。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 台账或 `deliverables/lead/` 缺失时，先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
-- 缺来源、缺搜索：停止并写缺口，不编造。需要查证时用网页搜索；需要原文时抓取指定 URL 的正文。
+- 缺来源、Apify 与替代取证仍不可得：停止并写缺口，不编造。需要查证时用 Apify 搜索；需要原文时抓取指定 URL 的正文。公开社媒补证按 `docs/social-research-opencli.md`，保留平台、角色和限频记录。
 - 交付物带来源栏；数字必须能回溯事实源、已抓取 URL 或底表里的某一行。策略/分析用中文；表列名 English snake_case；公司名不翻译。
 - 联系人/邮箱发现服务、网页采集服务：仅当操作者已配置（付费项须先告知并获准）；否则标「联系人待补」。外发、发布工具不接：不论是否配置、操作者是否要求，AI 都不代发信、不代发帖；一律由操作者亲手做（操作者 2026-10-15：「任何代发都不要做」）。
 - 质量闸：执行前是证据闸（AI 自查事实）加审稿（对外文字由操作者看、提意见、改到满意，规则第 10 节），执行后是反馈闸（看 L1–L3）。事实对不对、行业里该怎么做不靠操作者判断；文字发出去行不行、哪里想改，由操作者说了算。
@@ -151,6 +153,7 @@ description: >
 - 把 emerging / brief 当成独立入口另写流程。
 - 把产品上下文原文拷进本仓库；把 skill 例子原文写入交付物。
 - 编造公司、域名、邮箱或市场规模。
+- 只看安装商一个环节，不记录供应商、渠道、下游和规则闸门；或把链路观察者直接写成客户。
 - 教学改了战役 `phase`。
 - 寒暄时改文件。
 - 营销树与获客树混写；读写了营销台账。
@@ -165,5 +168,6 @@ description: >
 - [ ] 「下一步」按规则第 11 节说，引用了底表的具体数据（哪家公司、哪个登记编号、哪天、什么事件）
 - [ ] 外展只产文案；操作者发出的每封都已登记（底表写不进时进了台账「待补登」）
 - [ ] 硬依赖已满足（含 `ANY(...)`）或已记录 user_waiver
+- [ ] 公开社媒补证有平台、角色、URL、登录/限频状态和完整链路图
 - [ ] 交付物不是 skill 例子原文；无编造联系人
 - [ ] 台账已回写（含 `feedback_read_at`、`current_action`、「审批与过期」）；`output_dir` 在 `deliverables/lead/` 下

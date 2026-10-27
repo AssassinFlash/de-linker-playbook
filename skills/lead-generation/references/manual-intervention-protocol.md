@@ -4,7 +4,7 @@
 
 ## 使用原则
 
-1. 先说明已完成动作与卡在哪一步（网页搜索 / 抓取原文 / 已配置的发现或采集服务）。
+1. 先说明已完成动作与卡在哪一步（Apify 搜索 / 抓取原文 / 已配置的发现或采集服务）。
 2. 明确「需要用户做什么、预计耗时、做完回什么词」。
 3. 承诺从当前进度继续，不重头开始。
 4. 处理完成后，在交付物写入 `## 阻塞与升级日志`。
@@ -37,7 +37,7 @@
 
 说：
 
-> 当前环境缺少 {missing_capability}。我会先用网页搜索（需要原文时抓取指定 URL）继续；若你补齐后希望走完整链路，回复 `retry full chain`。
+> 当前环境缺少 {missing_capability}。我会先用 Apify 搜索（需要原文时抓取指定 URL）继续；若你补齐后希望走完整链路，回复 `retry full chain`。
 
 记录：`blocker_type: config_gap`；`user_help_needed: optional`；`resume_token: retry full chain`
 

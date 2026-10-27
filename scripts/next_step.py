@@ -250,7 +250,9 @@ def web_actions(data: dict, today: str, live: bool, ledger: dict, line: str | No
         if not on_line(reg["线"] if reg else SITE_LINE, line):
             continue
         anchor = reg is not None
-        should_index = not (reg and reg["动作"] == "下线页面")
+        # 执行登记里备注写了「不要求收录」的页（如站点有意 noindex 的分类归档），不按「应被收录」报阻断
+        opted_out = bool(reg and "不要求收录" in (reg.get("备注") or ""))
+        should_index = not (reg and (reg["动作"] == "下线页面" or opted_out))
         info = {"url": url, "row": r, "reg": reg, "anchor": anchor, "start": run[-1]["检查日期"],
                 "dropped": r.get("和上次比") == "掉出收录"}
         requested = [e for e in log if e.get("网址") == url and REQUEST_NOTE in (e.get("内容说明") or "")
@@ -258,7 +260,9 @@ def web_actions(data: dict, today: str, live: bool, ledger: dict, line: str | No
         if state in BLOCKING:
             rule, needs, _, _ = BLOCKING[state]
             if needs and not should_index:
-                ledger.setdefault(f"{state}（已下线，不用管）", []).append(url)
+                key = (f"{state}（执行登记标了不要求收录）" if opted_out
+                       else f"{state}（已下线，不用管）")
+                ledger.setdefault(key, []).append(url)
                 continue
             if requested:
                 ledger.setdefault(f"{state}（{requested[-1]['执行日期']} 已请求编入索引，等 Google 重抓）", []).append(url)
@@ -631,9 +635,12 @@ def site_summary(data: dict, today: str, since: str = "") -> dict:
     latest = latest_by(data["网页收录"], "网址", "检查日期")
     week = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=8)).strftime("%Y-%m-%d")
     perf = [r for r in data["网页表现"] if r["日期（太平洋时间）"] >= week]
+    content_perf = [r for r in perf if bt.is_content_page(r.get("网址", ""))]
     new_inq = sum(1 for r in data.get("询盘", []) if (r.get("写入时刻（北京时间）") or "") > since) if since else 0
     return {"pages": len(latest), "indexed": sum(r["收录状态"] in INDEXED for r in latest.values()),
             "has_perf": bool(data["网页表现"]), "impressions_7d": sum(r.get("展示", 0) for r in perf),
+            "content_impressions_7d": sum(r.get("展示", 0) for r in content_perf),
+            "content_clicks_7d": sum(r.get("点击", 0) for r in content_perf),
             "clicks_7d": sum(r.get("点击", 0) for r in perf), "inquiries": len(data["询盘"]),
             "new_inquiries": new_inq}
 
@@ -812,7 +819,8 @@ def _site_line(st: dict) -> str:
     line = f"网站现在：{st['pages']} 个页面里，Google 已收录 {st['indexed']} 个"
     line += "，其余的大多在等 Google 来看，正常。" if st["pages"] > st["indexed"] else "。"
     if st.get("has_perf"):
-        line += f"最近一周被搜到 {st['impressions_7d']} 次，点进来 {st['clicks_7d']} 次。"
+        line += (f"内容页最近一周被搜到 {st['content_impressions_7d']} 次，"
+                 f"点进来 {st['content_clicks_7d']} 次。")
     else:
         line += "有多少人搜到、点进来，要再等两三天才有数。"
     if st.get("inquiries"):

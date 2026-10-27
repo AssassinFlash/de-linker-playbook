@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>运营看板</title>
+<style>
+  :root { color-scheme: light; --ink:#111827; --muted:#6b7280; --line:#e7e8ec; --canvas:#f5f6f8; --blue:#2563eb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { min-height: 100vh; background: var(--canvas); color: var(--ink); font: 14px/1.5 Inter, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif; }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  h1, h2, h3, p { margin: 0; }
+  a { color: var(--blue); }
+  .app { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100vh; }
+  .nav { background: #fff; border-right: 1px solid var(--line); padding: 20px 12px 24px; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 2px; }
+  .brand { display: flex; gap: 10px; align-items: center; padding: 0 8px 16px; }
+  .mark { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--blue); color: #fff; font-weight: 700; }
+  .brand strong { display: block; font-size: 14px; }
+  .brand small, .foot { color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .nav button { width: 100%; text-align: left; border: 0; background: transparent; border-radius: 8px; padding: 8px 10px; color: #374151; }
+  .nav button.on, .nav button:hover { background: #f3f4f6; color: var(--ink); }
+  .foot { margin-top: auto; padding: 14px 8px 0; }
+  .main { padding: 28px 32px 64px; max-width: 1180px; }
+  .head { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; margin-bottom: 22px; }
+  .head h1 { font-size: 26px; font-weight: 650; letter-spacing: -.03em; }
+  .head p { margin-top: 6px; max-width: 720px; color: #374151; font-size: 15px; }
+  .asof { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 7px 10px; font-size: 12px; color: var(--muted); }
+  .grid2 { display: grid; grid-template-columns: 1.3fr .7fr; gap: 16px; }
+  .grid2.even { grid-template-columns: 1fr 1fr; }
+  .metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+  .metric { padding: 16px 16px 12px; }
+  .metric .k { color: var(--muted); font-size: 13px; }
+  .metric .n { margin: 6px 0 8px; font-size: 30px; font-weight: 640; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .metric.other { box-shadow: inset 3px 0 0 var(--blue); }
+  .card-h { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; padding: 18px 18px 0; }
+  .card-h h2 { font-size: 15px; font-weight: 650; }
+  .card-h p, .note, .readout { color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .plot { padding: 4px 18px 16px; }
+  .readout { min-height: 18px; margin: 10px 0 4px; color: #111827; font-variant-numeric: tabular-nums; }
+  .plot svg { width: 100%; height: 220px; display: block; }
+  .xlabels { display: grid; grid-template-columns: 8.125% minmax(0,1fr) 2.8125%; height: 18px; margin-top: 4px; color: var(--muted); font-size: 11px; }
+  .xlabels .ticks { position: relative; min-width: 0; }
+  .xlabels .ticks span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+  .when { white-space: nowrap; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 4px 18px 16px; }
+  .legend button, .chips button { border: 0; background: transparent; padding: 0; }
+  .swatch { width: 8px; height: 8px; border-radius: 99px; display: inline-block; }
+  .donut-wrap { display: grid; grid-template-columns: 210px 1fr; gap: 8px; align-items: center; padding: 8px 18px 18px; }
+  .donut-wrap svg { width: 190px; height: 190px; }
+  .legend.stack { display: grid; padding: 0; }
+  .legend.stack div, .legend.stack button { display: grid; grid-template-columns: 10px minmax(72px, 1fr) auto; gap: 8px; align-items: center; font-size: 13px; text-align: left; }
+  .legend.stack span { white-space: nowrap; }
+  .filters, .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .filters label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--muted); }
+  .filters input, .filters select, .search { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 10px; min-width: 180px; }
+  .chips button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 10px; font-size: 12px; }
+  .chips button.on { background: #111827; color: #fff; border-color: #111827; }
+  .table-wrap { overflow: auto; max-height: 640px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid #f1f2f4; font-size: 13px; vertical-align: top; }
+  th { color: var(--muted); font-size: 12px; font-weight: 550; position: sticky; top: 0; background: #fff; }
+  tr.clickable { cursor: pointer; }
+  tr.clickable:hover { background: #f8fafc; }
+  .clip { max-width: 340px; }
+  .url { word-break: break-all; }
+  .pill { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 999px; font-size: 12px; font-weight: 650; background: #f3f4f6; white-space: nowrap; }
+  .L1, .seen { background: #dbeafe; color: #1d4ed8; }
+  .open { background: #dbeafe; color: #1d4ed8; }
+  .issued { background: #d1fae5; color: #047857; }
+  .done { background: #ecfdf5; color: #065f46; }
+  .cancelled { background: #f3f4f6; color: #6b7280; }
+  .banner { margin-bottom: 14px; padding: 10px 12px; border-radius: 10px; background: #fff7ed; color: #9a3412; }
+  .empty { min-height: 180px; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 28px; }
+  .glossary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .glossary article { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+  .glossary strong { display: block; font-size: 13px; }
+  .glossary span { color: var(--muted); font-size: 12px; }
+  .backdrop { position: fixed; inset: 0; background: rgba(17,24,39,.32); z-index: 40; }
+  .drawer { position: fixed; top: 0; right: 0; z-index: 50; width: min(560px, 100vw); height: 100vh; overflow: auto; background: #fff; border-left: 1px solid var(--line); box-shadow: -16px 0 40px rgba(0,0,0,.12); padding: 22px 22px 56px; }
+  .drawer header { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .drawer h2 { font-size: 20px; letter-spacing: -.02em; }
+  .close { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 10px; }
+  .section { margin-top: 20px; }
+  .section h3 { font-size: 13px; margin-bottom: 8px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 7px 12px; font-size: 13px; }
+  .kv b { color: var(--muted); font-weight: 550; }
+  .prose { white-space: pre-wrap; background: #f8fafc; border-radius: 10px; padding: 12px; }
+  .item { border-top: 1px solid #f1f2f4; padding: 12px 0; }
+  .item strong { display: block; }
+  .specs { margin: 8px 0 0; padding-left: 18px; color: #374151; }
+  .err { padding: 28px; }
+  #tip { position: fixed; z-index: 80; display: none; pointer-events: none; max-width: 280px; padding: 8px 10px; border-radius: 8px; background: #111827; color: #fff; font-size: 12px; line-height: 1.45; white-space: pre-wrap; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+  #tip.show { display: block; }
+  @media (max-width: 1100px) {
+    .app, .grid2, .grid2.even, .metrics, .donut-wrap, .glossary { grid-template-columns: 1fr; }
+    .nav { position: static; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div id="app" class="err">正在读本地导出…</div>
+<div id="tip"></div>
+<div id="backdrop" class="backdrop" hidden></div>
+<aside id="drawer" class="drawer" hidden></aside>
+<script>
+const PAGES = [["overview","总览"],["quality","质量"],["pace","节奏"],["inquiries","询盘"],["actions","动作"],["trend","趋势"],["pages","收录"],["later","还没接上"]];
+const COLORS = ["#2563eb","#0ea5e9","#6366f1","#94a3b8","#f59e0b","#10b981","#f97316","#14b8a6"];
+const LEVEL = {
+  L0: ["已执行", "做了，搜索还没看到这一页。"],
+  "未到 L1": ["还没被看到", "检查过，但还没进搜索结果。"],
+  L1: ["已被看到", "已收录，或搜索结果里已经有展示。"],
+  L2: ["有互动", "有人从搜索点进来，或邮件有了回复。"],
+  L3: ["有转化", "有询盘归因到这次动作。"]
+};
+let DATA = null;
+let screen = (location.hash || "#overview").slice(1).split("/")[0];
+if (!PAGES.some(([id]) => id === screen)) screen = "overview";
+let filterState = {date:"", country:"", device:"", type:"", q:"", status:""};
+
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+function attr(s) { return esc(s).replace(/\n/g, "&#10;"); }
+function n(v) { return v == null || v === "" ? "—" : v; }
+function levelName(level) { const pair = LEVEL[level]; return pair ? pair[0] + " · " + level : (level || "—"); }
+function levelHint(level) { const pair = LEVEL[level]; return pair ? pair[0] + "（" + level + "）：" + pair[1] : (level || "没有级别"); }
+function pct(part, total) { return total ? Math.round(part / total * 100) : 0; }
+function money(row) { return row.total ? ((row.currency || "") + " " + row.total).trim() : "—"; }
+function shortUrl(url) {
+  try { const u = new URL(url); return (u.pathname && u.pathname !== "/" ? u.pathname : u.host); }
+  catch { return url || "—"; }
+}
+function link(url, label) {
+  if (!url) return "—";
+  return `<a href="${esc(url)}" target="_blank" rel="noreferrer">${esc(label || url)}</a>`;
+}
+function fieldLabel(label) { return String(label || "").replaceAll("_", " "); }
+function askOf(row) {
+  const items = row.items || [];
+  if (items.length) return items.map(it => it.name + (it.quantity != null && it.quantity !== "" ? " × " + it.quantity : "")).join("；");
+  return row.note || row.project || row.topic || "这单没有行项目，也没有备注";
+}
+function statusClass(status) {
+  if (status === "询盘已收到") return "open";
+  if (status === "形式发票已开") return "issued";
+  if (status === "已完成") return "done";
+  if (status === "已取消") return "cancelled";
+  return "";
+}
+function pill(text, cls) { return text ? `<span class="pill ${esc(cls || "")}">${esc(text)}</span>` : "—"; }
+function openAttr(kind, id) { return kind + ":" + encodeURIComponent(id); }
+function shell(title, lede, body) {
+  const nav = PAGES.map(([id, label]) => `<button type="button" data-screen="${id}" class="${screen===id?"on":""}">${label}</button>`).join("");
+  return `<div class="app"><aside class="nav"><div class="brand"><span class="mark">D</span><span><strong>运营看板</strong><small>本机，含申请正文</small></span></div>${nav}<div class="foot">导出 ${esc(DATA.exportedAt)}<br>点开一行看全文<br>正文不写回底表</div></aside><div class="main"><header class="head"><div><h1>${title}</h1><p>${lede}</p></div><div class="asof">导出 ${esc(DATA.exportedAt)}</div></header>${body}</div></div>`;
+}
+function card(title, note, inner) {
+  return `<section class="card"><div class="card-h"><div><h2>${title}</h2><p>${note}</p></div></div>${inner}</section>`;
+}
+function axisTicks(maxValue) {
+  const max = Math.max(0, maxValue);
+  if (max <= 4) return {top: 4, values: [0, 1, 2, 3, 4]};
+  const rough = max / 4;
+  const pow = Math.pow(10, Math.floor(Math.log10(rough)));
+  const step = [1, 2, 5, 10].map(c => c * pow).find(s => s >= rough) || rough;
+  const top = step * Math.ceil(max / step);
+  const values = [];
+  for (let v = 0; v <= top + 0.01; v += step) values.push(Math.round(v));
+  return {top, values};
+}
+function tickIndexes(count, maxTicks) {
+  if (count <= maxTicks) return [...Array(count).keys()];
+  const out = [];
+  for (let i = 0; i < maxTicks; i++) out.push(Math.round(i * (count - 1) / (maxTicks - 1)));
+  return [...new Set(out)];
+}
+function axisRow(count, entries) {
+  const marks = entries.map(e => `<span style="left:${((e.i + 0.5) / Math.max(1, count)) * 100}%">${esc(e.label)}</span>`).join("");
+  return `<div class="xlabels"><span></span><span class="ticks">${marks}</span><span></span></div>`;
+}
+function columns(items) {
+  const rows = items.length ? items : [{label:"无", value:0}];
+  const w = 640, h = 220, l = 52, r = 18, t = 22, b = 8;
+  const scale = axisTicks(Math.max(0, ...rows.map(i => Number(i.value) || 0)));
+  const innerW = w - l - r, innerH = h - t - b;
+  const slot = innerW / Math.max(1, rows.length);
+  const bw = Math.max(4, Math.min(36, slot * 0.62));
+  const grids = scale.values.map(v => {
+    const y = t + innerH - (v / scale.top) * innerH;
+    return `<line x1="${l}" x2="${w-r}" y1="${y}" y2="${y}" stroke="#f3f4f6"/><text x="${l-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#9ca3af">${v}</text>`;
+  }).join("");
+  const bars = rows.map((it, i) => {
+    const value = Number(it.value) || 0;
+    const bh = value ? Math.max(3, value / scale.top * innerH) : 0;
+    const x = l + i * slot + (slot - bw) / 2;
+    const y = t + innerH - bh;
+    const tip = (it.full || it.label) + "\n" + value + (it.unit || "");
+    const valueLabel = rows.length <= 14 && value ? `<text x="${x+bw/2}" y="${Math.max(12, y-6)}" text-anchor="middle" font-size="11" fill="#374151">${value}</text>` : "";
+    const open = it.open ? ` data-open="${esc(it.open)}"` : "";
+    return `<g data-tip="${attr(tip)}"${open}><rect x="${l + i * slot}" y="${t}" width="${slot}" height="${innerH}" fill="transparent"/><rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="3" fill="${it.color || "#2563eb"}"/>${valueLabel}</g>`;
+  }).join("");
+  const labels = tickIndexes(rows.length, 6).map(i => ({i, label: rows[i].label}));
+  return `<div class="plot" data-plot><div class="readout">悬停看具体数字</div><svg viewBox="0 0 ${w} ${h}" role="img">${grids}<line x1="${l}" x2="${w-r}" y1="${t+innerH}" y2="${t+innerH}" stroke="#e5e7eb"/>${bars}</svg>${axisRow(rows.length, labels)}</div>`;
+}
+function lines(series, categories, tips) {
+  const w = 640, h = 220, l = 52, r = 18, t = 18, b = 8;
+  const innerW = w - l - r, innerH = h - t - b;
+  const scale = axisTicks(Math.max(0, ...series.flatMap(s => s.values)));
+  const slot = innerW / Math.max(1, categories.length);
+  const xs = categories.map((_, i) => l + slot * i + slot / 2);
+  const grids = scale.values.map(v => {
+    const y = t + innerH - (v / scale.top) * innerH;
+    return `<line x1="${l}" x2="${w-r}" y1="${y}" y2="${y}" stroke="#f3f4f6"/><text x="${l-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#9ca3af">${v}</text>`;
+  }).join("");
+  const polys = series.map(s => `<polyline points="${s.values.map((v, i) => xs[i] + "," + (t + innerH - (v / scale.top) * innerH)).join(" ")}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`).join("");
+  const hits = categories.map((c, i) => {
+    const tip = (tips && tips[i]) || (c + "\n" + series.map(s => s.name + "：" + s.values[i]).join("\n"));
+    const dots = series.map(s => `<circle cx="${xs[i]}" cy="${t + innerH - (s.values[i] / scale.top) * innerH}" r="4.5" fill="${s.color}" stroke="#fff" stroke-width="2"/>`).join("");
+    return `<g data-tip="${attr(tip)}"><rect x="${l + i * slot}" y="${t}" width="${slot}" height="${innerH}" fill="transparent"/>${dots}</g>`;
+  }).join("");
+  const labels = tickIndexes(categories.length, 6).map(i => ({i, label: categories[i]}));
+  const legend = series.map(s => `<span><i class="swatch" style="background:${s.color}"></i> ${esc(s.name)}</span>`).join("");
+  return `<div class="plot" data-plot><div class="readout">悬停看具体数字</div><svg viewBox="0 0 ${w} ${h}" role="img">${grids}<line x1="${l}" x2="${w-r}" y1="${t+innerH}" y2="${t+innerH}" stroke="#e5e7eb"/>${polys}${hits}</svg>${axisRow(categories.length, labels)}</div><div class="legend">${legend}</div>`;
+}
+function donut(items, center, sub) {
+  const total = items.reduce((s, i) => s + i.value, 0) || 1;
+  const r = 58, c = 2 * Math.PI * r;
+  let off = 0;
+  const slices = items.filter(i => i.value).map(i => {
+    const share = i.value / total;
+    const len = Math.max(1, share * c - 2);
+    const tip = i.label + "\n" + i.value + "（" + pct(i.value, total) + "%）";
+    const el = `<circle data-tip="${attr(tip)}" data-status="${esc(i.status || "")}" cx="90" cy="90" r="${r}" fill="none" stroke="${i.color}" stroke-width="22" stroke-dasharray="${len} ${c-len}" stroke-dashoffset="${-off}" transform="rotate(-90 90 90)" pointer-events="stroke"/>`;
+    off += share * c;
+    return el;
+  }).join("");
+  const legend = items.map(i => `<button type="button" data-tip="${attr(i.label + "\n" + i.value + "（" + pct(i.value, total) + "%）")}" data-status="${esc(i.status || "")}"><i class="swatch" style="background:${i.color}"></i><span>${esc(i.label)}</span><b>${i.value}</b></button>`).join("");
+  return `<div class="plot" data-plot><div class="readout">悬停看具体数字。点一块可筛下面的表。</div><div class="donut-wrap"><svg viewBox="0 0 180 180">${slices}<text x="90" y="86" text-anchor="middle" font-size="26" font-weight="650" fill="#111827">${esc(center)}</text><text x="90" y="106" text-anchor="middle" font-size="11" fill="#6b7280">${esc(sub)}</text></svg><div class="legend stack">${legend}</div></div></div>`;
+}
+function spark(values) {
+  const nums = values.length ? values : [0];
+  const max = Math.max(1, ...nums);
+  return `<svg viewBox="0 0 92 32" width="92" height="32" aria-hidden="true">${nums.slice(-10).map((v,i,arr) => {
+    const bh = Math.max(3, v / max * 26);
+    return `<rect x="${i*9}" y="${30-bh}" width="6" height="${bh}" rx="1.5" fill="${v && i===arr.length-1?"#2563eb":"#dbe3ee"}"/>`;
+  }).join("")}</svg>`;
+}
+function metric(label, value, values, extra) {
+  return `<article class="card metric${extra||""}"><div class="k">${label}</div><div class="n">${value}</div>${spark(values)}</article>`;
+}
+function table(headers, rows) {
+  return `<div class="table-wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("") || `<tr><td colspan="${headers.length}">没有匹配的行</td></tr>`}</tbody></table></div>`;
+}
+function matches(text) {
+  const q = filterState.q.trim().toLowerCase();
+  return !q || String(text || "").toLowerCase().includes(q);
+}
+function inquiryItems() { return DATA.inquiries.items || []; }
+function sentence() {
+  const d = DATA, q = d.inquiries;
+  const open = (q.items || []).filter(r => r.status === "询盘已收到").length || q.byStatus["询盘已收到"] || 0;
+  return `${d.ladder.L0} 次已经做了，${pct(d.ladder.L1, d.ladder.L0)}% 被看到。有互动 ${d.ladder.L2}，有转化 ${d.ladder.L3}。申请 ${q.items ? q.items.length : q.total} 笔，仍在流程的 ${open} 笔。点进询盘看申请了什么。`;
+}
+function overview() {
+  const d = DATA;
+  const byDay = {};
+  d.actions.forEach(row => { if (row.date) byDay[row.date] = (byDay[row.date] || 0) + 1; });
+  const dayRows = Object.entries(byDay).sort().map(([date, value]) => ({label: date.slice(5), full: date, value, unit:" 次", color:"#2563eb"}));
+  const sparkDays = (dayRows.length ? dayRows : [{value:0}]).map(x => x.value);
+  const reached = d.ladder.L1, missed = Math.max(0, d.ladder.L0 - d.ladder.L1);
+  const cards = [
+    metric("已执行", d.ladder.L0, sparkDays),
+    metric("已被看到", d.ladder.L1, [missed, reached]),
+    metric("有互动", d.ladder.L2, [0, d.ladder.L2]),
+    metric("有转化", d.ladder.L3, [0, d.ladder.L3]),
+    metric("申请", inquiryItems().length || d.inquiries.total, inquiryItems().map(() => 1).slice(-6), " other")
+  ].join("");
+  const recent = d.actions.slice(0, 6).map(row => `<tr class="clickable" data-open="${esc(openAttr("act", row.id))}"><td class="when">${esc(row.date)}</td><td>${esc(row.action)}</td><td class="clip">${esc(row.summary || "没有内容说明")}</td><td>${pill(levelName(row.level), row.level)}</td></tr>`);
+  return shell("总览", sentence(), `<div class="metrics">${cards}</div><div class="grid2">${card("每天做了多少", "柱高是当天新登记的动作。日期写在图下，不和左侧刻度叠在一起。", columns(dayRows))}${card("做到了没有", "只分两块：已被看到，和还停在已执行。", donut([{label:"已被看到", value:reached, color:"#2563eb"},{label:"还没被看到", value:missed, color:"#dbe3ee"}], pct(reached, d.ladder.L0) + "%", "到达率"))}</div><section class="card" style="margin-top:16px"><div class="card-h"><div><h2>最近做了什么</h2><p>点一行看查证证据和页面后来怎样。</p></div></div>${table(["日期","动作","内容说明","现在怎样"], recent)}</section>`);
+}
+function glossary() {
+  return `<div class="glossary">${["L0","L1","L2","L3"].map(key => `<article><strong>${esc(LEVEL[key][0])} · ${key}</strong><span>${esc(LEVEL[key][1])}</span></article>`).join("")}</div>`;
+}
+function quality() {
+  const indexed = DATA.pages.filter(p => p.status === "已收录").length;
+  const items = countBy(DATA.pages, "status").map(i => ({...i, label: shortStatus(i.label), full: i.label, unit:" 个网址"}));
+  return shell("质量", "左边是动作有没有被看到。右边是网址现在卡在哪一种收录状态。", glossary() + `<div class="grid2 even">${card("动作", `${DATA.ladder.L1} / ${DATA.ladder.L0} 到了已被看到。`, columns(["L0","L1","L2","L3"].map((key, i) => ({label: LEVEL[key][0], full: levelHint(key), value: DATA.actions.filter(r => r.level === key).length, color: COLORS[i], unit:" 个"}))))}${card("收录", `${indexed} / ${DATA.gsc.indexUrls} 个网址已收录。`, columns(items.length ? items : [{label:"无", value:0}]))}</div>`);
+}
+function pace() {
+  const byDay = {};
+  DATA.actions.forEach(row => { if (row.date) byDay[row.date] = (byDay[row.date] || 0) + 1; });
+  const actions = Object.entries(byDay).sort().map(([date, value]) => ({label: date.slice(5), full: date, value, unit:" 次", color:"#2563eb", open: openAttr("day-act", date)}));
+  const inq = {};
+  inquiryItems().forEach(row => { const day = (row.created || "").slice(0, 10); if (day.length === 10) inq[day] = (inq[day] || 0) + 1; });
+  const inquiries = Object.entries(inq).sort().map(([date, value]) => ({label: date.slice(5), full: date, value, unit:" 笔", color:"#6366f1", open: openAttr("day-inq", date)}));
+  return shell("节奏", "左边是我们动手的日子，右边是申请进来的日子。点一根柱子，看那天的明细。", `<div class="grid2 even">${card("动作", "按执行日期。", columns(actions))}${card("申请", "按创建日期。", columns(inquiries.length ? inquiries : [{label:"无", value:0}]))}</div>`);
+}
+function inquiries() {
+  const items = inquiryItems();
+  const statuses = ["询盘已收到","形式发票已开","已完成","已取消"];
+  const counts = Object.fromEntries(statuses.map(name => [name, items.filter(r => r.status === name).length]));
+  const colors = {"询盘已收到":"#2563eb","形式发票已开":"#10b981","已完成":"#059669","已取消":"#d1d5db"};
+  const slices = statuses.map(name => ({label: name, status: name, value: counts[name] || 0, color: colors[name]}));
+  const byDay = {};
+  items.forEach(row => { const day = (row.created || "").slice(0, 10); if (day.length === 10) byDay[day] = (byDay[day] || 0) + 1; });
+  const days = Object.entries(byDay).sort();
+  const chart = days.length > 1
+    ? lines([{name:"申请", color:"#2563eb", values: days.map(([,v]) => v)}], days.map(([d]) => d.slice(5)), days.map(([d,v]) => d + "\n申请：" + v + " 笔"))
+    : columns(days.map(([d,v]) => ({label: d.slice(5), full: d, value: v, unit:" 笔"})));
+  const chips = [`<button type="button" data-status="" class="${filterState.status?"":"on"}">全部 ${items.length}</button>`].concat(statuses.map(name => `<button type="button" data-status="${esc(name)}" class="${filterState.status===name?"on":""}">${esc(name)} ${counts[name]||0}</button>`)).join("");
+  const rows = items.filter(row => (!filterState.status || row.status === filterState.status) && matches([row.number, row.company, row.contact, row.email, row.note, row.project, askOf(row), row.status].join(" "))).map(row => `<tr class="clickable" data-open="${esc(openAttr("inq", row.id))}"><td class="when">${esc((row.created || "").slice(0, 16))}</td><td>${esc(row.number || row.id)}</td><td>${esc(row.company || "没有公司名")}<br><span class="note">${esc(row.contact || "")}</span></td><td class="clip">${esc(askOf(row))}</td><td>${esc(money(row))}</td><td>${pill(row.status, statusClass(row.status))}</td></tr>`);
+  const banner = DATA.inquiries.liveError ? `<div class="banner">申请正文这次没取到：${esc(DATA.inquiries.liveError)}。表里仍是底表已有的公司名和单号。</div>` : "";
+  return shell("询盘", "点任何一行，看联系人、申请了什么、客户原话、规格和单据。这些正文只在这台电脑上，没有写回底表。", banner + `<div class="grid2">${card("结果", `共 ${items.length} 笔。已签发 ${DATA.inquiries.issued}。已归因 ${DATA.inquiries.attributed}。`, donut(slices, String(counts["询盘已收到"] || 0), "仍在流程"))}${card("进来的节奏", "每个点是当天新提交的申请。", chart)}</div><section class="card" style="margin-top:16px"><div class="card-h"><div><h2>申请列表</h2><p>点一行展开。搜索公司、联系人、产品或备注。</p></div></div><div style="padding:12px 18px 0"><div class="chips">${chips}</div><input class="search" data-q value="${esc(filterState.q)}" placeholder="搜索申请"></div>${table(["创建","单号","公司 / 联系人","申请了什么","金额","状态"], rows)}</section>`);
+}
+function actions() {
+  const levels = ["L0","L1","L2","L3"].map((key, i) => ({label: LEVEL[key][0], full: levelHint(key), value: DATA.actions.filter(r => r.level === key).length, color: COLORS[i], unit:" 个动作"}));
+  const rows = DATA.actions.filter(row => matches([row.id, row.action, row.summary, row.url, row.company, row.level, levelName(row.level)].join(" "))).map(row => `<tr class="clickable" data-open="${esc(openAttr("act", row.id))}"><td class="when">${esc(row.date)}</td><td>${esc(row.category || "")}<br>${esc(row.action || "")}</td><td class="clip">${esc(row.summary || "没有内容说明")}</td><td class="url">${row.url ? link(row.url, shortUrl(row.url)) : esc(row.company || "—")}</td><td>${esc(n(row.indexStatus))}</td><td>${pill(levelName(row.level), row.level)}</td></tr>`);
+  return shell("动作", "已执行是做了还没被看到。已被看到是到了搜索结果。有互动、有转化现在如果是 0，就是还没有点击或归因询盘。", glossary() + card("现在停在哪一级", "一个动作只算一次。悬停看个数，名称旁边带级别。", columns(levels)) + `<section class="card" style="margin-top:16px"><div class="card-h"><div><h2>做了什么</h2><p>内容说明来自执行登记。点一行看查证证据和收录原因。</p></div></div><div style="padding:12px 18px 0"><input class="search" data-q value="${esc(filterState.q)}" placeholder="搜索动作、说明或网址"></div>${table(["日期","动作","内容说明","页面","收录","现在怎样"], rows)}</section>`);
+}
+function filteredPerformance() {
+  return DATA.performance.filter(row => ["date","country","device","type"].every(key => !filterState[key] || row[key] === filterState[key]));
+}
+function filters() {
+  return [["date","日期"],["country","国家"],["device","设备"],["type","搜索类型"]].map(([key, label]) => {
+    const vals = [...new Set(DATA.performance.map(r => r[key]).filter(Boolean))].sort();
+    const current = filterState[key] || "";
+    const control = key === "date"
+      ? `<input data-filter="${key}" type="date" value="${esc(current)}">`
+      : `<select data-filter="${key}"><option value="">全部</option>${vals.map(v => `<option value="${esc(v)}"${v===current?" selected":""}>${esc(v)}</option>`).join("")}</select>`;
+    return `<label>${label}${control}</label>`;
+  }).join("");
+}
+function trend() {
+  if (!DATA.gsc.performanceRows) {
+    return shell("趋势", "网页表现现在是 0 行，所以这里不画一条贴在轴上的 0 线。", card("展示和点击", "底表的网页表现是空的。等 GSC 回流写出行之后，这里才是折线。", `<div class="empty">没有搜索表现数据。<br>不是图坏了。</div>`));
+  }
+  const rows = filteredPerformance();
+  const by = new Map();
+  rows.forEach(r => {
+    const cur = by.get(r.date) || {impressions:0, clicks:0};
+    cur.impressions += r.impressions; cur.clicks += r.clicks;
+    by.set(r.date, cur);
+  });
+  const entries = [...by.entries()].sort();
+  const cats = entries.map(([d]) => d.slice(5));
+  const tips = entries.map(([d,v]) => d + "\n展示：" + v.impressions + "\n点击：" + v.clicks);
+  return shell("趋势", "折线看搜索表现。悬停某个点，数字出现在图上方和浮层里。", `<div class="filters">${filters()}</div>${card("展示和点击", "左右两端留了空，点和字不会贴死在边框上。", lines([{name:"展示", color:"#2563eb", values: entries.map(([,v]) => v.impressions)},{name:"点击", color:"#38bdf8", values: entries.map(([,v]) => v.clicks)}], cats, tips))}`);
+}
+function shortStatus(label) {
+  return String(label || "").replace("Google 还不知道这个网址","还不知道").replace("已抓取、尚未收录","已抓未收").replace("已发现、尚未抓取","已发现").replace("被 noindex 挡住","noindex");
+}
+function countBy(rows, key) {
+  const out = {};
+  rows.forEach(r => { const k = r[key] || "未标"; out[k] = (out[k] || 0) + 1; });
+  return Object.entries(out).map(([label, value], i) => ({label, value, color: COLORS[i % COLORS.length]})).sort((a,b) => b.value - a.value);
+}
+function pages() {
+  const items = countBy(DATA.pages, "status");
+  const short = items.map(i => ({...i, label: shortStatus(i.label), full: i.label + "：" + i.value + " 个网址", unit:" 个"}));
+  const indexed = items.find(i => i.label === "已收录")?.value || 0;
+  const rows = DATA.pages.filter(row => matches([row.url, row.status, row.reason, row.compared].join(" "))).map(row => `<tr class="clickable" data-open="${esc(openAttr("page", row.url))}"><td class="url">${link(row.url, shortUrl(row.url))}</td><td>${esc(n(row.status))}</td><td class="clip">${esc(row.reason || "—")}</td><td>${esc(row.checked || "")}</td><td>${esc(row.compared || "")}</td></tr>`);
+  return shell("收录", `${DATA.gsc.indexUrls} 个网址，${DATA.gsc.indexRows} 次检查。点一行看原因、正式地址和历次检查。`, `<div class="grid2">${card("结构", "一个网址只算最新一次检查。", donut(items, pct(indexed, DATA.gsc.indexUrls) + "%", "已收录"))}${card("哪一种最多", "柱高是网址数。完整状态名在悬停里。", columns(short))}</div><section class="card" style="margin-top:16px"><div class="card-h"><div><h2>网址</h2><p>原因说明来自收录检查，不是只有一个状态词。</p></div></div><div style="padding:12px 18px 0"><input class="search" data-q value="${esc(filterState.q)}" placeholder="搜索网址或原因"></div>${table(["网址","收录状态","原因说明","检查日期","和上次比"], rows)}</section>`);
+}
+function later() {
+  return shell("还没接上", "邮件和访问还没有数，所以这里不画假图。", `<div class="grid2 even">${card("邮件", esc(DATA.mail) + "。以后这里是送达、退信、回复。", `<div class="empty">邮件回流还没接上</div>`)}${card("访问", esc(DATA.ga4), `<div class="empty">GA4 还是留位</div>`)}</div>`);
+}
+function kv(rows) {
+  const filled = rows.filter(([, value]) => value != null && value !== "");
+  if (!filled.length) return "";
+  return `<div class="kv">${filled.map(([label, value]) => `<b>${esc(label)}</b><span>${value}</span>`).join("")}</div>`;
+}
+function textBlock(title, value) {
+  if (!value) return "";
+  return `<section class="section"><h3>${esc(title)}</h3><div class="prose">${esc(value)}</div></section>`;
+}
+function inquiryDetail(row) {
+  const items = (row.items || []).map(it => `<div class="item"><strong>${esc(it.name)}</strong><span class="note">${esc([it.sku && "SKU " + it.sku, it.quantity != null && it.quantity !== "" && "数量 " + it.quantity, it.total && "小计 " + it.total, it.manufacturer, it.model].filter(Boolean).join(" · "))}</span>${it.specs && it.specs.length ? `<ul class="specs">${it.specs.map(s => `<li>${esc(fieldLabel(s.label))}：${esc(s.value)}</li>`).join("")}</ul>` : ""}</div>`).join("");
+  const docs = (row.documents || []).map(doc => `<div class="item"><strong>${esc(doc.kind)} ${esc(doc.reference || "")}</strong>${kv((doc.fields || []).map(f => [f.label, esc(f.value)]))}</div>`).join("");
+  const skip = new Set(["主题","入口","项目","项目编号"]);
+  const fields = kv((row.fields || []).filter(f => !skip.has(f.label)).map(f => [f.label, esc(f.value)]));
+  return `<header><div><h2>${esc(row.company || row.contact || "没有公司名")}</h2><p class="note">${esc(row.number || row.id)} · ${esc(row.created || "")}</p></div><button class="close" type="button" data-close>关闭</button></header><div class="section">${pill(row.status, statusClass(row.status))}</div><section class="section"><h3>谁提交的</h3>${kv([["公司", esc(row.company)],["联系人", esc(row.contact)],["邮箱", row.email ? `<a href="mailto:${esc(row.email)}">${esc(row.email)}</a>` : ""],["电话", esc(row.phone)],["地址", esc(row.address)],["收货地址", esc(row.shipAddress)]])}</section><section class="section"><h3>申请了什么</h3>${items || `<p class="note">这单没有行项目。</p>`}</section>${textBlock("客户原话", row.note)}${textBlock("底表备注", row.sheetNote)}<section class="section"><h3>金额和来源</h3>${kv([["金额", esc(money(row))],["付款", esc(row.payment)],["运费", esc(row.shipping)],["入口", esc(row.via)],["主题", esc(row.topic)],["项目", esc(row.project)],["项目编号", esc(row.projectRef)],["签发", esc(row.issued)],["归因", esc(row.attribution)],["归因依据", esc(row.attributionBasis)]])}</section>${docs ? `<section class="section"><h3>单据</h3>${docs}</section>` : ""}${fields ? `<section class="section"><h3>其他有内容的字段</h3>${fields}</section>` : ""}`;
+}
+function actionDetail(row) {
+  const page = DATA.pages.find(p => p.url === row.url);
+  return `<header><div><h2>${esc(row.action || "动作")}</h2><p class="note">${esc(row.id)} · ${esc(row.date)}</p></div><button class="close" type="button" data-close>关闭</button></header><div class="section">${pill(levelName(row.level), row.level)} <span class="note">${esc(levelHint(row.level))}</span></div><section class="section"><h3>做了什么</h3>${kv([["线", esc(row.line)],["渠道", esc(row.channel)],["大类", esc(row.category)],["动作", esc(row.action)],["公司", esc(row.company)],["来源", esc(row.source)],["查证", esc(row.verified)],["查证时刻", esc(row.verifiedAt)],["登记时刻", esc(row.registeredAt)]])}</section>${textBlock("内容说明", row.summary)}${textBlock("查证证据", row.evidence)}${textBlock("备注", row.note)}<section class="section"><h3>后来怎样</h3>${kv([["页面", row.url ? link(row.url) : ""],["旧网址", row.oldUrl ? link(row.oldUrl) : ""],["收录", esc(row.indexStatus)],["和上次比", esc(row.compared)],["原因", esc(row.reason || (page && page.reason) || "")],["近 7 天展示", esc(n(row.impressions7))],["近 7 天点击", esc(n(row.clicks7))],["德国展示", esc(n(row.impressions7De))],["德国点击", esc(n(row.clicks7De))],["主要搜索词", esc(row.queries7)],["邮件事件", esc(row.mailEvent)],["归因询盘", esc(row.attributed)],["最近反馈", esc(row.feedbackDate)]])}</section>`;
+}
+function pageDetail(row) {
+  const history = (row.history || []).map(h => `<tr><td>${esc(h.checked)}</td><td>${esc(h.status)}</td><td>${esc(h.compared)}</td><td>${esc(h.reason)}</td></tr>`).join("");
+  return `<header><div><h2>收录检查</h2><p class="note url">${link(row.url)}</p></div><button class="close" type="button" data-close>关闭</button></header><section class="section"><h3>最新一次</h3>${kv([["状态", esc(row.status)],["结论", esc(row.verdict)],["原因", esc(row.reason)],["和上次比", esc(row.compared)],["语言", esc(row.language)],["robots", esc(row.robots)],["是否允许收录", esc(row.indexable)],["抓取", esc(row.fetch)],["上次抓取", esc(row.fetchedAt)],["Google 正式地址", row.googleCanonical ? link(row.googleCanonical) : ""],["页面声明地址", row.declaredCanonical ? link(row.declaredCanonical) : ""],["反馈级别", esc(levelName(row.level))],["对应动作", esc(row.actionId)]])}</section><section class="section"><h3>历次检查</h3>${table(["日期","状态","变化","原因"], (row.history || []).map(h => `<tr><td>${esc(h.checked)}</td><td>${esc(h.status)}</td><td>${esc(h.compared)}</td><td>${esc(h.reason)}</td></tr>`))}</section>`;
+}
+function dayDetail(kind, day) {
+  const rows = kind === "act"
+    ? DATA.actions.filter(r => r.date === day).map(r => `<tr class="clickable" data-open="${esc(openAttr("act", r.id))}"><td>${esc(r.action)}</td><td>${esc(r.summary)}</td></tr>`)
+    : inquiryItems().filter(r => (r.created || "").slice(0, 10) === day).map(r => `<tr class="clickable" data-open="${esc(openAttr("inq", r.id))}"><td>${esc(r.number || r.id)}</td><td>${esc(r.company || r.contact || "")}</td><td>${esc(askOf(r))}</td></tr>`);
+  return `<header><div><h2>${esc(day)}</h2><p class="note">${kind === "act" ? "当天的动作" : "当天的申请"}</p></div><button class="close" type="button" data-close>关闭</button></header><section class="section">${table(kind === "act" ? ["动作","内容说明"] : ["单号","公司","申请了什么"], rows)}</section>`;
+}
+function showDetail(raw) {
+  const cut = raw.indexOf(":");
+  const kind = raw.slice(0, cut);
+  const id = decodeURIComponent(raw.slice(cut + 1));
+  let html = "";
+  if (kind === "inq") html = inquiryDetail(inquiryItems().find(r => String(r.id) === id) || {id, company:"找不到这笔"});
+  else if (kind === "act") html = actionDetail(DATA.actions.find(r => r.id === id) || {id, action:"找不到这次动作"});
+  else if (kind === "page") html = pageDetail(DATA.pages.find(r => r.url === id) || {url:id, history:[]});
+  else if (kind === "day-act" || kind === "day-inq") html = dayDetail(kind === "day-act" ? "act" : "inq", id);
+  else return;
+  document.getElementById("drawer").innerHTML = html;
+  document.getElementById("drawer").hidden = false;
+  document.getElementById("backdrop").hidden = false;
+}
+function hideDetail() {
+  document.getElementById("drawer").hidden = true;
+  document.getElementById("backdrop").hidden = true;
+}
+const VIEW = {overview, quality, pace, inquiries, actions, trend, pages, later};
+function render() { document.getElementById("app").innerHTML = VIEW[screen](); }
+const tip = document.getElementById("tip");
+document.addEventListener("pointermove", e => {
+  const hit = e.target.closest && e.target.closest("[data-tip]");
+  if (!hit) { tip.classList.remove("show"); return; }
+  const text = hit.getAttribute("data-tip") || "";
+  tip.textContent = text;
+  tip.classList.add("show");
+  const plot = hit.closest("[data-plot]");
+  const readout = plot && plot.querySelector(".readout");
+  if (readout) readout.textContent = text.replace(/\n/g, " · ");
+  const pad = 12;
+  const width = tip.offsetWidth, height = tip.offsetHeight;
+  let x = e.clientX - width / 2;
+  let y = e.clientY - height - 14;
+  if (y < pad) y = e.clientY + 16;
+  x = Math.max(pad, Math.min(window.innerWidth - width - pad, x));
+  y = Math.max(pad, Math.min(window.innerHeight - height - pad, y));
+  tip.style.left = x + "px";
+  tip.style.top = y + "px";
+});
+document.addEventListener("pointerleave", () => tip.classList.remove("show"));
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-close]") || e.target.id === "backdrop") { hideDetail(); return; }
+  const open = e.target.closest("[data-open]");
+  if (open && !e.target.closest("a")) { showDetail(open.dataset.open); return; }
+  const status = e.target.closest("[data-status]");
+  if (status && (status.closest(".chips") || status.dataset.status)) {
+    filterState.status = status.dataset.status || "";
+    if (screen !== "inquiries") { screen = "inquiries"; history.replaceState(null, "", "#inquiries"); }
+    render();
+    return;
+  }
+  const button = e.target.closest("[data-screen]");
+  if (!button) return;
+  screen = button.dataset.screen;
+  history.replaceState(null, "", "#" + screen);
+  render();
+});
+document.addEventListener("input", e => {
+  const el = e.target.closest("[data-q]");
+  if (!el) return;
+  filterState.q = el.value;
+  const start = el.selectionStart;
+  render();
+  const next = document.querySelector("[data-q]");
+  if (next) { next.focus(); next.setSelectionRange(start, start); }
+});
+document.addEventListener("change", e => {
+  const el = e.target.closest("[data-filter]");
+  if (!el) return;
+  filterState[el.dataset.filter] = el.value;
+  render();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") hideDetail(); });
+fetch("/data.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error("还没有导出"); return r.json(); }).then(d => { DATA = d; render(); }).catch(err => {
+  document.getElementById("app").textContent = "读不到本地导出。先运行 uv run scripts/dashboard.py export。 " + err.message;
+});
+</script>
+</body>
+</html>

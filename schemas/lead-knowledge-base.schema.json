@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://de-linker.local/schemas/lead-knowledge-base.schema.json",
+  "title": "Lead teaching knowledge base",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "title",
+    "created_at",
+    "updated_at",
+    "learning",
+    "documents",
+    "evidence",
+    "questions",
+    "feedback"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "learning": {
+      "type": "object",
+      "required": [
+        "ticket",
+        "current_skill",
+        "current_stage",
+        "current_stage_name",
+        "total_units_completed"
+      ],
+      "properties": {
+        "ticket": { "type": "string" },
+        "current_skill": { "type": "string" },
+        "current_stage": { "type": "integer", "minimum": 0 },
+        "current_stage_name": { "type": "string" },
+        "total_units_completed": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "valid",
+        "validated_at",
+        "logical_path",
+        "real_path",
+        "vault_root",
+        "document_count"
+      ],
+      "properties": {
+        "valid": { "type": "boolean" },
+        "validated_at": { "type": "string" },
+        "logical_path": { "type": "string" },
+        "real_path": { "type": "string" },
+        "vault_root": { "type": "string" },
+        "document_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "created_at", "kind", "title", "summary", "vault_path", "topics"],
+        "properties": {
+          "id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "kind": { "type": "string" },
+          "title": { "type": "string" },
+          "summary": { "type": "string" },
+          "vault_path": { "type": "string" },
+          "web_path": { "type": "string" },
+          "topics": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "created_at",
+          "claim",
+          "type",
+          "role",
+          "source_url",
+          "document_id",
+          "excerpt",
+          "confidence",
+          "tags",
+          "status"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "claim": { "type": "string" },
+          "type": { "type": "string" },
+          "role": { "type": "string" },
+          "source_url": { "type": "string" },
+          "document_id": { "type": "string" },
+          "excerpt": { "type": "string" },
+          "skills": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "disputed", "superseded", "archived"]
+          },
+          "updated_at": { "type": "string" },
+          "archived_reason": { "type": "string" },
+          "revision_history": {
+            "type": "array",
+            "items": { "type": "object", "additionalProperties": true }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "created_at",
+          "asked_at",
+          "skill",
+          "text",
+          "question_type",
+          "evidence_ids",
+          "status",
+          "answer",
+          "assessment",
+          "resulting_evidence_ids"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "asked_at": { "type": "string" },
+          "answered_at": { "type": "string" },
+          "skill": { "type": "string" },
+          "text": { "type": "string" },
+          "question_type": { "type": "string" },
+          "selection_rationale": { "type": "string" },
+          "knowledge_snapshot": { "type": "string" },
+          "target_company_context": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "option_labels": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "option_evidence": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "analysis_chain": {
+            "type": "array",
+            "items": { "type": "object", "additionalProperties": true }
+          },
+          "evidence_gaps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["asked", "answered", "challenged", "paused", "superseded"]
+          },
+          "answer": { "type": "string" },
+          "assessment": { "type": "string" },
+          "resulting_evidence_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "feedback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "created_at",
+          "source",
+          "text",
+          "scope",
+          "decision",
+          "applied_to",
+          "status"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "source": { "type": "string" },
+          "text": { "type": "string" },
+          "scope": { "type": "string" },
+          "decision": { "type": "string" },
+          "applied_to": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "affected_evidence_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

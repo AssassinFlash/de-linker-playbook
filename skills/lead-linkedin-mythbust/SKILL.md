@@ -24,7 +24,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类/利基、目标买家（行业与区域）、误区或对比主题、证据、CTA 一并记，来源记「用户本轮」。品类或目标买家仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这两项，不在本文件另写问卷。硬依赖文件缺失、用户本轮也未给出对应买家全文、且无 `user_waiver` → 停。原文不拷进本仓库。完成：能指出品类、买家、已有误区线索各依据哪几条。
 
-3. **查证**。用网页搜索查证该品类买家确实持有该误区，或该对比在公开 sourcing 讨论中真实出现；再为 Reality 搜至少一条可引用证据（标准、规格、公开报告、已抓取页）。需要原文则抓取指定 URL 的正文。查询模板见 `references/structure-7.md`。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。搜不到「市场上有人这么认为或这么比」→ 该候选作废，不揭穿。搜索不可用 → 停止并写缺口，不编造误区或证据。禁止为凑次数空搜。多候选需隔离时 dispatch a subagent, else do it inline。完成：进入候选的每条有摘录证明市场存在；将写入 Reality 的每条事实有 URL 或产品上下文出处。
+3. **查证**。用 Apify 搜索查证该品类买家确实持有该误区，或该对比在公开 sourcing 讨论中真实出现；再为 Reality 搜至少一条可引用证据（标准、规格、公开报告、已抓取页）。需要原文则抓取指定 URL 的正文。查询模板见 `references/structure-7.md`。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。Apify 修复与替代取证后仍不可得「市场上有人这么认为或这么比」→ 该候选作废，不揭穿。Apify 修复与替代取证后仍不可得 → 停止并写缺口，不编造误区或证据。禁止为凑次数空搜。多候选需隔离时 dispatch a subagent, else do it inline。完成：进入候选的每条有摘录证明市场存在；将写入 Reality 的每条事实有 URL 或产品上下文出处。
 
 4. **选定**。用户已点名主题 → 用该条（仍须步骤 3 验证通过）。用户未点名：在交付物写 1–2 个已验证候选（陈述、Reality 要点、证据类型、Buyer Benefit 一句）。本轮能问则只问选哪条；用户说直接做或不能问 → 取证据最硬的一条，标「未经用户确认」。`mode` 只取 `myth`（揭穿错误信念）或 `comparison`（两个真实选项的利弊）。禁止无人持有的误区、禁止一方明显荒谬的稻草人对比、禁止把卖点伪装成误区。骨架与分帧见 `references/structure-7.md`。完成：mode、选定句、Reality 要点、至少一条证据、Buyer Benefit 一句都有。
 
@@ -36,7 +36,7 @@ description: >
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖是 ICP；USP、产品知识、话题研究有则读，不阻塞。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。
 - 单帖 inline 做完；多候选隔离时 dispatch a subagent, else do it inline。
 - 帖子正文缺省英语；策略与缺口跟本轮语言（缺省中文）；标签英语。用户本轮指定其他面客语种则改帖，同一段不混用。
 - 真实买家顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。事实问答走 `skills/lead-linkedin-faq/SKILL.md`（文件存在时）。权威趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。教育讲解走 `skills/lead-linkedin-education/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那几类。

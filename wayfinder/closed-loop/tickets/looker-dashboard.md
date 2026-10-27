@@ -76,3 +76,7 @@ blocked_by: []
 - 页 2 读回：Search Console URL Impression / web / 近 28 天；Country 与 Date 控件、Device Category 拆分表、Landing Page 表、Query 表、趋势图和 L3 / 邮件 / GA4 留位均在。Query 当前 No data，性能补验仍归「看板表现面板补验」。
 - 权限读回：`所有者账号` 为 Owner；`日常账号` 为 Editor。又用 `日常账号` 打开报表并读回两页编辑界面，确认共享生效。报表链接保持 Restricted。
 - 刷新报表后重新加载，两页结构、数据源和组件均持久化；公开指南保留为维护 / 复建说明。
+
+## 2026-10-20 版式被否，自建另切票
+
+用户看过正式报表后认为整体不可接受，并选定自建。本票已关，不重开。形态问题在「自建看板原型」。报表资产仍在，不删。

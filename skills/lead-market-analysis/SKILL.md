@@ -22,9 +22,9 @@ description: >
 
 2. **输入与闸门**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。记下品类/利基、目标市场、用途（内部决策 / 投资人 / 销售支持，未指定则内部决策）。硬依赖：`deliverables/lead/04-market/competitor-positioning.md` 与 `competitor-comparison.xlsx` 的 frontmatter `status` 为 `approved`（已过证据闸），或台账已记 `user_waiver`。软依赖（有则读，不阻塞）：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/` 下目标公司 / 分销商 / 零售商文件。硬依赖未满足：停，打开 `skills/lead-competitor-analysis/SKILL.md`（存在则按其做）；该文件也不存在则只报缺口，不自造竞品表。产品上下文仍不够圈定利基或市场时，打开 `skills/lead-interview/SKILL.md`（存在则按其做），不在本文件另写问卷。范围默认 10 板块全做；访谈或用户本轮明确收窄时，只做点名板块，并在摘要列出跳过的板块名与原因。完成：能指出利基、目标市场、竞品文件状态各依据哪几条；原文不拷进本仓库。
 
-3. **采集规模与增长**。用网页搜索查证当前规模、近 3–5 年历史增速、未来 3–5 年展望、CAGR。需要原文时抓取指定 URL。规模与 CAGR 各至少两个独立来源交叉；来源相差超过约 30% 时写区间并解释差异，不挑一个当唯一真值。查证次数对齐 `skills/lead-generation/references/search-protocol.md` 的数据型最低要求（覆盖规模 / CAGR / 统计，至少 8 次网页搜索）；有用结果不够则报告实际次数与缺口，不用训练记忆填数。搜索不可用则停止并写缺口。完成：规模与 CAGR 各有 ≥2 条带来源名、年份、时间窗的记录，或已标「未在来源出现」。
+3. **采集规模与增长**。用 Apify 搜索查证当前规模、近 3–5 年历史增速、未来 3–5 年展望、CAGR。需要原文时抓取指定 URL。规模与 CAGR 各至少两个独立来源交叉；来源相差超过约 30% 时写区间并解释差异，不挑一个当唯一真值。查证次数对齐 `skills/lead-generation/references/search-protocol.md` 的数据型最低要求（覆盖规模 / CAGR / 统计，至少 8 次 Apify 搜索）；有用结果不够则报告实际次数与缺口，不用训练记忆填数。Apify 修复与替代取证后仍不可得则停止并写缺口。完成：规模与 CAGR 各有 ≥2 条带来源名、年份、时间窗的记录，或已标「未在来源出现」。
 
-4. **采集格局、买家、趋势与风险**。对照已批准竞品表，用网页搜索查证份额、集中度、进入壁垒；买家决策周期与渠道偏好；技术 / 监管 / 贸易政策（含关税、反倾销检索）。有 ICP 或渠道名单则用来核对买家与渠道段落，不另造公司。用户已配置市场探索或流量工具时，由其导出后再解析；未配置则不做流量份额估算。多页抓取需要隔离时 dispatch a subagent, else do it inline。完成：格局、买家、趋势、监管四块各有摘录或显式缺口；每条证据有 URL 与访问日期。
+4. **采集格局、买家、趋势与风险**。对照已批准竞品表，用 Apify 搜索查证份额、集中度、进入壁垒；买家决策周期与渠道偏好；技术 / 监管 / 贸易政策（含关税、反倾销检索）。有 ICP 或渠道名单则用来核对买家与渠道段落，不另造公司。用户已配置市场探索或流量工具时，由其导出后再解析；未配置则不做流量份额估算。多页抓取需要隔离时 dispatch a subagent, else do it inline。完成：格局、买家、趋势、监管四块各有摘录或显式缺口；每条证据有 URL 与访问日期。
 
 5. **SWOT、风险、财务**。按 `references/ten-sections-detail.md` 写四类 SWOT（每条有证据与 High/Medium/Low 影响）、三类风险（市场 / 竞争 / 监管，各含概率、影响、缓解）、1–5 年市场预测。我方收入或盈亏平衡：仅当产品上下文有量、价或成本；否则标缺口，只做市场层预测。估算必须标「估算」并写推理。完成：SWOT 四类均非空；每条风险有缓解；预测有方法说明；无出处数字为零。
 
@@ -35,7 +35,7 @@ description: >
 ## 默认
 
 - 产出只进 `deliverables/lead/04-market/`。进度只认台账。战役闸门与审批走 `skills/lead-generation/SKILL.md`；验证—审查—写入见 `skills/lead-generation/references/orchestration-protocol.md`。营销树基础/竞品走 `skills/marketing-foundation/SKILL.md` 与 `skills/marketing-competitor-intelligence/SKILL.md`，不混写。
-- 查证用网页搜索；需要原文时抓取指定 URL。缺搜索则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。Apify 与替代取证仍不可得则停止并写缺口，不编造。
 - 数字只来自：产品上下文、用户本轮、搜索结果或已抓取正文。交付物写来源名、URL、年份、访问日期。
 - 金额默认 USD，来源是其他币种时保留原币并注明。历史值与预测值必须带时间标记，不混写。
 - 早于「当前公历年 − 2」的数据必须标注年份与陈旧；不是自动丢弃。
@@ -86,7 +86,7 @@ description: >
 ## 搜索日志
 | # | Capability | Query/URL | Results | Useful | Notes |
 |---|------------|-----------|---------|--------|-------|
-| 1 | web_search |  |  |  |  |
+| 1 | apify_search |  |  |  |  |
 Total: N calls, M useful
 ```
 

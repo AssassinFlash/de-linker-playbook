@@ -19,7 +19,7 @@
                        两样一起：打印字段名/存在性和对账条数，不写表
 
 定时不另装。`uv run scripts/gsc_pull.py schedule install` 的那条 08:30 任务先跑 GSC，
-再跑本脚本，然后发每日提醒。标签和钟点不变。
+再跑本脚本，再跑邮箱回流，然后发每日提醒。标签和钟点不变。
 
 网站读取用标准库。文件头里的依赖是 scripts/base_table.py 已经在用的那一组，没有新包。
 Woo 只读密钥不进仓库。config.toml（PLAYBOOK_CONFIG，否则
@@ -171,10 +171,18 @@ def load_secrets(path: Path | None = None) -> tuple[str, str]:
 # ---------------------------------------------------------------- Woo GET
 
 
+INCLUDE_META = ",".join([
+    ISSUED_META,
+    ATTR_PREFIX + "source_type",
+    ATTR_PREFIX + "device_type",
+    ATTR_PREFIX + "session_pages",
+])
+
+
 def orders_query(page: int, audit: bool) -> str:
     pairs = [("status", STATUSES), ("per_page", str(PER_PAGE)), ("page", str(page))]
     if not audit:
-        pairs.append(("include_meta", ISSUED_META))
+        pairs.append(("include_meta", INCLUDE_META))
     return urllib.parse.urlencode(pairs, safe=",")
 
 
@@ -312,6 +320,50 @@ def meta_key_names(order: dict) -> tuple[list[str], int]:
     return names, unsafe
 
 
+SOURCE_ZH = {
+    "typein": "直接访问",
+    "admin": "后台创建",
+    "organic": "自然搜索",
+    "referral": "外部引荐",
+    "utm": "带标记的链接",
+}
+DEVICE_ZH = {"Desktop": "桌面", "Mobile": "手机", "Tablet": "平板"}
+ATTR_FIELDS = ("source_type", "device_type", "session_pages")
+
+
+def origin_fields(meta) -> dict:
+    """Sheet columns from order attribution. User agent is never copied."""
+    found = {}
+    if not isinstance(meta, list):
+        return found
+    for item in meta:
+        if not isinstance(item, dict):
+            continue
+        key = item.get("key")
+        if not isinstance(key, str) or not key.startswith(ATTR_PREFIX):
+            continue
+        short = key[len(ATTR_PREFIX):]
+        if short in ATTR_FIELDS:
+            found[short] = item.get("value")
+    source = found.get("source_type")
+    device = found.get("device_type")
+    pages = found.get("session_pages")
+    out = {
+        "source": SOURCE_ZH.get(source) if isinstance(source, str) else None,
+        "device": DEVICE_ZH.get(device) if isinstance(device, str) else None,
+    }
+    if isinstance(pages, bool):
+        out["pages"] = None
+    elif isinstance(pages, int):
+        out["pages"] = pages if 0 <= pages <= 500 else None
+    elif isinstance(pages, str) and pages.isdigit():
+        n = int(pages)
+        out["pages"] = n if n <= 500 else None
+    else:
+        out["pages"] = None
+    return out
+
+
 def project_order(order: dict) -> dict:
     """Copy the sheet fields only. Nested billing / meta values are not retained."""
     billing = order.get("billing")
@@ -339,6 +391,7 @@ def project_order(order: dict) -> dict:
         number = None
     created = order.get("date_created_gmt")
     status = order.get("status")
+    origin = origin_fields(meta)
     return {
         "id": _scalar_id(order.get("id")),
         "number": number,
@@ -346,6 +399,9 @@ def project_order(order: dict) -> dict:
         "created_gmt": created if isinstance(created, str) else None,
         "status": status if isinstance(status, str) else None,
         "issued": issued,
+        "source": origin["source"],
+        "device": origin["device"],
+        "pages": origin["pages"],
     }
 
 
@@ -422,6 +478,9 @@ def to_sheet_row(rec: dict) -> dict:
         "创建时刻（北京时间）": gmt_to_beijing(created),
         "状态": STATUS_ZH[status],
         "形式发票签发时刻（北京时间）": issued_bj,
+        "来源类型": rec.get("source"),
+        "设备类型": rec.get("device"),
+        "会话页数": rec.get("pages"),
     }
 
 
@@ -704,7 +763,25 @@ def main() -> None:
     p = sub.add_parser("run")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--audit-order-attribution", action="store_true")
+    sub.add_parser("selftest")
     args = ap.parse_args()
+    if args.command == "selftest":
+        sample = origin_fields([
+            {"key": "_wc_order_attribution_source_type", "value": "typein"},
+            {"key": "_wc_order_attribution_device_type", "value": "Desktop"},
+            {"key": "_wc_order_attribution_session_pages", "value": "4"},
+            {"key": "_wc_order_attribution_user_agent", "value": "secret-agent"},
+            {"key": "_wc_order_attribution_utm_source", "value": "(direct)"},
+        ])
+        assert sample == {"source": "直接访问", "device": "桌面", "pages": 4}, sample
+        assert "secret-agent" not in str(sample)
+        assert origin_fields([{"key": "_wc_order_attribution_source_type", "value": "admin"}])["source"] == "后台创建"
+        assert origin_fields([{"key": "_wc_order_attribution_session_pages", "value": "900"}])["pages"] is None
+        query = orders_query(1, False)
+        assert "user_agent" not in query
+        assert "source_type" in query and "session_pages" in query
+        print("selftest ok")
+        raise SystemExit(0)
     sys.exit(run(args.dry_run, args.audit_order_attribution))
 
 

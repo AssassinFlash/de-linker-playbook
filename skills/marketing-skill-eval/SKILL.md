@@ -20,7 +20,7 @@ description: >
 ## 步骤
 
 1. **步骤 0 与锁定目标**。读 `skills/marketing-playbook-standards/SKILL.md`。从用户本轮消息取目标 skill 名；不明、不存在或一次点了多份则停，不猜测。完成：唯一路径 `skills/<name>/SKILL.md` 存在；能复述共用规则五条硬约束。
-2. **采集**。读目标 `SKILL.md` 全文（有 `references/` 再按需读）。读 `skills/marketing-orchestrator/references/dependency-graph.md` 对应条目；没有该文件或没有该条目则标 `[MISSING_REGISTRY_ENTRY]`，跳过注册表相关分，不编造。读该 skill 最近一份已落地交付物；没有则标 `[NO_DELIVERABLE]`，只评定义。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。只为核对 skill 是否要求用上下文，原文不拷进本仓库。用网页搜索查证该 skill 领域现行 B2B 做法，至少 2 个可打开的 URL；需要原文时抓取指定 URL 的正文。搜索不可用则停止并写缺口，不编造。完成：目标文件已读完；注册表/交付物/两条 URL 齐或缺口已标明。
+2. **采集**。读目标 `SKILL.md` 全文（有 `references/` 再按需读）。读 `skills/marketing-orchestrator/references/dependency-graph.md` 对应条目；没有该文件或没有该条目则标 `[MISSING_REGISTRY_ENTRY]`，跳过注册表相关分，不编造。读该 skill 最近一份已落地交付物；没有则标 `[NO_DELIVERABLE]`，只评定义。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。只为核对 skill 是否要求用上下文，原文不拷进本仓库。用 Apify 搜索查证该 skill 领域现行 B2B 做法，至少 2 个可打开的 URL；需要原文时抓取指定 URL 的正文。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。完成：目标文件已读完；注册表/交付物/两条 URL 齐或缺口已标明。
 3. **Pass 1 产出质量**。有交付物时，对照目标 skill 的清单与产出规格逐项勾。需要隔离时 dispatch a subagent, else do it inline。无交付物则整节写 `[NO_DELIVERABLE]`，不打产出分。完成：通过项与失败项列表，每条有文件路径。
 4. **Pass 2 定义质量**。按「写法」八维各打 0–100，权重见下。每分必须引用步骤 2 的章节、行或 URL；无证据的维度不打分、整份停。`composite` = 各维 `score × weight` 之和，保留一位小数。最弱维取分数最低的一个；并列取表中最先写出的那个。细则不够用时读 `references/skill-eval-protocol.md` 与 `references/eval-rubric.md`。完成：八行评分表 + composite + 最弱维 + 证据。
 5. **落盘与触发**。按「产出」写入报告，并追加一条历史。综合分低于 70：读 `references/improvement-catalog.md`，只为最弱维选一条 fix pattern，写出一处建议编辑（路径、旧片段方向、新方向）；`evolve_triggered: true`；下一步打开 `skills/marketing-evolve/SKILL.md`。综合分不低于 70：`evolve_triggered: false`。本 skill 不改 `skills/<name>/`。完成：报告非空；历史多 1 条；`evolve_triggered` 与阈值一致。
@@ -124,7 +124,7 @@ Beginner Clarity 计分：3 步 × 5 要素，通过数 ÷ 15 × 100；有前置
 
 本 skill 是定义质量评测，例子教评分形状不教营销内容，无对应事实源材料可借，保留通用支架。
 
-目标 skill 步骤写「搜索竞品」且无查询形状：Search Depth 记低分，evidence 写该步骤所在节。建议编辑只补「用网页搜索查证」加查询形状（品类字段、市场字段、年份）。不要把本段写进报告当素材。
+目标 skill 步骤写「搜索竞品」且无查询形状：Search Depth 记低分，evidence 写该步骤所在节。建议编辑只补「用 Apify 搜索查证」加查询形状（品类字段、市场字段、年份）。不要把本段写进报告当素材。
 
 ## 易错
 
@@ -137,7 +137,7 @@ Beginner Clarity 计分：3 步 × 5 要素，通过数 ÷ 15 × 100；有前置
 - 把某个产品名写进 skill 当「针对性」。
 - 综合分低于 70 却不标 evolve。
 - 把本报告 `verdict` 当成验收条过不过，或用验收清单的 pass/fail 代替八维。
-- 搜索不可用仍编造 URL。
+- Apify 修复与替代取证后仍不可得仍编造 URL。
 
 ## 清单
 

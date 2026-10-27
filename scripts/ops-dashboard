@@ -1,0 +1,12 @@
+#!/bin/zsh
+set -euo pipefail
+ROOT="/Users/chesterjohn/Documents/de-linker-playbook"
+APP="$ROOT/apps/ops-dashboard"
+cd "$APP"
+if [[ ! -f dist/index.html ]] || find src index.html package.json vite.config.ts -newer dist/index.html -print -quit | grep -q .; then
+  if [[ ! -d node_modules ]]; then
+    npm install
+  fi
+  npm run build
+fi
+exec /usr/bin/python3 "$ROOT/scripts/ops_dashboard.py"

@@ -21,9 +21,9 @@ description: >
 
 1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`（存在则读）。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。存在则再读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/01-icp/icp-terms.xlsx`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors.xlsx`（及 `distributors-brief.xlsx`）。记下品类、目标市场、渠道偏好（线上 / 实体 / 都要）、员工数上限（未指定则 200）。品类或市场仍不清：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则本轮只补这两项，不另写问卷。完成：能指出品类与市场各依据哪几条；规模上限已写入本轮口径。
 
-2. **发现**。用网页搜索查证零售品牌，查询模板见 `references/eligibility.md`。优先用已批准的 ICP 术语；没有术语就用产品上下文的品类词 + 市场。候选必须是自有品牌门店或品牌站点、把该品类卖给终端消费者或作为品牌门店卖给企业客户。完成：候选表每条有发现用查询与来源 URL；目录站、交易平台列表页不当成一家公司。
+2. **发现**。用 Apify 搜索查证零售品牌，查询模板见 `references/eligibility.md`。优先用已批准的 ICP 术语；没有术语就用产品上下文的品类词 + 市场。候选必须是自有品牌门店或品牌站点、把该品类卖给终端消费者或作为品牌门店卖给企业客户。完成：候选表每条有发现用查询与来源 URL；目录站、交易平台列表页不当成一家公司。
 
-3. **入围**。对每条候选：抓取指定 URL 的正文，按 `references/eligibility.md` 判定是否零售商、是否经营该品类、员工数是否低于上限。员工数来自已抓取的关于我们页、新闻或可打开的公开职业网络公司页；取区间时用上限，仍须低于本轮上限。搜索或抓取不可用则停止并写缺口，不编造。多家核验需要隔离时 dispatch a subagent, else do it inline。完成：已核验表每家 `url_verified` 为抓取成功；未过筛的写入排除理由，不进主表。
+3. **入围**。对每条候选：抓取指定 URL 的正文，按 `references/eligibility.md` 判定是否零售商、是否经营该品类、员工数是否低于上限。员工数来自已抓取的关于我们页、新闻或可打开的公开职业网络公司页；取区间时用上限，仍须低于本轮上限。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。多家核验需要隔离时 dispatch a subagent, else do it inline。完成：已核验表每家 `url_verified` 为抓取成功；未过筛的写入排除理由，不进主表。
 
 4. **画像**。对已入围每家写：公司名（不翻译）、域名、品类经营年数、简史、主要客群、`market_position`、可观察的 `niche_focus`。标签枚举与证据规则见 `references/classification.md`。地位与细分都必须能指回已抓取页或搜索摘录。完成：每家两个标签都有一句证据；年数或简史缺则写 `unknown`，不补故事。
 
@@ -35,7 +35,7 @@ description: >
 
 ## 默认
 
-- 查证用网页搜索；需要原文或验域名时抓取指定 URL；不可用则停止并写缺口，不编造公司、域名或员工数。
+- 查证用 Apify 搜索；需要原文或验域名时抓取指定 URL；不可用则停止并写缺口，不编造公司、域名或员工数。
 - 规模上限默认 200 人；用户或访谈另定则从其，并写进交付物抬头。
 - 名单型最低查证：发现用搜索；每家必须抓取官网（或等价品牌站）；搜不够报告实际数量。
 - 硬依赖 `lead-search-term-expansion` 由编排闸门处理；本 skill 有术语表就用，没有则用产品上下文品类词并标缺口。

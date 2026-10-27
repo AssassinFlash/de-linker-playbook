@@ -33,6 +33,7 @@ JSON_SCHEMA_MAP = {
     "funnel-redesign.json": "rowset-deliverable.schema.json",
     "google-ads-structure.json": "google-ads-structure.schema.json",
     "inquiry-flow-data.json": "rowset-deliverable.schema.json",
+    "knowledge-base.json": "lead-knowledge-base.schema.json",
     "launch-strategy.json": "rowset-deliverable.schema.json",
     "orchestrator-run-{timestamp}.json": "orchestrator-run.schema.json",
     "orchestrator-run-{{timestamp}}.json": "orchestrator-run.schema.json",

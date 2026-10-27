@@ -33,7 +33,7 @@ description: >
 - 本仓库只回写 `skills/<name>/`（含其 `references/`）。不新建 harness 专属 agent 文件，不改 `AGENTS.md`、`state/` 下的两张台账、其他 skill。
 - 产出只进 `deliverables/marketing/00-system/`。
 - 产品事实不写进 skill。补丁会面会客数字或品类时，产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。，只指路不复制。
-- 以仓库内文件为准。只有报告要求核对外方法时才用网页搜索查证；搜不到则标缺口，不编造。
+- 以仓库内文件为准。只有报告要求核对外方法时才用 Apify 搜索查证；Apify 修复与替代取证后仍不可得则标缺口，不编造。
 - 不把本 skill 当成人批准的替代。会改导航合同或面客事实时停。
 
 ## 产出

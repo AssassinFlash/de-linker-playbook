@@ -23,7 +23,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/08-linkedin/topic-research.md`。软依赖存在则读：`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的趋势主题、区域、CTA 或风格点名一并记「用户本轮」。品类、ICP、区域或趋势焦点仍缺到无法下笔时，打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出品类、ICP、区域、CTA 意向、候选宏观趋势各依据哪几条；原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出可核验的趋势主题、且无 `user_waiver` → 停。
 
-3. **选题与查证**。从已批准话题研究里选一条**宏观行业趋势**（市场结构、需求转移、材料或工艺偏好、区域展望、供应侧含义），不要选 how-to 或合规手册题。用户本轮点名趋势则优先核该条。用网页搜索按 `references/trend-research.md` 三条意图查证：识别、数据核验、对目标受众的影响。需要原文则抓取指定 URL 的正文。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。搜不到或搜索不可用 → 换一条已核验趋势；都核不上则停并写缺口，不编造。禁止为凑次数空搜。多候选需隔离核验时 dispatch a subagent, else do it inline。完成：只保留一条趋势；时效在近 1–2 年；每条将写入帖子的数字或判断有 URL、访问日期与摘录。
+3. **选题与查证**。从已批准话题研究里选一条**宏观行业趋势**（市场结构、需求转移、材料或工艺偏好、区域展望、供应侧含义），不要选 how-to 或合规手册题。用户本轮点名趋势则优先核该条。用 Apify 搜索按 `references/trend-research.md` 三条意图查证：识别、数据核验、对目标受众的影响。需要原文则抓取指定 URL 的正文。搜索日志格式见 `skills/lead-generation/references/search-protocol.md`。Apify 修复与替代取证后仍不可得或Apify 修复与替代取证后仍不可得 → 换一条已核验趋势；都核不上则停并写缺口，不编造。禁止为凑次数空搜。多候选需隔离核验时 dispatch a subagent, else do it inline。完成：只保留一条趋势；时效在近 1–2 年；每条将写入帖子的数字或判断有 URL、访问日期与摘录。
 
 4. **分析**。按 `references/structure-2.md` 写出对该 ICP 与区域的含义，以及产品是否接得上。完成：策略说明同时有角色、区域、该趋势造成的具体后果；产品句能指回上下文已有能力，或已决定本帖无产品句（第三拍改写为买家可执行含义）。接不上就不硬接。
 
@@ -34,7 +34,7 @@ description: >
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表。
 - 帖子正文英文（用户本轮指定其他语言则从其）；策略、分析、缺口跟本轮语言（缺省中文）；标签英文。
 - 本 skill 只产帖稿。用户自行发布或经用户已配置的工具发布。
@@ -114,7 +114,7 @@ description: >
 ## 易错
 
 - 没读产品上下文或已批准话题研究就发明趋势。
-- 搜索不可用仍写统计，或为凑查证次数空搜。
+- Apify 修复与替代取证后仍不可得仍写统计，或为凑查证次数空搜。
 - 分析不点名 ICP 与区域，写成谁都适用。
 - 硬塞产品规格，删掉产品句后帖子站不住。
 - 把 how-to 或合规手册写成权威帖。

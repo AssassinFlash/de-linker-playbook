@@ -1,6 +1,7 @@
 ---
 wayfinder: task
-status: open
+status: closed
+resolved: 2026-10-20
 assignee: Codex 会话 2026-10-20（本会话）
 step: 2
 blocked_by: [l3-inquiry-source, base-table-build, looker-dashboard]
@@ -48,3 +49,27 @@ blocked_by: [l3-inquiry-source, base-table-build, looker-dashboard]
 ## 完成标准
 
 - 底表询盘表与线上实际一致（抽一段日期，脚本结果 = 后台 / 每日摘要所见数量）；重跑不重复；看板 L3 版面有数。
+
+## Resolution（2026-10-20）
+
+关票。对照的是后台订单列表的同一条只读路径，不是一封摘要邮件。摘要邮件不在手。每日摘要的口径另按新站 `docs/specs/74-daily-digest.md` 用同一批订单算了一遍，写在下面，不拿它冒充创建日计数。
+
+**全量。** `uv run scripts/inquiry_pull.py run` 取到 58 笔：询盘已收到 5，形式发票已开 0，已完成 0，已取消 53。Woo 响应头 `X-WP-Total` 在同样四个状态上是 58，四个状态分开查也是 5、0、0、53。底表询盘表 58 行，内部编号 58 个互不重复。内部编号范围与脚本日志相同：`1066…7463`。
+
+**抽日期。** 窗口是创建时刻 UTC `2026-07-03T00:00:00` 含、到 `2026-08-02T00:00:00` 不含，也就是 UTC 日历日 2026-07-03 至 2026-08-01。脚本投影 20，同一窗口的 Woo `after` / `before` 响应头 20，底表里对应的北京时间 `2026-07-03 08:00` 至 `2026-08-02 08:00` 也是 20。邻日 UTC 2026-07-02 两边都是 0。
+
+**重跑不重复。** 16:08 与 16:10 各写一次正式底表。两次都是新增 0、覆盖 0、移除 0，动作进度各重算 71 行。没有发信，没有补假行。
+
+**自定义状态确实被滤出。** 不带状态的默认列表是 63。四个计入状态是 58。多出来的 5 笔是 `on-hold`，不在询盘四态里，脚本没有写入。`checkout-draft` 另有 2 笔，不在默认列表里，也不在四态里。只查 `inquiry-received` 得到 5，不是 63。返回的 58 笔里只有询盘已收到和已取消。
+
+**签发 meta。** 审计模式不传 `include_meta`，58 笔的 `meta_data` 里都没有 `_linker_proforma_issued`（0/58）。当前没有形式发票已开的订单，所以这个键无处可出现。不是没读到。
+
+**单号。** 58 笔的 `number` 都等于 `id`，不同的是 0。
+
+**订单来源。** 只记字段名和存在笔数，没有记值，也没有加列。58 笔里：`_wc_order_attribution_source_type` 35，`_wc_order_attribution_utm_source` 30，`_wc_order_attribution_device_type` 30，`_wc_order_attribution_session_count` 30，`_wc_order_attribution_session_entry` 30，`_wc_order_attribution_session_pages` 30，`_wc_order_attribution_session_start_time` 30，`_wc_order_attribution_user_agent` 30。没有 referrer，也没有 `utm_medium`、`utm_campaign`、`utm_content`、`utm_term`。浏览器标识字段不进底表、不进日志、不进看板 JSON。要不要加列，交给「询盘归因到动作」，不在本票做。
+
+**入口标记。** `created_via` 不是归因列。58 笔里 checkout 29、dlk-quote 23、linker_contact 4、store-api 2。linker_contact 的 4 笔已经在四个计入状态里，没有从询盘表剔除。
+
+**每日摘要口径。** 计算时刻 2026-10-20 16:05:52 +08。未处理询盘按「创建早于该时刻 86400 秒，且仍为询盘已收到」是 4。五笔里有一笔还没满 24 小时，所以不是 5。形式发票已开是 0，PI 未响应是 0，缺签发 meta 的也是 0。这不是按创建日计数，也不能代替上面的 20 与 58。当天摘要已于 2026-10-20 07:00:07 UTC 发出，主题 `Daily digest, October 20, 2026`。日志没有正文。用同一套代码、把时刻定在发送瞬间重算：未处理询盘 4，PI 未响应 0，与上面的口径一致。
+
+**看板。** 操作者 2026-10-20 已把看板路径改到自建页，Looker 没有改。回流后导出的本地 JSON：L0 71、L1 28、L2 0、L3 0，申请 58，已签发 0，已归因 0，四态与底表一致，正文读取无错误。L3 是 0，因为没有询盘归因到动作；申请 58 是另一件事。总览和询盘页都写了「L3 只含形式发票申请，联系表单和直接来信不可计。」新构建由 `http://127.0.0.1:8767/` 提供。8766 仍是旧页。

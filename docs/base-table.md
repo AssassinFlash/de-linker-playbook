@@ -1,6 +1,6 @@
 # 底表
 
-底表是一本 Google 表格，存放执行登记和反馈分级的数据（术语见 `CONTEXT.md`）。脚本和 AI 往里写，操作者阅读，看板（Looker Studio）也从这里取数。本页只写角色名；表格链接和 ID 记在私有 vault 的 `deliverables/marketing/00-system/base-table.md` 里。
+底表是一本 Google 表格，存放执行登记和反馈分级的数据（术语见 `CONTEXT.md`）。脚本和 AI 往里写，操作者阅读。Looker Studio 和本地运营看板都只读这一本；本地页不直连表格，读的是回流链导出的 JSON。本页只写角色名；表格链接和 ID 记在私有 vault 的 `deliverables/marketing/00-system/base-table.md` 里。
 
 ## 两本表
 
@@ -27,6 +27,11 @@
 | 询盘 | 一笔形式发票申请；状态变化时原地更新这一行 | 询盘内部编号 | L3 |
 | 动作进度 | 执行登记的一行，汇总它目前走到哪一级 | 登记编号 | 汇总 |
 
+「备注」列有固定标记时，脚本会读：
+
+- 执行登记里写 **「不要求收录」** → 这页不算「应被收录」，W-03 / W-04 这类阻断不再报。站点有意 noindex 的页（如分类归档）用它。写入：`uv run scripts/execution_log.py note --id E-… --note "不要求收录（操作者 日期 定）"`。
+- 网页收录里写 **「已核（W-13）」**、执行登记里写 **「已查（W-24）」** → 一次性核查已经做过，不再排队。
+
 ## 归因锚
 
 所有反馈都按登记编号接回某次动作：
@@ -38,7 +43,7 @@
 
 ## 隐私
 
-公司名可以进表。人名、邮箱地址、电话、地址、邮件正文、询盘备注、IP 和浏览器标识都不进表，读取时在内存里丢弃。询盘只保留「询盘数据从哪读」那张票定下的最小集合，丢弃细则见「询盘回流」。回信只记 Message-ID、公司、日期和分类，不放正文。
+公司名可以进表。人名、邮箱地址、电话、地址、邮件正文、询盘备注、IP 和浏览器标识都不进表，读取时在内存里丢弃。询盘来源只留来源类型、设备类型和会话页数。UTM 没有活动值，不加。浏览器标识不进表。回信只记 Message-ID、公司、日期和分类，不放正文。
 
 ## 脚本
 
@@ -75,7 +80,8 @@ sample_spreadsheet_id = "..."  # 底表（样例）
 ```sh
 uv run scripts/gsc_pull.py run                # 跑一次
 uv run scripts/gsc_pull.py run --dry-run      # 只取数、打印条数，不写表
-uv run scripts/gsc_pull.py schedule install   # 装/更新每日定时（这台 Mac 的 launchd，每天 08:30）。同一条任务先跑本脚本，再跑询盘回流，然后发每日提醒；必须先按「询盘回流」配好 Woo 只读密钥再重装
+uv run scripts/gsc_pull.py run --recheck      # 今天的收录行也重查一遍（重建当天基线；平时按天跳过）
+uv run scripts/gsc_pull.py schedule install   # 装/更新每日定时（这台 Mac 的 launchd，每天 08:30）。同一条任务先跑本脚本，再跑询盘回流，再跑邮箱回流，再导出看板 JSON，然后发每日提醒；必须先按「询盘回流」配好 Woo 只读密钥再重装。更新定时不会立刻跑，不要 kickstart，那会发出真的提醒
 uv run scripts/gsc_pull.py schedule status    # 看装没装、上次退出码、日志最后几行
 uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
 ```
@@ -93,7 +99,7 @@ uv run scripts/gsc_pull.py schedule remove    # 卸掉定时
 
 ## 询盘回流
 
-[`scripts/inquiry_pull.py`](../scripts/inquiry_pull.py) 把网站上的形式发票申请写进「询盘」表，写完后重算一次动作进度。它和 GSC 回流共用上面那条每日定时：08:30 先跑 GSC，再跑本脚本，然后发每日提醒。手动跑：
+[`scripts/inquiry_pull.py`](../scripts/inquiry_pull.py) 把网站上的形式发票申请写进「询盘」表，写完后重算一次动作进度。它和 GSC 回流共用上面那条每日定时：08:30 先跑 GSC，再跑本脚本，再跑邮箱回流，再导出看板 JSON，然后发每日提醒。手动跑：
 
 ```sh
 uv run scripts/inquiry_pull.py run                              # 对账并写表
@@ -102,7 +108,41 @@ uv run scripts/inquiry_pull.py run --audit-order-attribution    # 只核对订�
 uv run scripts/inquiry_pull.py run --dry-run --audit-order-attribution
 ```
 
-两个可选开关可以单独用，也可以一起用。`--audit-order-attribution` 只看询盘订单上有没有订单来源（来源类型、UTM、设备、会话页数；字段名以当次响应为准），把有没有打印出来。这些字段不进底表，浏览器标识一类也不记。要不要加列，不在这次回流里定。
+两个可选开关可以单独用，也可以一起用。`--audit-order-attribution` 只看订单来源字段在不在，不打印值。正式回流会写来源类型、设备类型、会话页数。UTM 没有活动值，不加列。浏览器标识不进表。归因登记编号仍然只在有证据时由人填，脚本不猜。
+
+
+## 邮箱回流
+
+[`scripts/mailbox_pull.py`](../scripts/mailbox_pull.py) 只读 `chester@de-linker.com` 的已发送和收件箱，回填执行登记的邮件查证，并把事件写进「邮件反馈」。写完后重算动作进度。它走上面同一条 08:30 定时，排在询盘回流之后、看板导出之前。手动跑：
+
+```sh
+uv run scripts/mailbox_pull.py run            # 对上已发送并写表
+uv run scripts/mailbox_pull.py run --dry-run  # 只读、打印条数，不写表
+uv run scripts/mailbox_pull.py selftest       # 不联网的规则自测
+```
+
+打开文件夹用 EXAMINE，取信用 BODY.PEEK，不改已读、不移动、不删除。日志只打条数、登记编号和未读数。正文、地址、主题不进表。每日提醒（主题以「de-linker 下一步」开头，或 Message-ID 域名是 `de-linker-playbook.local`）跳过。没有退信时写「未见退信（推断已送达）」，这是推断，不是投递回执。真人回复的分类在读取时判断，正文不保存。
+
+专用密码不进仓库。`config.toml` 的 `[mailbox]` 只记主机、端口、账号和密码文件位置。密码文件权限 600。
+
+## 本地看板
+
+[`scripts/dashboard.py`](../scripts/dashboard.py) 在两条回流之后，把底表收成一份只读 JSON，再读一次网站订单，供本机页面点开查看。页面不直连 Google 表格。JSON 在仓外 `~/.config/de-linker-playbook/dashboard.json`，权限 600，不进仓库。
+
+这是操作者自己看的页面。申请正文写在这份本地 JSON 里：公司、联系人、邮箱、电话、地址、客户备注、行项目、规格、项目和单据。底表仍只留最小列，这些字段不写回表格。密钥、表格 ID、IP、浏览器标识和支付凭证不进 JSON，也不进日志。
+
+```sh
+uv run scripts/dashboard.py export       # 读底表和订单正文，更新本地 JSON，不写表、不发信
+uv run scripts/dashboard.py open         # 打开旧版页面，命令保留
+ops-dashboard                            # 任何目录都能开新版。桌面「运营看板」双击的是同一条
+uv run scripts/dashboard.py self-check   # 不连网，核对计数和正文投影
+```
+
+新版是 React + Vite，样子按 Preline 看板，图表用 ApexCharts。应用在 `apps/ops-dashboard`。`ops-dashboard` 优先用 8766，被占用就用下一个空端口，并自己打开浏览器。关掉那个终端窗口，页面就停。不登录自启。
+
+点开一行看全文。网页表现或搜索词是 0 行时，趋势页是空状态，不是假图。每天 08:30 的定时任务会在邮箱回流之后调用 `export`，然后才发每日提醒。改定时用上面的 `schedule install`，不要 kickstart。
+
+导出时另读 GA4 近 7 天汇总，只写进这份本地 JSON，不写底表。反馈规则没有用到站内行为，所以 AI「下一步」不读这些数。只含同意分析的访客，没有建模补齐，不能和 GSC 点击对账。媒体资源编号在仓外 `config.toml` 的 `[ga4]`，不进仓库。
 
 ### 操作者清单：建一把 Woo 只读密钥
 

@@ -20,7 +20,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具写能力。
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。原文不拷进本仓库。存在则再读：`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/04-market/` 下市场或竞品稿、`deliverables/lead/05-usp/` 下 USP 或产品知识、`deliverables/marketing/01-foundation/` 下定价稿。不在本文件另开访谈剧本。从上下文、本轮、上游凑齐五参：报价产品（名称/规格/变体）、买家类型、买家国家或地区、MOQ 与交期、预判的买家侧顾虑。编排上本 skill 在 `lead-service-first-contact` 批准之后（见 `skills/lead-generation/SKILL.md` 阶段 10）；用户直接点名报价时仍执行，缺失首触稿则标缺口，不伪造已建立的对话基调。产品或买家类型仍缺：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并写缺口。完成：五参齐或已标缺口；产品与买家类型已锁定，否则未写策略。
-3. **查证**。用网页搜索查证两类意图：品类 × 买家国的批发/进口价格带；该买家类型在该市场的转售毛利预期。需要原文时抓取指定 URL。需要隔离第二国或第二买家类型时 dispatch a subagent, else do it inline。搜索不可用：结构仍写，所有市场数字标缺口，不编造基准价或毛利。完成：有搜索日志；引用的价带、毛利、运费或关税能回溯 URL 与访问日期，或已标缺口。
+3. **查证**。用 Apify 搜索查证两类意图：品类 × 买家国的批发/进口价格带；该买家类型在该市场的转售毛利预期。需要原文时抓取指定 URL。需要隔离第二国或第二买家类型时 dispatch a subagent, else do it inline。Apify 修复与替代取证后仍不可得：结构仍写，所有市场数字标缺口，不编造基准价或毛利。完成：有搜索日志；引用的价带、毛利、运费或关税能回溯 URL 与访问日期，或已标缺口。
 4. **设计五件套**。只用已收集事实套「写法」：Smart Pricing Structure、Embedded Value Offers、Trust Clause、Outcome Framing、Reorder Logic。单价与折扣只来自产品上下文、本轮或已抓取页；买家毛利只在有转售/零售锚时计算。完成：五件套草稿均能回溯来源或已标缺口；未用教学句子填空。
 5. **落盘** `deliverables/lead/10-sales/quotation-strategy.md`。完成：文件非空；「产出」断言全过或对应缺口已写；教学支架原文零出现。
 
@@ -28,9 +28,9 @@ description: >
 
 - 进度与闸门认 `skills/lead-generation/SKILL.md`；本文件不另写服务链。首触打开 `skills/lead-service-first-contact/SKILL.md`（文件存在时）。报价后异议打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。价格卡点心理打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。目录价与成本栈打开 `skills/marketing-pricing-strategy/SKILL.md`（文件存在时）——那是营销树基础定价，不替代本单的报价策略。
 - 产地、出口方、认证、交期、MOQ、单价只取产品上下文或本轮，不预设某一国工厂。
-- 查证用网页搜索；需要原文时抓取指定 URL。不写工具 ID。单买家、单市场 inline 做完。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不写工具 ID。单买家、单市场 inline 做完。
 - 数字、证书、质检项、补发时限、样品政策、摄影/资料服务：上下文或已抓取页里有才写进承诺。没有就写「未在上下文出现」或 `[待补充]`，禁止补造。
-- 搜不到价格带或毛利预期：写缺口与已收集点，禁止用「行业常见区间」或无来源经验数冒充基准。
+- Apify 修复与替代取证后仍不可得价格带或毛利预期：写缺口与已收集点，禁止用「行业常见区间」或无来源经验数冒充基准。
 - 面客默认 EN 与 CN 对照；用户点名单语种时从其语种，并在缺口注明未出的语种。
 - 产出只进 `deliverables/lead/10-sales/`。
 

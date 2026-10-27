@@ -16,7 +16,7 @@
 
 ### 可见度查询意图
 
-用网页搜索查证，覆盖下列意图至少凑满 10 条可记录测试。每条记下：query、平台、日期、本域 appears（Y/N 或缺口）、位次（有则写）、引用 URL、竞品是否出现、摘录、source。
+用 Apify 搜索查证，覆盖下列意图至少凑满 10 条可记录测试。每条记下：query、平台、日期、本域 appears（Y/N 或缺口）、位次（有则写）、引用 URL、竞品是否出现、摘录、source。
 
 1. best + 品类 + manufacturer
 2. where to buy custom + 品类
@@ -51,7 +51,7 @@
 
 ### 竞品
 
-对手名单优先取 `deliverables/marketing/01-foundation/` 已有竞品稿；没有则用网页搜索查证品类 + 目标市场的公开供应商域。至少 5 个域名：
+对手名单优先取 `deliverables/marketing/01-foundation/` 已有竞品稿；没有则用 Apify 搜索查证品类 + 目标市场的公开供应商域。至少 5 个域名：
 
 - 上述查询中是否出现
 - 被引的是哪一页
@@ -209,7 +209,7 @@ action, priority, target_page, expected_impact, effort_days, status, source
 - **站点未上线**：可测竞品与被引页，本域 appears 一律 `gap`；仍可出实体与内容计划，须标明「上线后复测」。
 - **无站点蓝图**：URL 只写模式，不发明已存在路径。
 - **无公开价格**：价格类查询仍测可见度，正文不编单价。
-- **搜索不可用**：停止整轮采集，不写分数。
+- **Apify 修复与替代取证后仍不可得**：停止整轮采集，不写分数。
 
 终稿禁止占位 URL，禁止把未核验字段写成事实。缺的只进缺口栏。
 

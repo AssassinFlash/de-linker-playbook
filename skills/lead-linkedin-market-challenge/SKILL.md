@@ -26,7 +26,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的国家/地区、该地买家角色、已知挑战主题、证明材料、CTA 视为本轮输入，来源记「用户本轮」。硬依赖文件缺失、用户本轮也未给出该地+受众、且无 `user_waiver` → 停。目标地仍有多国候选、用户未点名时，列出候选并停，不写跨国混帖。区域或受众缺到无法下笔：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则把缺口写入台账，不在本文件另写问卷。完成：能指出**单一**目标地、该地受众、品类各依据哪几条；原文不拷进本仓库。
 
-3. **查证并列出区域挑战（管线第 1 步）**。用网页搜索查证该地、该受众、该品类下的障碍；需要原文则抓取指定 URL。查询年份用环境当前公历年。三类意图都要覆盖：区域挑战、本地气候/基建/标准、公开市场上是否已有针对性改型（用来核对「此地真有此题」，不是用来抄竞品卖点）。花括号是字段，不抄进交付物：
+3. **查证并列出区域挑战（管线第 1 步）**。用 Apify 搜索查证该地、该受众、该品类下的障碍；需要原文则抓取指定 URL。查询年份用环境当前公历年。三类意图都要覆盖：区域挑战、本地气候/基建/标准、公开市场上是否已有针对性改型（用来核对「此地真有此题」，不是用来抄竞品卖点）。花括号是字段，不抄进交付物：
    - `"{product_niche}" challenges {target_country} {year}`
    - `"{product_niche}" regulations requirements {target_country}`
    - `What specific challenges do {target_audience} face when sourcing {product_niche} for use in {target_country}?`
@@ -34,7 +34,7 @@ description: >
    - `"{target_country}" {industry} standards requirements`
    - `"{product_niche}" adapted for {target_country} market`
    - `"{product_niche}" {target_country} market solutions`
-   次数对齐 `skills/lead-generation/references/search-protocol.md` 的概念型最低要求；有用结果不够则报告实际次数与缺口，不空搜凑数。搜索不可用则停止并写缺口，不编造法规、气候或标准。多意图需隔离时 dispatch a subagent, else do it inline。每条挑战写「为何在此地成立」；做换国测试：把地名换成任意另一国仍成立 → 太泛，丢弃或标 `unverified`，不入主名单。法规或气候只覆盖一国时，目标必须是该国，不把该条扩成整个大区。目标 10 条互不重复的区域特定挑战；有证据的按实有条数写，不足 10 在缺口写明，禁止用任何市场都成立的贸易问题凑数。完成：主名单每条有 `why_here` 与 URL 或摘录；搜不到的标 `unverified` 且不入帖。
+   次数对齐 `skills/lead-generation/references/search-protocol.md` 的概念型最低要求；有用结果不够则报告实际次数与缺口，不空搜凑数。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造法规、气候或标准。多意图需隔离时 dispatch a subagent, else do it inline。每条挑战写「为何在此地成立」；做换国测试：把地名换成任意另一国仍成立 → 太泛，丢弃或标 `unverified`，不入主名单。法规或气候只覆盖一国时，目标必须是该国，不把该条扩成整个大区。目标 10 条互不重复的区域特定挑战；有证据的按实有条数写，不足 10 在缺口写明，禁止用任何市场都成立的贸易问题凑数。完成：主名单每条有 `why_here` 与 URL 或摘录；Apify 修复与替代取证后仍不可得的标 `unverified` 且不入帖。
 
 4. **针对性方案（管线第 2 步）**。入帖挑战优先：用户本轮点名且通过换国测试的 → 证据最强且产品上下文能对上的。对入帖的每一条，从产品上下文、USP、产品知识或用户本轮确认的能力里写 2–4 句方案，直接回答该条挑战。只检查上下文里真实存在的侧面：设计、工艺、材料、质检、测试、技术支持。禁止用「公司理应具备」补造工艺、材料、认证或该地项目。对不上则换一条；能对上的少于 1 条 → 只交付挑战表并停，不写面客方案段。用户点名多条则每条一篇，仍写入同一主文件。完成：入帖方案能指回 `capability_source`；买家收益写成该地买家能感到的结果，不是规格复读。
 
@@ -44,7 +44,7 @@ description: >
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 硬依赖是 ICP；软依赖（USP、产品知识、话题研究）有则读，不阻塞。话题研究只提供候选角度，不能把非区域话题改写成市场挑战帖。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。训练记忆不能充当当地法规、气候或标准的来源。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。训练记忆不能充当当地法规、气候或标准的来源。
 - 本帖处理**地理特定**障碍（气候、法规、本地标准、该地基建）。普遍运营痛点走 `skills/lead-linkedin-pain-solution/SKILL.md`（文件存在时）；供应关系顾虑走 `skills/lead-linkedin-buyer-concern/SKILL.md`（文件存在时）。全局趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件不写那些帖型。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表文件。
 - 策略与缺口用本轮语言（缺省中文）；帖子正文与标签缺省英语，用户本轮点名其他面客语种再改；同一段不中英混排。
@@ -152,7 +152,7 @@ description: >
 
 - [ ] 已读共用规则、帖子共用规范与 `product_context`；硬依赖已读或已停并写缺口
 - [ ] 单一目标地；挑战表目标 10 条，入帖那条换国即垮且有来源
-- [ ] 三类查证意图已覆盖；搜索日志非空；缺搜索已停并写缺口
+- [ ] 三类查证意图已覆盖；搜索日志非空；Apify 与替代取证仍不可得已停并写缺口
 - [ ] 方案能指回能力来源；无来源统计；无未持有的该地经验
 - [ ] Structure 20 五段齐全；钩子点名国家/地区；恰好一个 CTA；3–5 个标签含区域标签
 - [ ] 文件在 `deliverables/lead/08-linkedin/market-challenge-post.md`；未代发布

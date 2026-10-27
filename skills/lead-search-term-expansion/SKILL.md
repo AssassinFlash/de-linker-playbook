@@ -23,20 +23,20 @@ description: >
 
 2. **拆属性**。对每个要覆盖的 ICP 写属性卡：规模、行业、目标市场、对方卖什么/提供什么服务。完成：每张卡能指回 ICP 原文一节；缺项标「未在上游出现」。
 
-3. **采集自我描述**。用网页搜索查证同类公司如何自称（About、公开职业网络公司页、营销材料），查询用行业 + 市场 + 自称句式（`we are` / `we specialize` / `about`），字段取属性卡，不把查询模板抄进交付物。需要原文时抓取指定 URL。摘 5–12 词真实短语，记下 URL 与访问日期。搜索不可用 → 停止并写缺口，不编造。多 ICP 需要隔离时 dispatch a subagent, else do it inline；单个 ICP inline 做完。完成：每个要覆盖的 ICP 都有带来源的摘录；零摘录的 ICP 标缺口，不进入步骤 4 的无源扩展。
+3. **采集自我描述**。用 Apify 搜索查证同类公司如何自称（About、公开职业网络公司页、营销材料），查询用行业 + 市场 + 自称句式（`we are` / `we specialize` / `about`），字段取属性卡，不把查询模板抄进交付物。需要原文时抓取指定 URL。摘 5–12 词真实短语，记下 URL 与访问日期。Apify 修复与替代取证后仍不可得 → 停止并写缺口，不编造。多 ICP 需要隔离时 dispatch a subagent, else do it inline；单个 ICP inline 做完。完成：每个要覆盖的 ICP 都有带来源的摘录；零摘录的 ICP 标缺口，不进入步骤 4 的无源扩展。
 
 4. **四语气候选**。读 `references/tone-variations.md`。从已有摘录扩写，语气取值仅限 Professional / Casual / Cutting-edge / Traditional。信号词是先验，不是必填填料：该 ICP 真实语料没有的语气，写「无已验证用语」，不编一套时髦词。完成：每条候选能回溯到至少一条摘录，或标明由哪条摘录改写。
 
-5. **验证**。对每条候选用网页搜索查证定位语与派生 `search_keyword`。首页须出现符合该 ICP 的公司，不是纯文章或目录聚合页。0 家匹配 → 丢弃。需要确认时抓取该公司页。保留行必须有 `relevance_verified: true`、`example_company`、可打开的 `example_url`。单复数或只差冠词的变体算一条。搜索量：用户提供关键词工具导出则填整数月量；未配置则用自动补全是否出现 + 结果页匹配公司数作粗热度，`estimated_search_volume` 写粗热度短句或 `unverified`，禁止编造精确月量。完成：保留表每行有公司例证与来源；丢弃列表进搜索日志。
+5. **验证**。对每条候选用 Apify 搜索查证定位语与派生 `search_keyword`。首页须出现符合该 ICP 的公司，不是纯文章或目录聚合页。0 家匹配 → 丢弃。需要确认时抓取该公司页。保留行必须有 `relevance_verified: true`、`example_company`、可打开的 `example_url`。单复数或只差冠词的变体算一条。搜索量：用户提供关键词工具导出则填整数月量；未配置则用自动补全是否出现 + 结果页匹配公司数作粗热度，`estimated_search_volume` 写粗热度短句或 `unverified`，禁止编造精确月量。完成：保留表每行有公司例证与来源；丢弃列表进搜索日志。
 
 6. **落盘**。按下方模板写 `deliverables/lead/01-icp/icp-terms-strategy.md`，表写 `deliverables/lead/01-icp/icp-terms.xlsx`（一个 ICP 一个 sheet）。当前环境写不了 xlsx 则写同目录 `icp-terms.csv`，列相同。目标：每 ICP ≥10 条已验证、互不相同的术语，四种语气都有已验证行。搜不够 → 如实写条数、未覆盖语气与缺口，不拿未验证词凑行。完成：主文件非空且含搜索日志；表含依赖图要求的列；教学例子原文零出现。
 
 ## 默认
 
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
-- 查证用网页搜索；需要原文时抓取指定 URL；搜索或抓取不可用则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL；Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。
 - 关键词量用用户已配置的关键词研究工具（用户导出，本侧解析）；未配置不阻塞。
-- 概念型最低查证见 `skills/lead-generation/references/search-protocol.md`：至少 5 次网页搜索，再加每条候选的相关性验证；次数写入搜索日志，搜不够就报告实际已验证条数。
+- 概念型最低查证见 `skills/lead-generation/references/search-protocol.md`：至少 5 次 Apify 搜索，再加每条候选的相关性验证；次数写入搜索日志，搜不够就报告实际已验证条数。
 - 术语必须是公司用来描述自己的话，不是行业分类代码，也不是外人给的学名。
 - 面客检索词跟目标市场用语（缺省英语，注意 US / UK / 其他英语区用词差）；分析段落用本轮语言。
 - 表列名 English snake_case；公司名不翻译。

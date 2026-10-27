@@ -23,7 +23,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/10-sales/objection-handling.md`，或台账 `user_waiver`。未满足则停，宣布打开 `skills/lead-service-objection/SKILL.md`（文件存在时），不自造异议史、不跳到交付沟通。软依赖（有则读，不阻塞）：`deliverables/lead/10-sales/quotation-strategy.md`、`deliverables/lead/10-sales/first-contact.md`、`deliverables/lead/01-icp/icp-analysis.md`。闸门口径见 `skills/lead-generation/references/dependency-graph.md`，本文件不另写审批。从这些来源填四格：所交产品（名、规格、包装）、买家类型、确认订单到出货的交期、已知 onboarding 投诉。产品、买家类型或交期仍缺到无法下笔：先看用户本轮；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。完成：四格各有依据或已标「未在上下文出现」；原文不拷进本仓库。
 
-3. **查证**。用网页搜索查证两类材料：B2B 出口首单 onboarding 实务（确认后到收货的节点、文件、联络节奏）；该品类或外贸首单的常见投诉（沉默、文件缺口、包装预期、质检节点）。品类取产品上下文，不在 skill 里填值。需要原文则抓取指定 URL。搜索不可用：不编造买家原话、研究名或投诉率；投诉只保留上下文与异议稿里已有的；搜索日志记「不可用」。搜到的是泛外贸而非本品类 → 采用并标明「已泛化」。完成：日志至少两类查询，或已记不可用；写入清单的痛点能回溯 URL / 异议稿 / 上下文。
+3. **查证**。用 Apify 搜索查证两类材料：B2B 出口首单 onboarding 实务（确认后到收货的节点、文件、联络节奏）；该品类或外贸首单的常见投诉（沉默、文件缺口、包装预期、质检节点）。品类取产品上下文，不在 skill 里填值。需要原文则抓取指定 URL。Apify 修复与替代取证后仍不可得：不编造买家原话、研究名或投诉率；投诉只保留上下文与异议稿里已有的；搜索日志记「不可用」。搜到的是泛外贸而非本品类 → 采用并标明「已泛化」。完成：日志至少两类查询，或已记不可用；写入清单的痛点能回溯 URL / 异议稿 / 上下文。
 
 4. **设计五件套**。按「写法」写：买家可见清单、欢迎信、共享文件夹规范、软锁定装置、转换摩擦提示，外加实施时间线（Day 1 / Week 1 / 生产期 / 出货前）。清单覆盖确认→生产→质检→出货→收货的预期，不代替 `lead-service-delivery` 的过程更新。买家类型不同则节奏、文件深度、进口准备项不同。每条已知投诉在清单或欢迎信里有对应一行。软锁定只写本流程能落地的便利。完成：五件套 + 时间线齐全；每件锁定装置写清买家收益与实施时点；摩擦提示只预告可兑现的未来便利；教学支架原文零出现。
 
@@ -34,7 +34,7 @@ description: >
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。产地、工厂、认证、交期天数、员工名：上下文或已抓取页里有才写。
 - 硬依赖未满足且无 `user_waiver` → 停。编排与服务链串行见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。
 - 本文件做首单引导工件，不写异议话术、不写生产周报、不建真实网盘。异议打开 `skills/lead-service-objection/SKILL.md`（文件存在时）。过程透明打开 `skills/lead-service-delivery/SKILL.md`（文件存在时）。复购打开 `skills/lead-service-retention/SKILL.md`（文件存在时）。沉默/卡点分析打开 `skills/lead-buyer-psychology/SKILL.md`（文件存在时）。
-- 查证用网页搜索；需要原文时抓取指定 URL。不为凑数搜「最佳实践排行」。搜索不可用则停止编造并写缺口。单买家 inline 做完；点名多家需要隔离时 dispatch a subagent, else do it inline。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不为凑数搜「最佳实践排行」。Apify 修复与替代取证后仍不可得则停止编造并写缺口。单买家 inline 做完；点名多家需要隔离时 dispatch a subagent, else do it inline。
 - 共享文件夹不预设某一网盘品牌；工具以产品上下文或用户已配置为准，未配置则规范仍写、实施记「工具待定」。
 - 买家类型只取产品上下文；没有则在电商转售、批发、品牌方、分销里选最贴近的一档，并标明「买家类型未在上下文出现，暂用」。
 - 面客五件套必须 EN + CN 对照，可直接复制发送。分析与时间线用本轮语言。同一段不混用。

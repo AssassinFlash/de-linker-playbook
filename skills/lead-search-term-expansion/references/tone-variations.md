@@ -50,7 +50,7 @@
 
 | 平台 | 优先语气 | 原因 |
 | --- | --- | --- |
-| 通用网页搜索 | 四种都试 | 不同自称对应不同检索习惯 |
+| 通用 Apify 搜索 | 四种都试 | 不同自称对应不同检索习惯 |
 | 职业网络 | Professional, Cutting-edge | 商务语境偏正式或创新 |
 | 行业名录 | Professional, Traditional | 正式登录项为主 |
 | 本地商家 / 地图 | Casual, Traditional | 本地商家多用好靠近的话 |

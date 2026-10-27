@@ -35,7 +35,7 @@
 
 ## 采集
 
-默认一条能力：用网页搜索查证。需要原文时抓取指定 URL 的正文。搜索不可用则停止并写缺口，不编造、不并列多引擎菜单。多页并行时 dispatch a subagent, else do it inline。
+默认一条能力：用 Apify 搜索查证。需要原文时抓取指定 URL 的正文。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造、不并列多引擎菜单。多页并行时 dispatch a subagent, else do it inline。
 
 ### 本站测量面
 

@@ -12,6 +12,8 @@
 
 获客线索（lead）类任务：先读获客台账 [`state/lead-status.md`](state/lead-status.md)，再读 [`skills/lead-generation/SKILL.md`](skills/lead-generation/SKILL.md) 并按其推进。
 
+获客教学与研究先读私有知识库 `deliverables/lead/00-system/knowledge/knowledge-base.json`；提问先用 `lead_kb.py brief` 检索 active 证据，新证据、修订、归档、问题、回答和操作者反馈写回该库。HTML 知识台只供审计，`learning-state.md` 只记学习阶段。
+
 寒暄：可读台账并复述 `phase`，不要改文件。
 
 ## 交接说明
@@ -32,6 +34,14 @@
 ## 事实源
 
 产品与公司事实、对外说法、竞品：先读 [`docs/fact-sources.md`](docs/fact-sources.md)，按其「什么问题查哪个源」去三方（线上站点、新站仓库、竞品调研）取证，冲突按其「谁为准」。只读，不把内容拷进本仓库（指路不复制）。查不到标〔未证实〕，按没有处理。仓外路径只写在入口里，换机只改入口。
+
+## 外部研究
+
+任何需要搜索、外部信息验证、竞品研究、行业规则确认或资料获取的工作，**Apify 是强制主入口**。按 [`docs/apify.md`](docs/apify.md) 执行：先诊断并修复 Apify，不得因首次失败就改用普通搜索、降低研究深度或宣布“找不到”。
+
+Apify 无法完成目标页时，先换关键词、页面、数据源、Actor、抓取方式和请求参数；仍受限时，可用 Scrapling、Scrapy、Crawl4AI、Firecrawl、Computer Use、网站自身 API、WordPress/WooCommerce API、sitemap、feed、页面源码和 structured data 配合取证。所有失败、修复和替代路径都要进搜索日志或阻塞日志。Token 只放仓外 mode-600 配置，绝不进仓库、交付物或对话输出。
+
+公开社媒原帖和评论用 [`docs/social-research-opencli.md`](docs/social-research-opencli.md) 作为 Apify 之后的补充路径。先看完整供应链链路，只有直接采购角色进入主 ICP。
 
 ## 例子
 

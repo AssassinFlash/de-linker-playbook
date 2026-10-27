@@ -24,7 +24,7 @@ description: >
 
 2. **资产盘点**。把已读邮件逐封列入清单：`asset_id, type, icp_name, strategy_name, source_path, human_review`。`type` 只取 `cold` / `warm` / `followup` / `lead_magnet`。跟进按策略名对齐（Friendly Reminder、Additional Value、Direct Yes/No、Social Proof、Limited-Time Incentive、Feedback Request、Previous Interaction、Breakup、New Angle），对不上的仍入表，`strategy_name` 写原文标题。缺哪封记哪封，不补写。完成：上游文件里每封信都有一行；无主的资产标 `unassigned`。
 
-3. **节拍查证**。用网页搜索查证当年 B2B 跟进节拍做法；用户点名了外发/序列工具时，再搜该工具的序列设置要点（停发、延迟、追踪）。需要原文则抓取指定 URL。完成：来源表有 URL 与访问日期，或已记录搜索不可用。搜索不可用 → 不写行业打开率/回复率，节拍改用「写法」默认骨架并标明「默认模板，非本轮测得最优」，不编造基准。
+3. **节拍查证**。用 Apify 搜索查证当年 B2B 跟进节拍做法；用户点名了外发/序列工具时，再搜该工具的序列设置要点（停发、延迟、追踪）。需要原文则抓取指定 URL。完成：来源表有 URL 与访问日期，或已记录Apify 修复与替代取证后仍不可得。Apify 修复与替代取证后仍不可得 → 不写行业打开率/回复率，节拍改用「写法」默认骨架并标明「默认模板，非本轮测得最优」，不编造基准。
 
 4. **按 ICP 填槽**。每个 ICP 单独一条序列，互不混装。按「写法」默认骨架把 `asset_id` 填进日槽；无对应资产的槽位删掉或标缺口，不发明替稿。跟进稿未按 ICP 拆分时：首封按 ICP 分配，跟进骨架共用，并在缺口写明「要分写时打开 `skills/lead-followup-sequence/SKILL.md`（文件存在时）」。完成：每个 ICP 有一张槽位表（日偏移、策略、`asset_id`、是否附件）；未使用的资产有原因。
 
@@ -37,7 +37,7 @@ description: >
 ## 默认
 
 - 产品事实只产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。，不在本仓库另存档案。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则不编造基准。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。Apify 修复与替代取证后仍不可得则不编造基准。
 - 外发/序列工具：仅当用户已配置；付费项须先告知并获准。未配置则只产文案与计划，不发送。
 - 进度只认台账。产出只进 `deliverables/lead/06-outreach/`。
 - 写邮件走 `skills/lead-cold-email-gen/SKILL.md`、`skills/lead-warm-email-transform/SKILL.md`、`skills/lead-followup-sequence/SKILL.md`、`skills/lead-magnet-gen/SKILL.md`（文件存在时）。本文件只编排 lead 组已写成稿，不重写正文。营销获客阶段的名单与生命周期培育走 `marketing-email-outreach`。暖化稿在序列中的优先级按本文件「暖化优先」，不以 `lead-warm-email-transform` 另排。

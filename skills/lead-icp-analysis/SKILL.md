@@ -3,9 +3,10 @@ name: lead-icp-analysis
 description: >
   Use when analyzing ICP, customer profile, buyer persona, target customer,
   ideal customer, customer segmentation, 客户画像, 目标客户, 理想客户,
-  采购痛点, 销售策略, or B2B customer analysis, including phase 1 of this
+  采购痛点, 销售策略, full-chain social listening, 全链路研究,
+  or B2B customer analysis, including phase 1 of this
   repo's lead run; or when the user asks for per-segment sales strategies
-  before outreach. Segment buyers by industry vertical, trace buyer and
+  pre-outreach. Segment buyers by industry vertical, trace buyer and
   sourcing-manager pain points to sources, and write a customized outreach,
   relationship, objection, and value strategy per profile. Read the fact-source entry docs/fact-sources.md. Invent no market
   sizes or pain statistics. Not for company lists, contact scraping, cold
@@ -18,15 +19,15 @@ description: >
 
 ## 步骤
 
-1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。本会话还没读过就现在读。原文不拷进本仓库。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读其客群，作步骤 2 切开起点，不重切已确认客群。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
+1. **输入**。读 `skills/marketing-playbook-standards/SKILL.md`。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。本会话还没读过就现在读。原文不拷进本仓库。已有获客知识库时读 `deliverables/lead/00-system/knowledge/knowledge-base.json`，优先复用已有证据并标出冲突。核心只要两项就能开写：产品和目标市场。存在则再读 `deliverables/lead/00-system/interview-lead-icp-analysis.md` 当作已确认输入。存在 `deliverables/marketing/01-foundation/product-positioning.md` 则读其客群，作步骤 2 切开起点，不重切已确认客群。仍缺核心两项：先看用户本轮消息；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md` 并按其步骤做，不要在本文件另写问卷。完成：能指出产品与目标市场各依据哪几条；缺项标「未在上下文出现」。
 
-2. **切开品类**。对照 `references/three-guidelines.md` 的 Guideline 1，按行业垂直与价值链位置提出候选 ICP。Guideline 1 的价值链位置列举仅为举例，不是默认五条；按产品上下文取舍，不要把教学例子里的行业名单当作默认名单。维度：行业类型、公司规模、市场细分、地理、采购频率。上限 5 条。产品上下文或访谈已排除的不列入。完成：短名单每条有价值链位置、与产品的关系、拟查证查询。
+2. **切开品类并画链路**。对照 `references/three-guidelines.md` 的 Guideline 1，按行业垂直与价值链位置提出候选 ICP。Guideline 1 的价值链位置列举仅为举例，不是默认五条；按产品上下文取舍，不要把教学例子里的行业名单当作默认名单。维度：行业类型、公司规模、市场细分、地理、采购频率。上限 5 条。产品上下文或访谈已排除的不列入。链路图至少覆盖上游制造商/组件供应商、渠道商、EPC/安装商、下游客户与规则闸门；标出谁直接采购本公司，谁只提供链路证据。完成：短名单每条有价值链位置、与产品的关系、拟查证查询；链路图不把供应商或终端用户混成一个 ICP。
 
-3. **查证**。对每条候选做三类查证：行业存在性、采购痛点、决策人结构。默认用网页搜索查证；关键判断再抓取指定 URL 的正文。查询年份用环境当前公历年。此时还没有目标公司，不按人名搜联系人。多条 ICP 需要隔离时 dispatch a subagent, else do it inline。搜索不可用则停止并写缺口，不编造。无相关结果的候选标 unverified，不进主名单。完成：主名单每条有可打开的来源；每次查询写入搜索日志。
+3. **查证**。对每条候选做三类查证：行业存在性、采购痛点、决策人结构。默认用 Apify 搜索查证；关键判断再抓取指定 URL 的正文。需要平台原帖或评论时，在 Apify 基线之后按 `docs/social-research-opencli.md` 用 OpenCLI 补证。供应商观察、渠道商语言、安装商自述、下游压力和规则证据分别标注；只有直接采购角色进入 ICP 主名单。查询年份用环境当前公历年。此时还没有目标公司，不按人名搜联系人。多条 ICP 需要隔离时 dispatch a subagent, else do it inline。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。无相关结果的候选标 unverified，不进主名单。完成：主名单每条有可打开的来源；完整链路有角色证据；每次查询写入搜索日志。
 
 4. **深描**。对主名单每条写 Overview、痛点、决策人。痛点必须行业特定、接到采购决策，并能指回来源 URL 或摘录。决策人写采购行为（频率、批量、渠道偏好）、决策标准（价格 / 质量 / 交期 / 证书 / 关系的相对权重）、个人痛点（KPI、压力、信息渠道）。规模、金额、趋势：来源有才写，并带来源与年份。完成：每条主名单 ICP 三块齐全；「在意质量与价格」这类空泛痛点为零。
 
-5. **按 ICP 写策略**。对照 Guideline 2，每条写四维，且必须直接回应该条痛点：Outreach（首触渠道 + 具体说法）、Value Proposition（对该画像强调的卖点；竞争对比句以 `lead-usp-extraction` 稿为准，本 skill 不提前写外发主句）、Objection Handling（最常见异议 + 反驳）、Relationship Building（从首触到信任）。只使用产品上下文已有的能力、证书与案例；未持有的不得写成动作。推荐展会前须用网页搜索核对该展会对应该利基与区域。换名测试：把 ICP 名称换掉后策略仍成立 → 重写。完成：四维齐全；换名即垮。
+5. **按 ICP 写策略**。对照 Guideline 2，每条写四维，且必须直接回应该条痛点：Outreach（首触渠道 + 具体说法）、Value Proposition（对该画像强调的卖点；竞争对比句以 `lead-usp-extraction` 稿为准，本 skill 不提前写外发主句）、Objection Handling（最常见异议 + 反驳）、Relationship Building（从首触到信任）。只使用产品上下文已有的能力、证书与案例；未持有的不得写成动作。推荐展会前须用 Apify 搜索核对该展会对应该利基与区域。换名测试：把 ICP 名称换掉后策略仍成立 → 重写。完成：四维齐全；换名即垮。
 
 6. **总体策略并落盘**。写 Overall Sales Strategy：跨画像的核心打法、资源优先级（先做哪条、为什么）、差异化定位摘要（引用 `deliverables/marketing/01-foundation/product-positioning.md`，不重写定位；无定位稿则标缺口，不另起定位句）。每条标 P0 / P1 / P2。按下方模板写入 `deliverables/lead/01-icp/icp-analysis.md` 与 `deliverables/lead/01-icp/icp-summary.xlsx`（当前环境写不了 xlsx 则同目录写 `icp-summary.csv`，列相同，并在 Markdown 注明）。完成：主报告非空；表列名匹配；教学例子原文零出现。
 
@@ -35,7 +36,9 @@ description: >
 ## 默认
 
 - 本 skill 无硬依赖，是获客 phase 1 入口。下游（搜索词、公司名单、联系人、竞品、USP、外展）见 `skills/lead-generation/SKILL.md`，不在本文件另写管线。已有 `deliverables/marketing/01-foundation/product-positioning.md` 客群则作切开起点，不重切；「差异化定位摘要」引用定位稿、不重写定位。产品定位走 `marketing-positioning`。
-- 查证用网页搜索；需要原文时抓取指定 URL。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`；实际次数写入搜索日志。达不到不编造、不空搜凑数。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`；实际次数写入搜索日志。达不到不编造、不空搜凑数。
+- 公开社媒补证用 `docs/social-research-opencli.md`；先看整条链，只有直接买家进入 ICP。供应商和渠道是邻近观察，下游是压力来源，规则机构是闸门。
+- 产出的可复用判断写回私有知识库 `knowledge/knowledge-base.json`；原始长文留在 `research/`，知识库存来源指针和证据卡，不复制整篇调研。
 - 策略与分析用中文；表列名 English snake_case；公司名与 ICP 英文名不翻译。
 - 数字必须能回溯产品上下文或已抓取 URL。缺来源写缺口。
 - 进度只认台账。产出只进 `deliverables/lead/01-icp/`。不要建仓外产出根。
@@ -117,12 +120,14 @@ description: >
 - 在还没有目标公司时搜联系人。
 - 为凑 3 条或凑搜索次数而编造。
 - 把 skill 例子原文写入交付物。
+- 只看单一安装商环节，漏掉上游供应商、渠道、下游和规则闸门；或反过来把链路里每个角色都塞进 ICP。
 - 本文件另写一套获客阶段。
 
 ## 清单
 
 - [ ] 已读 `product_context`；产品与目标市场可回溯
 - [ ] 主名单每条含 Overview、痛点、决策人、四维策略
+- [ ] 已画完整链路，直接买家与非买家角色分开，供应商和下游未混入 ICP
 - [ ] 痛点行业特定且有来源；策略换名即垮
 - [ ] Overall Sales Strategy 有优先级；差异化定位摘要引用定位稿、未重写定位
 - [ ] 表列名匹配；主报告含客户画像 / 痛点分析 / 销售策略 / Overall Sales Strategy

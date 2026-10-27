@@ -34,6 +34,7 @@ import sys
 import tomllib
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "schemas" / "base-table.schema.json"
@@ -335,6 +336,17 @@ def latest_registration(log: list[dict], url: str, day: str) -> str:
 
 def language(url: str) -> str:
     return "德文" if "/de/" in url else "英文"
+
+
+# 法律页不是内容页；首页算内容页（操作者 2026-10-27 定的口径）
+LEGAL_SLUGS = ("/impressum", "/imprint", "/datenschutz", "/privacy", "/terms",
+               "/verkaufsbedingungen", "/agb", "/widerruf", "/cookie", "/legal")
+
+
+def is_content_page(url: str) -> bool:
+    """内容页 = 法律页以外的页面，含首页（`/`、`/de/`）：博客、产品、方案、分类、首页都算。"""
+    path = (urlsplit(url).path if "://" in url else (url or "")).lower()
+    return not any(slug in path for slug in LEGAL_SLUGS)
 
 
 def translate_inspection(schema: dict, raw: dict) -> dict:

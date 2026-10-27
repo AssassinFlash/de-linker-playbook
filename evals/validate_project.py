@@ -17,6 +17,7 @@ Validates:
 - JSON schema files and skill JSON references
 - Excel names mentioned in skills exist in templates/
 - Optional: .agents/skills/<name> symlink layer
+- Apify-first research policy and no committed API tokens
 
 Usage:
     uv run evals/validate_project.py [project_root]   (or python3 with pyyaml + openpyxl installed)
@@ -275,6 +276,56 @@ def validate_ledger(project_root: Path) -> int:
     return errors
 
 
+APIFY_POLICY_FILES = {
+    "AGENTS.md": ("Apify", "docs/apify.md", "强制主入口"),
+    "docs/fact-sources.md": ("Apify", "apify.md"),
+    "docs/apify.md": ("APIFY_TOKEN", "apify/rag-web-browser", "失败修复顺序", "替代"),
+    "skills/marketing-playbook-standards/SKILL.md": ("Apify", "docs/apify.md", "mandatory research gateway"),
+    "skills/lead-generation/references/search-protocol.md": ("Apify", "apify_search", "故障与替代路径"),
+}
+APIFY_TOKEN_RE = re.compile(r"apify_api_[A-Za-z0-9]{20,}")
+GENERIC_SEARCH_RE = re.compile(r"网页搜索|web_search")
+APIFY_SCAN_DIRS = ("skills", "docs", "state", "wayfinder", "schemas", "scripts", "evals")
+
+
+def validate_apify_policy(project_root: Path) -> int:
+    print("\nValidating Apify-first research policy...")
+    errors = 0
+    for rel, needles in APIFY_POLICY_FILES.items():
+        path = project_root / rel
+        text = path.read_text(encoding="utf-8") if path.exists() else ""
+        missing = [needle for needle in needles if needle not in text]
+        if missing:
+            log("error", f"{rel} does not contain Apify policy markers: {', '.join(missing)}")
+            errors += 1
+
+    for path in sorted((project_root / "skills").rglob("*.md")):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        match = GENERIC_SEARCH_RE.search(text)
+        if match:
+            log("error", f"{path} uses generic research wording {match.group(0)!r}; use Apify-first instructions")
+            errors += 1
+
+    scanned = [project_root / "AGENTS.md", project_root / "CONTEXT.md"]
+    scanned.extend(
+        path
+        for directory in APIFY_SCAN_DIRS
+        for path in sorted((project_root / directory).rglob("*"))
+        if path.is_file() and path.suffix.lower() in {".md", ".py", ".json", ".toml", ".yaml", ".yml", ".sh"}
+    )
+    for path in scanned:
+        if not path.exists():
+            continue
+        match = APIFY_TOKEN_RE.search(path.read_text(encoding="utf-8", errors="replace"))
+        if match:
+            log("error", f"{path} contains a committed Apify API token")
+            errors += 1
+
+    if errors == 0:
+        log("ok", "Apify is the mandatory research gateway; no committed API token or generic search instruction found")
+    return errors
+
+
 LOOP_KEYS = ("mode", "feedback_read_at", "current_action", "current_action_log")
 LOOP_LEDGERS = {  # ledger -> (label, deliverables tree it gates)
     "state/marketing-status.md": ("Marketing", "deliverables/marketing"),
@@ -385,8 +436,9 @@ def main(argv: list[str] | None = None) -> int:
     support_reference_warnings = validate_support_references(project_root)
     symlink_warnings = validate_skill_symlinks(project_root, existing_skills)
     ledger_errors = validate_ledger(project_root)
+    apify_errors = validate_apify_policy(project_root)
 
-    total_errors = skill_errors + deliverable_quality_errors + ledger_errors
+    total_errors = skill_errors + deliverable_quality_errors + ledger_errors + apify_errors
     total_warnings = support_reference_warnings + symlink_warnings
     print("\n" + "=" * 50)
     if total_errors == 0:

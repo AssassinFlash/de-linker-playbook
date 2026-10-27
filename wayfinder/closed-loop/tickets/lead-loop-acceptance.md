@@ -1,7 +1,7 @@
 ---
 wayfinder: task
 status: open
-assignee:
+assignee: Codex 会话 2026-10-20
 step: 7
 blocked_by: [lead-loop-orchestrator, mailbox-pullback, activation-list-intake, l3-pullback]
 ---
@@ -50,3 +50,17 @@ blocked_by: [lead-loop-orchestrator, mailbox-pullback, activation-list-intake, l
   - 或者操作者明确同意跳过，记进获客台账「豁免」表。
 - **联系人**：`lead-contact-discovery/list -> [lead-company-research/list]`，从名单取，`data_source` 指回名单行。名单里约 1612 行是免费邮箱（gmx、gmail、web.de 等），照录，在采集报告里列出。L-0002 的调研结论里写了接触前要知道的两点（细节在 vault 调研文件「结论」节）：它现在经一家电气批发商拿材料和方案支持；它用哪家的逆变器或储能〔未证实〕。
 - **隐私**：名单有约 8 千人的姓名、邮箱、电话，只在私有 vault。验收证据里写编号，不写人名或邮箱。
+
+## 进展（2026-10-20）
+
+- 用户要求把验收改成“真实案例 + 销售判断力带教”，不在未学习时直接代做全部判断。学习状态在 vault `deliverables/lead/00-system/learning-state.md`，六项量表在同目录 `sales-judgment-rubric.md`。
+- 本轮完成第一单元 `lead-buyer-psychology` 的 Stage 1 教学，并以交互式白板重新交付：vault `deliverables/lead/00-system/lead-academy-canvas.html`，可用 `uv run scripts/lead_academy.py` 打开。操作者拖动角色、画依赖箭头、把证据便签放区域，再把最小帮助接到关系线上。每一步都有可见的概念带与“你的画布说明了什么”即时反馈；最后回放关系图和三条判断规则。当前停在 Stage 2，等待操作者提交画布数据；未读取操作者答案前不得开始 Stage 3 系统独立稿。Markdown 讲义只作内部母稿，不要求操作者阅读。
+- 操作者已提交第一单元画布 JSON，原文保存为 vault `deliverables/lead/00-system/my-work-lead-buyer-psychology.md`。系统独立稿在 `lead-buyer-psychology-system-output.md`，对比与 4/6 反馈在 `lead-buyer-psychology-comparison.md`。Apify 四条查询成功；两条并发查询因 16 GB 内存上限失败后按顺序用 2 GB 重跑成功，incumbent 页被 403/500 挡住后换查询与 Playwright 修复成功。
+- 当前进入 Stage 4 的操作者笔记环节。用户 2026-10-20 明确否决画布式学习，要求退回第一版 HTML，并改用直接对话教学；`lead_academy.py` 已切回 `deliverables/lead/00-system/lead-academy.html`，白板与单独复盘页删除。后续只保留 HTML 参考，实际教学用一次一问的对话。必须等操作者自己写出复盘笔记后才算第一单元完成，不能代写。
+- 用户要求所有外部搜索、验证、竞品与规则研究先把 Apify 修到可用。Token 已放仓外 mode-600 配置，`apify/rag-web-browser` 已实际跑通：run `ptP9nMbm8mjguEQbA`，dataset `7Mn2BNZky2iuYk6hv`，状态 `SUCCEEDED`；规则正典为 `docs/apify.md`。
+- **进展（2026-10-21）**：第一学习单元 `lead-buyer-psychology` 的四块操作者笔记已完成，`learning-state` 记为 1 个单元完成；量表仍为 4/6。下一学习单元为 `lead-icp-analysis`，从 Stage 1 开始。教学完成没有改变获客台账 `phase`，验收票继续 open。
+- **进展（2026-10-21，续）**：`lead-icp-analysis` Stage 1 教学稿已完成，进入 Stage 2 操作者练习。候选起点只用产品上下文已明确的安装商、EPC、经销商，L-0002 仅作单公司局部证据。获客台账仍为 phase 0。
+- **进展（2026-10-21，社会倾听）**：按“先宽后窄、全球可用”完成 Reddit、LinkedIn、Facebook、Instagram、TikTok 第一轮安装商/下游公开内容扫描。研究记录在 vault `deliverables/lead/00-system/research/installer-social-listening-2026-10-21.md`；DIY/业主标为“客户的客户”，不混入直接 ICP。没有把“晚到/装错”定成安装商痛点。获客台账仍为 phase 0。
+- **进展（2026-10-21，Facebook 登录态复用）**：操作者在 Chrome `Default` 登录一次后，`c_user` / `xs` 已于 12:41 更新。`opencli facebook whoami` 读回 `logged_in: true`，`opencli facebook search "solar installer Germany"` 与 `facebook-safe search` 均成功；旧 `Profile 2` 和 yt-dlp 导出仍无效。`facebook-safe` 已改为按 Chrome profile 最近访问时间选择 cookie，并在使用前探测登录态，后续直接复用同一浏览器会话，不再要求逐次登录。细节见 vault `deliverables/lead/00-system/research/toolchain-update-audit-2026-10-21.md`。
+- **进展（2026-10-21，OpenCLI 补证与全链路）**：OpenCLI 已作为 Apify 之后的公开社媒补充路径写入 `docs/social-research-opencli.md`，并由根 `AGENTS.md`、共享标准、获客编排、搜索协议、ICP skill 和教学参考共同引用。研究范围改为完整链路：上游制造商/供应商、渠道、EPC/安装商、下游客户、规则闸门都要看；供应商观察、渠道语言和下游压力只作邻近证据，只有直接采购角色进入主 ICP。第二轮完成 41 次 OpenCLI 只读调用，覆盖 LinkedIn、Facebook、TikTok、Instagram、Reddit、YouTube、X 和 Bluesky；另用 7 次 X 专用 Apify 调用取得 270 条搜索/回复记录，证明 X 批量研究应走 Apify、OpenCLI 只做补充。证据、角色分级与缺口在 vault `deliverables/lead/00-system/research/opencli-full-chain-pass2-2026-10-21.md`。
+- **进展（2026-10-21，获客知识库）**：新增私有知识库 `deliverables/lead/00-system/knowledge/knowledge-base.json`、HTML 审计台 `knowledge-base.html` 和维护脚本 `scripts/lead_kb.py`。当前收录 10 份资料、28 条 active 证据、3 个问题、9 条反馈。Agent 每轮先运行 `brief` 从 active 证据选题；每题登记 `option_evidence`、`analysis_chain`、`evidence_gaps` 和知识快照；`add-feedback` 可关联受影响证据，`update-evidence` 保留修订历史，`archive-evidence` 让旧结论退出默认检索。脚本强制解析到 `/Users/chesterjohn/Documents/de-linker-vault`，逐份校验原始文档存在，`trace-question` 可展开完整分析链和来源；知识库通过语义校验和 JSON Schema，HTML 桌面与移动端无错误。

@@ -11,8 +11,9 @@ GSC 数据回流：把 Google Search Console 的收录检查和搜索数据写�
 
   uv run scripts/gsc_pull.py run                 跑一次：网页收录、网页表现、搜索词，再重算动作进度
   uv run scripts/gsc_pull.py run --dry-run       只取数、打印条数，不写表
+  uv run scripts/gsc_pull.py run --recheck       今天的收录行也重查一遍（重建当天基线；平时按天跳过）
   uv run scripts/gsc_pull.py schedule install    在这台 Mac 上装每日定时（launchd，每天 08:30 北京时间）；
-                                                 同一条任务先跑本脚本，再跑询盘回流，然后发每日提醒
+                                                 同一条任务先跑本脚本，再跑询盘回流，再跑邮箱回流，再导出看板 JSON，然后发每日提醒
   uv run scripts/gsc_pull.py schedule status     看定时装没装、上次退出码、日志最后几行
   uv run scripts/gsc_pull.py schedule remove     卸掉定时
 
@@ -116,9 +117,10 @@ def inspection_row(schema: dict, url: str, day: str, res: dict, log_rows: list[d
 
 
 def pull_inspections(gsc, schema: dict, existing: list[dict], log_rows: list[dict], day: str,
-                     limit: int) -> tuple[list[dict], list[str]]:
+                     limit: int, recheck: bool = False) -> tuple[list[dict], list[str]]:
     done = {r["网址"] for r in existing if r["检查日期"] == day}
-    todo = [u for u in urls_to_inspect(log_rows) if u not in done]
+    # --recheck ignores today's rows: used when a full baseline for today must be rebuilt
+    todo = [u for u in urls_to_inspect(log_rows) if recheck or u not in done]
     skipped = max(0, len(todo) - limit)
     todo = todo[:limit]
     log(f"网页收录：今天已查 {len(done)} 个，待查 {len(todo)} 个" + (f"，超出每日上限未查 {skipped} 个" if skipped else ""))
@@ -189,7 +191,7 @@ def pull_search(gsc, schema: dict, sheet: str, start: str, end: str, log_rows: l
 # ---------------------------------------------------------------- run
 
 
-def run(days: int, limit: int, dry: bool) -> int:
+def run(days: int, limit: int, dry: bool, recheck: bool = False) -> int:
     schema = bt.load_schema()
     sid = bt.load_target("main")
     sheets = bt.sheets_service()
@@ -202,7 +204,7 @@ def run(days: int, limit: int, dry: bool) -> int:
     existing_idx = bt.read_table(sheets, sid, schema, "网页收录")
     errors: list[str] = []
 
-    idx_rows, errs = pull_inspections(gsc, schema, existing_idx, log_rows, today, limit)
+    idx_rows, errs = pull_inspections(gsc, schema, existing_idx, log_rows, today, limit, recheck)
     errors += errs
 
     end = datetime.now(PACIFIC).date()
@@ -237,15 +239,20 @@ def plist_text() -> str:
     script = Path(__file__).resolve()
     reminder = script.with_name("daily_reminder.py")
     inquiry = script.with_name("inquiry_pull.py")
+    mailbox = script.with_name("mailbox_pull.py")
+    dashboard = script.with_name("dashboard.py")
     env_path = f"{Path(uv).parent}:/usr/local/bin:/usr/bin:/bin"
-    # GSC, then inquiry, then the daily reminder. The reminder runs even if a pull
-    # failed; --pull-exit is 1 when either pull failed. Exit non-zero if any failed.
-    # Label and 08:30 are unchanged.
+    # GSC, inquiry, dashboard export, then the daily reminder. The reminder runs
+    # even if a pull failed; --pull-exit is 1 when either pull failed. Export
+    # failure does not change that wording, but it does fail the chain. Do not
+    # kickstart this job: that sends the real reminder.
     chain = (
         f"'{uv}' run --quiet '{script}' run; g=$?; "
         f"'{uv}' run --quiet '{inquiry}' run; i=$?; "
-        f"'{uv}' run --quiet '{reminder}' run --pull-exit $(( (g != 0 || i != 0) ? 1 : 0 )); r=$?; "
-        f"[ $g -eq 0 ] && [ $i -eq 0 ] && [ $r -eq 0 ]"
+        f"'{uv}' run --quiet '{mailbox}' run; m=$?; "
+        f"'{uv}' run --quiet '{dashboard}' export; d=$?; "
+        f"'{uv}' run --quiet '{reminder}' run --pull-exit $(( (g != 0 || i != 0 || m != 0) ? 1 : 0 )); r=$?; "
+        f"[ $g -eq 0 ] && [ $i -eq 0 ] && [ $m -eq 0 ] && [ $d -eq 0 ] && [ $r -eq 0 ]"
     )
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -299,12 +306,14 @@ def main() -> None:
     p.add_argument("--days", type=int, default=10)
     p.add_argument("--max-inspections", type=int, default=1900)
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--recheck", action="store_true",
+                   help="今天的收录行也重查一遍，用来重建当天基线；结果按 检查日期+网址 覆盖")
     s = sub.add_parser("schedule")
     s.add_argument("action", choices=["install", "status", "remove"])
     args = ap.parse_args()
     if args.command == "run":
         try:
-            sys.exit(run(args.days, args.max_inspections, args.dry_run))
+            sys.exit(run(args.days, args.max_inspections, args.dry_run, args.recheck))
         except Exception as e:  # traceback for debugging, then one plain line that the daily reminder quotes last
             traceback.print_exc()
             log(f"出错，没跑完：{type(e).__name__}: {e}")

@@ -86,7 +86,7 @@ description: >
 - 产品事实只读 `product_context`（事实源入口 `docs/fact-sources.md`），按其指路取证；查不到标〔未证实〕，按没有处理；不在本仓库另存一份。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 台账或 `deliverables/marketing/` 缺失时，先打开 `skills/marketing-init/SKILL.md`；该文件不存在则只报缺口。
-- 缺来源、缺搜索：停止并写缺口，不编造。需要查证时用网页搜索；需要原文时抓取指定 URL 的正文。
+- 缺来源、Apify 与替代取证仍不可得：停止并写缺口，不编造。需要查证时用 Apify 搜索；需要原文时抓取指定 URL 的正文。需要公开社媒原帖或评论时，Apify 基线之后按 `docs/social-research-opencli.md` 补证。
 - 交付物带来源栏；数字必须能回溯产品上下文、已抓取 URL 或底表里的某一行。
 - 质量闸：执行前是证据闸（AI 自查事实）加审稿（对外文字由操作者看、提意见、改到满意，规则第 10 节），执行后是反馈闸（看 L1–L3）。事实对不对、行业里该怎么做不靠操作者判断；文字发出去行不行、哪里想改，由操作者说了算。
 - 单文件、无并行机会的工作 inline 做完，不 dispatch。

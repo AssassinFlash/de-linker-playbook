@@ -60,7 +60,7 @@
 
 **输入：** 步骤 2 表 A 中已核验的公司。
 
-**方法：** 以竞品稿的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用网页搜索查证官方域名，并抓取首页与 About（或等价页）。需要评价、证书、年报时再搜，并抓取能打开的来源页。搜索或抓取不可用则停止并写缺口。
+**方法：** 以竞品稿的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用 Apify 搜索查证官方域名，并抓取首页与 About（或等价页）。需要评价、证书、年报时再搜，并抓取能打开的来源页。Apify 修复与替代取证后仍不可得则停止并写缺口。
 
 **每家采集：** 最多 4 条 UVP。Explicit Claim = 对方自己的话。Implied Proof = 评价、证书、案例。轴：Speed | Cost | Quality | Customization | Sustainability | Service | Digital Tool | Other。摘录 5–12 词或 URL 片段。
 

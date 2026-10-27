@@ -20,7 +20,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。已有定位、竞品、定价稿则读 `deliverables/marketing/01-foundation/`；已有站点架构稿则读 `deliverables/marketing/02-seo/site-and-schema.md`。完成：能指出品类、目标市场、站点 URL、目标站点技术栈各依据哪几条；原文不拷进本仓库。站点 URL、品类或目标市场缺到无法开审则停并写缺口，不编造公司、市场、价格、流量或对手事实。只做架构/schema 规划或只要内容日历时，停并改走对应 skill（文件存在时），不在本文件硬做。
-3. **收集**。用网页搜索查证；需要原文时抓取指定 URL 的正文。覆盖：站点清单与关键页、robots/sitemap、≥20 条 SERP 查询、关键词证据、≥3 个竞品域名、首页+产品/列表页+内容页的 schema、≥5 条 AI 回答可见度查询。多域名或多页并行时 dispatch a subagent, else do it inline。搜索不可用则停止并写缺口。查询意图、记录字段与数据门：读 `references/methodology.md`。完成：页面清单已得；关键词 ≥50 且每条有 `source`；竞品 ≥3 家有可访问域名；schema 与 AI 查询已记结果或显式缺口。
+3. **收集**。用 Apify 搜索查证；需要原文时抓取指定 URL 的正文。覆盖：站点清单与关键页、robots/sitemap、≥20 条 SERP 查询、关键词证据、≥3 个竞品域名、首页+产品/列表页+内容页的 schema、≥5 条 AI 回答可见度查询。多域名或多页并行时 dispatch a subagent, else do it inline。Apify 修复与替代取证后仍不可得则停止并写缺口。查询意图、记录字段与数据门：读 `references/methodology.md`。完成：页面清单已得；关键词 ≥50 且每条有 `source`；竞品 ≥3 家有可访问域名；schema 与 AI 查询已记结果或显式缺口。
 4. **分析**。分开写、不要混：技术（可抓取/索引/性能/URL）、关键词意图与优先级、竞品差距、内容缺口、页内要素、AI 可见度、schema 与内链。按业务影响、工作量、买家意图、对上游架构的依赖排 P0/P1/P2。量表、表结构与页类型：读 `references/methodology.md`。完成：每条建议能指回收集里的 URL 或查询串；High+P0 有具体页 URL 与可执行修复步骤。
 5. **落盘**。写入下方路径与模板。策略与分析用简体中文；面客句子、URL、schema 字段名、文件名按产品上下文（本仓库文件名保持英文）。完成：主稿含指定 8 节且非空；表或 JSON 达最低行数、每行 `source` 非空；文末 5–10 条可验证断言；教学支架原文零出现。
 
@@ -31,7 +31,7 @@ description: >
 - 检索量、CPC、排名、可见度分数只来自：产品上下文、用户本轮提供（含其导出的搜索控制台/分析数据）、已搜索或已抓取的公开页。没有数字就写「未在来源出现」，禁止估计后当事实。
 - 抓取未见 JSON-LD 不得写成「无 schema」；标「需用富结果测试复核」。
 - 表格式交付物每行有 `source` 或 `evidence`。终稿禁止占位 URL 与 `[TODO]` 类占位串。
-- 上游竞品稿缺失时，在本审计内用网页搜索查证至少 3 个可访问竞品域名，或打开 `skills/marketing-competitor-intelligence/SKILL.md`（文件存在时）按其步骤补名单。需要隔离时 dispatch a subagent, else do it inline。不要回跳编排器。
+- 上游竞品稿缺失时，在本审计内用 Apify 搜索查证至少 3 个可访问竞品域名，或打开 `skills/marketing-competitor-intelligence/SKILL.md`（文件存在时）按其步骤补名单。需要隔离时 dispatch a subagent, else do it inline。不要回跳编排器。
 
 ## 写法
 

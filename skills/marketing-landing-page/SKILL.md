@@ -21,7 +21,7 @@ description: >
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化四条。
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若存在则读 `deliverables/marketing/01-foundation/` 与 `deliverables/marketing/02-seo/seo-audit.md`。列出品类、目标市场、买家角色、流量来源、询盘渠道、建站平台约束、漏斗已知转化率。完成：能指出各依据哪几条；原文不拷进本仓库。用户只给站点 URL 时先抓该站再补上下文；品类或市场仍不明则停并写缺口，不编造公司、转化率或竞品事实。
 3. **范围**。本 skill 主责页面级转化：着陆页审计、CTA、表单字段、弹窗、实验队列。提交后询盘运营走 `marketing-inquiry-flow`；跨阶段合成走 `marketing-funnel-optimization`。用户只要询盘整条路径则打开 `skills/marketing-inquiry-flow/SKILL.md`；只要全链路优先级则打开 `skills/marketing-funnel-optimization/SKILL.md`；只要上市事件则打开 `skills/marketing-launch-strategy/SKILL.md`；只要转介绍或留存则打开对应方法 skill。需要隔离时 dispatch a subagent, else do it inline。完成：主责与他 skill 边界各写一句，不在本工作簿加上市/转介绍/留存表。
-4. **采集**。用网页搜索查证 B2B 着陆页与询盘表做法；需要原文时抓取指定 URL 的正文（本站首页、产品/服务页、询盘页、下单流程页；≥3 个竞品首页+产品页+询盘页）。默认一条能力，不并列多引擎。搜索不可用则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；本站三页与竞品对照达到最低条数，或已把未达标项写入缺口。
+4. **采集**。用 Apify 搜索查证 B2B 着陆页与询盘表做法；需要原文时抓取指定 URL 的正文（本站首页、产品/服务页、询盘页、下单流程页；≥3 个竞品首页+产品页+询盘页）。默认一条能力，不并列多引擎。Apify 修复与替代取证后仍不可得则停止并写缺口。多页并行时 dispatch a subagent, else do it inline。查询意图、最低条数与校验见 `references/methodology.md`。完成：每条证据有 URL、摘录、访问日期；本站三页与竞品对照达到最低条数，或已把未达标项写入缺口。
 5. **分析**。只从已采集证据给页面 1–5 分、表单字段对照、弹窗规格、实验假设。量表、漏斗与表列见 `references/methodology.md`。完成：每个 P0 能指到已抓取页面；P0 文案有 before → after；行业数字已标「行业参考值，实际以你的数据为准」。
 6. **落盘**。写入下方路径。完成：主文档与工作簿非空；表每行 `source` 非空且含 URL；教学支架原文零出现；文末 5–10 条可验证断言。
 
@@ -31,7 +31,7 @@ description: >
 - 目标渠道以产品上下文为准，不预设某一电商或社交平台。上下文未列的频道记缺口，不编造询盘量或转化率。
 - 这是制造/外贸询盘（询盘、报价、样品），不套用试用开通、加入购物车或限时秒杀。
 - 数字、转化率、字段数、响应时长只写观察到的值或用户本轮提供的值；没有就写「公开源未找到」或「用户数据未知」。行业数字一律标「行业参考值，实际以你的数据为准」。
-- 缺来源或搜索不可用：停止并写缺口，不编造。
+- 缺来源或Apify 修复与替代取证后仍不可得：停止并写缺口，不编造。
 
 ## 写法
 

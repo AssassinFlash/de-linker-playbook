@@ -30,13 +30,13 @@ description: >
 
 4. **优化（Step 1+）**。只在用户已选或已提供的那条上加深，不另编情节。可做：把「我学到了 X」改成「这改变了我做 Y 的方式，因为 Z」；点出经历里已有的情绪（焦急、意外、收场后的谦虚）。不可做：补造日期、数字、地点、感官细节、反转、统计。缺细节列在「待确认」，不写进英文帖。反转只在用户叙述里已经发生时保留。数字、时点、客户名：产品上下文、用户本轮或已查证来源里有才用。优化稿呈用户确认后再成帖；不能问或用户要求直接成稿 → `story_confirmed_by_user: no`，英文帖顶标注「未确认草稿，禁止当作亲身经历发布」。完成：优化稿非空；每一处具体细节都能指回用户原文、产品上下文或「待确认」表。
 
-5. **成稿并落盘（Step 2）**。按「写法」写 Structure 19 英文帖 + 中文策略说明，写入 `deliverables/lead/08-linkedin/personal-story-post.md`。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按共用规范只改语气与结构，不改已确认事实；未点名只出 Structure 19 一稿。帖中若出现公开事实或行业数字：用网页搜索查证，需要原文则抓取指定 URL，记下 URL 与访问日期。搜索不可用 → 删该数字并写缺口，不编造。不为凑数而搜叙事「最佳实践」。需要隔离时 dispatch a subagent, else do it inline；默认单文件 inline。用户自行发布或经用户已配置的工具发布；本 skill 只产帖稿。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本文件不代替审批、不代替发布。完成：主文件非空；结构段齐；教学支架原文零出现。
+5. **成稿并落盘（Step 2）**。按「写法」写 Structure 19 英文帖 + 中文策略说明，写入 `deliverables/lead/08-linkedin/personal-story-post.md`。用户点名微博客 / 故事叙事 / 滑梯式 / 直销节奏时，按共用规范只改语气与结构，不改已确认事实；未点名只出 Structure 19 一稿。帖中若出现公开事实或行业数字：用 Apify 搜索查证，需要原文则抓取指定 URL，记下 URL 与访问日期。Apify 修复与替代取证后仍不可得 → 删该数字并写缺口，不编造。不为凑数而搜叙事「最佳实践」。需要隔离时 dispatch a subagent, else do it inline；默认单文件 inline。用户自行发布或经用户已配置的工具发布；本 skill 只产帖稿。验证—审查—审批走 `skills/lead-generation/references/orchestration-protocol.md`，本文件不代替审批、不代替发布。完成：主文件非空；结构段齐；教学支架原文零出现。
 
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 产地、角色、目标市场以产品上下文为准，不锁某一国或某一职位。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。故事本身不靠搜索发明。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。故事本身不靠搜索发明。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写表。
 - 帖子正文与标签：英文（用户本轮指定其他语言除外）。策略、缺口、搜索日志：中文。
 - 幕后流程、产线、设备走 `skills/lead-linkedin-behind-scenes/SKILL.md`（文件存在时）。行业趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。本文件只写人的经历与教训。

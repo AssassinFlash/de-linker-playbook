@@ -26,7 +26,7 @@
         "skill": "lead-company-research",
         "cycle": 1,
         "search_term": "{positioning_term} {market}",
-        "capability": "web_search",
+        "capability": "apify_search",
         "results_found": 0,
         "results_useful": 0,
         "date": "YYYY-MM-DD"
@@ -34,7 +34,7 @@
     ],
     "capability_success_rates_by_skill": {},
     "capability_success_rates_global": {
-      "web_search": { "attempts": 0, "successes": 0 },
+      "apify_search": { "attempts": 0, "successes": 0 },
       "fetch_url": { "attempts": 0, "successes": 0, "blocked": 0 }
     },
     "skill_quality": [],
@@ -63,11 +63,11 @@
 }
 ```
 
-`capability` 只写能力名：`web_search`、`fetch_url`、`contact_finder`（仅当用户已配置）、`collection_service`（仅当用户已配置）。
+`capability` 只写能力名：`apify_search`、`fetch_url`、`contact_finder`（仅当用户已配置）、`collection_service`（仅当用户已配置）。
 
 ## 操作定义
 
-- **search call**：一次网页搜索或一次抓取指定 URL。每个不同查询或 URL = 1 次。
+- **search call**：一次 Apify 搜索或一次抓取指定 URL。每个不同查询或 URL = 1 次。
 - **results_found**：返回条数。
 - **results_useful**：实际写入交付物（被引用或进入名单）的条数。
 - **success**：`results_found > 0` 且至少 1 条 useful。有结果但全不相关 = 不成功。
@@ -102,7 +102,7 @@
 1. 按 `results_useful / results_found` 给搜索词排序。
 2. 按 skill 给能力成功率排序。
 3. 按 `companies_found + contacts_found` 给 ICP 排序（须来自至少 2 个 skill）。
-4. 汇总抓取失败的域名，下次对这些域名优先换查询或请用户接手。
+4. 汇总Apify 与替代取证仍不可得的域名，下次对这些域名优先换查询或请用户接手。
 
 写入 `models`。
 
@@ -113,6 +113,6 @@
 1. 基于表现最好的术语提出变体（至少 3 次观察）。
 2. 某能力对某 skill 成功率低于 50%（且至少 3 次）→ 建议降级该能力。
 3. 某 ICP 两轮仍 0 家公司 → 建议降权。
-4. 某组域名抓取失败率高于 30% → 建议改查询或人工接手，不编造页面。
+4. 某组域名Apify 与替代取证仍不可得率高于 30% → 建议改查询或人工接手，不编造页面。
 
 写入 `next_experiments`。编排器在下一次执行前若该文件存在，把 `search_terms_to_try` 交给方法 skill。

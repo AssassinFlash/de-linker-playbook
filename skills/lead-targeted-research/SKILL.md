@@ -19,9 +19,9 @@ description: >
 
 ## 步骤
 
-1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：`deliverables/lead/05-usp/usp-strategy.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-usp-extraction/SKILL.md`，不自造 USP。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/04-market/competitor-positioning.md`。从用户本轮取出**一家**公司名或官网；只有 URL 则先抓取再取公司名；只有名称则用网页搜索查证官网再抓取验证。未点名且上下文不够：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则只问公司名与域名一次，然后停。完成：能说出公司名、已验证或已标缺口的域名、本轮要用的 USP 各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
+1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：`deliverables/lead/05-usp/usp-strategy.md` 已批准，或台账有 `user_waiver`；未满足则停，宣布打开 `skills/lead-usp-extraction/SKILL.md`，不自造 USP。存在则读 `deliverables/lead/01-icp/icp-analysis.md`、`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/04-market/competitor-positioning.md`。从用户本轮取出**一家**公司名或官网；只有 URL 则先抓取再取公司名；只有名称则用 Apify 搜索查证官网再抓取验证。未点名且上下文不够：打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则只问公司名与域名一次，然后停。完成：能说出公司名、已验证或已标缺口的域名、本轮要用的 USP 各依据哪几条；原文不拷进本仓库。点名多家时先做第一家，其余见默认。
 
-2. **六源搜集**。按 `references/six-source-intelligence.md` 依次查：官网、LinkedIn 公司页、新闻、新闻稿、评价与反馈、投资者或行业报告。默认用网页搜索查证；需要原文时抓取指定 URL。官网至少抓能打开的首页；About / 产品或服务页能打开则抓，路径不存在则改抓等价页并记缺口。每个源记一条：有发现（URL、访问日期、摘录）或「无相关结果」。搜索不可用则停止并写缺口。完成：六源都有记录；留下的每条情报能指回 URL 与日期。
+2. **六源搜集**。按 `references/six-source-intelligence.md` 依次查：官网、LinkedIn 公司页、新闻、新闻稿、评价与反馈、投资者或行业报告。默认用 Apify 搜索查证；需要原文时抓取指定 URL。官网至少抓能打开的首页；About / 产品或服务页能打开则抓，路径不存在则改抓等价页并记缺口。每个源记一条：有发现（URL、访问日期、摘录）或「无相关结果」。Apify 修复与替代取证后仍不可得则停止并写缺口。完成：六源都有记录；留下的每条情报能指回 URL 与日期。
 
 3. **合成情报**。写出四个组件，分析用本轮语言（缺省中文）：客户背景（商业模式、服务市场、体量、竞争位置，须综合而非抄 About）；当前优先事项或增长动作（招聘、新闻稿、新闻、LinkedIn 活动作证据）；痛点（经营 / 市场 / 供应链，须这家公司特有；有 ICP 则交叉验证，对不上的不升格为痛点）；变化或转型（数字化、合规、自动化、供应商多元化、市场扩张等）。完成：四节都有正文或明示缺口；每条主张有来源与年份或日期；旧材料不得写成当前事实。
 
@@ -36,7 +36,7 @@ description: >
 ## 默认
 
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
-- 查证用网页搜索；需要原文时抓取指定 URL（含动态页）。搜索或抓取不可用、登录墙、验证码：停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL（含动态页）。Apify 修复与替代取证后仍不可得、登录墙、验证码：停止并写缺口，不编造。
 - 一家目标 inline 做完。用户点名多家：每家一份报告；需要隔离时 dispatch a subagent, else do it inline。不要把多家合成一份名单（名单走 `skills/lead-company-research/SKILL.md`）。
 - 六源不是等权：优先近期信号；某源空白是合法结果。宁缺有来源的组件，不凑满七个猜测。
 - 价值映射在本会话用已取证情报与 USP 合成，不另开一轮搜索让引擎代写对齐。

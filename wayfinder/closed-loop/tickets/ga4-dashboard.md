@@ -1,7 +1,8 @@
 ---
 wayfinder: task
-status: open
-assignee:
+status: closed
+resolved: 2026-10-20
+assignee: Codex 会话 2026-10-20（本会话）
 step: 5
 blocked_by: [ga4-consent-site-access, looker-dashboard]
 ---
@@ -39,3 +40,14 @@ blocked_by: [ga4-consent-site-access, looker-dashboard]
 - 拒绝前/后及撤回后完全不向 GA4 发追踪请求，故只统计同意分析的访客，无建模补齐；不能用 GSC 点击与 GA4 访问直接对账。
 - 事件保留 14 个月；增强衡量与 Site Kit 原生插件转化跟踪启用，已排除全部登录用户。Google Signals、用户提供数据、广告个性化关闭。本票须另验询盘相关事件是否真实触发及可归因，不因 Site Kit 配置显示 Enabled 就当它已完成。
 - 完成证据在上述私有清单末节与 `marketing/00-system/evidence/2026-10-19-ga4/`。站点上线执行登记为 `E-20261019-01` 至 `E-20261019-04`。这些是本票的前置事实，本票本身仍未执行。
+
+
+## Resolution（2026-10-20）
+
+关票。反馈规则不读站内行为，所以 GA4 不进底表，AI「下一步」也不读它。只上操作者正在看的自建看板。
+
+近 7 天按媒体资源时区 Europe/Berlin，窗口 `2026-10-14` 至 `2026-10-20`：会话 1，用户 1，浏览 1。主要来源是直接访问。着陆页是 `/`。发生在 `2026-10-19`。事件只有 `first_visit`、`page_view`、`scroll`、`session_start`，没有询盘相关事件。
+
+这些数只含同意分析的访客，没有建模补齐，所以比真实访问少，也不能和 GSC 点击对账。页面上写了这句话。
+
+Looker 正式报表没有改。操作者看的是自建页「访问」。每天 08:30 的看板导出会重读这 7 天，不另装定时，也没有 kickstart。

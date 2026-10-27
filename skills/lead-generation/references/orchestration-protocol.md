@@ -42,7 +42,7 @@ Interview Context 只含已确认事实、偏好与约束，不含教学内容�
 
 打开 `skills/<method_skill>/SKILL.md` 并按其步骤做。需要隔离时 dispatch a subagent, else do it inline。单文件、无并行机会的工作 inline 做完。
 
-执行时必须遵守 `references/search-protocol.md`：真实查证，搜索日志写进交付物末尾。搜索不足 → 报告实际数量，不得用训练数据填空白。
+执行时必须遵守 `references/search-protocol.md`：真实查证，搜索日志写进交付物末尾。Apify 基线之后需要平台原帖或评论时，按 `docs/social-research-opencli.md` 补证，并记录完整供应链角色。搜索不足 → 报告实际数量，不得用训练数据填空白。
 
 阻塞时引用 `references/manual-intervention-protocol.md` 的标准话术。
 
@@ -53,9 +53,9 @@ Interview Context 只含已确认事实、偏好与约束，不含教学内容�
 | 验证项 | 做法 |
 | --- | --- |
 | URL 可访问性 | 抓取指定 URL，记录状态 |
-| 公司真实性 | 用网页搜索交叉验证 |
+| 公司真实性 | 用 Apify 搜索交叉验证 |
 | 域名匹配 | 名称/品类与域名一致；不确定再搜索 |
-| 联系人真实性 | 用网页搜索查证公开职业页；未配置发现服务则标「联系人待补」 |
+| 联系人真实性 | 用 Apify 搜索查证公开职业页；未配置发现服务则标「联系人待补」 |
 | 员工数 | 声称 vs 公开资料；缺则标缺口 |
 
 同域名缓存；优先验证高 ICP 匹配；每 10 条报告进度。

@@ -24,7 +24,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖存在则读：`deliverables/lead/08-linkedin/topic-research.md`、`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`。用户本轮给出的品类、目标区域、受众、准入主题或 CTA 视为本轮输入，来源记「用户本轮」。核心三项：品类或产品线、目标海外区域、该区域内的受众。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项，不在本文件另写问卷。原文不拷进本仓库。硬依赖文件缺失、用户本轮也未给出对应全文、且无 `user_waiver` → 停。完成：能指出品类、区域、受众、合规痛点各依据哪几条。
 
-3. **查证**。读 `references/expertise-research.md`。用网页搜索查该品类进入该区域的准入卡点，并对将写入帖文的每一条法规、标志、税则、单据或贸易术语抓取或核到现行页。搜索不可用则停止并写缺口，不编造合规句。禁止为凑次数空搜。禁止把他人 LinkedIn 原文写入交付物。多条法规需隔离时 dispatch a subagent, else do it inline。完成：每条拟用法规句有 URL 与访问日期；公司代办/出证/注册只能来自上下文或用户本轮。
+3. **查证**。读 `references/expertise-research.md`。用 Apify 搜索查该品类进入该区域的准入卡点，并对将写入帖文的每一条法规、标志、税则、单据或贸易术语抓取或核到现行页。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造合规句。禁止为凑次数空搜。禁止把他人 LinkedIn 原文写入交付物。多条法规需隔离时 dispatch a subagent, else do it inline。完成：每条拟用法规句有 URL 与访问日期；公司代办/出证/注册只能来自上下文或用户本轮。
 
 4. **选题**。从查证结果收成 1–2 个具体专业领域。用户本轮已点名主题则收窄该主题，不另起无关领域。每个候选必须写清：领域名称、为何只在该区域成立、可执行知识或流程、公司是否真做（有/无/仅配合提供资料）。用户已选定或点名「直接写 / 先跑一遍」→ 取证据最强且公司能力对得上的一条，`selection_source` 记 `user` 或 `agent_pick`。否则把候选写入交付物「选题」节并在回复中列出，等选定后再写帖文；未选定不算全量完成。完成：选定领域满足 `references/expertise-research.md` 的可核验专业测试与公司能力闸门。
 
@@ -35,7 +35,7 @@ description: >
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。出口产地、是否做某项认证或代办，一律以上下文为准，不预设某一出口国。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则停止合规句并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。Apify 修复与替代取证后仍不可得则停止合规句并写缺口，不编造。
 - 进度只认台账。产出只进 `deliverables/lead/08-linkedin/`。只出 Markdown，无表。
 - 分析与缺口用本轮语言（缺省中文）；帖文、标签、CTA 用买家语言（缺省英语）。同一段不中英混排。
 - 本帖写贸易流程知识（税则、单据、认证标志、贸易术语、信用证、海关、出口包装、区域认证怎么走）。产品选购技巧走 `skills/lead-linkedin-education/SKILL.md`；行业趋势走 `skills/lead-linkedin-authority/SKILL.md`；工厂现场走 `skills/lead-linkedin-behind-scenes/SKILL.md`；区域使用/气候障碍走 `skills/lead-linkedin-market-challenge/SKILL.md`（文件存在时再打开，不在本步执行）。选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）；多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）。
@@ -117,7 +117,7 @@ description: >
 - 法规未核现行页，或把过期转载当现行口径。
 - 把进口方义务写成我方已代办。
 - AI 代发或代发布（不论是否配置工具、用户是否要求），或把成稿当成已发出。
-- 为凑搜索次数空搜，或搜索不可用仍写合规句。
+- 为凑搜索次数空搜，或Apify 修复与替代取证后仍不可得仍写合规句。
 - 终稿残留未解释的 `{{...}}`。
 - 把共用规范全文粘进交付物。
 

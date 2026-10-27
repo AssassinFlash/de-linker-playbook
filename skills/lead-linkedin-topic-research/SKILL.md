@@ -24,7 +24,7 @@ description: >
 
 2. **输入与闸门**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：`deliverables/lead/01-icp/icp-analysis.md` 的 `status` 为 `approved`（已过证据闸），或台账已记 `user_waiver`。未批准 → 停，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）；不编 ICP。本 skill 无软依赖。圈定三项：品类/利基、目标市场、ICP 角色。仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做）；不存在则停并只要这三项。完成：能指出三项各依据哪几条；原文不拷进本仓库。
 
-3. **采集**。按 `references/methodology.md` 的四路意图用网页搜索查证：行业趋势、买家痛点与抱怨、公开内容讨论、法规与市场变化。查询年份取环境当前公历年；窗口为当前年与上一年。字段取步骤 2，不把查询模板抄进交付物。产地/供应路径只取产品上下文，不预设某一出口国。需要原文则抓取指定 URL。LinkedIn 结果页登录墙或搜不到公开互动数据 → 改用行业媒体、买家论坛、法规原文，不编「高互动帖」。搜索不可用则停止并写缺口，不编造趋势。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`：至少 5 次网页搜索，且四路各至少 1 次有用结果；不够则再搜，仍不够按实有证据写缺口，不空搜凑次数。多页需要隔离时 dispatch a subagent, else do it inline。完成：四路各有 URL、访问日期与摘录，或该路已标缺口。
+3. **采集**。按 `references/methodology.md` 的四路意图用 Apify 搜索查证：行业趋势、买家痛点与抱怨、公开内容讨论、法规与市场变化。查询年份取环境当前公历年；窗口为当前年与上一年。字段取步骤 2，不把查询模板抄进交付物。产地/供应路径只取产品上下文，不预设某一出口国。需要原文则抓取指定 URL。LinkedIn 结果页登录墙或Apify 修复与替代取证后仍不可得公开互动数据 → 改用行业媒体、买家论坛、法规原文，不编「高互动帖」。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造趋势。概念型最低查证见 `skills/lead-generation/references/search-protocol.md`：至少 5 次 Apify 搜索，且四路各至少 1 次有用结果；不够则再搜，仍不够按实有证据写缺口，不空搜凑次数。多页需要隔离时 dispatch a subagent, else do it inline。完成：四路各有 URL、访问日期与摘录，或该路已标缺口。
 
 4. **筛选**。每条候选必须通过 `references/methodology.md` 的 ICP 三问（至少一问）与换品类测试（把利基换成无关品类后选题仍成立 → 丢弃）。时效必须落在 1–2 年窗口，并有来源年份。卖家新品发布、纯功能清单、无证据争议、点名攻击对手，一律丢弃。完成：保留表每条能指回至少一条来源；丢弃表有原因。
 
@@ -37,7 +37,7 @@ description: >
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。
 - 产出只进 `deliverables/lead/08-linkedin/`。Markdown only，不写 Excel。
-- 查证用网页搜索；需要原文时抓取指定 URL。缺搜索则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。Apify 与替代取证仍不可得则停止并写缺口，不编造。
 - 本 skill 是十条 `lead-linkedin-*` 帖类型 skill 的上游选题；建议帖类型只点名对应 `skills/lead-linkedin-*/SKILL.md`，不代写帖骨架。下游闸门以各帖类型 skill 为准。
 - 多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）；本 skill 只产 LinkedIn 选题卡。
 - 不发布。发帖由用户自行发布或经用户已配置的工具发布。
@@ -127,7 +127,7 @@ Total: N calls, M useful
 ## 清单
 
 - [ ] 已读共用规则、`product_context` 与已批准 ICP；原文未拷进本仓库
-- [ ] 四路查询已做；至少 5 次网页搜索；每条有用结果有 URL 与日期
+- [ ] 四路查询已做；至少 5 次 Apify 搜索；每条有用结果有 URL 与日期
 - [ ] 主名单每条通过 ICP 三问与换品类测试；有 1–2 年窗口来源
 - [ ] 主名单 8–10 条已验证，或已写实际条数与缺口；未用 `unverified` 凑数
 - [ ] 角度多于一类；目标 3 类或缺口已写明；每条有建议帖类型与一句 Hook

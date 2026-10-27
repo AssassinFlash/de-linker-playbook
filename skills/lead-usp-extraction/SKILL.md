@@ -25,7 +25,7 @@ description: >
 
 3. **竞品盘点**。已有 `deliverables/marketing/01-foundation/competitor-analysis.md` 或 `deliverables/lead/04-market/competitor-positioning.md` 时，复用已核验名单与摘录，不从零找 15 家；不足再补。七轴 UVP 与我方行仍按步骤 4、6 补全。无现成名单时，在该利基与区域找目标 15 家，默认大（>$500M）/中（$50–500M）/小（<$50M）各 5。营收用最近已披露财年并写年份。每家：HQ、营收、旗舰、渠道、最近战略动作、官网。写约 150 词格局评论，以及竞争强度（有份额才算 HHI，否则定性高/中/低并说明）。完成：表内每家有可访问官网或已标 unverified。不足 15 家或美元档不适用时，按该利基相对体量分在位者 / 挑战者 / 利基商，写明分档依据与缺口，不拿无关公司凑数。
 
-4. **UVP 挖掘**。以竞品稿（`deliverables/lead/04-market/competitor-positioning.md` 或 `deliverables/marketing/01-foundation/competitor-analysis.md`）的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用网页搜索查证，再抓取官网首页与 About（或等价页）正文。需要评价或证书时再搜一次并抓取能打开的来源页。每家最多 4 条 UVP，标 Explicit Claim 或 Implied Proof，打七轴标签（Speed, Cost, Quality, Customization, Sustainability, Service, Digital Tool；对不上的标 Other），附 5–12 词摘录或 URL 片段。写约 120 词热力：哪些轴过挤、哪些被冷落。完成：每条 UVP 能指回竞品稿或已抓取原文；抓不到的公司标 unverified，不编 UVP。搜索不可用则停止并写缺口。
+4. **UVP 挖掘**。以竞品稿（`deliverables/lead/04-market/competitor-positioning.md` 或 `deliverables/marketing/01-foundation/competitor-analysis.md`）的 Key Selling Points 为 UVP 种子；七轴已覆盖的公司不重抓官网。缺轴的公司才用 Apify 搜索查证，再抓取官网首页与 About（或等价页）正文。需要评价或证书时再搜一次并抓取能打开的来源页。每家最多 4 条 UVP，标 Explicit Claim 或 Implied Proof，打七轴标签（Speed, Cost, Quality, Customization, Sustainability, Service, Digital Tool；对不上的标 Other），附 5–12 词摘录或 URL 片段。写约 120 词热力：哪些轴过挤、哪些被冷落。完成：每条 UVP 能指回竞品稿或已抓取原文；抓不到的公司标 unverified，不编 UVP。Apify 修复与替代取证后仍不可得则停止并写缺口。
 
 5. **Gap 矩阵**。行=公司，列=七轴；该轴 ≥1 条 UVP 为 check，沉默为 —。覆盖 ≥70% 为过挤轴，≤30% 为空白轴。空白轴必须对照买家痛点；买家卡片或 ICP 未提到的不记为机会。完成：矩阵与过挤/空白两节都有；空白轴有交叉引用。符号与阈值见 `references/gap-matrix-template.md`。
 
@@ -39,7 +39,7 @@ description: >
 
 ## 默认
 
-- 查证用网页搜索；需要原文时抓取指定 URL；搜索或抓取不可用则停止并写缺口，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL；Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。
 - 数字、营收、证书、评价只来自：产品上下文、用户本轮、搜索结果或已抓取正文。交付物写 URL 与访问日期。
 - 公开源常无 TAM / CAGR / HHI；来源未出现则标「未在来源出现」，禁止用训练记忆或同业近似值填数字。
 - 面客句跟目标市场习惯，不把同一稿用于所有区域。

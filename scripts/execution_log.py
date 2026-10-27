@@ -20,6 +20,9 @@
   uv run scripts/execution_log.py recheck --id E-YYYYMMDD-NN [--url 新网址] [--expect ...] [--note "原因"]
                        对已登记的一行重新查证（查证失败、弄清原因后），就地改这一行；证据里「线上复核」之前的
                        部分（PR 链接等）保留，只重做线上那一段；--note 记进备注
+  uv run scripts/execution_log.py note --id E-YYYYMMDD-NN --note "不要求收录"
+                       只往这一行的备注追加一句话，不查证、不改别的列。备注写「不要求收录」的页，
+                       「下一步」不再按 W-04 / W-03 之类报「应被收录却没收录」
   uv run scripts/execution_log.py show [--date YYYY-MM-DD] [--id ID ...] [--source 来源 ...]
                        把登记过的行打印出来（核对用）
 
@@ -291,6 +294,24 @@ def cmd_recheck(args) -> int:
     return 0 if result == VERIFIED else 1
 
 
+def cmd_note(args) -> int:
+    schema = bt.load_schema()
+    svc = bt.sheets_service()
+    sid = bt.load_target(args.target)
+    now = bt.stamp(bt.beijing_now())
+    rows = bt.read_table(svc, sid, schema, SHEET)
+    old = next((r for r in rows if r["登记编号"] == args.id), None)
+    if not old:
+        raise SystemExit(f"执行登记里没有 {args.id}")
+    if args.note in (old.get("备注") or ""):
+        print(f"{old['登记编号']} 的备注里已经有「{args.note}」，没改")
+        return 0
+    row = {**old, "备注": "；".join(x for x in (old.get("备注"), args.note) if x)}
+    bt.upsert_rows(svc, sid, schema, SHEET, [row], now, existing=rows)
+    print(f"{old['登记编号']} 备注已追加：{args.note}")
+    return 0
+
+
 def cmd_show(args) -> int:
     schema = bt.load_schema()
     rows = bt.read_table(bt.sheets_service(), bt.load_target(args.target), schema, SHEET)
@@ -337,6 +358,9 @@ def main() -> None:
     r.add_argument("--url")
     r.add_argument("--expect", action="append", default=[])
     r.add_argument("--note", help="弄清的原因，记进备注")
+    n = sub.add_parser("note")
+    n.add_argument("--id", required=True)
+    n.add_argument("--note", required=True, help="追加到备注的一句话，如「不要求收录」")
     s = sub.add_parser("show")
     s.add_argument("--date")
     s.add_argument("--id", action="append")
@@ -345,7 +369,8 @@ def main() -> None:
     if args.command == "add" and not args.from_json and not (args.channel and args.action and args.desc):
         raise SystemExit("add 要 --channel、--action、--desc（或 --from-json）")
     try:
-        sys.exit({"check": cmd_check, "add": cmd_add, "recheck": cmd_recheck, "show": cmd_show}[args.command](args))
+        sys.exit({"check": cmd_check, "add": cmd_add, "recheck": cmd_recheck, "note": cmd_note,
+                  "show": cmd_show}[args.command](args))
     except Unreachable as e:
         print(f"线上抓不到，没有写表：{e}", file=sys.stderr)
         sys.exit(2)

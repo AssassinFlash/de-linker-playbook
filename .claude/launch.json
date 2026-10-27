@@ -1,0 +1,10 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gsc",
+      "url": "https://search.google.com/search-console",
+      "port": 443
+    }
+  ]
+}

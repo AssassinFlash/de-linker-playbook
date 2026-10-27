@@ -23,7 +23,7 @@ description: >
 
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。硬依赖：已批准的 `deliverables/lead/01-icp/icp-analysis.md`。软依赖（有则读，不阻塞）：`deliverables/lead/05-usp/usp-strategy.md`、`deliverables/lead/05-usp/product-knowledge.md`、`deliverables/lead/08-linkedin/topic-research.md`。用户本轮给出的品类、受众、主题、技巧要点或 CTA 一并用作本轮输入，来源记「用户本轮」。品类、目标海外受众或至少一条可教育的痛点仍缺：先看本轮消息；仍缺则打开 `skills/lead-interview/SKILL.md`（存在则按其做），否则停并写缺口。不要在本文件另写问卷。完成：能指出品类、受众、痛点各依据哪几条；原文不拷进本仓库。硬依赖缺失、用户本轮也未给出对应受众与痛点、且无 `user_waiver` → 停。
 
-3. **查证**。用网页搜索查证该类买家在该品类上的常见失误、选购问题或 how-to 缺口；需要原文则抓取指定 URL。帖中将点名的程序、标准、认证核验方法或数字：必须先搜到再写。搜索意图与降级见 `references/structure-6.md`；日志格式见 `skills/lead-generation/references/search-protocol.md`。搜索不可用：若还要发明程序或「常见错误」→ 停并写缺口；若用户已给出完整技巧且帖中无程序/标准/统计断言 → 可成稿，日志写「本轮未检索；帖中无程序/标准/统计断言」。禁止为凑次数空搜。禁止把搜到的他人帖原文写入交付物。需要隔离时 dispatch a subagent, else do it inline。完成：将写入帖子的程序/标准/数字有 URL 或已决定不使用；`## 搜索日志` 有行。
+3. **查证**。用 Apify 搜索查证该类买家在该品类上的常见失误、选购问题或 how-to 缺口；需要原文则抓取指定 URL。帖中将点名的程序、标准、认证核验方法或数字：必须先搜到再写。搜索意图与降级见 `references/structure-6.md`；日志格式见 `skills/lead-generation/references/search-protocol.md`。Apify 修复与替代取证后仍不可得：若还要发明程序或「常见错误」→ 停并写缺口；若用户已给出完整技巧且帖中无程序/标准/统计断言 → 可成稿，日志写「本轮未检索；帖中无程序/标准/统计断言」。禁止为凑次数空搜。禁止把搜到的他人帖原文写入交付物。需要隔离时 dispatch a subagent, else do it inline。完成：将写入帖子的程序/标准/数字有 URL 或已决定不使用；`## 搜索日志` 有行。
 
 4. **头脑风暴**。读 `references/structure-6.md` 的卡片格式与 tip 质量测试。产出 **2–3** 条互不重复的教育技巧（不是行业趋势，不是出口合规流程）。优先用已批准话题研究里偏 how-to / 选购 / 维护的条目当种子，不够再补。每条含：Suggested Topic、Key Content Points、Why this ICP。用户本轮已指定唯一话题 → 仍写该条卡片，候选可少到 1，并注明「用户本轮已指定」。证据不够就少写，不拿跨品类空话凑满 2–3。完成：每张卡片能通过 tip 质量测试；能指回 ICP 痛点或本轮查证。
 
@@ -34,7 +34,7 @@ description: >
 ## 默认
 
 - 产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理；不在本仓库另存档案。产地、目标市场以产品上下文为准，不预设某一出口国。
-- 查证用网页搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。搜索不可用则按步骤 3 降级，不编造。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL。不并列搜索引擎菜单。Apify 修复与替代取证后仍不可得则按步骤 3 降级，不编造。
 - 本帖类型是可执行技巧 / 选购指南 / 维护 how-to。宏观趋势走 `skills/lead-linkedin-authority/SKILL.md`（文件存在时）；出口法规、物流、市场准入走 `skills/lead-linkedin-expertise/SKILL.md`（文件存在时）。不要用本文件写揭谣、FAQ、个人故事或幕后厂拍。多平台日历或战役走 `skills/marketing-social-content/SKILL.md`（文件存在时）；选题卡走 `skills/lead-linkedin-topic-research/SKILL.md`（文件存在时）。
 - 篇幅、钩子、CTA、标签、四种风格、软广只认 `skills/lead-generation/references/linkedin-post-guidelines.md`。
 - 一条帖子只讲一条技巧。价值在前，产品在后；去掉产品句后仍应独立有用。
@@ -133,7 +133,7 @@ description: >
 - [ ] 已读共用规则、LinkedIn 共用规范与 `product_context`；硬依赖已读或已停并写缺口
 - [ ] 候选通过 tip 质量测试；每条能指回 ICP 或查证
 - [ ] 成稿为 Structure 6；一篇一事；钩子在折叠前；一个 CTA；3–5 个标签
-- [ ] 程序/标准/数字有来源或未使用；搜索不可用已按步骤 3 处理
+- [ ] 程序/标准/数字有来源或未使用；Apify 修复与替代取证后仍不可得已按步骤 3 处理
 - [ ] 产品句可删；帖子对目标 ICP 仍有用
 - [ ] 文件在 `deliverables/lead/08-linkedin/education-post.md`；未擅自发布
 - [ ] 教学例子原文未进入交付物

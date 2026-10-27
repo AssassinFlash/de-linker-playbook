@@ -21,9 +21,9 @@ description: >
 
 1. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。硬依赖：存在且已批准则读 `deliverables/lead/01-icp/icp-analysis.md`；缺失且无 `user_waiver` → 停并写缺口，打开 `skills/lead-icp-analysis/SKILL.md`（存在则按其做）。有则读：`deliverables/lead/02-companies/target-companies.md`、`deliverables/lead/02-companies/distributors-analysis.md`（或同目录 `distributors.xlsx`）。记下品类、利基、目标市场、已知对手、ICP 痛点。品类或利基仍缺：先看用户本轮；仍缺则停并只要这两项。需要结构化补问时打开 `skills/lead-interview/SKILL.md`，不在本文件另写问卷。完成：能指出品类、利基、买家痛点各依据哪几条；原文不拷进本仓库；用户本公司不进竞品表。
 
-2. **发现定位**。用网页搜索查证该利基的公开竞品与定位用语。需要原文时抓取指定 URL。搜索不可用则停止并写缺口，不编造。查询形状见下方「默认」。对照 `references/positioning-types.md` 给观察到的策略打标签；菜单上没有的按公开材料实际用语新增，不把八类当必须凑齐。完成：每条策略能指回至少一次搜索或已抓取页；未观察到的类型不进表。
+2. **发现定位**。用 Apify 搜索查证该利基的公开竞品与定位用语。需要原文时抓取指定 URL。Apify 修复与替代取证后仍不可得则停止并写缺口，不编造。查询形状见下方「默认」。对照 `references/positioning-types.md` 给观察到的策略打标签；菜单上没有的按公开材料实际用语新增，不把八类当必须凑齐。完成：每条策略能指回至少一次搜索或已抓取页；未观察到的类型不进表。
 
-3. **代表公司**。每个已观察策略选 2 家可核验代表公司，抓取官网（首页；概览不足再抓 About 或等价页），写 Company Overview、Target Audience、Key Selling Points。口号与证据分开记。多域名并行时 dispatch a subagent, else do it inline。完成：每家有可访问域名或已标 unverified；未核验的不编 Overview。某策略只有 1 家可核验 → 不编第二家，记为可能弱势策略。某策略公开玩家 ≥5 → 代表仍写 2 家，另记拥挤。目标 6 策略 × 2 家；搜不到 6 个真实策略则按实际数量交付并写缺口，不拿无关公司凑行。
+3. **代表公司**。每个已观察策略选 2 家可核验代表公司，抓取官网（首页；概览不足再抓 About 或等价页），写 Company Overview、Target Audience、Key Selling Points。口号与证据分开记。多域名并行时 dispatch a subagent, else do it inline。完成：每家有可访问域名或已标 unverified；未核验的不编 Overview。某策略只有 1 家可核验 → 不编第二家，记为可能弱势策略。某策略公开玩家 ≥5 → 代表仍写 2 家，另记拥挤。目标 6 策略 × 2 家；Apify 修复与替代取证后仍不可得 6 个真实策略则按实际数量交付并写缺口，不拿无关公司凑行。
 
 4. **空白**。三类分开写，不混：无人占据的定位组合；已占位但执行弱（站点、内容、响应等可观察弱点）；未满足需求——必须对照 ICP 痛点，ICP 没提的不记为机会。完成：至少 3 个空白，或明示搜完后不足 3 个及原因；每个空白有 ICP 痛点交叉引用。
 
@@ -32,7 +32,7 @@ description: >
 ## 默认
 
 - 产出只进 `deliverables/lead/04-market/`。厂对厂战斗卡、vs 页、渠道价走 `marketing-competitor-intelligence`。不要用本 skill 写 USP 七步或市场规模报告。本 skill 停在「空白→已有能力」映射，USP 七轴与外发证据包走 `lead-usp-extraction`。战役闸门与审批走 `skills/lead-generation/SKILL.md`，本文件不重复六维。
-- 查证用网页搜索；需要原文时抓取指定 URL 的正文。概念型最低：至少 5 次网页搜索；每家代表公司抓取官网验证域名。关键词量、权威分、月流量：仅当用户已配置研究工具并导出时解析；未配置则用搜索结果量作粗热度，不编造流量或份额。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL 的正文。概念型最低：至少 5 次 Apify 搜索；每家代表公司抓取官网验证域名。关键词量、权威分、月流量：仅当用户已配置研究工具并导出时解析；未配置则用搜索结果量作粗热度，不编造流量或份额。
 - 数字、证书、营收、成立年份只来自：产品上下文、用户本轮、搜索结果或已抓取正文。交付物写 URL 与访问日期。
 - 策略与分析用中文；表列名 English snake_case；公司名不翻译；卖点摘录保持页面原文语言。
 - 硬依赖 `lead-icp-analysis`；软依赖公司调研（有则读，不阻塞）。分销商名单若存在，只作发现线索，不替代官网核验。

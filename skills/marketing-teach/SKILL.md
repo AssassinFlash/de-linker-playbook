@@ -21,7 +21,7 @@ description: >
 
 1. **输入**。开场先读 `deliverables/marketing/00-system/learning-state.md`（有则按 `current_skill` / `current_stage` 从下一阶段续，不重开；没有则待本轮落盘时初始化）。读用户本轮消息，取出目标 skill、知识水平（beginner / intermediate / advanced）、当前业务挑战。缺哪项问哪项，已给出的不重复问。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。在 `skills/` 下确认目标目录存在且含 `SKILL.md`；本 skill 只教 `marketing-*`。没有则提出最接近的 `marketing-*`，等用户选定再继续。完成：三要素齐；能指出受众与品类各依据上下文哪几条陈述；原文不拷进本仓库；学习状态已对照。
 
-2. **采集**。读目标 `skills/<name>/SKILL.md`（有 `references/` 再按需读），抽出框架、反模式、最低数据、交付物形状。用网页搜索查证该方法论的公开案例；查询词从产品上下文的品类与市场字段拼，不在本 skill 里填值。需要原文时抓取指定 URL 的正文。搜索不可用则停止，在笔记标缺口，不编造。完成：至少一条带来源 URL 的真实案例；目标 skill 的步骤可复述。
+2. **采集**。读目标 `skills/<name>/SKILL.md`（有 `references/` 再按需读），抽出框架、反模式、最低数据、交付物形状。用 Apify 搜索查证该方法论的公开案例；查询词从产品上下文的品类与市场字段拼，不在本 skill 里填值。需要原文时抓取指定 URL 的正文。Apify 修复与替代取证后仍不可得则停止，在笔记标缺口，不编造。完成：至少一条带来源 URL 的真实案例；目标 skill 的步骤可复述。
 
 3. **教（Stage 1）**。按用户水平用中文讲方法论（见「产出」Stage 1 模板）。深度：beginner 讲做什么、为什么、关键术语；intermediate 讲怎么套框架与常见错；advanced 讲边界、优化与跨 skill。完成：问题、步骤、理由、概念、反模式都有；案例带来源。
 

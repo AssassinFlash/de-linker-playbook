@@ -21,7 +21,7 @@ description: >
 
 1. **共用规则**。读 `skills/marketing-playbook-standards/SKILL.md`。完成：能复述数据锚定、例子禁引用、产出根、工具能力化。
 2. **输入**。产品与公司事实读事实源入口 `docs/fact-sources.md`，按其「什么问题查哪个源」取证；查不到标〔未证实〕，按没有处理。上游若存在则读 `deliverables/marketing/01-foundation/` 与 `deliverables/marketing/02-seo/` 里相关文件。列出：真实变体范围、询盘最多的市场、公司所在地、目标站点技术栈与 URL/模板约束、必须保留的已有页面。完成：能指出品类、市场、目录维度各依据哪几条；原文不拷进本仓库。品类、市场或技术栈缺到无法设计矩阵则停并写缺口，不编造组合、搜索量或竞品 URL。
-3. **收集**。用网页搜索查证品类 × 应用 / 地点 / 对比 / 批发意图的公开 SERP；需要原文时抓取指定 URL 的正文。默认先搜再抓；搜索不可用则停止并写缺口。多页抓取需要隔离时 dispatch a subagent, else do it inline。查询意图、数据下限与核验：读 `references/methodology.md`。完成：每条声明有 URL、访问日期、摘录；变体矩阵来自实际目录；至少 3 个竞品程序化页面有可访问 URL，否则在缺口写明。
+3. **收集**。用 Apify 搜索查证品类 × 应用 / 地点 / 对比 / 批发意图的公开 SERP；需要原文时抓取指定 URL 的正文。默认先搜再抓；Apify 修复与替代取证后仍不可得则停止并写缺口。多页抓取需要隔离时 dispatch a subagent, else do it inline。查询意图、数据下限与核验：读 `references/methodology.md`。完成：每条声明有 URL、访问日期、摘录；变体矩阵来自实际目录；至少 3 个竞品程序化页面有可访问 URL，否则在缺口写明。
 4. **分析**。按数据选页面类型，不要按习惯铺全类型。为每种类型写 URL 模式、变量来源、独特性方法、目标站点技术栈上的模板与批量路径、hub-and-spoke 内链、index / `noindex` 分层。先每类手工 1 个样本页的质量标准，再规划批次。页面优先级、变量库与独特性规则见 `references/methodology.md`。完成：至少 4 种页面类型有 URL 模式；同类型任意两页能指出至少三处实质差异；薄组合有合并或 `noindex` 策略。
 5. **落盘**。写入下方路径与模板。策略与分析用简体中文；面客 URL、字段名、文件名按产品上下文语种（默认英文文件名）。工作簿可从 `templates/pseo-page-matrix.xlsx` 复制后填行；需要隔离时 dispatch a subagent, else do it inline。完成：主文档与工作簿非空；Page Matrix ≥50 行且每行 `source` 非空；教学支架原文零出现。
 

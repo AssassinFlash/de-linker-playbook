@@ -35,3 +35,7 @@ id_dsa
 secrets/
 credentials.json
 __pycache__/
+
+# Local ops dashboard build
+apps/ops-dashboard/node_modules/
+apps/ops-dashboard/dist/

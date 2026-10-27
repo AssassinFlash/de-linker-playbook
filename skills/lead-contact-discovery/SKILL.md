@@ -26,7 +26,7 @@ description: >
 
 3. **定范围**。缺省职位（可被 ICP 或本轮消息覆盖）：Buyer, Procurement Manager, Sourcing Manager, Supply Chain Manager, Category Manager, Owner, CEO, VP of Purchasing, Director of Procurement。每家至少落一行；用户指定人数则以其为准。完成：本轮职位列表与人数上限写进采集概况，不在过程中改口径。
 
-4. **公开页查证**。对每个域名：用网页搜索查证，再抓取指定 URL 的正文（联系页 / About / Team，含动态页）。查询与通过标准见 `references/lookup-protocol.md`。搜索不可用 → 停止并写缺口，不编造。同一站点限流或验证码 → 停止对该域的抓取，记入搜索日志，不循环硬试。公司多、需隔离时按 ICP 或域名批 dispatch a subagent, else do it inline；单家 inline。完成：每个目标域名有搜索日志；找到的联系人能指回已抓取页。
+4. **公开页查证**。对每个域名：用 Apify 搜索查证，再抓取指定 URL 的正文（联系页 / About / Team，含动态页）。查询与通过标准见 `references/lookup-protocol.md`。Apify 修复与替代取证后仍不可得 → 停止并写缺口，不编造。同一站点限流或验证码 → 停止对该域的抓取，记入搜索日志，不循环硬试。公司多、需隔离时按 ICP 或域名批 dispatch a subagent, else do it inline；单家 inline。完成：每个目标域名有搜索日志；找到的联系人能指回已抓取页。
 
 5. **发现服务**。仅当用户已配置联系人/邮箱发现服务时，按 `references/contact-finder-workflow.md` 补邮箱。付费项须先告知并获准。未配置或未批准 → 缺邮箱的字段标「联系人待补」，不编造，不导出发现用域名表。已配置且本侧可调用 → 调用后合并。已配置但须用户在控制台操作 → 导出 `deliverables/lead/03-contacts/domains-for-contact-finder.csv`，先落盘公开页结果（缺的标「联系人待补」），用户交回后再合并，不空等。完成：主表已含公开页结果；服务结果已合并或缺口已标「联系人待补」。
 
@@ -36,7 +36,7 @@ description: >
 
 ## 默认
 
-- 查证用网页搜索；需要原文时抓取指定 URL（含动态页）。不并列搜索引擎菜单。
+- 查证用 Apify 搜索；需要原文时抓取指定 URL（含动态页）。不并列搜索引擎菜单。
 - 联系人/邮箱发现服务、网页采集服务：仅当用户已配置；付费前告知并获准。否则标「联系人待补」。
 - 共用规则若存在则读 `skills/marketing-playbook-standards/SKILL.md`。
 - 产品事实只读台账 `product_context`，不在本仓库另存一份。
@@ -66,7 +66,7 @@ description: >
 目标公司数、域名数、找到联系人的公司数、待补行数、实际覆盖率、职位列表、名单范围。
 
 ## 查证统计
-网页搜索次数、抓取 URL 数、发现服务是否使用（未用则写原因）。
+Apify 搜索次数、抓取 URL 数、发现服务是否使用（未用则写原因）。
 
 ## 失败分析
 无域名 / 公开页无联系人 / 限流或登录墙 / 无法匹配 ICP。每条写公司与原因，不编造补齐。
@@ -114,7 +114,7 @@ ICP 职位不要一律写成 Procurement Manager。小安装商人格是所有�
 ## 清单
 
 - [ ] 已读 `product_context` 与已批准 ICP；至少一份公司名单；硬依赖未满足则已停
-- [ ] 每个目标域名有搜索日志；搜索不可用时已停并写缺口
+- [ ] 每个目标域名有搜索日志；Apify 修复与替代取证后仍不可得时已停并写缺口
 - [ ] 每行有 ICP / 公司类型 / 职位；按 ICP 分 sheet
 - [ ] 未配置发现服务的缺邮箱已标「联系人待补」，无编造
 - [ ] 覆盖率为实际值；隐私提醒含 GDPR / CAN-SPAM
