@@ -43,7 +43,7 @@ OUT = Path.home() / ".config" / "de-linker-playbook" / "dashboard.json"
 HOST = "127.0.0.1"
 PORT = 8766
 LEVELS = ("L0", "L1", "L2", "L3")
-INQUIRY_STATUSES = ("询盘已收到", "形式发票已开", "已完成", "已取消")
+INQUIRY_STATUSES = ("询盘已收到", "报价单已出", "已完成", "已取消")
 CUMULATIVE = {"L1": {"L1", "L2", "L3"}, "L2": {"L2", "L3"}, "L3": {"L3"}}
 
 

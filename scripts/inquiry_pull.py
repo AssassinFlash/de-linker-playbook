@@ -7,7 +7,7 @@
 # ]
 # ///
 """
-询盘回流 L3：把网站上的形式发票申请对进底表「询盘」，再重算动作进度。
+询盘回流 L3：把网站上提交的询盘对进底表「询盘」，再重算动作进度。
 
   uv run scripts/inquiry_pull.py run
                        按四个计入状态全量对账并写表
@@ -53,8 +53,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import base_table as bt  # noqa: E402
 
 ORDERS_URL = "https://de-linker.com/wp-json/wc/v3/orders"
-STATUSES = "inquiry-received,proforma-issued,completed,cancelled"
-ISSUED_META = "_linker_proforma_issued"
+STATUSES = "inquiry-received,quotation-issued,completed,cancelled"
+ISSUED_META = "_linker_quotation_issued"
 ATTR_PREFIX = "_wc_order_attribution_"
 SHEET = "询盘"
 PER_PAGE = 100
@@ -65,7 +65,7 @@ MAX_BODY = 16 * 1024 * 1024
 PRESERVE = ("归因登记编号", "归因依据", "备注")
 STATUS_ZH = {
     "inquiry-received": "询盘已收到",
-    "proforma-issued": "形式发票已开",
+    "quotation-issued": "报价单已出",
     "completed": "已完成",
     "cancelled": "已取消",
 }
@@ -477,7 +477,7 @@ def to_sheet_row(rec: dict) -> dict:
         "公司": rec.get("company") or None,
         "创建时刻（北京时间）": gmt_to_beijing(created),
         "状态": STATUS_ZH[status],
-        "形式发票签发时刻（北京时间）": issued_bj,
+        "报价单签发时刻（北京时间）": issued_bj,
         "来源类型": rec.get("source"),
         "设备类型": rec.get("device"),
         "会话页数": rec.get("pages"),

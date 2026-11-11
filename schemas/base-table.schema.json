@@ -1405,7 +1405,7 @@
     },
     "询盘": {
       "type": "object",
-      "description": "网站上提交的形式发票申请（询盘）。这是 L3，也是北极星：整个闭环最终看它。",
+      "description": "网站上提交的询盘（客户要一份报价单）。这是 L3，也是北极星：整个闭环最终看它。",
       "x-row": "一笔询盘 = 一行。状态变了就改这一行，不另起一行。",
       "x-rows-added": "询盘回流脚本定时从网站读取：新询盘追加一行；已有询盘的状态、签发时刻有变化时更新原行。",
       "x-key": [
@@ -1466,22 +1466,22 @@
           "type": "string",
           "enum": [
             "询盘已收到",
-            "形式发票已开",
+            "报价单已出",
             "已完成",
             "已取消"
           ],
           "description": "这笔询盘现在走到哪一步。",
-          "x-source": "订单状态：inquiry-received / proforma-issued / completed / cancelled。",
+          "x-source": "订单状态：inquiry-received / quotation-issued / completed / cancelled。",
           "x-writer": "脚本",
           "examples": [
             "询盘已收到"
           ],
           "x-empty": "不允许空。"
         },
-        "形式发票签发时刻（北京时间）": {
+        "报价单签发时刻（北京时间）": {
           "type": "string",
-          "description": "形式发票发出的时刻。",
-          "x-source": "订单上的签发记录（_linker_proforma_issued），脚本换算成北京时间。",
+          "description": "报价单发出的时刻。",
+          "x-source": "订单上的签发记录（_linker_quotation_issued），脚本换算成北京时间。",
           "x-writer": "脚本",
           "examples": [
             "2026-10-13 18:00"

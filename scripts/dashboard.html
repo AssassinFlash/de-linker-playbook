@@ -144,7 +144,7 @@ function askOf(row) {
 }
 function statusClass(status) {
   if (status === "询盘已收到") return "open";
-  if (status === "形式发票已开") return "issued";
+  if (status === "报价单已出") return "issued";
   if (status === "已完成") return "done";
   if (status === "已取消") return "cancelled";
   return "";
@@ -298,9 +298,9 @@ function pace() {
 }
 function inquiries() {
   const items = inquiryItems();
-  const statuses = ["询盘已收到","形式发票已开","已完成","已取消"];
+  const statuses = ["询盘已收到","报价单已出","已完成","已取消"];
   const counts = Object.fromEntries(statuses.map(name => [name, items.filter(r => r.status === name).length]));
-  const colors = {"询盘已收到":"#2563eb","形式发票已开":"#10b981","已完成":"#059669","已取消":"#d1d5db"};
+  const colors = {"询盘已收到":"#2563eb","报价单已出":"#10b981","已完成":"#059669","已取消":"#d1d5db"};
   const slices = statuses.map(name => ({label: name, status: name, value: counts[name] || 0, color: colors[name]}));
   const byDay = {};
   items.forEach(row => { const day = (row.created || "").slice(0, 10); if (day.length === 10) byDay[day] = (byDay[day] || 0) + 1; });
